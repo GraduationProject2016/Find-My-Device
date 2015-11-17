@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	@Transactional
-	public void save(User user) {
+	public void save(User user) throws Exception {
 		em.persist(user);
 	}
 

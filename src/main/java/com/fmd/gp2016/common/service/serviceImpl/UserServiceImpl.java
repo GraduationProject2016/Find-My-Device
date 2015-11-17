@@ -2,14 +2,13 @@ package com.fmd.gp2016.common.service.serviceImpl;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fmd.gp2016.common.dao.UserDao;
 import com.fmd.gp2016.common.entity.User;
 import com.fmd.gp2016.common.service.UserService;
+import com.fmd.gp2016.common.util.Constants;
 
 /**
  * @author mohamed265
@@ -24,7 +23,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void save(User user) {
-		userDao.save(user);
+		try {
+			userDao.save(user);
+			user.setStatus(Constants.SUCCESS);
+		} catch (Exception e) {
+			user.setStatus(Constants.FAIL);// + e.toString());
+		}
 	}
 
 	@Override
@@ -44,12 +48,24 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User loginByUsername(String username, String password) {
-		return userDao.loginByUsername(username, password);
+		User temp = userDao.loginByUsername(username, password);
+		if (temp == null) {
+			temp = new User();
+			temp.setStatus(Constants.FAIL);
+		} else
+			temp.setStatus(Constants.SUCCESS);
+		return temp;
 	}
 
 	@Override
 	public User loginByEmail(String email, String password) {
-		return userDao.loginByEmail(email, password);
+		User temp = userDao.loginByEmail(email, password);
+		if (temp == null) {
+			temp = new User();
+			temp.setStatus(Constants.FAIL);
+		} else
+			temp.setStatus(Constants.SUCCESS);
+		return temp;
 	}
 
 }

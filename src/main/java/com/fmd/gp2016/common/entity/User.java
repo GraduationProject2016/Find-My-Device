@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -23,7 +24,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({ @NamedQuery(name = "User.getAll", query = "SELECT e FROM User e"),
 		@NamedQuery(name = "User.getUserById", query = "SELECT e FROM User e WHERE e.id = :ID"),
 		@NamedQuery(name = "User.deleteUser", query = "DELETE FROM User e WHERE e.id = :ID"),
-		@NamedQuery(name = "User.loginUsername", query = "SELECT e FROM User e WHERE e.username = :USERNAME and e.password = :PASSWORD"),
+		@NamedQuery(name = "User.loginUsername", query = "SELECT e FROM User e WHERE e.userName = :USERNAME and e.password = :PASSWORD"),
 		@NamedQuery(name = "User.loginEmail", query = "SELECT e FROM User e WHERE e.email = :EMAIL and e.password = :PASSWORD") })
 public class User implements Serializable {
 
@@ -36,39 +37,42 @@ public class User implements Serializable {
 	private Integer id;
 
 	@Basic(optional = false)
-	@NotNull
+	// @NotNull
 	@Column(name = "name")
 	@Size(max = 100)
 	private String name;
 
 	@Basic(optional = false)
-	@NotNull
+	// @NotNull
 	@Column(name = "password")
 	@Size(max = 30)
 	private String password;
 
 	@Basic(optional = false)
-	@NotNull
+	// @NotNull
 	@Column(name = "username")
 	@Size(max = 20)
 	private String userName;
 
 	@Basic(optional = false)
-	@NotNull
+	// @NotNull
 	@Column(name = "email")
 	@Size(max = 60)
 	private String email;
 
 	@Basic(optional = false)
-	@NotNull
+	// @NotNull
 	@Column(name = "mobileno")
 	@Size(max = 30)
 	private String mobileNo;
 
 	@Basic(optional = false)
-	@NotNull
+	// @NotNull
 	@Column(name = "active")
 	private Boolean active;
+
+	@Transient
+	private String status;
 
 	public User() {
 
@@ -139,6 +143,14 @@ public class User implements Serializable {
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String sTATES) {
+		status = sTATES;
 	}
 
 }

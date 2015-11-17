@@ -13,7 +13,7 @@ import com.fmd.gp2016.common.entity.User;
 
 public interface UserDao {
 
-	public void save(User user);
+	public void save(User user) throws Exception;
 
 	public List<User> getAllUsers();
 
