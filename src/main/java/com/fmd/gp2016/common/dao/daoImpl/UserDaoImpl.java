@@ -3,10 +3,10 @@ package com.fmd.gp2016.common.dao.daoImpl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -80,4 +80,14 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
+	@Override
+	public String selecColumntByIDNative(String columnName, Object columnValue) {
+		Query query = em.createNativeQuery(
+				"SELECT " + columnName + " FROM user WHERE " + columnName + " = '" + columnValue + "'");
+		try {
+			return (String) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

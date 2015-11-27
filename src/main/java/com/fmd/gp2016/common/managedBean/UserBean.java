@@ -38,7 +38,8 @@ public class UserBean {
 		user.setActive(true);
 		userService.save(user);
 		System.out.println(user.getId());
-		userService.delete(user);
+		//userService.delete(user);
+		System.out.println(user.getStatus());
 	//	user = userService.getUserById(user.getId());
 		//System.out.println(user);
 	}

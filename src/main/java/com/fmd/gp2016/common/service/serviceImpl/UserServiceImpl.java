@@ -23,12 +23,32 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void save(User user) {
-		try {
-			userDao.save(user);
-			user.setStatus(Constants.SUCCESS);
-		} catch (Exception e) {
-			user.setStatus(Constants.FAIL);// + e.toString());
+
+		Boolean isUniqueEmail = isUniqeEmail(user.getEmail());
+		Boolean isUniqueUsername = isUniqeUsername(user.getUserName());
+
+		if (isUniqueUsername && isUniqueEmail) {
+			try {
+				userDao.save(user);
+				user.setStatus(Constants.SUCCESS);
+			} catch (Exception e) {
+				System.err.println("User Dao Save");
+				e.printStackTrace();
+				user.setStatus(Constants.FAIL);
+			}
+
+		} else {
+			String failMessage = Constants.FAIL;
+
+			if (!isUniqueEmail)
+				failMessage += "|EmailNotUniqe|";
+
+			if (!isUniqueUsername)
+				failMessage += "|UsernameNotUniqe|";
+
+			user.setStatus(failMessage);
 		}
+
 	}
 
 	@Override
@@ -66,6 +86,16 @@ public class UserServiceImpl implements UserService {
 		} else
 			temp.setStatus(Constants.SUCCESS);
 		return temp;
+	}
+
+	@Override
+	public Boolean isUniqeUsername(String username) {
+		return (userDao.selecColumntByIDNative("username", username) == null ? true : false);
+
+	}
+
+	public Boolean isUniqeEmail(String email) {
+		return (userDao.selecColumntByIDNative("email", email) == null ? true : false);
 	}
 
 }

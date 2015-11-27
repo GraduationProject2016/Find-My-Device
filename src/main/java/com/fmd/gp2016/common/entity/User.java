@@ -12,7 +12,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -37,37 +36,31 @@ public class User implements Serializable {
 	private Integer id;
 
 	@Basic(optional = false)
-	// @NotNull
 	@Column(name = "name")
 	@Size(max = 100)
 	private String name;
 
 	@Basic(optional = false)
-	// @NotNull
 	@Column(name = "password")
 	@Size(max = 30)
 	private String password;
 
 	@Basic(optional = false)
-	// @NotNull
 	@Column(name = "username")
 	@Size(max = 20)
 	private String userName;
 
 	@Basic(optional = false)
-	// @NotNull
 	@Column(name = "email")
 	@Size(max = 60)
 	private String email;
 
 	@Basic(optional = false)
-	// @NotNull
 	@Column(name = "mobileno")
 	@Size(max = 30)
 	private String mobileNo;
 
 	@Basic(optional = false)
-	// @NotNull
 	@Column(name = "active")
 	private Boolean active;
 

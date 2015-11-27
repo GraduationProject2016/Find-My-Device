@@ -22,4 +22,9 @@ public interface UserService {
 	public User loginByUsername(String username, String password);
 
 	public User loginByEmail(String email, String password);
+	
+	public Boolean isUniqeUsername(String username);
+	
+	public Boolean isUniqeEmail(String email);
 }
+ 
