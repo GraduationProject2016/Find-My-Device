@@ -19,7 +19,7 @@ import com.fmd.gp2016.common.util.Constants;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	UserDao userDao;
+	private UserDao userDao;
 
 	@Override
 	public void save(User user) {
@@ -41,10 +41,10 @@ public class UserServiceImpl implements UserService {
 			String failMessage = Constants.FAIL;
 
 			if (!isUniqueEmail)
-				failMessage += "|EmailNotUniqe|";
+				failMessage += "|" + Constants.EmailNotUniqe + "|";
 
 			if (!isUniqueUsername)
-				failMessage += "|UsernameNotUniqe|";
+				failMessage += "|" + Constants.UsernameNotUniqe + "|";
 
 			user.setStatus(failMessage);
 		}
@@ -58,7 +58,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void delete(User user) {
-		userDao.delete(user);
+		try {
+			userDao.delete(user);
+			user.setStatus(Constants.SUCCESS);
+		} catch (Exception e) {
+			user.setStatus(Constants.FAIL);
+		}
 	}
 
 	@Override
@@ -90,12 +95,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Boolean isUniqeUsername(String username) {
-		return (userDao.selecColumntByIDNative("username", username) == null ? true : false);
+		return (userDao.selecColumntByIDNative("username", username) == null ? true
+				: false);
 
 	}
 
 	public Boolean isUniqeEmail(String email) {
-		return (userDao.selecColumntByIDNative("email", email) == null ? true : false);
+		return (userDao.selecColumntByIDNative("email", email) == null ? true
+				: false);
 	}
 
 }

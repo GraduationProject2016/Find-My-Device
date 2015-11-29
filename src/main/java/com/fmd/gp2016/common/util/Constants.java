@@ -14,6 +14,8 @@ public class Constants {
 	public static final String STATES = "status";
 	public static final String FAIL = "fail";
 	public static final String SUCCESS = "Success";
+	public static final String EmailNotUniqe = "EmailNotUniqe";
+	public static final String UsernameNotUniqe = "UsernameNotUniqe";
 
 	// Web Service Constants
 	public static final String ID = "id";
