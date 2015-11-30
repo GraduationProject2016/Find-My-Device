@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>#{ar.SIGNUP_PAGE_NAME}</title>
+
+</h:head>
+<h:body>
+	<h:form dir="rtl">
+		<h:outputText value="#{ar.OUTPUTTEXT_NAME}" />
+		<h:inputText id="name" value="#{signup.user.name}"
+			a:placeholder="#{ar.PLACEHOLDER_NAME}" />
+		<br />
+		<h:outputText value="#{ar.OUTPUTTEXT_MOBILE}" />
+		<h:inputText id="phone" value="#{signup.user.mobileNo}"
+			a:placeholder="#{ar.PLACEHOLDER_MOBILE}" />
+		<br />
+		<h:inputText id="username" value="#{signup.user.userName}"
+			a:placeholder="Write userName! " />
+		<br />
+
+		<h:inputText id="email" value="#{signup.user.email}"
+			a:placeholder="What's your Email?" />
+		<br />
+		
+		<h:inputText id="password" value="#{signup.password}"
+			a:placeholder="write password!?" />
+		<br />
+
+		<h:inputText id="sPassword" value="#{signup.confirmationPassword}"
+			a:placeholder="confirm password?" />
+		<br />
+		<br />
+
+
+		<h:commandButton value="Sumbit" action="#{signup.save()}" />
+
+
+	</h:form>
+
+</h:body>
+
+</html>

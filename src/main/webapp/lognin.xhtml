@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Hello World -Input Form</title>
+
+</h:head>
+<h:body>
+	<h:form>
+
+		<h:inputText id="username" value="#{theUserName}"
+			a:placeholder="Enter Username/ Email " />
+		<br /><br />
+
+
+		<h:inputText id="password" value="#{theUserpassword}"
+			a:placeholder="Write password!" />
+		<br /><br />
+
+
+		<h:commandButton value="Log In" action="myresponse" />
+
+
+	</h:form>
+
+</h:body>
+
+</html>
