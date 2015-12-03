@@ -1,40 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>#{ar.SIGNUP_PAGE_NAME}</title>
 
 </h:head>
 <h:body>
-	<h:form dir="rtl">
-		<h:outputText value="#{ar.OUTPUTTEXT_NAME}" />
-		<h:inputText id="name" value="#{signup.user.name}"
-			a:placeholder="#{ar.PLACEHOLDER_NAME}" />
+	<h:form>
+		<p:growl id="msg" />
+		<p:outputLabel value="#{ar.OUTPUTTEXT_NAME}" />
+		<p:inputText id="name" value="#{signup.user.name}"
+			a:placeholder="#{ar.PLACEHOLDER_NAME}" required="true"
+			requiredMessage="You must enter a Name" />
+
 		<br />
-		<h:outputText value="#{ar.OUTPUTTEXT_MOBILE}" />
-		<h:inputText id="phone" value="#{signup.user.mobileNo}"
-			a:placeholder="#{ar.PLACEHOLDER_MOBILE}" />
-		<br />
-		<h:inputText id="username" value="#{signup.user.userName}"
-			a:placeholder="Write Name! " />
+		<p:outputLabel value="#{ar.OUTPUTTEXT_MOBILE}" />
+		<p:inputText id="phone" value="#{signup.user.mobileNo}"
+			a:placeholder="#{ar.PLACEHOLDER_MOBILE}" required="true"
+			requiredMessage="You must enter a mobile number" />
+
 		<br />
 
-		<h:inputText id="email" value="#{signup.user.email}"
-			a:placeholder="What's your Email?" />
-		<br />
-		
-		<h:inputText id="password" value="#{signup.password}"
-			a:placeholder="write password!?" />
+		<p:outputLabel value="#{ar.OUTPUTTEXT_USERNAME}" />
+		<p:inputText id="username" value="#{signup.user.userName}"
+			a:placeholder="#{ar. PLACEHOLDER_USERNAME}" required="true"
+			requiredMessage="You must enter username" />
+		<p:outputLabel id="usernamemessage" value="#{signup.errorMessage}"
+			style="color:red;" />
+
 		<br />
 
-		<h:inputText id="sPassword" value="#{signup.confirmationPassword}"
-			a:placeholder="confirm password?" />
+		<p:outputLabel value="#{ar.OUTPUTTEXT_EMAIL}" />
+		<p:inputText id="email" value="#{signup.user.email}"
+			a:placeholder="#{ar.PLACEHOLDER_EMAIL}" />
+
+		<br />
+		<p:outputLabel value="#{ar.OUTPUTTEXT_PASSWORD}" />
+		<p:inputText id="password" value="#{signup.password}"
+			a:placeholder="#{ar.PLACEHOLDER_PASSWORD}" required="true"
+			requiredMessage="You must enter password" />
+
+		<br />
+		<p:outputLabel value="#{ar.OUTPUTTEXT_CONFIRMPASSWORD}" />
+		<p:inputText id="sPassword" value="#{signup.confirmationPassword}"
+			a:placeholder="#{ar.PLACEHOLDER_CONFIRMPASSWORD}" required="true"
+			requiredMessage="You must enter confrim password" />
+
 		<br />
 		<br />
-
-
-		<h:commandButton value="Sumbit" action="#{signup.save()}" />
+ 
+		<p:commandButton value="Sumbit" actionListener="#{signup.save()}">
+			 
+		</p:commandButton>
 
 
 	</h:form>
