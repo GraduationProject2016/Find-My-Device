@@ -33,7 +33,7 @@ CREATE TABLE `user` (
   `email` varchar(60) NOT NULL,
   `password` varchar(30) NOT NULL,
   `mobileNo` varchar(30) NOT NULL,
-  `active` tinyint(3) unsigned NOT NULL,
+  `active` tinyint(1) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)

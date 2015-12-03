@@ -14,8 +14,10 @@ public class Constants {
 	public static final String STATES = "status";
 	public static final String FAIL = "fail";
 	public static final String SUCCESS = "Success";
+	public static final String EmailNotUniqe = "EmailNotUniqe";
+	public static final String UsernameNotUniqe = "UsernameNotUniqe";
 
-	// Sign up Constants
+	// Web Service Constants
 	public static final String ID = "id";
 	public static final String USER_NAME = "username";
 	public static final String NAME = "name";
@@ -23,4 +25,11 @@ public class Constants {
 	public static final String EMAIL = "email";
 	public static final String ACTIVE = "active";
 	public static final String MOBILE_NO = "mobileno";
+	public static final String MAC_ADDRESS = "macaddress";
+	public static final String DEVICE_TYPE = "device_type";
+	public static final String DEVICE_TYPE_ANDROID = "ANDROID";
+	public static final Boolean DEVICE_TYPE_ANDROID_DB = false;
+	public static final String DEVICE_TYPE_DESKTOP = "DESKTOP";
+	public static final Boolean DEVICE_TYPE_DESKTOP_DB = true;
+
 }

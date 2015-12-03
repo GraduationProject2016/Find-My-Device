@@ -22,6 +22,8 @@ public interface UserDao {
 	public User getUserById(int id);
 
 	public User loginByUsername(String username, String password);
-	
+
 	public User loginByEmail(String email, String password);
+
+	public String selecColumntByIDNative(String culomnName, Object columnValue);
 }

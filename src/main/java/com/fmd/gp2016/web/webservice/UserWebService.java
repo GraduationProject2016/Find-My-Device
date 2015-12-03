@@ -1,7 +1,3 @@
-/**
- * @author mohamed265
- * Created On : Nov 17, 2015 8:27:55 PM
- */
 package com.fmd.gp2016.web.webservice;
 
 import javax.ws.rs.GET;
@@ -20,18 +16,18 @@ import com.fmd.gp2016.common.util.Constants;
 /**
  * @author mohamed265
  */
-@Path("/signup")
-public class SignupWebService {
+@Path("/user")
+public class UserWebService {
 
 	@Autowired
 	private UserService userService;
 
-	public SignupWebService() {
+	public UserWebService() {
 		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
 	}
 
 	@GET
-	@Path("/{" + Constants.NAME + "}" + "/{" + Constants.USER_NAME + "}" + "/{" + Constants.EMAIL + "}" + "/{"
+	@Path("/signup/{" + Constants.NAME + "}" + "/{" + Constants.USER_NAME + "}" + "/{" + Constants.EMAIL + "}" + "/{"
 			+ Constants.MOBILE_NO + "}" + "/{" + Constants.PASSWORD + "}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public User signup(@PathParam(Constants.NAME) String name, @PathParam(Constants.USER_NAME) String username,
@@ -46,6 +42,22 @@ public class SignupWebService {
 		user.setActive(false);
 		userService.save(user);
 		return user;
+	}
+
+	@GET
+	@Path("/login/" + Constants.USER_NAME + "/{" + Constants.USER_NAME + "}/{" + Constants.PASSWORD + "}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public User loginWithUserName(@PathParam(Constants.USER_NAME) String username,
+			@PathParam(Constants.PASSWORD) String password) {
+		return userService.loginByUsername(username, password);
+	}
+
+	@GET
+	@Path("/login/" + Constants.EMAIL + "/{" + Constants.EMAIL + "}/{" + Constants.PASSWORD + "}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public User loginWithEmail(@PathParam(Constants.EMAIL) String email,
+			@PathParam(Constants.PASSWORD) String password) {
+		return userService.loginByEmail(email, password);
 	}
 
 }
