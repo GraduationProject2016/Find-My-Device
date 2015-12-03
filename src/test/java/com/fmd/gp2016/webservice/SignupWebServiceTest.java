@@ -5,9 +5,6 @@
 package com.fmd.gp2016.webservice;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.net.URL;
-import java.net.URLConnection;
 
 import javax.json.JsonObject;
 
