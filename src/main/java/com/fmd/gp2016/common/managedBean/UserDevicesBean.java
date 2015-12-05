@@ -1,5 +1,6 @@
 package com.fmd.gp2016.common.managedBean;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,9 +40,8 @@ public class UserDevicesBean {
 
 	public String control(int device_id, int i) {
 		device = userDevicesService.getDeviceById(device_id);
-		if (!passwords[i].equals(device.getPassword())) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error password....", null));
+		if (!isAuzorizedUser(i)) {
+			errorPasswordMsg();
 		} else {
 			FacesMessage meg = new FacesMessage("OK TMAM YA BASHA");
 			FacesContext.getCurrentInstance().addMessage(null, meg);
@@ -49,17 +49,27 @@ public class UserDevicesBean {
 		return "";
 	}
 
-	public String delete(int device_id, int i) {
+	boolean isAuzorizedUser(int i) {
+		return passwords[i].equals(device.getPassword());
+	}
+
+	void errorPasswordMsg() {
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error password....", null));
+	}
+
+	public String delete(int device_id, int i) throws IOException {
 		device = userDevicesService.getDeviceById(device_id);
-		if (!passwords[i].equals(device.getPassword())) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error password....", null));
+		if (!isAuzorizedUser(i)) {
+			errorPasswordMsg();
 		} else {
 			userDevicesService.deleteDevice(device_id);
 
 			FacesMessage meg = new FacesMessage("Devices deleted successfully");
 			FacesContext.getCurrentInstance().addMessage(null, meg);
 		}
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().redirect("userDevices.xhtml");
 		return "";
 	}
 
