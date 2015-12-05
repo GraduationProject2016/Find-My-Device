@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -13,12 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fmd.gp2016.common.entity.Device;
 import com.fmd.gp2016.common.service.DeviceService;
+import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
 
 /**
  * @author IbrahimAli
  */
 
-@ViewScoped
+@SpringViewScoped
 @Named(value = "userdevices")
 public class UserDevicesBean {
 
@@ -28,31 +28,39 @@ public class UserDevicesBean {
 	private Device device = new Device();
 	private List<Device> devices;
 
-	private String devicePassword;
+	private String[] passwords;
 
 	@PostConstruct
 	public void init() {
 		devices = new ArrayList<Device>();
 		devices = userDevicesService.getAllUserDevicesByUserId(1);
+		passwords = new String[devices.size()];
 	}
 
-	public void control(int device_id) {
+	public String control(int device_id, int i) {
 		device = userDevicesService.getDeviceById(device_id);
-		if (!devicePassword.equals(device.getPassword())) {
+		if (!passwords[i].equals(device.getPassword())) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error password....", null));
 		} else {
 			FacesMessage meg = new FacesMessage("OK TMAM YA BASHA");
 			FacesContext.getCurrentInstance().addMessage(null, meg);
 		}
+		return "";
 	}
 
-	public void delete(int device_id) {
-		userDevicesService.deleteDevice(device_id);
+	public String delete(int device_id, int i) {
+		device = userDevicesService.getDeviceById(device_id);
+		if (!passwords[i].equals(device.getPassword())) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error password....", null));
+		} else {
+			userDevicesService.deleteDevice(device_id);
 
-		FacesMessage meg = new FacesMessage("Devices deleted successfully");
-		FacesContext.getCurrentInstance().addMessage(null, meg);
-
+			FacesMessage meg = new FacesMessage("Devices deleted successfully");
+			FacesContext.getCurrentInstance().addMessage(null, meg);
+		}
+		return "";
 	}
 
 	public Device getDevice() {
@@ -71,12 +79,12 @@ public class UserDevicesBean {
 		this.devices = devices;
 	}
 
-	public String getDevicePassword() {
-		return devicePassword;
+	public String[] getPasswords() {
+		return passwords;
 	}
 
-	public void setDevicePassword(String devicePassword) {
-		this.devicePassword = devicePassword;
+	public void setPasswords(String[] passwords) {
+		this.passwords = passwords;
 	}
 
 }
