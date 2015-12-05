@@ -58,7 +58,7 @@ public class DeviceDaoImpl implements DeviceDao {
 	@Override
 	@Transactional
 	public void deleteDevice(Integer id) {
-		Query query = em.createNamedQuery("Device.deleteUser");
+		Query query = em.createNamedQuery("Device.deleteDevice");
 		query.setParameter("ID", id);
 		query.executeUpdate();
 	}
@@ -72,7 +72,7 @@ public class DeviceDaoImpl implements DeviceDao {
 
 	@Override
 	public List<Device> getAllUserDevicesByUserId(Integer id) {
-		Query query = em.createNamedQuery("Device.getAllByUser");
+		Query query = em.createNamedQuery("Device.getAllByUserID");
 		query.setParameter("ID", id);
 		return query.getResultList();
 	}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>All Devices</title>
+</h:head>
+<h:body>
+	<h:form id="form">
+		<p:dataList value="#{userdevices.devices}" var="obj"
+			style="width:50%;">
+			<f:facet name="header">
+            All Your Devices
+        	</f:facet>
+			<p:panel style="border:1px solid #000; margin-top:10px;">
+				<p:outputLabel value="#{obj.name}" id="device_name" />
+				<p:inputText value="#{userdevices.devicePassword}" required="true"
+					placeholder="Enter Password Here" style="margin-left:100px;"
+					requiredMessage="please insert this field" />
+				<p:commandButton value="Delete" style="float:right;"
+					action="#{userdevices.delete(obj.id)}" />
+				<p:commandButton value="Control" style="float:right;"
+					action="#{userdevices.control(obj.id)}" />
+			</p:panel>
+		</p:dataList>
+
+	</h:form>
+</h:body>
+</html>
