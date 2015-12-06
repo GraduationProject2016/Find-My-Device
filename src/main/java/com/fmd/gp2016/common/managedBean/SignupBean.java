@@ -5,6 +5,7 @@
 package com.fmd.gp2016.common.managedBean;
 
 import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.fmd.gp2016.common.entity.User;
 import com.fmd.gp2016.common.service.UserService;
 import com.fmd.gp2016.common.util.Constants;
-import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
 import com.fmd.gp2016.common.util.language.ArabicLanguage;
 
 /**
@@ -20,7 +20,7 @@ import com.fmd.gp2016.common.util.language.ArabicLanguage;
  * @autor Amany Mohamed
  */
 
-@SpringViewScoped
+@ViewScoped
 @Named(value = "signup")
 public class SignupBean {
 
