@@ -1,43 +1,47 @@
 /**
- * @author Ibrahim Ali
- * Created On : Dec 7, 2015 9:30:37 AM
+ * @author  Neama Fouad
+ * Created On : Nov 30, 2015 11:27:58 AM
  */
 package com.fmd.gp2016.common.util.language;
 
+import javax.faces.bean.ApplicationScoped;
+
 /**
- * @author Ibrahim Ali
- *
+ * @author mohamed265
+ * @author Neama Fouad
+ * @autor Amany Mohamed
  */
-public class ArabicLanguage implements Language {
 
-	private String SIGNUP_PAGE_NAME = "صفحه التسجيل";
+@ApplicationScoped
+public class EnglishLanguage implements Language {
 
-	private String OUTPUTTEXT_NAME = "الاسم";
-	private String PLACEHOLDER_NAME = "أدخل الاسم";
-	private String OUTPUTTEXT_MOBILE = "رقم الموبايل";
-	private String PLACEHOLDER_MOBILE = "أدخل رقم الموبايل";
-	private String OUTPUTTEXT_EMAIL = "البريد الالكترونى";
-	private String PLACEHOLDER_EMAIL = "أدخل البريد الالكترونى";
-	private String OUTPUTTEXT_USERNAME = "أسم المستخدم";
-	private String PLACEHOLDER_USERNAME = "أدخل اسم المستخدم";
-	private String OUTPUTTEXT_PASSWORD = "الرقم السرى";
-	private String PLACEHOLDER_PASSWORD = "أدخل الرقم السرى";
-	private String OUTPUTTEXT_CONFIRMPASSWORD = "تأكيد الرقم السرى";
-	private String PLACEHOLDER_CONFIRMPASSWORD = "تأكدي الرقم السرى";
+	private String SIGNUP_PAGE_NAME = "Registration Page";
 
-	@Override
-	public String getSIGNUP_PAGE_NAME() {
-		return SIGNUP_PAGE_NAME;
-	}
+	private String OUTPUTTEXT_NAME = "Name:";
+	private String PLACEHOLDER_NAME = "Enter your Name ";
+	private String OUTPUTTEXT_MOBILE = "Mobile Number:";
+	private String PLACEHOLDER_MOBILE = "Enter Your Mobile Number";
+	private String OUTPUTTEXT_EMAIL = "Email :";
+	private String PLACEHOLDER_EMAIL = "Enter your Email";
+	private String OUTPUTTEXT_USERNAME = "Username :";
+	private String PLACEHOLDER_USERNAME = "Enter your username";
+	private String OUTPUTTEXT_PASSWORD = "Password :";
+	private String PLACEHOLDER_PASSWORD = "Enter your password";
+	private String OUTPUTTEXT_CONFIRMPASSWORD = "Confirm Password :";
+	private String PLACEHOLDER_CONFIRMPASSWORD = "Confirm password";
 
 	@Override
 	public String getOUTPUTTEXT_NAME() {
 		return OUTPUTTEXT_NAME;
 	}
 
-	@Override
 	public String getPLACEHOLDER_NAME() {
 		return PLACEHOLDER_NAME;
+	}
+
+	@Override
+	public String getSIGNUP_PAGE_NAME() {
+		return SIGNUP_PAGE_NAME;
 	}
 
 	@Override

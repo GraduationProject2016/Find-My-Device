@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.fmd.gp2016.common.entity.User;
 import com.fmd.gp2016.common.service.UserService;
 import com.fmd.gp2016.common.util.Constants;
-import com.fmd.gp2016.common.util.language.ArabicLanguage;
+import com.fmd.gp2016.common.util.language.EnglishLanguage;
 
 /**
  * @author Neama Fouad
@@ -37,7 +37,7 @@ public class SignupBean {
 	@PostConstruct
 	public void inti() {
 		user = new User();
-		ArabicLanguage ar = new ArabicLanguage();
+		EnglishLanguage ar = new EnglishLanguage();
 	}
 
 	public String save() {
