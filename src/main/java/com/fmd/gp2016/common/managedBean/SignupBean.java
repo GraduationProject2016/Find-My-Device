@@ -33,6 +33,7 @@ public class SignupBean {
 
 	private String confirmationPassword;
 	private String errorMessage;
+	private String errorMessageEmail;
 
 	@PostConstruct
 	public void inti() {
@@ -47,11 +48,10 @@ public class SignupBean {
 			System.out.println("password can't matched");
 		}
 		if (!userService.isUniqeUsername(user.getUserName())) {
-			errorMessage = "Error: username is taken";
-			// FacesContext context = FacesContext.getCurrentInstance();
-			// FacesMessage fMessage = new
-			// FacesMessage("Error: username is taken");
-			// context.addMessage(null, fMessage);
+			errorMessage = "Error: Your email address has an invalid username ";
+		}
+		if (!userService.isUniqeEmail(user.getEmail())) {
+			errorMessageEmail = "Error: Your email address has an invalid email ";
 		}
 		user.setActive(false);
 
@@ -116,6 +116,20 @@ public class SignupBean {
 	 */
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
+	}
+
+	/**
+	 * @return the errorMessageEmail
+	 */
+	public String getErrorMessageEmail() {
+		return errorMessageEmail;
+	}
+
+	/**
+	 * @param errorMessageEmail the errorMessageEmail to set
+	 */
+	public void setErrorMessageEmail(String errorMessageEmail) {
+		this.errorMessageEmail = errorMessageEmail;
 	}
 
 }

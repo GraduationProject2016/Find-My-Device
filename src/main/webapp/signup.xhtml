@@ -5,53 +5,61 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-	<title>#{language.SIGNUP_PAGE_NAME}</title>
-</h:head>
-<h:body>
-	<h:form id="form">
-		<p:outputLabel value="#{language.OUTPUTTEXT_NAME}" />
-		<p:inputText id="name" value="#{signup.user.name}"
-			placeholder="#{language.PLACEHOLDER_NAME}" required="true"
-			requiredMessage="You must enter a Name" />
 
-		<br />
-		<p:outputLabel value="#{language.OUTPUTTEXT_MOBILE}" />
-		<p:inputText id="phone" value="#{signup.user.mobileNo}"
-			placeholder="#{language.PLACEHOLDER_MOBILE}" required="true"
-			requiredMessage="You must enter a mobile number" />
 
-		<br />
 
-		<p:outputLabel value="#{language.OUTPUTTEXT_USERNAME}" />
-		<p:inputText id="username" value="#{signup.user.userName}"
-			placeholder="#{language. PLACEHOLDER_USERNAME}" required="true"
-			requiredMessage="You must enter username" />
-		<p:outputLabel id="usernamemessage" value="#{signup.errorMessage}"
-			style="color:red;" />
+<ui:composition template="/template/commonLayout.xhtml">
+	<ui:define name="page_title">
+       #{language.SIGNUP_PAGE_NAME}
+        </ui:define>
+	<ui:define name="content">
+		<h:form id="form">
+			<p:outputLabel value="#{language.OUTPUTTEXT_NAME}" />
 
-		<br />
+			<p:inputText id="name" value="#{signup.user.name}"
+				placeholder="#{language.PLACEHOLDER_NAME}" required="true"
+				requiredMessage="You must enter a Name" />
 
-		<p:outputLabel value="#{language.OUTPUTTEXT_EMAIL}" />
-		<p:inputText id="email" value="#{signup.user.email}"
-			placeholder="#{language.PLACEHOLDER_EMAIL}" />
+			<br />
+			<p:outputLabel value="#{language.OUTPUTTEXT_MOBILE}" />
+			<p:inputText id="phone" value="#{signup.user.mobileNo}"
+				placeholder="#{language.PLACEHOLDER_MOBILE}" required="true"
+				requiredMessage="You must enter a mobile number" />
 
-		<br />
-		<p:outputLabel value="#{language.OUTPUTTEXT_PASSWORD}" />
-		<p:inputText id="password" value="#{signup.password}"
-			placeholder="#{language.PLACEHOLDER_PASSWORD}" required="true"
-			requiredMessage="You must enter password" />
+			<br />
 
-		<br />
-		<p:outputLabel value="#{language.OUTPUTTEXT_CONFIRMPASSWORD}" />
-		<p:inputText id="sPassword" value="#{signup.confirmationPassword}"
-			placeholder="#{language.PLACEHOLDER_CONFIRMPASSWORD}" required="true"
-			requiredMessage="You must enter confrim password" />
+			<p:outputLabel value="#{language.OUTPUTTEXT_USERNAME}" />
+			<p:inputText id="username" value="#{signup.user.userName}"
+				placeholder="#{language. PLACEHOLDER_USERNAME}" required="true"
+				requiredMessage="You must enter username" />
+			<p:outputLabel id="usernamemessage" value="#{signup.errorMessage}"
+				style="color:red;" />
 
-		<br />
-		<br />
-		<h:commandButton value="Sumbit" action="#{signup.save()}" />
-	</h:form>
+			<br />
 
-</h:body>
+			<p:outputLabel value="#{language.OUTPUTTEXT_EMAIL}" />
+			<p:inputText id="email" value="#{signup.user.email}"
+				placeholder="#{ar.PLACEHOLDER_EMAIL}" required="true"
+				requiredMessage="You must enter email" />
+			<p:outputLabel id="emailmessage" value="#{signup.errorMessageEmail}"
+				style="color:red;" />
+			<br />
+			<p:outputLabel value="#{language.OUTPUTTEXT_PASSWORD}" />
+			<p:inputText id="password" value="#{signup.password}"
+				placeholder="#{language.PLACEHOLDER_PASSWORD}" required="true"
+				requiredMessage="You must enter password" />
+
+			<br />
+			<p:outputLabel value="#{language.OUTPUTTEXT_CONFIRMPASSWORD}" />
+			<p:inputText id="sPassword" value="#{signup.confirmationPassword}"
+				placeholder="#{language.PLACEHOLDER_CONFIRMPASSWORD}"
+				required="true" requiredMessage="You must enter confrim password" />
+
+			<br />
+			<br />
+			<h:commandButton value="Sign up" action="#{signup.save()}" />
+			<label for="signup-btn">Already have an account!!</label>
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>
