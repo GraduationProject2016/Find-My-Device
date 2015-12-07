@@ -168,4 +168,12 @@ public class Device implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	@Override
+	public String toString() {
+		return "Device [id=" + id + ", name=" + name + ", password=" + password + ", macAddress=" + macAddress
+				+ ", lastActiveDate=" + lastActiveDate + ", online=" + online + ", type=" + type + ", active=" + active
+				+ ", status=" + status + "]";
+	}
+
 }
