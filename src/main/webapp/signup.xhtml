@@ -7,9 +7,17 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>#{ar.SIGNUP_PAGE_NAME}</title>
+	 <meta charset="utf-8"/>
+     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+     <meta name="description" content="An interactive getting started guide for Brackets."/>
+	 <link type="text/css" rel="stylesheet" 
+	href="/src/main.webapp.resource/Signup_Login.css?ln=css" />
+	<h:outputStylesheet library="css" name="Signup_Login.css"  />
 </h:head>
 <h:body>
-	<h:form id="form">
+	
+    <div id="form-1">
+	<h:form id="signup-form">
 		<p:outputLabel value="#{ar.OUTPUTTEXT_NAME}" />
 		<p:inputText id="name" value="#{signup.user.name}"
 			placeholder="#{ar.PLACEHOLDER_NAME}" required="true"
@@ -34,8 +42,10 @@
 
 		<p:outputLabel value="#{ar.OUTPUTTEXT_EMAIL}" />
 		<p:inputText id="email" value="#{signup.user.email}"
-			placeholder="#{ar.PLACEHOLDER_EMAIL}" />
-
+			placeholder="#{ar.PLACEHOLDER_EMAIL}" required="true"
+			requiredMessage="You must enter email" />
+		<p:outputLabel id="emailmessage" value="#{signup.errorMessageEmail}"
+			style="color:red;" />
 		<br />
 		<p:outputLabel value="#{ar.OUTPUTTEXT_PASSWORD}" />
 		<p:inputText id="password" value="#{signup.password}"
@@ -50,8 +60,9 @@
 
 		<br />
 		<br />
-		<h:commandButton value="Sumbit" action="#{signup.save()}" />
+		<h:commandButton value="Sign up" action="#{signup.save()}" />
+		<label for="signup-btn">Already have an account!!</label>
 	</h:form>
-
+    </div>
 </h:body>
 </html>

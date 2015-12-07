@@ -1,0 +1,56 @@
+@CHARSET "windows-1256";
+body{
+	background-color: black;
+
+}
+div{
+    width:100%;
+    position: absolute;
+   
+}
+#form-1{
+    
+    z-index: 1;
+    opacity: 1;
+     transition: 1s;
+}
+#signup-form{
+
+    width: 200px;
+    margin: auto;
+    margin-top: 15px;
+   
+   
+}
+
+#signup-form input{
+    width: 250px;
+    height: 24px;
+    display: block;
+    padding: 3px;
+    background: none;
+    border: 1px solid #ffffff;
+    border-radius:3px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+#signup-form button{
+    width: 200px;
+    height: 30px;
+    display: block;
+    background-color: #ffffff;  
+    border: none;
+    border-radius:3px;
+    margin-bottom: 5px;
+    font-family: sans-serif;
+    font-size: 15px;
+}
+#signup-form label{
+    width: 200px;
+    display: block;
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #b7b7b7; 
+    text-decoration: underline;
+
+}
