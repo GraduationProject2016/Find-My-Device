@@ -5,15 +5,14 @@
 package com.fmd.gp2016.common.managedBean;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fmd.gp2016.common.entity.User;
 import com.fmd.gp2016.common.service.UserService;
-import com.fmd.gp2016.common.util.Constants;
-import com.fmd.gp2016.common.util.language.ArabicLanguage;
-import com.sun.xml.bind.CycleRecoverable.Context;
 
 /**
  * @author Neama Fouad
@@ -25,62 +24,60 @@ public class LoginBean {
 	@Autowired
 	private UserService userService;
 
-	private User user;
+	private String input;
 
 	private String password;
 
-
 	@PostConstruct
 	public void inti() {
-		user = new User();
-		ArabicLanguage ar = new ArabicLanguage();
-		//ar.
 	}
 
-	public String validate(){
-		if(user.getEmail()!=""){
-			userService.loginByEmail(user.getEmail(),password);
-			if (user.getStatus().equals(Constants.SUCCESS)) {
-				System.out.println("Login success");
+	private boolean isEmail() {
+		int atIndex = input.indexOf('@');
 
-			} else {
-				System.out.println("Login fail");
-			}
-		}
-		else if (user.getUserName()!=""){
-			userService.loginByUsername(user.getUserName(), password);
-			if (user.getStatus().equals(Constants.SUCCESS)) {
-				System.out.println("Login success");
+		if (atIndex == -1)
+			return false;
 
-			} else {
-				System.out.println("Login fail");
-			}
-		}
-		
-		return "";
+		int lastDotIndex = input.lastIndexOf('.');
+
+		return atIndex < lastDotIndex && lastDotIndex - atIndex != 1 && lastDotIndex != input.length() - 1
+				&& atIndex != 0;
 	}
 
-	/**
-	 * @return the password
-	 */
+	public String validate() {
+		User user = null;
+		if (isEmail())
+			user = userService.loginByEmail(input, password);
+		else
+			user = userService.loginByUsername(input, password);
+            System.out.println("Hello 1");
+		FacesContext context = FacesContext.getCurrentInstance();
+		if (user == null)
+			context.addMessage(null, new FacesMessage("Unknown login, try again"));
+		else
+			context.getExternalContext().getSessionMap().put("user", user);
+		    System.out.println("Hello 2 " + user.getStatus());
+		return "userhome?faces-redirect=true";
+	}
+
+	public String logout() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "index?faces-redirect=true";
+	}
+
+	public String getInput() {
+		return input;
+	}
+
+	public void setInput(String input) {
+		this.input = input;
+	}
+
 	public String getPassword() {
 		return password;
 	}
 
-	/**
-	 * @param password
-	 *            the password to set
-	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
-   
-	
-	/**
-	 * @return the user
-	 */
-	public User getUser() {
-		return user;
-	}
-
 }
