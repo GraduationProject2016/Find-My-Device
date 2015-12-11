@@ -31,8 +31,14 @@ public class Constants {
 	public static final Boolean DEVICE_TYPE_ANDROID_DB = false;
 	public static final String DEVICE_TYPE_DESKTOP = "DESKTOP";
 	public static final Boolean DEVICE_TYPE_DESKTOP_DB = true;
-	
+
+	// language Term
 	public static final String LANGUAGE = "language";
 	public static final String ENGLISH_LANGUAGE = "en";
 	public static final String ARABIC_LANGUAGE = "ar";
+
+	// communication type
+	public static final Boolean SERVER_TO_CLIENT = true;
+	public static final Boolean CLIENT_TO_SERVER = false;
+
 }

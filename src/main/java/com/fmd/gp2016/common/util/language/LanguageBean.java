@@ -27,17 +27,17 @@ public class LanguageBean {
 	private String selectedLanguage;
 
 	@PostConstruct
-	public void init() { 
+	public void init() {
 		selectedLanguage = getLanguageCookie();
 		setupLanguage();
 	}
 
 	private void setupLanguage() {
-		//System.out.println("selectedLanguage " + selectedLanguage);
+		// System.out.println("selectedLanguage " + selectedLanguage);
 		if (selectedLanguage.equals(Constants.ENGLISH_LANGUAGE)) {
-			lang = new EnglishLanguage();
+			lang = LanguageFactory.getEnglishLanguage();
 		} else if (selectedLanguage.equals(Constants.ARABIC_LANGUAGE)) {
-			lang = new ArabicLanguage();
+			lang = LanguageFactory.getArabicLanguage();
 		}
 	}
 
@@ -67,7 +67,7 @@ public class LanguageBean {
 					break;
 				}
 			}
-		}  
+		}
 		return (cookie == null ? Constants.ENGLISH_LANGUAGE : cookie.getValue());
 	}
 
