@@ -4,6 +4,8 @@
  */
 package com.fmd.gp2016.common.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,7 +16,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "client_to_server_message")
-public class ClientToServerMessage extends Message {
+public class ClientToServerMessage extends Message implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@JoinColumn(name = "device_id", referencedColumnName = "id")
 	@ManyToOne
