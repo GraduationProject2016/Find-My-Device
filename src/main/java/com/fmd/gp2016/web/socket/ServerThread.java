@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import com.fmd.gp2016.common.entity.ClientToServerMessage;
 import com.fmd.gp2016.common.entity.Message;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringApplicationScoped;
 
@@ -50,8 +51,10 @@ class ServerThread extends Thread {
 		System.out.println("\nServer Thread " + ID + " running.");
 		while (true) {
 			try {
-				Message msg = (Message) streamIn.readObject();
-				server.handle(ID, msg);
+				String x = (String) streamIn.readObject();
+				System.out.println(x);
+				//Message msg = (ClientToServerMessage) streamIn.readObject();
+				//server.handle(ID, msg);
 			} catch (Exception ioe) {
 				System.out.println(ID + " ERROR reading: " + ioe.getMessage());
 				server.remove(ID);
