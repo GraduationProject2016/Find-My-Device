@@ -34,7 +34,7 @@ public class UserDevicesBean {
 	@PostConstruct
 	public void init() {
 		devices = new ArrayList<Device>();
-		devices = userDevicesService.getAllUserDevicesByUserId(1);
+		//devices = userDevicesService.getAllUserDevicesByUserId(1);
 		passwords = new String[devices.size()];
 	}
 

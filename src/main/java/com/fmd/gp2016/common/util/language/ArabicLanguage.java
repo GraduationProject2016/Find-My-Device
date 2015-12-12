@@ -23,7 +23,8 @@ public class ArabicLanguage implements Language {
 	private String OUTPUTTEXT_PASSWORD = "الرقم السرى";
 	private String PLACEHOLDER_PASSWORD = "أدخل الرقم السرى";
 	private String OUTPUTTEXT_CONFIRMPASSWORD = "تأكيد الرقم السرى";
-	private String PLACEHOLDER_CONFIRMPASSWORD = "تأكدي الرقم السرى";
+	private String PLACEHOLDER_CONFIRMPASSWORD = "تأكيد الرقم السرى";
+	private String dir  = "rtl";
 
 	@Override
 	public String getSIGNUP_PAGE_NAME() {
@@ -89,5 +90,51 @@ public class ArabicLanguage implements Language {
 	public String getPLACEHOLDER_CONFIRMPASSWORD() {
 		return PLACEHOLDER_CONFIRMPASSWORD;
 	}
+
+	@Override
+	public String getDir() {
+		return dir;
+	}
+
+
+	@Override
+	public String getArabicLanguageName() {
+		
+		return "العربيه";
+	}
+
+
+	@Override
+	public String getEnglishLanguageName() {
+		return "الانجليزيه";
+	}
+
+
+	@Override
+	public String getSignupName() {
+		return "تسجيل";
+	}
+
+
+	@Override
+	public String getLoginLink() {
+
+		return "لديك حساب بالفعل";
+	}
+
+
+	@Override
+	public String getSignLink() {
+
+		return "مستخدم جديد ؟";
+	}
+
+
+	@Override
+	public String getLoginName() {
+
+		return "دخول";
+	}
+
 
 }

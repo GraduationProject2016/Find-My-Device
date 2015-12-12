@@ -21,7 +21,7 @@ import com.fmd.gp2016.common.util.jsf.annotation.SpringSessionScoped;
 
 @Named("language")
 @SpringSessionScoped
-public class LanguageBean {
+public class LanguageBean implements Language {
 
 	private Language lang;
 	private String selectedLanguage;
@@ -122,5 +122,51 @@ public class LanguageBean {
 	public String getPLACEHOLDER_CONFIRMPASSWORD() {
 		return lang.getPLACEHOLDER_CONFIRMPASSWORD();
 	}
+
+	public String getDir() {
+		return lang.getDir();
+	}
+
+	@Override
+	public String getArabicLanguageName() {
+
+		return lang.getArabicLanguageName();
+	}
+
+	@Override
+	public String getEnglishLanguageName() {
+
+		return lang.getEnglishLanguageName();
+	}
+
+
+	@Override
+	public String getSignupName() {
+
+		return lang.getSignupName();
+	}
+
+	@Override
+	public String getLoginLink() {
+		
+		return lang.getLoginLink();
+	}
+
+
+	@Override
+	public String getSignLink() {
+		
+		return lang.getSignLink();
+	}
+
+
+	@Override
+	public String getLoginName() {
+
+		return lang.getLoginName();
+	}
+
+
+
 
 }
