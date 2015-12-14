@@ -26,6 +26,16 @@ public class LanguageBean implements Language {
 	private Language lang;
 	private String selectedLanguage;
 
+	// public LanguageBean() {
+	// selectedLanguage = getLanguageCookie();
+	// setupLanguage();
+	// }
+
+	// public LanguageBean(int x) {
+	// selectedLanguage = getLanguageCookie();
+	// setupLanguage();
+	// }
+
 	@PostConstruct
 	public void init() {
 		selectedLanguage = getLanguageCookie();
@@ -33,13 +43,12 @@ public class LanguageBean implements Language {
 	}
 
 	private void setupLanguage() {
-		// System.out.println("selectedLanguage " + selectedLanguage);
 		if (selectedLanguage.equals(Constants.ENGLISH_LANGUAGE)) {
 			lang = LanguageFactory.getEnglishLanguage();
 		} else if (selectedLanguage.equals(Constants.ARABIC_LANGUAGE)) {
 			lang = LanguageFactory.getArabicLanguage();
 		}
-	}
+	} 
 
 	public String changeLanguage(String selectedLanguage) {
 
@@ -51,7 +60,9 @@ public class LanguageBean implements Language {
 
 		this.selectedLanguage = selectedLanguage;
 		setupLanguage();
-
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getSessionMap().put("language", lang);
 		return "";
 	}
 
@@ -123,50 +134,42 @@ public class LanguageBean implements Language {
 		return lang.getPLACEHOLDER_CONFIRMPASSWORD();
 	}
 
+	public String getERROR_PASSWORD_MATCHING() {
+		return lang.getERROR_PASSWORD_MATCHING();
+	}
+
 	public String getDir() {
 		return lang.getDir();
 	}
 
 	@Override
 	public String getArabicLanguageName() {
-
 		return lang.getArabicLanguageName();
 	}
 
 	@Override
 	public String getEnglishLanguageName() {
-
 		return lang.getEnglishLanguageName();
 	}
 
-
 	@Override
 	public String getSignupName() {
-
 		return lang.getSignupName();
 	}
 
 	@Override
 	public String getLoginLink() {
-		
 		return lang.getLoginLink();
 	}
 
-
 	@Override
 	public String getSignLink() {
-		
 		return lang.getSignLink();
 	}
 
-
 	@Override
 	public String getLoginName() {
-
 		return lang.getLoginName();
 	}
-
-
-
 
 }

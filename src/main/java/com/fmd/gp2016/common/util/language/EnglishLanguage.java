@@ -28,7 +28,13 @@ public class EnglishLanguage implements Language {
 	private String PLACEHOLDER_PASSWORD = "Enter your password";
 	private String OUTPUTTEXT_CONFIRMPASSWORD = "Confirm Password ";
 	private String PLACEHOLDER_CONFIRMPASSWORD = "Confirm password";
+	private String ERROR_PASSWORD_MATCHING = "Please make sure that the two passwords match each other";
 	private String dir = "ltr";
+
+	@Override
+	public String getERROR_PASSWORD_MATCHING() {
+		return ERROR_PASSWORD_MATCHING;
+	}
 
 	@Override
 	public String getOUTPUTTEXT_NAME() {
