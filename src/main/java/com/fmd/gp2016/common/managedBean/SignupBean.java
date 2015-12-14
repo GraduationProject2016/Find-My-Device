@@ -5,6 +5,8 @@
 package com.fmd.gp2016.common.managedBean;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,7 @@ import com.fmd.gp2016.common.util.language.EnglishLanguage;
 
 @SpringViewScoped
 @Named(value = "signup")
-public class SignupBean {
+public class SignupBean extends BaseBean {
 
 	@Autowired
 	private UserService userService;
@@ -41,12 +43,22 @@ public class SignupBean {
 		EnglishLanguage ar = new EnglishLanguage();
 	}
 
+	// FacesMessage meg = new FacesMessage(Constant.SAVED_SUCCSSEFULLY);
+	// FacesContext.getCurrentInstance().addMessage(null, meg);
+	// } else {
+	// FacesContext.getCurrentInstance().addMessage(null,
+	// new FacesMessage(FacesMessage.SEVERITY_ERROR, "يجب ادخال البيانات اللازمه
+	// لعمليه البحث", null));
 	public String save() {
+		
 		if (password.equals(confirmationPassword)) {
 			user.setPassword(password);
 		} else {
-			System.out.println("password can't matched");
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, getLanguage().getERROR_PASSWORD_MATCHING(), null));
+			return "";
 		}
+		
 		if (!userService.isUniqeUsername(user.getUserName())) {
 			errorMessage = "Error: Your email address has an invalid username ";
 		}

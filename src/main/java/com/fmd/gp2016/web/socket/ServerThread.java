@@ -9,7 +9,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import com.fmd.gp2016.common.dto.MessageDto;
 import com.fmd.gp2016.common.util.JsonHandler;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringApplicationScoped;
 
@@ -50,9 +49,9 @@ class ServerThread extends Thread {
 	public void run() {
 		System.out.println("\nServer Thread " + ID + " running.");
 		while (true) {
-			try {
+			try { 
 				String msg = (String) streamIn.readObject();
-				server.handle(ID, JsonHandler.getMessageDtoObject(msg));
+				server.handle(ID, JsonHandler.getMessageDtoObject(msg)); 
 			} catch (Exception ioe) {
 				System.out.println(ID + " ERROR reading: " + ioe.getMessage());
 				server.remove(ID);

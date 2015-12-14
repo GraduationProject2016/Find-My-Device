@@ -35,4 +35,21 @@ public interface Language {
 	public String getOUTPUTTEXT_CONFIRMPASSWORD();
 
 	public String getPLACEHOLDER_CONFIRMPASSWORD();
+
+	public String getERROR_PASSWORD_MATCHING();
+
+	public String getDir();
+
+	public String getArabicLanguageName();
+
+	public String getEnglishLanguageName();
+
+	public String getSignupName();
+
+	public String getLoginLink();
+
+	public String getSignLink();
+
+	public String getLoginName();
+
 }

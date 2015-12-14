@@ -4,6 +4,8 @@
  */
 package com.fmd.gp2016.common.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -18,8 +20,11 @@ import javax.validation.constraints.Size;
  *
  */
 @MappedSuperclass
-public abstract class Message {
+public abstract class Message implements Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
