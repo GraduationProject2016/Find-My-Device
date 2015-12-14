@@ -75,6 +75,10 @@ public class Device implements Serializable {
 	@Basic(optional = false)
 	@Column(name = "active")
 	private Boolean active;
+	
+	@Column(name = "content")
+	@Size(max = 10000)
+	private String content;
 
 	@Transient
 	private String status;
@@ -169,11 +173,19 @@ public class Device implements Serializable {
 		this.status = status;
 	}
 
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
 	@Override
 	public String toString() {
-		return "Device [id=" + id + ", name=" + name + ", password=" + password + ", macAddress=" + macAddress
-				+ ", lastActiveDate=" + lastActiveDate + ", online=" + online + ", type=" + type + ", active=" + active
-				+ ", status=" + status + "]";
+		return "Device [id=" + id + ", user=" + user + ", name=" + name + ", password=" + password + ", macAddress="
+				+ macAddress + ", lastActiveDate=" + lastActiveDate + ", online=" + online + ", type=" + type
+				+ ", content=" + content + ", active=" + active + ", status=" + status + "]";
 	}
 
 }

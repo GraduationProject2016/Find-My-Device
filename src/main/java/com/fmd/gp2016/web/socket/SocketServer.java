@@ -9,7 +9,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import com.fmd.gp2016.common.entity.Message;
+import com.fmd.gp2016.common.dto.MessageDto;
 
 /**
  * @author mohamed265
@@ -73,8 +73,10 @@ public class SocketServer implements Runnable {
 		return -1;
 	}
 
-	public synchronized void handle(int ID, Message msg) {
+	public synchronized void handle(int ID, MessageDto msg) {
 		System.out.println(msg);
+		// System.out.println("wla eh wla eh");
+		// System.out.println(msg);
 		// if (msg.content.equals(".bye")) {
 		// Announce("signout", "SERVER", msg.sender);
 		// remove(ID);
