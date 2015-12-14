@@ -14,21 +14,21 @@ import javax.faces.bean.ApplicationScoped;
 
 @ApplicationScoped
 public class EnglishLanguage implements Language {
-
+	
 	private String SIGNUP_PAGE_NAME = "Registration Page";
-
-	private String OUTPUTTEXT_NAME = "Name:";
+	private String OUTPUTTEXT_NAME = "Name";
 	private String PLACEHOLDER_NAME = "Enter your Name ";
-	private String OUTPUTTEXT_MOBILE = "Mobile Number:";
+	private String OUTPUTTEXT_MOBILE = "Mobile Number";
 	private String PLACEHOLDER_MOBILE = "Enter Your Mobile Number";
-	private String OUTPUTTEXT_EMAIL = "Email :";
+	private String OUTPUTTEXT_EMAIL = "Email ";
 	private String PLACEHOLDER_EMAIL = "Enter your Email";
-	private String OUTPUTTEXT_USERNAME = "Username :";
+	private String OUTPUTTEXT_USERNAME = "Username ";
 	private String PLACEHOLDER_USERNAME = "Enter your username";
-	private String OUTPUTTEXT_PASSWORD = "Password :";
+	private String OUTPUTTEXT_PASSWORD = "Password ";
 	private String PLACEHOLDER_PASSWORD = "Enter your password";
-	private String OUTPUTTEXT_CONFIRMPASSWORD = "Confirm Password :";
+	private String OUTPUTTEXT_CONFIRMPASSWORD = "Confirm Password ";
 	private String PLACEHOLDER_CONFIRMPASSWORD = "Confirm password";
+	private String dir = "ltr";
 
 	@Override
 	public String getOUTPUTTEXT_NAME() {
@@ -92,6 +92,51 @@ public class EnglishLanguage implements Language {
 	@Override
 	public String getPLACEHOLDER_CONFIRMPASSWORD() {
 		return PLACEHOLDER_CONFIRMPASSWORD;
+	}
+
+	@Override
+	public String getDir() {
+		return dir;
+	}
+
+	@Override
+	public String getArabicLanguageName() {
+
+		return "Arabic";
+	}
+
+	@Override
+	public String getEnglishLanguageName() {
+
+		return "English";
+	}
+
+
+	@Override
+	public String getSignupName() {
+
+		return "Sign up";
+	}
+
+
+	@Override
+	public String getLoginLink() {
+
+		return "Already have an account";
+	}
+
+
+	@Override
+	public String getSignLink() {
+	
+		return "New User ?";
+	}
+
+
+	@Override
+	public String getLoginName() {
+
+		return "Login";
 	}
 
 }

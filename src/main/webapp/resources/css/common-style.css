@@ -33,6 +33,7 @@ table#body_layout {
 	padding: 0;
 	margin: 0 auto;
 	border: none;
+	
 }
 
 table#body_layout>tbody>tr>td, table#body_layout>tr>td {
@@ -56,7 +57,7 @@ table#body_layout td#content {
 .side_label {
 	display: block;
 	font-weight: bold;
-	text-align: right;
+
 }
 
 .side_label:after {
@@ -73,5 +74,5 @@ table#body_layout td#content {
 .ui-menu .ui-menuitem-text, .ui-menu .ui-widget-header h1, .ui-menu .ui-widget-header h2,
 	.ui-menu .ui-widget-header h3, .ui-menu .ui-widget-header h4, .ui-menu .ui-widget-header h5,
 	.ui-menu .ui-widget-header h6 {
-	float: right;
+	float: left;
 }
