@@ -58,6 +58,7 @@
     <display-name>Initializer</display-name>
     <servlet-name>Initializer</servlet-name>
     <servlet-class>com.fmd.gp2016.web.socket.Initializer</servlet-class>
+     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>Initializer</servlet-name>
