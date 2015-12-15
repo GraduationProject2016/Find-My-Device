@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import com.fmd.gp2016.common.entity.User;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
 import com.fmd.gp2016.common.util.language.Language;
+import com.fmd.gp2016.common.util.language.LanguageBean;
 
 /**
  * @author mohamed265 && Ibrahim Ali
@@ -22,11 +23,6 @@ import com.fmd.gp2016.common.util.language.Language;
 public class BaseBean {
 
 	private static final Logger logger = LoggerFactory.getLogger(BaseBean.class);
-
-	public Language getSessionLanguage() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		return (Language) context.getExternalContext().getSessionMap().get("lang");
-	}
 
 	public void addSuccessfulMessage(String message) {
 		FacesMessage meg = new FacesMessage(message);
@@ -51,6 +47,21 @@ public class BaseBean {
 	public void addWarnMessage(String message) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage("", new FacesMessage(FacesMessage.SEVERITY_WARN, message, ""));
+	}
+
+	public void setSessionLanguage(Language lang) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getSessionMap().put("lang", lang);
+	}
+
+	public Language getSessionLanguage() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Language lang = (Language) context.getExternalContext().getSessionMap().get("lang");
+		if (lang == null) {
+			LanguageBean s = new LanguageBean();
+			lang = s.lang;
+		}
+		return lang;
 	}
 
 	public void setSessionUser(User user) {

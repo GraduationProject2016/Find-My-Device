@@ -11,6 +11,8 @@ package com.fmd.gp2016.common.util.language;
 public class ArabicLanguage implements Language {
 
 	private String SIGNUP_PAGE_NAME = "صفحه التسجيل";
+	private String SIGNIN_PAGE_NAME = "صفحه تسجيل الدخول";
+	private String USER_DEVICES_PAGE_NAME = "صفحه عرض الأجهزه";
 
 	private String OUTPUTTEXT_NAME = "الاسم";
 	private String PLACEHOLDER_NAME = "أدخل الاسم";
@@ -24,12 +26,58 @@ public class ArabicLanguage implements Language {
 	private String PLACEHOLDER_PASSWORD = "أدخل الرقم السرى";
 	private String OUTPUTTEXT_CONFIRMPASSWORD = "تأكيد الرقم السرى";
 	private String PLACEHOLDER_CONFIRMPASSWORD = "تأكيد الرقم السرى";
+	private String SUCCESSFUL_MESSAGE = "عمليه ناجحه";
+	private String ERROR_MESSAGE = "عمليه غير ناجحه";
 	private String ERROR_PASSWORD_MATCHING = "من فضلك تأكد من تطابق كلمتى المرور";
 	private String ERROR_UNIQUE_USERNAME = "من فضلك قم بتغيير إسم المستخدم لأنه مرتبط بشخص أخر";
 	private String ERROR_UNIQUE_EMAIL = "من فضلك قم بتغيير البريد الإلكترونى لأنه مرتبط بشخص أخر";
 	private String ERROR_SIGNUP = "يوجد خطأ ما فى عمليه التسجيل";
 	private String ERROR_LOGIN = "يوجد خطأ ما فى عمليه تسجيل الدخول";
+	private String EMPTY_DEVICES = "لا توجد أجهزه";
+	private String ALL_DEVICES = "كل الأجهزه المتاحه";
+	private String DEVICE_CONTROL = "تحكم";
+	private String DEVICE_DELETE = "حذف";
 	private String dir = "rtl";
+
+	@Override
+	public String getDEVICE_CONTROL() {
+		return DEVICE_CONTROL;
+	}
+
+	@Override
+	public String getDEVICE_DELETE() {
+		return DEVICE_DELETE;
+	}
+
+	@Override
+	public String getEMPTY_DEVICES() {
+		return EMPTY_DEVICES;
+	}
+
+	@Override
+	public String getALL_DEVICES() {
+		return ALL_DEVICES;
+	}
+
+	@Override
+	public String getSIGNIN_PAGE_NAME() {
+		return SIGNIN_PAGE_NAME;
+	}
+
+	@Override
+	public String getUSER_DEVICES_PAGE_NAME() {
+		return USER_DEVICES_PAGE_NAME;
+	}
+
+	@Override
+	public String getERROR_MESSAGE() {
+		return ERROR_MESSAGE;
+	}
+
+	@Override
+	public String getSUCCESSFUL_MESSAGE() {
+		return SUCCESSFUL_MESSAGE;
+	}
 
 	@Override
 	public String getERROR_SIGNUP() {

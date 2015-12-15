@@ -23,7 +23,7 @@ import com.fmd.gp2016.common.util.jsf.annotation.SpringSessionScoped;
 @SpringSessionScoped
 public class LanguageBean implements Language {
 
-	private Language lang;
+	public static Language lang;
 	private String selectedLanguage;
 
 	@PostConstruct
@@ -180,5 +180,45 @@ public class LanguageBean implements Language {
 	@Override
 	public String getERROR_LOGIN() {
 		return lang.getERROR_LOGIN();
+	}
+
+	@Override
+	public String getSUCCESSFUL_MESSAGE() {
+		return lang.getSUCCESSFUL_MESSAGE();
+	}
+
+	@Override
+	public String getSIGNIN_PAGE_NAME() {
+		return lang.getSIGNIN_PAGE_NAME();
+	}
+
+	@Override
+	public String getUSER_DEVICES_PAGE_NAME() {
+		return lang.getUSER_DEVICES_PAGE_NAME();
+	}
+
+	@Override
+	public String getERROR_MESSAGE() {
+		return lang.getERROR_MESSAGE();
+	}
+
+	@Override
+	public String getEMPTY_DEVICES() {
+		return lang.getEMPTY_DEVICES();
+	}
+
+	@Override
+	public String getALL_DEVICES() {
+		return lang.getALL_DEVICES();
+	}
+
+	@Override
+	public String getDEVICE_CONTROL() {
+		return lang.getDEVICE_CONTROL();
+	}
+
+	@Override
+	public String getDEVICE_DELETE() {
+		return lang.getDEVICE_DELETE();
 	}
 }

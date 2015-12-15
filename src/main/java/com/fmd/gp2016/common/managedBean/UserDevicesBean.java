@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fmd.gp2016.common.entity.Device;
 import com.fmd.gp2016.common.service.DeviceService;
+import com.fmd.gp2016.common.util.Constants;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
 
 /**
@@ -21,7 +22,7 @@ import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
 
 @SpringViewScoped
 @Named(value = "userdevices")
-public class UserDevicesBean {
+public class UserDevicesBean extends BaseBean {
 
 	@Autowired
 	private DeviceService userDevicesService;
@@ -34,17 +35,16 @@ public class UserDevicesBean {
 	@PostConstruct
 	public void init() {
 		devices = new ArrayList<Device>();
-		//devices = userDevicesService.getAllUserDevicesByUserId(1);
+		devices = userDevicesService.getAllUserDevicesByUserId(getSessionUserID());
 		passwords = new String[devices.size()];
 	}
 
 	public String control(int device_id, int i) {
 		device = userDevicesService.getDeviceById(device_id);
 		if (!isAuzorizedUser(i)) {
-			errorPasswordMsg();
+			addSuccessfulMessage(getSessionLanguage().getERROR_MESSAGE());
 		} else {
-			FacesMessage meg = new FacesMessage("OK TMAM YA BASHA");
-			FacesContext.getCurrentInstance().addMessage(null, meg);
+			addSuccessfulMessage(getSessionLanguage().getSUCCESSFUL_MESSAGE());
 		}
 		return "";
 	}
@@ -53,20 +53,14 @@ public class UserDevicesBean {
 		return passwords[i].equals(device.getPassword());
 	}
 
-	void errorPasswordMsg() {
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error password....", null));
-	}
-
 	public String delete(int device_id, int i) throws IOException {
 		device = userDevicesService.getDeviceById(device_id);
 		if (!isAuzorizedUser(i)) {
-			errorPasswordMsg();
+			addSuccessfulMessage(getSessionLanguage().getERROR_MESSAGE());
 		} else {
 			userDevicesService.deleteDevice(device_id);
 
-			FacesMessage meg = new FacesMessage("Devices deleted successfully");
-			FacesContext.getCurrentInstance().addMessage(null, meg);
+			addSuccessfulMessage(getSessionLanguage().getSUCCESSFUL_MESSAGE());
 		}
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().redirect("userDevices.xhtml");

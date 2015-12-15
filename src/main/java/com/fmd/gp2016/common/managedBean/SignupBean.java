@@ -48,11 +48,11 @@ public class SignupBean extends BaseBean {
 		}
 
 		if (!userService.isUniqeUsername(user.getUserName())) {
-			addWarnMessage(getSessionLanguage().getERROR_UNIQUE_USERNAME());
+			addErrorMessage(getSessionLanguage().getERROR_UNIQUE_USERNAME());
 			return "";
 		}
 		if (!userService.isUniqeEmail(user.getEmail())) {
-			addWarnMessage(getSessionLanguage().getERROR_UNIQUE_EMAIL());
+			addErrorMessage(getSessionLanguage().getERROR_UNIQUE_EMAIL());
 			return "";
 		}
 

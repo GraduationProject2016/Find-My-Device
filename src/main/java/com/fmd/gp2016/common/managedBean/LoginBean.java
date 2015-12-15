@@ -5,7 +5,6 @@
 package com.fmd.gp2016.common.managedBean;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -13,19 +12,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fmd.gp2016.common.entity.User;
 import com.fmd.gp2016.common.service.UserService;
+import com.fmd.gp2016.common.util.Constants;
 
 /**
  * @author Neama Fouad
  * @autor Amany Mohamed
  */
 @Named("login")
-public class LoginBean {
+public class LoginBean extends BaseBean {
 
 	@Autowired
 	private UserService userService;
 
 	private String input;
-
 	private String password;
 
 	@PostConstruct
@@ -46,18 +45,20 @@ public class LoginBean {
 
 	public String validate() {
 		User user = null;
-		if (isEmail())
+		if (isEmail()) {
 			user = userService.loginByEmail(input, password);
-		else
+		} else {
 			user = userService.loginByUsername(input, password);
-            System.out.println("Hello 1");
-		FacesContext context = FacesContext.getCurrentInstance();
-		if (user == null)
-			context.addMessage(null, new FacesMessage("Unknown login, try again"));
-		else
-			context.getExternalContext().getSessionMap().put("user", user);
-		    System.out.println("Hello 2 " + user.getStatus());
-		return "userhome?faces-redirect=true";
+		}
+
+		System.out.println(getSessionLanguage().getERROR_LOGIN());
+		if (user.getStatus().equals(Constants.FAIL))
+			addErrorMessage(getSessionLanguage().getERROR_LOGIN());
+		else {
+			setSessionUser(user);
+			redirectToHomePage();
+		}
+		return "";
 	}
 
 	public String logout() {

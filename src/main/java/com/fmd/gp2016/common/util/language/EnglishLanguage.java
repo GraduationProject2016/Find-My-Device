@@ -16,6 +16,9 @@ import javax.faces.bean.ApplicationScoped;
 public class EnglishLanguage implements Language {
 
 	private String SIGNUP_PAGE_NAME = "Registration Page";
+	private String SIGNIN_PAGE_NAME = "Login page";
+	private String USER_DEVICES_PAGE_NAME = "Devices page";
+
 	private String OUTPUTTEXT_NAME = "Name";
 	private String PLACEHOLDER_NAME = "Enter your Name ";
 	private String OUTPUTTEXT_MOBILE = "Mobile Number";
@@ -28,12 +31,59 @@ public class EnglishLanguage implements Language {
 	private String PLACEHOLDER_PASSWORD = "Enter your password";
 	private String OUTPUTTEXT_CONFIRMPASSWORD = "Confirm Password ";
 	private String PLACEHOLDER_CONFIRMPASSWORD = "Confirm password";
+	private String SUCCESSFUL_MESSAGE = "Successful operation";
+	private String ERROR_MESSAGE = "Error in this operation";
 	private String ERROR_PASSWORD_MATCHING = "Please make sure that the two passwords matches each other";
 	private String ERROR_UNIQUE_USERNAME = "Please change username because it is related to another user";
 	private String ERROR_UNIQUE_EMAIL = "Please change email because it is related to another user";
 	private String ERROR_SIGNUP = "There is an error in registeration process";
 	private String ERROR_LOGIN = "There is an error in login process";
+	private String EMPTY_DEVICES = "There is no devices";
+	private String ALL_DEVICES = "All your devices";
+	private String DEVICE_CONTROL = "Control";
+	private String DEVICE_DELETE = "Delete";
+
 	private String dir = "ltr";
+
+	@Override
+	public String getDEVICE_CONTROL() {
+		return DEVICE_CONTROL;
+	}
+
+	@Override
+	public String getDEVICE_DELETE() {
+		return DEVICE_DELETE;
+	}
+
+	@Override
+	public String getEMPTY_DEVICES() {
+		return EMPTY_DEVICES;
+	}
+
+	@Override
+	public String getALL_DEVICES() {
+		return ALL_DEVICES;
+	}
+
+	@Override
+	public String getSIGNIN_PAGE_NAME() {
+		return SIGNIN_PAGE_NAME;
+	}
+
+	@Override
+	public String getUSER_DEVICES_PAGE_NAME() {
+		return USER_DEVICES_PAGE_NAME;
+	}
+
+	@Override
+	public String getERROR_MESSAGE() {
+		return ERROR_MESSAGE;
+	}
+
+	@Override
+	public String getSUCCESSFUL_MESSAGE() {
+		return SUCCESSFUL_MESSAGE;
+	}
 
 	@Override
 	public String getERROR_SIGNUP() {
