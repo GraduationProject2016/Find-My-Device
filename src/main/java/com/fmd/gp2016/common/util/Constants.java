@@ -41,4 +41,10 @@ public class Constants {
 	public static final Boolean SERVER_TO_CLIENT = true;
 	public static final Boolean CLIENT_TO_SERVER = false;
 
+	// message dto
+	public static final String MESSAGE_CONTENT = "content";
+	public static final String MESSAGE_DEVICE = "sender";
+	public static final String MESSAGE_USER = "reciver";
+	public static final String MESSAGE_TYPE = "type";
+
 }
