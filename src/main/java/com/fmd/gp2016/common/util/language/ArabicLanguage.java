@@ -25,7 +25,31 @@ public class ArabicLanguage implements Language {
 	private String OUTPUTTEXT_CONFIRMPASSWORD = "تأكيد الرقم السرى";
 	private String PLACEHOLDER_CONFIRMPASSWORD = "تأكيد الرقم السرى";
 	private String ERROR_PASSWORD_MATCHING = "من فضلك تأكد من تطابق كلمتى المرور";
+	private String ERROR_UNIQUE_USERNAME = "من فضلك قم بتغيير إسم المستخدم لأنه مرتبط بشخص أخر";
+	private String ERROR_UNIQUE_EMAIL = "من فضلك قم بتغيير البريد الإلكترونى لأنه مرتبط بشخص أخر";
+	private String ERROR_SIGNUP = "يوجد خطأ ما فى عمليه التسجيل";
+	private String ERROR_LOGIN = "يوجد خطأ ما فى عمليه تسجيل الدخول";
 	private String dir = "rtl";
+
+	@Override
+	public String getERROR_SIGNUP() {
+		return ERROR_SIGNUP;
+	}
+
+	@Override
+	public String getERROR_LOGIN() {
+		return ERROR_LOGIN;
+	}
+
+	@Override
+	public String getERROR_UNIQUE_EMAIL() {
+		return ERROR_UNIQUE_EMAIL;
+	}
+
+	@Override
+	public String getERROR_UNIQUE_USERNAME() {
+		return ERROR_UNIQUE_USERNAME;
+	}
 
 	@Override
 	public String getERROR_PASSWORD_MATCHING() {

@@ -38,6 +38,14 @@ public interface Language {
 
 	public String getERROR_PASSWORD_MATCHING();
 
+	public String getERROR_UNIQUE_USERNAME();
+
+	public String getERROR_UNIQUE_EMAIL();
+
+	public String getERROR_SIGNUP();
+
+	public String getERROR_LOGIN();
+
 	public String getDir();
 
 	public String getArabicLanguageName();

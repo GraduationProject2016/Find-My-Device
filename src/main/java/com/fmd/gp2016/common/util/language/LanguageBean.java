@@ -26,16 +26,6 @@ public class LanguageBean implements Language {
 	private Language lang;
 	private String selectedLanguage;
 
-	// public LanguageBean() {
-	// selectedLanguage = getLanguageCookie();
-	// setupLanguage();
-	// }
-
-	// public LanguageBean(int x) {
-	// selectedLanguage = getLanguageCookie();
-	// setupLanguage();
-	// }
-
 	@PostConstruct
 	public void init() {
 		selectedLanguage = getLanguageCookie();
@@ -172,4 +162,23 @@ public class LanguageBean implements Language {
 		return lang.getLoginName();
 	}
 
+	@Override
+	public String getERROR_UNIQUE_USERNAME() {
+		return lang.getERROR_UNIQUE_USERNAME();
+	}
+
+	@Override
+	public String getERROR_UNIQUE_EMAIL() {
+		return lang.getERROR_UNIQUE_EMAIL();
+	}
+
+	@Override
+	public String getERROR_SIGNUP() {
+		return lang.getERROR_SIGNUP();
+	}
+
+	@Override
+	public String getERROR_LOGIN() {
+		return lang.getERROR_LOGIN();
+	}
 }

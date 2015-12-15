@@ -14,7 +14,7 @@ import javax.faces.bean.ApplicationScoped;
 
 @ApplicationScoped
 public class EnglishLanguage implements Language {
-	
+
 	private String SIGNUP_PAGE_NAME = "Registration Page";
 	private String OUTPUTTEXT_NAME = "Name";
 	private String PLACEHOLDER_NAME = "Enter your Name ";
@@ -29,7 +29,31 @@ public class EnglishLanguage implements Language {
 	private String OUTPUTTEXT_CONFIRMPASSWORD = "Confirm Password ";
 	private String PLACEHOLDER_CONFIRMPASSWORD = "Confirm password";
 	private String ERROR_PASSWORD_MATCHING = "Please make sure that the two passwords matches each other";
+	private String ERROR_UNIQUE_USERNAME = "Please change username because it is related to another user";
+	private String ERROR_UNIQUE_EMAIL = "Please change email because it is related to another user";
+	private String ERROR_SIGNUP = "There is an error in registeration process";
+	private String ERROR_LOGIN = "There is an error in login process";
 	private String dir = "ltr";
+
+	@Override
+	public String getERROR_SIGNUP() {
+		return ERROR_SIGNUP;
+	}
+
+	@Override
+	public String getERROR_LOGIN() {
+		return ERROR_LOGIN;
+	}
+
+	@Override
+	public String getERROR_UNIQUE_EMAIL() {
+		return ERROR_UNIQUE_EMAIL;
+	}
+
+	@Override
+	public String getERROR_UNIQUE_USERNAME() {
+		return ERROR_UNIQUE_USERNAME;
+	}
 
 	@Override
 	public String getERROR_PASSWORD_MATCHING() {
@@ -117,13 +141,11 @@ public class EnglishLanguage implements Language {
 		return "English";
 	}
 
-
 	@Override
 	public String getSignupName() {
 
 		return "Sign up";
 	}
-
 
 	@Override
 	public String getLoginLink() {
@@ -131,13 +153,11 @@ public class EnglishLanguage implements Language {
 		return "Already have an account";
 	}
 
-
 	@Override
 	public String getSignLink() {
-	
+
 		return "New User ?";
 	}
-
 
 	@Override
 	public String getLoginName() {

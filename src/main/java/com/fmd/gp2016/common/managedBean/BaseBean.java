@@ -1,5 +1,7 @@
 package com.fmd.gp2016.common.managedBean;
 
+import java.io.IOException;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -70,5 +72,21 @@ public class BaseBean {
 
 	protected HttpSession getSession() {
 		return (HttpSession) getExternalContext().getSession(true);
+	}
+
+	public void redirect(String pageName) {
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect(pageName);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public String getContextPath() {
+		return getExternalContext().getRequestContextPath();
+	}
+
+	public void redirectToHomePage() {
+		redirect(getContextPath() + "/userDevices.xhtml");
 	}
 }
