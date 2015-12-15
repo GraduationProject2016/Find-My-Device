@@ -55,7 +55,7 @@ public class SignupBean extends BaseBean {
 			user.setPassword(password);
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, getLanguage().getERROR_PASSWORD_MATCHING(), null));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, getSessionLanguage().getERROR_PASSWORD_MATCHING(), null));
 			return "";
 		}
 		

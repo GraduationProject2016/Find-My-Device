@@ -48,7 +48,7 @@ public class LanguageBean implements Language {
 		} else if (selectedLanguage.equals(Constants.ARABIC_LANGUAGE)) {
 			lang = LanguageFactory.getArabicLanguage();
 		}
-	} 
+	}
 
 	public String changeLanguage(String selectedLanguage) {
 
@@ -60,9 +60,9 @@ public class LanguageBean implements Language {
 
 		this.selectedLanguage = selectedLanguage;
 		setupLanguage();
-		
+
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.getExternalContext().getSessionMap().put("language", lang);
+		context.getExternalContext().getSessionMap().put("lang", lang);
 		return "";
 	}
 

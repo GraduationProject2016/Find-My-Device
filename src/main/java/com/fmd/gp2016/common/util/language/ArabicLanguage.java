@@ -24,7 +24,7 @@ public class ArabicLanguage implements Language {
 	private String PLACEHOLDER_PASSWORD = "أدخل الرقم السرى";
 	private String OUTPUTTEXT_CONFIRMPASSWORD = "تأكيد الرقم السرى";
 	private String PLACEHOLDER_CONFIRMPASSWORD = "تأكيد الرقم السرى";
-	private String ERROR_PASSWORD_MATCHING = "من فضلك تأكد من تطابق كلمه المرور";
+	private String ERROR_PASSWORD_MATCHING = "من فضلك تأكد من تطابق كلمتى المرور";
 	private String dir = "rtl";
 
 	@Override
