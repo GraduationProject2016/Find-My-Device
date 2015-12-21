@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="" dir="rtl" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title><ui:insert name="page_title">
+		Find My Device		
+	</ui:insert></title>
+
+</h:head>
+
+<h:body  >
+
+	<f:facet name="last">
+		<h:outputStylesheet name="common-style.css" library="css" />
+	</f:facet>
+	
+
+	<div id="page" dir="#{language.dir}">
+
+		<div id="header">
+			<ui:insert name="header">
+				<ui:include src="/template/commonHeader.xhtml" />
+			</ui:insert>
+		</div>
+
+		<table id="body_layout">
+			<tr>
+				
+				<td id="content" valign="top"><p:messages autoUpdate="true" />
+					<!-- <p:growl id="msg" showDetail="true" /> --> <ui:insert
+						name="content">
+						<ui:include src="/template/commonContent.xhtml" />
+						<p:dialog header="waiting" modal="true" widgetVar="waiteDialog"
+							closable="false" draggable="false" resizable="false"
+							style="font-size: 15px;font-family: times ">
+							<h:graphicImage value="/resources/images/ajaxLoadingBar.gif" />
+							<!-- <h:outputText value="please waite..."  style="font-size: 15px;font-family: times " />-->
+						</p:dialog>
+					</ui:insert></td>
+			</tr>
+		</table>
+
+		<div id="footer" style="bottom:0px;padding-bottom: 0px;position:fixed;width: 100%;">
+			<ui:insert name="footer">
+				<ui:include src="/template/commonFooter.xhtml" />
+			</ui:insert>
+		</div>
+
+	</div>
+</h:body>
+
+</html>

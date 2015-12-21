@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-	<title>All Devices</title>
-</h:head>
-<h:body>
-	<h:form id="form">
-		<p:messages id="messages" closable="true" />
-		<p:dataList value="#{userdevices.devices}" var="obj"
-			style="width:50%;" rowIndexVar="i" type="definition">
-			<f:facet name="header">
-            All Your Devices
-        	</f:facet>
-			<p:panel style="border:1px solid #000; margin-top:10px;">
-				<p:outputLabel value="#{obj.name}" id="device_name" />
-				<p:inputText value="#{userdevices.passwords[i]}"
-					placeholder="Enter Password Here" style="margin-left:100px;" />
-				<h:commandButton value="Delete" style="float:right;"
-					actionListener="#{userdevices.delete(obj.id,i)}" />
-				<h:commandButton value="Control" style="float:right;"
-					actionListener="#{userdevices.control(obj.id,i)}" />
-			</p:panel>
-		</p:dataList>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-	</h:form>
-</h:body>
+<ui:composition template="/template/commonLayout.xhtml">
+	<ui:define name="page_title">
+         #{language.USER_DEVICES_PAGE_NAME}
+        </ui:define>
+	<ui:define name="content">
+		<h:form id="form" dir="#{language.dir}">
+			<p:messages id="messages" closable="true" />
+			<p:dataList value="#{userdevices.devices}" var="obj"
+				style="width:50%;" rowIndexVar="i"
+				emptyMessage="#{language.EMPTY_DEVICES}">
+				<f:facet name="header">
+           #{language.ALL_DEVICES}
+        	</f:facet>
+				<p:panel style="border:1px solid #000; margin-top:10px;">
+					<p:outputLabel value="#{obj.name}" id="device_name" />
+					<p:inputText value="#{userdevices.passwords[i]}"
+						placeholder="#{language.PLACEHOLDER_PASSWORD}" style="margin-left:100px;" />
+					<h:commandButton value="#{language.DEVICE_DELETE}"
+						style="float:right;"
+						actionListener="#{userdevices.delete(obj.id,i)}" />
+					<h:commandButton value="#{language.DEVICE_CONTROL}"
+						style="float:right;"
+						actionListener="#{userdevices.control(obj.id,i)}" />
+				</p:panel>
+			</p:dataList>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>

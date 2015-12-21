@@ -32,4 +32,19 @@ public class Constants {
 	public static final String DEVICE_TYPE_DESKTOP = "DESKTOP";
 	public static final Boolean DEVICE_TYPE_DESKTOP_DB = true;
 
+	// language Term
+	public static final String LANGUAGE = "language";
+	public static final String ENGLISH_LANGUAGE = "en";
+	public static final String ARABIC_LANGUAGE = "ar";
+
+	// communication type
+	public static final Boolean SERVER_TO_CLIENT = true;
+	public static final Boolean CLIENT_TO_SERVER = false;
+
+	// message dto
+	public static final String MESSAGE_CONTENT = "content";
+	public static final String MESSAGE_DEVICE = "sender";
+	public static final String MESSAGE_USER = "reciver";
+	public static final String MESSAGE_TYPE = "type";
+
 }

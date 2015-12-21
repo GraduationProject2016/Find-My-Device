@@ -13,7 +13,6 @@ import com.fmd.gp2016.common.entity.User;
 import com.fmd.gp2016.common.service.UserService;
 import com.fmd.gp2016.common.util.Constants;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
-import com.fmd.gp2016.common.util.language.ArabicLanguage;
 
 /**
  * @author Neama Fouad
@@ -22,7 +21,7 @@ import com.fmd.gp2016.common.util.language.ArabicLanguage;
 
 @SpringViewScoped
 @Named(value = "signup")
-public class SignupBean {
+public class SignupBean extends BaseBean {
 
 	@Autowired
 	private UserService userService;
@@ -38,29 +37,32 @@ public class SignupBean {
 	@PostConstruct
 	public void inti() {
 		user = new User();
-		ArabicLanguage ar = new ArabicLanguage();
 	}
 
 	public String save() {
 		if (password.equals(confirmationPassword)) {
 			user.setPassword(password);
 		} else {
-			System.out.println("password can't matched");
+			addErrorMessage(getSessionLanguage().getERROR_PASSWORD_MATCHING());
+			return "";
 		}
+
 		if (!userService.isUniqeUsername(user.getUserName())) {
-			errorMessage = "Error: Your email address has an invalid username ";
+			addErrorMessage(getSessionLanguage().getERROR_UNIQUE_USERNAME());
+			return "";
 		}
 		if (!userService.isUniqeEmail(user.getEmail())) {
-			errorMessageEmail = "Error: Your email address has an invalid email ";
+			addErrorMessage(getSessionLanguage().getERROR_UNIQUE_EMAIL());
+			return "";
 		}
-		user.setActive(false);
 
+		user.setActive(true);
 		userService.save(user);
-		if (user.getStatus().equals(Constants.SUCCESS)) {
-			System.out.println("Wl3a ya ba");
 
+		if (user.getStatus().equals(Constants.SUCCESS)) {
+			redirectToHomePage();
 		} else {
-			System.out.println("M4 Wl3a ya yla");
+			addErrorMessage(getSessionLanguage().getERROR_SIGNUP());
 		}
 
 		return "";

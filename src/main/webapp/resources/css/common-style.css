@@ -1,0 +1,78 @@
+body * {
+	font-family: Arial !important;
+	font-size: 17px !important;
+}
+
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button
+	{
+	font-family: Arial !important;
+}
+
+div {
+	padding: 0;
+	margin: 0;
+	border: none
+}
+
+div#page {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+#header {
+	height: 100px;
+	background: #eee;
+}
+
+#footer {
+	height: 30px;
+	background: #eee;
+}
+
+table#body_layout {
+	padding: 0;
+	margin: 0 auto;
+	border: none;
+	
+}
+
+table#body_layout>tbody>tr>td, table#body_layout>tr>td {
+	/*height: 500px;*/
+	border: none;
+}
+
+table#body_layout td#menu {
+	width: 250px;
+	/*background: #eee;*/
+}
+
+table#body_layout td#menu .ui-menu{
+	width: auto;
+}
+
+table#body_layout td#content {
+	width: 950px;
+}
+
+.side_label {
+	display: block;
+	font-weight: bold;
+
+}
+
+.side_label:after {
+	content: " :";
+}
+
+/*
+.ui-panelgrid-cell{color: rgb(201, 247, 235)!important;font-size: 19px;font-weight: bold;}
+*/
+.companyHeaderGrid tr, .companyHeaderGrid td {
+	border-style: none !important;
+}
+
+.ui-menu .ui-menuitem-text, .ui-menu .ui-widget-header h1, .ui-menu .ui-widget-header h2,
+	.ui-menu .ui-widget-header h3, .ui-menu .ui-widget-header h4, .ui-menu .ui-widget-header h5,
+	.ui-menu .ui-widget-header h6 {
+	float: left;
+}

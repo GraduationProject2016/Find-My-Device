@@ -1,43 +1,49 @@
 /**
- * @author Ibrahim Ali
- * Created On : Dec 7, 2015 9:30:37 AM
+ * @author  Neama Fouad
+ * Created On : Nov 30, 2015 11:27:58 AM
  */
 package com.fmd.gp2016.common.util.language;
 
+import javax.faces.bean.ApplicationScoped;
+
 /**
- * @author Ibrahim Ali
- *
+ * @author mohamed265
+ * @author Neama Fouad
+ * @autor Amany Mohamed
  */
-public class ArabicLanguage implements Language {
 
-	private String SIGNUP_PAGE_NAME = "صفحه التسجيل";
-	private String SIGNIN_PAGE_NAME = "صفحه تسجيل الدخول";
-	private String USER_DEVICES_PAGE_NAME = "صفحه عرض الأجهزه";
+@ApplicationScoped
+public class EnglishLanguage implements Language {
 
-	private String OUTPUTTEXT_NAME = "الاسم";
-	private String PLACEHOLDER_NAME = "أدخل الاسم";
-	private String OUTPUTTEXT_MOBILE = "رقم الموبايل";
-	private String PLACEHOLDER_MOBILE = "أدخل رقم الموبايل";
-	private String OUTPUTTEXT_EMAIL = "البريد الالكترونى";
-	private String PLACEHOLDER_EMAIL = "أدخل البريد الالكترونى";
-	private String OUTPUTTEXT_USERNAME = "أسم المستخدم";
-	private String PLACEHOLDER_USERNAME = "أدخل اسم المستخدم";
-	private String OUTPUTTEXT_PASSWORD = "الرقم السرى";
-	private String PLACEHOLDER_PASSWORD = "أدخل الرقم السرى";
-	private String OUTPUTTEXT_CONFIRMPASSWORD = "تأكيد الرقم السرى";
-	private String PLACEHOLDER_CONFIRMPASSWORD = "تأكيد الرقم السرى";
-	private String SUCCESSFUL_MESSAGE = "عمليه ناجحه";
-	private String ERROR_MESSAGE = "عمليه غير ناجحه";
-	private String ERROR_PASSWORD_MATCHING = "من فضلك تأكد من تطابق كلمتى المرور";
-	private String ERROR_UNIQUE_USERNAME = "من فضلك قم بتغيير إسم المستخدم لأنه مرتبط بشخص أخر";
-	private String ERROR_UNIQUE_EMAIL = "من فضلك قم بتغيير البريد الإلكترونى لأنه مرتبط بشخص أخر";
-	private String ERROR_SIGNUP = "يوجد خطأ ما فى عمليه التسجيل";
-	private String ERROR_LOGIN = "يوجد خطأ ما فى عمليه تسجيل الدخول";
-	private String EMPTY_DEVICES = "لا توجد أجهزه";
-	private String ALL_DEVICES = "كل الأجهزه المتاحه";
-	private String DEVICE_CONTROL = "تحكم";
-	private String DEVICE_DELETE = "حذف";
-	private String dir = "rtl";
+	private String SIGNUP_PAGE_NAME = "Registration Page";
+	private String SIGNIN_PAGE_NAME = "Login page";
+	private String USER_DEVICES_PAGE_NAME = "Devices page";
+
+	private String OUTPUTTEXT_NAME = "Name";
+	private String PLACEHOLDER_NAME = "Enter your Name ";
+	private String OUTPUTTEXT_MOBILE = "Mobile Number";
+	private String PLACEHOLDER_MOBILE = "Enter Your Mobile Number";
+	private String OUTPUTTEXT_EMAIL = "Email ";
+	private String PLACEHOLDER_EMAIL = "Enter your Email";
+	private String OUTPUTTEXT_USERNAME = "Username ";
+	private String PLACEHOLDER_USERNAME = "Enter your username";
+	private String OUTPUTTEXT_PASSWORD = "Password ";
+	private String PLACEHOLDER_PASSWORD = "Enter your password";
+	private String OUTPUTTEXT_CONFIRMPASSWORD = "Confirm Password ";
+	private String PLACEHOLDER_CONFIRMPASSWORD = "Confirm password";
+	private String SUCCESSFUL_MESSAGE = "Successful operation";
+	private String ERROR_MESSAGE = "Error in this operation";
+	private String ERROR_PASSWORD_MATCHING = "Please make sure that the two passwords matches each other";
+	private String ERROR_UNIQUE_USERNAME = "Please change username because it is related to another user";
+	private String ERROR_UNIQUE_EMAIL = "Please change email because it is related to another user";
+	private String ERROR_SIGNUP = "There is an error in registeration process";
+	private String ERROR_LOGIN = "There is an error in login process";
+	private String EMPTY_DEVICES = "There is no devices";
+	private String ALL_DEVICES = "All your devices";
+	private String DEVICE_CONTROL = "Control";
+	private String DEVICE_DELETE = "Delete";
+
+	private String dir = "ltr";
 
 	@Override
 	public String getDEVICE_CONTROL() {
@@ -105,18 +111,17 @@ public class ArabicLanguage implements Language {
 	}
 
 	@Override
-	public String getSIGNUP_PAGE_NAME() {
-		return SIGNUP_PAGE_NAME;
-	}
-
-	@Override
 	public String getOUTPUTTEXT_NAME() {
 		return OUTPUTTEXT_NAME;
 	}
 
-	@Override
 	public String getPLACEHOLDER_NAME() {
 		return PLACEHOLDER_NAME;
+	}
+
+	@Override
+	public String getSIGNUP_PAGE_NAME() {
+		return SIGNUP_PAGE_NAME;
 	}
 
 	@Override
@@ -177,35 +182,37 @@ public class ArabicLanguage implements Language {
 	@Override
 	public String getArabicLanguageName() {
 
-		return "العربيه";
+		return "Arabic";
 	}
 
 	@Override
 	public String getEnglishLanguageName() {
-		return "الانجليزيه";
+
+		return "English";
 	}
 
 	@Override
 	public String getSignupName() {
-		return "تسجيل";
+
+		return "Sign up";
 	}
 
 	@Override
 	public String getLoginLink() {
 
-		return "لديك حساب بالفعل";
+		return "Already have an account";
 	}
 
 	@Override
 	public String getSignLink() {
 
-		return "مستخدم جديد ؟";
+		return "New User ?";
 	}
 
 	@Override
 	public String getLoginName() {
 
-		return "دخول";
+		return "Login";
 	}
 
 }
