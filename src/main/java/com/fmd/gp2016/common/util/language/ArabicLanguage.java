@@ -38,6 +38,7 @@ public class ArabicLanguage implements Language {
 	private String DEVICE_CONTROL = "تحكم";
 	private String DEVICE_DELETE = "حذف";
 	private String dir = "rtl";
+	private String UPDATE_PROFILE_VALUE = "تعديل الصفحة الشخصية";
 
 	@Override
 	public String getDEVICE_CONTROL() {
@@ -207,5 +208,10 @@ public class ArabicLanguage implements Language {
 
 		return "دخول";
 	}
+	@Override
+	public String getUPDATE_PROFILE_VALUE() {
+		return UPDATE_PROFILE_VALUE;
+	}
+
 
 }

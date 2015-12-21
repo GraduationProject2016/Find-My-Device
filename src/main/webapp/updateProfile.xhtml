@@ -1,20 +1,81 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="">
-	<ui:define name="header">
-	    Add your header here or delete to use the default
-	</ui:define>
+
+
+<ui:composition template="/template/commonLayout.xhtml">
+	<ui:define name="page_title">
+       #{language.updateProfile_PAGE_NAME}
+        </ui:define>
 	<ui:define name="content">
-	    Add your content here or delete to use the default
-	</ui:define>
-	<ui:define name="footer">
-	    Add your footer here or delete to use the default
+		<br></br>
+		<center>
+			<h:form id="form">
+				<h:panelGrid columns="3" cellpadding="5">
+					<p:outputLabel styleClass="side_label"
+						value="#{language.OUTPUTTEXT_NAME}" />
+					<p:outputLabel value="#{updateProfile.user.name}"
+						rendered="#{updateProfile.page_mode_is_view == true}" />
+					<p:inputText id="name" value="#{updateProfile.user.name}"
+						rendered="#{updateProfile.page_mode_is_view == false}"
+						placeholder="#{language.PLACEHOLDER_NAME}" required="true"
+						requiredMessage="You must enter a Name" />
+					<p:outputLabel />
+
+					<p:outputLabel styleClass="side_label"
+						value="#{language.OUTPUTTEXT_MOBILE}" />
+					<p:outputLabel value="#{updateProfile.user.mobileNo}"
+						rendered="#{updateProfile.page_mode_is_view == true}" />
+					<p:inputText id="phone" value="#{updateProfile.user.mobileNo}"
+						rendered="#{updateProfile.page_mode_is_view == false}"
+						placeholder="#{language.PLACEHOLDER_MOBILE}" required="true"
+						requiredMessage="You must enter a mobile number" />
+					<p:outputLabel />
+
+
+					<p:outputLabel styleClass="side_label"
+						value="#{language.OUTPUTTEXT_USERNAME}" />
+					<p:outputLabel value="#{updateProfile.user.userName}"
+						rendered="#{updateProfile.page_mode_is_view == true}" />
+					<p:inputText id="username" value="#{updateProfile.user.userName}"
+						rendered="#{updateProfile.page_mode_is_view == false}"
+						placeholder="#{language. PLACEHOLDER_USERNAME}" required="true"
+						requiredMessage="You must enter username" />
+					<p:outputLabel id="usernamemessage"
+						value="#{updateProfile.errorMessage}" style="color:red;" />
+
+
+
+					<p:outputLabel styleClass="side_label"
+						value="#{language.OUTPUTTEXT_EMAIL}" />
+						
+					<p:outputLabel value="#{updateProfile.user.email}"
+						rendered="#{updateProfile.page_mode_is_view == true}" />
+						
+					<p:inputText id="email" value="#{updateProfile.user.email}"
+						placeholder="#{language.PLACEHOLDER_EMAIL}" required="true"
+						rendered="#{updateProfile.page_mode_is_view == false}"
+						requiredMessage="You must enter email" />
+
+					<p:outputLabel id="emailmessage"
+						value="#{updateProfile.errorMessageEmail}" style="color:red;" />
+						
+					<p:commandButton value="#{language."
+						rendered="#{updateProfile.page_mode_is_view == false}"
+						action="#{updateProfile.save()}" update=":form" />
+						
+						<p:commandButton value="#{language.UPDATE_PROFILE_VALUE}"
+						rendered="#{updateProfile.page_mode_is_view == true}"
+						action="#{updateProfile.setPage_mode_is_view(false)}" update=":form" />
+
+				</h:panelGrid>
+			</h:form>
+		</center>
 	</ui:define>
 </ui:composition>
 </html>

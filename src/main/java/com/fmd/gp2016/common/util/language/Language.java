@@ -75,5 +75,7 @@ public interface Language {
 	public String getSignLink();
 
 	public String getLoginName();
+	
+	public String getUPDATE_PROFILE_VALUE();
 
 }

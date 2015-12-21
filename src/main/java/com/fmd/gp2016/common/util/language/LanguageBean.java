@@ -221,4 +221,9 @@ public class LanguageBean implements Language {
 	public String getDEVICE_DELETE() {
 		return lang.getDEVICE_DELETE();
 	}
+	
+	@Override
+	public String getUPDATE_PROFILE_VALUE() {
+		return lang.getUPDATE_PROFILE_VALUE();
+	}
 }

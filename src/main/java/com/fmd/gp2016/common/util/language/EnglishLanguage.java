@@ -42,6 +42,7 @@ public class EnglishLanguage implements Language {
 	private String ALL_DEVICES = "All your devices";
 	private String DEVICE_CONTROL = "Control";
 	private String DEVICE_DELETE = "Delete";
+	private String UPDATE_PROFILE_VALUE = "Edit Profile";
 
 	private String dir = "ltr";
 
@@ -213,6 +214,11 @@ public class EnglishLanguage implements Language {
 	public String getLoginName() {
 
 		return "Login";
+	} 
+	
+	@Override
+	public String getUPDATE_PROFILE_VALUE() {
+		return UPDATE_PROFILE_VALUE;
 	}
 
 }
