@@ -47,4 +47,8 @@ public class Constants {
 	public static final String MESSAGE_USER = "reciver";
 	public static final String MESSAGE_TYPE = "type";
 
+	
+	//sessions value
+	public static final String SESSION_USER = "session_user";
+	public static final String SESSION_LANGUAGE = "session_language";
 }

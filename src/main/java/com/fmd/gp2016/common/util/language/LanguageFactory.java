@@ -16,6 +16,10 @@ public class LanguageFactory {
 
 	private static EnglishLanguage englishLanguage;
 
+	public LanguageFactory() {
+		System.out.println("djdjdk");
+	}
+
 	public static ArabicLanguage getArabicLanguage() {
 		if (arabicLanguage == null)
 			arabicLanguage = new ArabicLanguage();

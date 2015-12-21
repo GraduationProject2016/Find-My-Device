@@ -51,7 +51,7 @@ public class LoginBean extends BaseBean {
 			user = userService.loginByUsername(input, password);
 		}
 
-		System.out.println(getSessionLanguage().getERROR_LOGIN());
+		///System.out.println(getSessionLanguage().getERROR_LOGIN());
 		if (user.getStatus().equals(Constants.FAIL))
 			addErrorMessage(getSessionLanguage().getERROR_LOGIN());
 		else {

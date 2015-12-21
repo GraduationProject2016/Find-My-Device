@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fmd.gp2016.common.entity.User;
+import com.fmd.gp2016.common.util.Constants;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
 import com.fmd.gp2016.common.util.language.Language;
 import com.fmd.gp2016.common.util.language.LanguageBean;
@@ -51,12 +52,12 @@ public class BaseBean {
 
 	public void setSessionLanguage(Language lang) {
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.getExternalContext().getSessionMap().put("lang", lang);
+		context.getExternalContext().getSessionMap().put(Constants.SESSION_LANGUAGE, lang);
 	}
 
 	public Language getSessionLanguage() {
 		FacesContext context = FacesContext.getCurrentInstance();
-		Language lang = (Language) context.getExternalContext().getSessionMap().get("lang");
+		Language lang = (Language) context.getExternalContext().getSessionMap().get(Constants.SESSION_LANGUAGE);
 		if (lang == null) {
 			LanguageBean s = new LanguageBean();
 			lang = s.lang;
@@ -65,12 +66,12 @@ public class BaseBean {
 	}
 
 	public void setSessionUser(User user) {
-		getExternalContext().getSessionMap().put("user", user);
+		getExternalContext().getSessionMap().put(Constants.SESSION_USER, user);
 	}
 
 	public User getSessionUser() {
 		FacesContext context = FacesContext.getCurrentInstance();
-		return (User) context.getExternalContext().getSessionMap().get("user");
+		return (User) context.getExternalContext().getSessionMap().get(Constants.SESSION_USER);
 	}
 
 	public Integer getSessionUserID() {
