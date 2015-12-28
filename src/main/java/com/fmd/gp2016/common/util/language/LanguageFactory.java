@@ -15,6 +15,10 @@ public class LanguageFactory {
 	private static ArabicLanguage arabicLanguage;
 
 	private static EnglishLanguage englishLanguage;
+	
+	public LanguageFactory(){
+		System.out.println("application scope");
+	}
 
 	public static ArabicLanguage getArabicLanguage() {
 		if (arabicLanguage == null)
