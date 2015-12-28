@@ -10,6 +10,20 @@ package com.fmd.gp2016.common.util.language;
  */
 public interface Language {
 
+	public String getDEVICE_CONTROL();
+
+	public String getDEVICE_DELETE();
+
+	public String getEMPTY_DEVICES();
+
+	public String getALL_DEVICES();
+
+	public String getSIGNIN_PAGE_NAME();
+
+	public String getUSER_DEVICES_PAGE_NAME();
+
+	public String getERROR_MESSAGE();
+
 	public String getSIGNUP_PAGE_NAME();
 
 	public String getOUTPUTTEXT_NAME();
@@ -38,6 +52,16 @@ public interface Language {
 
 	public String getERROR_PASSWORD_MATCHING();
 
+	public String getERROR_UNIQUE_USERNAME();
+
+	public String getERROR_UNIQUE_EMAIL();
+
+	public String getERROR_SIGNUP();
+
+	public String getERROR_LOGIN();
+
+	public String getSUCCESSFUL_MESSAGE();
+
 	public String getDir();
 
 	public String getArabicLanguageName();
@@ -51,5 +75,7 @@ public interface Language {
 	public String getSignLink();
 
 	public String getLoginName();
+	
+	public String getUPDATE_PROFILE_VALUE();
 
 }

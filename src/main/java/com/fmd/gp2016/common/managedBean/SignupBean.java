@@ -5,8 +5,6 @@
 package com.fmd.gp2016.common.managedBean;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import com.fmd.gp2016.common.entity.User;
 import com.fmd.gp2016.common.service.UserService;
 import com.fmd.gp2016.common.util.Constants;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
-import com.fmd.gp2016.common.util.language.EnglishLanguage;
 
 /**
  * @author Neama Fouad
@@ -40,39 +37,32 @@ public class SignupBean extends BaseBean {
 	@PostConstruct
 	public void inti() {
 		user = new User();
-		EnglishLanguage ar = new EnglishLanguage();
 	}
 
-	// FacesMessage meg = new FacesMessage(Constant.SAVED_SUCCSSEFULLY);
-	// FacesContext.getCurrentInstance().addMessage(null, meg);
-	// } else {
-	// FacesContext.getCurrentInstance().addMessage(null,
-	// new FacesMessage(FacesMessage.SEVERITY_ERROR, "يجب ادخال البيانات اللازمه
-	// لعمليه البحث", null));
 	public String save() {
-		
 		if (password.equals(confirmationPassword)) {
 			user.setPassword(password);
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, getLanguage().getERROR_PASSWORD_MATCHING(), null));
+			addErrorMessage(getSessionLanguage().getERROR_PASSWORD_MATCHING());
 			return "";
 		}
-		
+
 		if (!userService.isUniqeUsername(user.getUserName())) {
-			errorMessage = "Error: Your email address has an invalid username ";
+			addErrorMessage(getSessionLanguage().getERROR_UNIQUE_USERNAME());
+			return "";
 		}
 		if (!userService.isUniqeEmail(user.getEmail())) {
-			errorMessageEmail = "Error: Your email address has an invalid email ";
+			addErrorMessage(getSessionLanguage().getERROR_UNIQUE_EMAIL());
+			return "";
 		}
-		user.setActive(false);
 
+		user.setActive(true);
 		userService.save(user);
-		if (user.getStatus().equals(Constants.SUCCESS)) {
-			System.out.println("Wl3a ya ba");
 
+		if (user.getStatus().equals(Constants.SUCCESS)) {
+			redirectToHomePage();
 		} else {
-			System.out.println("M4 Wl3a ya yla");
+			addErrorMessage(getSessionLanguage().getERROR_SIGNUP());
 		}
 
 		return "";

@@ -8,23 +8,26 @@
 
 <ui:composition template="/template/commonLayout.xhtml">
 	<ui:define name="page_title">
-        Controle Devices
+         #{language.USER_DEVICES_PAGE_NAME}
         </ui:define>
 	<ui:define name="content">
-		<h:form id="form">
+		<h:form id="form" dir="#{language.dir}">
 			<p:messages id="messages" closable="true" />
 			<p:dataList value="#{userdevices.devices}" var="obj"
-				style="width:50%;" rowIndexVar="i">
+				style="width:50%;" rowIndexVar="i"
+				emptyMessage="#{language.EMPTY_DEVICES}">
 				<f:facet name="header">
-            All Your Devices
+           #{language.ALL_DEVICES}
         	</f:facet>
 				<p:panel style="border:1px solid #000; margin-top:10px;">
 					<p:outputLabel value="#{obj.name}" id="device_name" />
 					<p:inputText value="#{userdevices.passwords[i]}"
-						placeholder="Enter Password Here" style="margin-left:100px;" />
-					<h:commandButton value="Delete" style="float:right;"
+						placeholder="#{language.PLACEHOLDER_PASSWORD}" style="margin-left:100px;" />
+					<h:commandButton value="#{language.DEVICE_DELETE}"
+						style="float:right;"
 						actionListener="#{userdevices.delete(obj.id,i)}" />
-					<h:commandButton value="Control" style="float:right;"
+					<h:commandButton value="#{language.DEVICE_CONTROL}"
+						style="float:right;"
 						actionListener="#{userdevices.control(obj.id,i)}" />
 				</p:panel>
 			</p:dataList>

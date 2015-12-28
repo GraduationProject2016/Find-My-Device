@@ -20,6 +20,10 @@ public class LanguageFactory {
 		System.out.println("application scope");
 	}
 
+	public LanguageFactory() {
+		System.out.println("djdjdk");
+	}
+
 	public static ArabicLanguage getArabicLanguage() {
 		if (arabicLanguage == null)
 			arabicLanguage = new ArabicLanguage();

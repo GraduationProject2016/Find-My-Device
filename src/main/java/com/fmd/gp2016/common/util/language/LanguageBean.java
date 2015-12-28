@@ -23,18 +23,8 @@ import com.fmd.gp2016.common.util.jsf.annotation.SpringSessionScoped;
 @SpringSessionScoped
 public class LanguageBean implements Language {
 
-	private Language lang;
+	public static Language lang;
 	private String selectedLanguage;
-
-	// public LanguageBean() {
-	// selectedLanguage = getLanguageCookie();
-	// setupLanguage();
-	// }
-
-	// public LanguageBean(int x) {
-	// selectedLanguage = getLanguageCookie();
-	// setupLanguage();
-	// }
 
 	@PostConstruct
 	public void init() {
@@ -48,7 +38,7 @@ public class LanguageBean implements Language {
 		} else if (selectedLanguage.equals(Constants.ARABIC_LANGUAGE)) {
 			lang = LanguageFactory.getArabicLanguage();
 		}
-	} 
+	}
 
 	public String changeLanguage(String selectedLanguage) {
 
@@ -60,9 +50,9 @@ public class LanguageBean implements Language {
 
 		this.selectedLanguage = selectedLanguage;
 		setupLanguage();
-		
+
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.getExternalContext().getSessionMap().put("language", lang);
+		context.getExternalContext().getSessionMap().put("lang", lang);
 		return "";
 	}
 
@@ -172,4 +162,68 @@ public class LanguageBean implements Language {
 		return lang.getLoginName();
 	}
 
+	@Override
+	public String getERROR_UNIQUE_USERNAME() {
+		return lang.getERROR_UNIQUE_USERNAME();
+	}
+
+	@Override
+	public String getERROR_UNIQUE_EMAIL() {
+		return lang.getERROR_UNIQUE_EMAIL();
+	}
+
+	@Override
+	public String getERROR_SIGNUP() {
+		return lang.getERROR_SIGNUP();
+	}
+
+	@Override
+	public String getERROR_LOGIN() {
+		return lang.getERROR_LOGIN();
+	}
+
+	@Override
+	public String getSUCCESSFUL_MESSAGE() {
+		return lang.getSUCCESSFUL_MESSAGE();
+	}
+
+	@Override
+	public String getSIGNIN_PAGE_NAME() {
+		return lang.getSIGNIN_PAGE_NAME();
+	}
+
+	@Override
+	public String getUSER_DEVICES_PAGE_NAME() {
+		return lang.getUSER_DEVICES_PAGE_NAME();
+	}
+
+	@Override
+	public String getERROR_MESSAGE() {
+		return lang.getERROR_MESSAGE();
+	}
+
+	@Override
+	public String getEMPTY_DEVICES() {
+		return lang.getEMPTY_DEVICES();
+	}
+
+	@Override
+	public String getALL_DEVICES() {
+		return lang.getALL_DEVICES();
+	}
+
+	@Override
+	public String getDEVICE_CONTROL() {
+		return lang.getDEVICE_CONTROL();
+	}
+
+	@Override
+	public String getDEVICE_DELETE() {
+		return lang.getDEVICE_DELETE();
+	}
+	
+	@Override
+	public String getUPDATE_PROFILE_VALUE() {
+		return lang.getUPDATE_PROFILE_VALUE();
+	}
 }
