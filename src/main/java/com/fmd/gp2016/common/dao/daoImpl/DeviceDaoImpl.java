@@ -76,4 +76,15 @@ public class DeviceDaoImpl implements DeviceDao {
 		query.setParameter("ID", id);
 		return query.getResultList();
 	}
+	
+	@Override
+	public String selecColumntByIDNative(String columnName, Object columnValue) {
+		Query query = em.createNativeQuery(
+				"SELECT " + columnName + " FROM device WHERE " + columnName + " = '" + columnValue + "'");
+		try {
+			return (String) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

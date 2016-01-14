@@ -26,14 +26,29 @@ public class DeviceServiceImpl implements DeviceService {
 
 	@Override
 	public void saveDevice(Device device) {
-		try {
-			deviceDao.saveDevice(device);
-			device.setStatus(Constants.SUCCESS);
-		} catch (Exception e) {
-			device.setStatus(Constants.FAIL);
-		}
 
+		Boolean isUniqueMac = isUniqeMacAddress(device.getMacAddress());
+
+		if (isUniqueMac) {
+			try {
+				deviceDao.saveDevice(device);
+				device.setStatus(Constants.SUCCESS);
+			} catch (Exception e) {
+				device.setStatus(Constants.FAIL);
+			}
+		} else {
+			String failMessage = Constants.FAIL;
+
+			if (!isUniqueMac)
+				failMessage += "|" + Constants.MacNotUniqe + "|";
+
+			device.setStatus(failMessage);
+		}
 		// TODO add stolen devices logic
+	}
+
+	public Boolean isUniqeMacAddress(String mac_address) {
+		return (deviceDao.selecColumntByIDNative("mac_address", mac_address) == null ? true : false);
 	}
 
 	@Override

@@ -27,5 +27,7 @@ public interface DeviceDao {
 	public List<Device> getAllUserDevicesByUser(User user);
 
 	public List<Device> getAllUserDevicesByUserId(Integer id);
+	
+	public String selecColumntByIDNative(String columnName, Object columnValue);
 
 }
