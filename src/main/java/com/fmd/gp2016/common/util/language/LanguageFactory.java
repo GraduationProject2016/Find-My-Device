@@ -9,19 +9,16 @@ import com.fmd.gp2016.common.util.jsf.annotation.SpringApplicationScoped;
 /**
  * @author mohamed265
  */
+
 @SpringApplicationScoped
 public class LanguageFactory {
 
 	private static ArabicLanguage arabicLanguage;
 
 	private static EnglishLanguage englishLanguage;
-	
-	public LanguageFactory(){
-		System.out.println("application scope");
-	}
 
 	public LanguageFactory() {
-		System.out.println("djdjdk");
+		System.out.println("application scope");
 	}
 
 	public static ArabicLanguage getArabicLanguage() {

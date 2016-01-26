@@ -23,7 +23,7 @@ import com.fmd.gp2016.common.util.jsf.annotation.SpringSessionScoped;
 @SpringSessionScoped
 public class LanguageBean implements Language {
 
-	public static Language lang;
+	public Language lang;
 	private String selectedLanguage;
 
 	@PostConstruct
@@ -33,6 +33,7 @@ public class LanguageBean implements Language {
 	}
 
 	private void setupLanguage() {
+		System.out.println(selectedLanguage);
 		if (selectedLanguage.equals(Constants.ENGLISH_LANGUAGE)) {
 			lang = LanguageFactory.getEnglishLanguage();
 		} else if (selectedLanguage.equals(Constants.ARABIC_LANGUAGE)) {
@@ -52,7 +53,7 @@ public class LanguageBean implements Language {
 		setupLanguage();
 
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.getExternalContext().getSessionMap().put("lang", lang);
+		context.getExternalContext().getSessionMap().put(Constants.SESSION_LANGUAGE, lang);
 		return "";
 	}
 
@@ -221,7 +222,7 @@ public class LanguageBean implements Language {
 	public String getDEVICE_DELETE() {
 		return lang.getDEVICE_DELETE();
 	}
-	
+
 	@Override
 	public String getUPDATE_PROFILE_VALUE() {
 		return lang.getUPDATE_PROFILE_VALUE();

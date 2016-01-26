@@ -25,29 +25,12 @@ public class BaseBean {
 
 	private static final Logger logger = LoggerFactory.getLogger(BaseBean.class);
 
-	public void addSuccessfulMessage(String message) {
-		FacesMessage meg = new FacesMessage(message);
-		FacesContext.getCurrentInstance().addMessage(null, meg);
+	protected ExternalContext getExternalContext() {
+		return FacesContext.getCurrentInstance().getExternalContext();
 	}
 
-	public void addErrorMessage(String message) {
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
-	}
-
-	public void addFatalMessage(String message) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage("", new FacesMessage(FacesMessage.SEVERITY_FATAL, message, ""));
-	}
-
-	public void addInfoMessage(String message) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO, message, ""));
-	}
-
-	public void addWarnMessage(String message) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage("", new FacesMessage(FacesMessage.SEVERITY_WARN, message, ""));
+	protected HttpSession getSession() {
+		return (HttpSession) getExternalContext().getSession(true);
 	}
 
 	public void setSessionLanguage(Language lang) {
@@ -78,14 +61,6 @@ public class BaseBean {
 		return getSessionUser().getId();
 	}
 
-	protected ExternalContext getExternalContext() {
-		return FacesContext.getCurrentInstance().getExternalContext();
-	}
-
-	protected HttpSession getSession() {
-		return (HttpSession) getExternalContext().getSession(true);
-	}
-
 	public void redirect(String pageName) {
 		try {
 			FacesContext.getCurrentInstance().getExternalContext().redirect(pageName);
@@ -100,5 +75,30 @@ public class BaseBean {
 
 	public void redirectToHomePage() {
 		redirect(getContextPath() + "/userDevices.xhtml");
+	}
+
+	public void addSuccessfulMessage(String message) {
+		FacesMessage meg = new FacesMessage(message);
+		FacesContext.getCurrentInstance().addMessage(null, meg);
+	}
+
+	public void addErrorMessage(String message) {
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+	}
+
+	public void addFatalMessage(String message) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage("", new FacesMessage(FacesMessage.SEVERITY_FATAL, message, ""));
+	}
+
+	public void addInfoMessage(String message) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO, message, ""));
+	}
+
+	public void addWarnMessage(String message) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage("", new FacesMessage(FacesMessage.SEVERITY_WARN, message, ""));
 	}
 }
