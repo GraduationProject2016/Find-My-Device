@@ -43,6 +43,10 @@ public class EnglishLanguage implements Language {
 	private String DEVICE_CONTROL = "Control";
 	private String DEVICE_DELETE = "Delete";
 	private String UPDATE_PROFILE_VALUE = "Edit Profile";
+	
+	private String MODEL_HEADER = "operation for device";
+	
+	private String DEVICE_PASSWORD = "Enter the password of these device";
 
 	private String dir = "ltr";
 
@@ -219,6 +223,18 @@ public class EnglishLanguage implements Language {
 	@Override
 	public String getUPDATE_PROFILE_VALUE() {
 		return UPDATE_PROFILE_VALUE;
+	}
+
+	
+	@Override
+	public String getDEVICE_PASSWORD() {
+		return DEVICE_PASSWORD;
+	}
+
+	
+	@Override
+	public String getMODEL_HEADER() {
+		return MODEL_HEADER;
 	}
 
 }

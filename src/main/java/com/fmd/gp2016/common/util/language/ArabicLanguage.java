@@ -39,6 +39,9 @@ public class ArabicLanguage implements Language {
 	private String DEVICE_DELETE = "حذف";
 	private String dir = "rtl";
 	private String UPDATE_PROFILE_VALUE = "تعديل الصفحة الشخصية";
+	private String DEVICE_PASSWORD = "ادخل كلمه المرور الخاصه بالجهاز";
+	
+	private String MODEL_HEADER="للعمليات على جهاز";
 
 	@Override
 	public String getDEVICE_CONTROL() {
@@ -211,6 +214,17 @@ public class ArabicLanguage implements Language {
 	@Override
 	public String getUPDATE_PROFILE_VALUE() {
 		return UPDATE_PROFILE_VALUE;
+	}
+
+	@Override
+	public String getDEVICE_PASSWORD() {
+		return DEVICE_PASSWORD;
+	}
+
+	
+	@Override
+	public String getMODEL_HEADER() {
+		return MODEL_HEADER;
 	}
 
 

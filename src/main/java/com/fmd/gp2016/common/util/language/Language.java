@@ -77,5 +77,9 @@ public interface Language {
 	public String getLoginName();
 	
 	public String getUPDATE_PROFILE_VALUE();
+	
+	public String getDEVICE_PASSWORD();
+	
+	public String getMODEL_HEADER();
 
 }

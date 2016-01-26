@@ -227,4 +227,17 @@ public class LanguageBean implements Language {
 	public String getUPDATE_PROFILE_VALUE() {
 		return lang.getUPDATE_PROFILE_VALUE();
 	}
+
+	@Override
+	public String getDEVICE_PASSWORD() {
+		return lang.getDEVICE_PASSWORD();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.fmd.gp2016.common.util.language.Language#getMODEL_HEADER()
+	 */
+	@Override
+	public String getMODEL_HEADER() {
+		return lang.getMODEL_HEADER();
+	}
 }
