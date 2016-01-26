@@ -5,16 +5,20 @@ import java.io.IOException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fmd.gp2016.common.entity.User;
 import com.fmd.gp2016.common.util.Constants;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
 import com.fmd.gp2016.common.util.language.Language;
 import com.fmd.gp2016.common.util.language.LanguageBean;
+import com.fmd.gp2016.common.util.language.LanguageFactory;
 
 /**
  * @author mohamed265 && Ibrahim Ali
@@ -38,14 +42,34 @@ public class BaseBean {
 		context.getExternalContext().getSessionMap().put(Constants.SESSION_LANGUAGE, lang);
 	}
 
+	public String getLanguageCookie() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+		Cookie cookie = null;
+		Cookie[] userCookies = request.getCookies();
+		if (userCookies != null && userCookies.length > 0) {
+			for (int i = 0; i < userCookies.length; i++) {
+				if (userCookies[i].getName().equals(Constants.LANGUAGE)) {
+					cookie = userCookies[i];
+					break;
+				}
+			}
+		}
+		return (cookie == null ? Constants.ENGLISH_LANGUAGE : cookie.getValue());
+	}
+
 	public Language getSessionLanguage() {
 		FacesContext context = FacesContext.getCurrentInstance();
-		Language lang = (Language) context.getExternalContext().getSessionMap().get(Constants.SESSION_LANGUAGE);
-		if (lang == null) {
-			LanguageBean s = new LanguageBean();
-			lang = s.lang;
+		Language lang_ = (Language) context.getExternalContext().getSessionMap().get(Constants.SESSION_LANGUAGE);
+		if (lang_ == null) {
+			String selectedLanguage = getLanguageCookie();
+			if (selectedLanguage.equals(Constants.ENGLISH_LANGUAGE)) {
+				lang_ = LanguageFactory.getEnglishLanguage();
+			} else if (selectedLanguage.equals(Constants.ARABIC_LANGUAGE)) {
+				lang_ = LanguageFactory.getArabicLanguage();
+			}
 		}
-		return lang;
+		return lang_;
 	}
 
 	public void setSessionUser(User user) {

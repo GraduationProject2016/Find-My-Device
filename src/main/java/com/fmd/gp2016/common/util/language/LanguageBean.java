@@ -33,7 +33,6 @@ public class LanguageBean implements Language {
 	}
 
 	private void setupLanguage() {
-		System.out.println(selectedLanguage);
 		if (selectedLanguage.equals(Constants.ENGLISH_LANGUAGE)) {
 			lang = LanguageFactory.getEnglishLanguage();
 		} else if (selectedLanguage.equals(Constants.ARABIC_LANGUAGE)) {
@@ -233,7 +232,9 @@ public class LanguageBean implements Language {
 		return lang.getDEVICE_PASSWORD();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.fmd.gp2016.common.util.language.Language#getMODEL_HEADER()
 	 */
 	@Override
