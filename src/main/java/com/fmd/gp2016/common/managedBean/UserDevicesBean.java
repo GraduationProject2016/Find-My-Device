@@ -42,15 +42,10 @@ public class UserDevicesBean extends BaseBean {
 	}
 
 	public String control() throws IOException {
-		System.out.println(" password" + password + " " + selected);
-
 		if (!isAuzorizedUser(password)) {
-			// addSuccessfulMessage(getSessionLanguage().getERROR_MESSAGE());
-			System.out.println("!IS Auzorized");
-
+			addErrorMessage(getSessionLanguage().getERROR_MESSAGE());
 		} else {
-			// addSuccessfulMessage(getSessionLanguage().getSUCCESSFUL_MESSAGE());
-			System.out.println("++++IS Auzorized");
+			addSuccessfulMessage(getSessionLanguage().getSUCCESSFUL_MESSAGE());
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.getExternalContext().redirect("device.xhtml?" + Constants.DEVICE_ID + "=" + selected.getId());
 		}
@@ -58,16 +53,15 @@ public class UserDevicesBean extends BaseBean {
 	}
 
 	boolean isAuzorizedUser(String pass) {
-		System.out.println("auz" + selected.getPassword());
 		return pass.equals(selected.getPassword());
 	}
 
 	public String delete() throws IOException {
 		if (!isAuzorizedUser(password)) {
-			// addSuccessfulMessage(getSessionLanguage().getERROR_MESSAGE());
+			addErrorMessage(getSessionLanguage().getERROR_MESSAGE());
 		} else {
 			userDevicesService.deleteDevice(selected.getId());
-			// addSuccessfulMessage(getSessionLanguage().getSUCCESSFUL_MESSAGE());
+			addSuccessfulMessage(getSessionLanguage().getSUCCESSFUL_MESSAGE());
 		}
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().redirect("userDevices.xhtml");

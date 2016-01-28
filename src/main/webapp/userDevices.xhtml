@@ -11,8 +11,11 @@
          #{language.USER_DEVICES_PAGE_NAME}
         </ui:define>
 	<ui:define name="content">
+		<br />
+		<br />
+		<br />
+		<br />
 		<h:form id="form" dir="#{language.dir}">
-			<p:messages id="messages" closable="true" />
 			<p:dataTable emptyMessage="#{language.EMPTY_DEVICES}"
 				value="#{userdevices.devices}" var="obj">
 				<f:facet name="header">
@@ -32,15 +35,15 @@
 						actionListener="#{userdevices.setSelected(obj)}" />
 
 					<p:dialog header="#{language.MODEL_HEADER}" widgetVar="dlg3"
-						modal="true" height="100" dir="#{language.dir}">
+						id="error" modal="true" height="100" dir="#{language.dir}"
+						resizable="false">
 
-						<p:outputLabel value="#{language.DEVICE_PASSWORD}"
-							style="margin-left:100px;" />
+						<p:outputLabel value="#{language.DEVICE_PASSWORD}" />
 						<p:inputText value="#{userdevices.password}" type="password"
 							placeholder="#{language.PLACEHOLDER_PASSWORD}"
-							style="margin-left:100px;" />
+							style="margin-left:30px;" />
 						<p:commandButton value="#{language.DEVICE_DELETE}"
-							actionListener="#{userdevices.delete()}" />
+							actionListener="#{userdevices.delete()}" update="error" />
 					</p:dialog>
 
 					<p:commandButton value="#{language.DEVICE_CONTROL}"
@@ -48,13 +51,12 @@
 						actionListener="#{userdevices.setSelected(obj)}" />
 
 					<p:dialog header="#{language.MODEL_HEADER}" widgetVar="dlg2"
-						modal="true" height="100" dir="#{language.dir}">
-						<p:outputLabel value="#{language.DEVICE_PASSWORD}"
-							style="margin-left:100px;" />
+						modal="true" height="100" dir="#{language.dir}" resizable="false">
+						<p:outputLabel value="#{language.DEVICE_PASSWORD}" />
 
 						<p:inputText value="#{userdevices.password}" type="password"
 							placeholder="#{language.PLACEHOLDER_PASSWORD}"
-							style="margin-left:100px;" />
+							style="margin-left:30px;" />
 						<p:commandButton value="#{language.DEVICE_CONTROL}"
 							actionListener="#{userdevices.control()}">
 						</p:commandButton>
