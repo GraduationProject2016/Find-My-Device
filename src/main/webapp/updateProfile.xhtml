@@ -14,66 +14,68 @@
         </ui:define>
 	<ui:define name="content">
 		<br></br>
-		
-		<h:graphicImage value="resources/img/userpic.jpg" width="250" height="200"/>
+
+		<h:graphicImage value="resources/img/userpic.jpg" width="250"
+			height="200" />
 		<center>
-		
-			<h:form id="form">
-				<h:panelGrid columns="3" cellpadding="5">
+			<div style="margin-top: -200px;">
+				<h:form id="form">
+					<h:panelGrid columns="3" cellpadding="5">
 
-					<p:outputLabel styleClass="side_label"
-						value="#{language.OUTPUTTEXT_NAME}" />
-					<p:outputLabel value="#{updateProfile.user.name}"
-						rendered="#{updateProfile.page_mode_is_view == true}" />
-					<p:inputText id="name" value="#{updateProfile.user.name}"
-						rendered="#{updateProfile.page_mode_is_view == false}"
-						placeholder="#{language.PLACEHOLDER_NAME}" required="true"
-						requiredMessage="#{language.PLACEHOLDER_NAME}" />
-					<p:outputLabel />
+						<p:outputLabel styleClass="side_label"
+							value="#{language.OUTPUTTEXT_NAME}" />
+						<p:outputLabel value="#{updateProfile.user.name}"
+							rendered="#{updateProfile.page_mode_is_view == true}" />
+						<p:inputText id="name" value="#{updateProfile.user.name}"
+							rendered="#{updateProfile.page_mode_is_view == false}"
+							placeholder="#{language.PLACEHOLDER_NAME}" required="true"
+							requiredMessage="#{language.PLACEHOLDER_NAME}" />
+						<p:outputLabel />
 
-					<p:outputLabel styleClass="side_label"
-						value="#{language.OUTPUTTEXT_MOBILE}" />
-					<p:outputLabel value="#{updateProfile.user.mobileNo}"
-						rendered="#{updateProfile.page_mode_is_view == true}" />
-					<p:inputText id="phone" value="#{updateProfile.user.mobileNo}"
-						rendered="#{updateProfile.page_mode_is_view == false}"
-						placeholder="#{language.PLACEHOLDER_MOBILE}" required="true"
-						requiredMessage="#{language.PLACEHOLDER_MOBILE}" />
-					<p:outputLabel />
+						<p:outputLabel styleClass="side_label"
+							value="#{language.OUTPUTTEXT_MOBILE}" />
+						<p:outputLabel value="#{updateProfile.user.mobileNo}"
+							rendered="#{updateProfile.page_mode_is_view == true}" />
+						<p:inputText id="phone" value="#{updateProfile.user.mobileNo}"
+							rendered="#{updateProfile.page_mode_is_view == false}"
+							placeholder="#{language.PLACEHOLDER_MOBILE}" required="true"
+							requiredMessage="#{language.PLACEHOLDER_MOBILE}" />
+						<p:outputLabel />
 
 
-					<p:outputLabel styleClass="side_label"
-						value="#{language.OUTPUTTEXT_USERNAME}" />
-					<p:outputLabel value="#{updateProfile.user.userName}"
-						rendered="#{updateProfile.page_mode_is_view == true}" />
-					<p:inputText id="username" value="#{updateProfile.user.userName}"
-						rendered="#{updateProfile.page_mode_is_view == false}"
-						placeholder="#{language. PLACEHOLDER_USERNAME}" required="true"
-						requiredMessage="#{language. PLACEHOLDER_USERNAME}" />
-					<p:outputLabel />
+						<p:outputLabel styleClass="side_label"
+							value="#{language.OUTPUTTEXT_USERNAME}" />
+						<p:outputLabel value="#{updateProfile.user.userName}"
+							rendered="#{updateProfile.page_mode_is_view == true}" />
+						<p:inputText id="username" value="#{updateProfile.user.userName}"
+							rendered="#{updateProfile.page_mode_is_view == false}"
+							placeholder="#{language. PLACEHOLDER_USERNAME}" required="true"
+							requiredMessage="#{language. PLACEHOLDER_USERNAME}" />
+						<p:outputLabel />
 
-					<p:outputLabel styleClass="side_label"
-						value="#{language.OUTPUTTEXT_EMAIL}" />
+						<p:outputLabel styleClass="side_label"
+							value="#{language.OUTPUTTEXT_EMAIL}" />
 
-					<p:outputLabel value="#{updateProfile.user.email}"
-						rendered="#{updateProfile.page_mode_is_view == true}" />
+						<p:outputLabel value="#{updateProfile.user.email}"
+							rendered="#{updateProfile.page_mode_is_view == true}" />
 
-					<p:inputText id="email" value="#{updateProfile.user.email}"
-						placeholder="#{language.PLACEHOLDER_EMAIL}" required="true"
-						rendered="#{updateProfile.page_mode_is_view == false}"
-						requiredMessage="#{language.PLACEHOLDER_EMAIL}" />
-					<p:outputLabel />
-					<p:commandButton value="#{language.UPDATE_PROFILE_VALUE}"
-						rendered="#{updateProfile.page_mode_is_view == false}"
-						action="#{updateProfile.save()}" update=":form" />
+						<p:inputText id="email" value="#{updateProfile.user.email}"
+							placeholder="#{language.PLACEHOLDER_EMAIL}" required="true"
+							rendered="#{updateProfile.page_mode_is_view == false}"
+							requiredMessage="#{language.PLACEHOLDER_EMAIL}" />
+						<p:outputLabel />
+						<p:commandButton value="#{language.UPDATE_PROFILE_VALUE}"
+							rendered="#{updateProfile.page_mode_is_view == false}"
+							action="#{updateProfile.save()}" update=":form" />
 
-					<p:commandButton value="#{language.UPDATE_PROFILE_VALUE}"
-						rendered="#{updateProfile.page_mode_is_view == true}"
-						action="#{updateProfile.setPage_mode_is_view(false)}"
-						update=":form" />
+						<p:commandButton value="#{language.UPDATE_PROFILE_VALUE}"
+							rendered="#{updateProfile.page_mode_is_view == true}"
+							action="#{updateProfile.setPage_mode_is_view(false)}"
+							update=":form" />
 
-				</h:panelGrid>
-			</h:form>
+					</h:panelGrid>
+				</h:form>
+			</div>
 		</center>
 	</ui:define>
 </ui:composition>
