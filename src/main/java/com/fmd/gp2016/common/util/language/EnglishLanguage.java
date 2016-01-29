@@ -16,8 +16,9 @@ import javax.faces.bean.ApplicationScoped;
 public class EnglishLanguage implements Language {
 
 	private String SIGNUP_PAGE_NAME = "Registration Page";
-	private String SIGNIN_PAGE_NAME = "Login page";
-	private String USER_DEVICES_PAGE_NAME = "Devices page";
+	private String SIGNIN_PAGE_NAME = "Login Page";
+	private String USER_DEVICES_PAGE_NAME = "Devices Page";
+	private String UPDATE_PROFILE_PAGE_NAME = "Profile Page";
 
 	private String OUTPUTTEXT_NAME = "Name";
 	private String PLACEHOLDER_NAME = "Enter your Name ";
@@ -36,6 +37,7 @@ public class EnglishLanguage implements Language {
 	private String ERROR_PASSWORD_MATCHING = "Please make sure that the two passwords matches each other";
 	private String ERROR_UNIQUE_USERNAME = "Please change username because it is related to another user";
 	private String ERROR_UNIQUE_EMAIL = "Please change email because it is related to another user";
+	private String ERROR_UNIQUE_PHONE = "Please change mobile number because it is related to another user";
 	private String ERROR_SIGNUP = "There is an error in registeration process";
 	private String ERROR_LOGIN = "There is an error in login process";
 	private String EMPTY_DEVICES = "There is no devices";
@@ -43,12 +45,17 @@ public class EnglishLanguage implements Language {
 	private String DEVICE_CONTROL = "Control";
 	private String DEVICE_DELETE = "Delete";
 	private String UPDATE_PROFILE_VALUE = "Edit Profile";
-	
+
 	private String MODEL_HEADER = "operation for device";
-	
+
 	private String DEVICE_PASSWORD = "Enter the password of these device";
 
 	private String dir = "ltr";
+
+	@Override
+	public String getUPDATE_PROFILE_PAGE_NAME() {
+		return UPDATE_PROFILE_PAGE_NAME;
+	}
 
 	@Override
 	public String getDEVICE_CONTROL() {
@@ -165,6 +172,11 @@ public class EnglishLanguage implements Language {
 	}
 
 	@Override
+	public String getERROR_UNIQUE_PHONE() {
+		return ERROR_UNIQUE_PHONE;
+	}
+
+	@Override
 	public String getPLACEHOLDER_PASSWORD() {
 		return PLACEHOLDER_PASSWORD;
 	}
@@ -218,20 +230,18 @@ public class EnglishLanguage implements Language {
 	public String getLoginName() {
 
 		return "Login";
-	} 
-	
+	}
+
 	@Override
 	public String getUPDATE_PROFILE_VALUE() {
 		return UPDATE_PROFILE_VALUE;
 	}
 
-	
 	@Override
 	public String getDEVICE_PASSWORD() {
 		return DEVICE_PASSWORD;
 	}
 
-	
 	@Override
 	public String getMODEL_HEADER() {
 		return MODEL_HEADER;

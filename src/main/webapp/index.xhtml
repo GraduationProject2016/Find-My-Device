@@ -12,24 +12,26 @@
        #{language.SIGNIN_PAGE_NAME}
         </ui:define>
 	<ui:define name="content">
-		<center style="margin-top:18%;">
+		<center style="margin-top: 18%;">
 			<h:form>
 				<h:panelGrid columns="3" cellpadding="5">
 					<h:outputText value="#{language.OUTPUTTEXT_USERNAME}" />
 					<p:inputText id="username" value="#{login.input}"
 						a:placeholder="#{language.PLACEHOLDER_USERNAME}" required="true"
-						requiredMessage="You must enter input" />
+						requiredMessage="#{language.PLACEHOLDER_USERNAME}" />
 					<p:message for="username" />
 
 					<h:outputText value="#{language.OUTPUTTEXT_PASSWORD}" />
-					<p:inputText id="password" value="#{login.password}" type="password"
-						a:placeholder="#{language.PLACEHOLDER_PASSWORD}" required="true"
-						requiredMessage="You must enter password" />
+					<p:inputText id="password" value="#{login.password}"
+						type="password" a:placeholder="#{language.PLACEHOLDER_PASSWORD}"
+						required="true" requiredMessage="#{language.PLACEHOLDER_PASSWORD}" />
 					<p:message for="password" />
 
-				
-				<p:link href="/signup.xhtml" for="signup-btn" value="#{language.signLink}"/>
-				<p:commandButton value="#{language.loginName}" action="#{login.validate()}" />
+
+					<p:link href="/signup.xhtml" for="signup-btn"
+						value="#{language.signLink}" />
+					<p:commandButton value="#{language.loginName}"
+						action="#{login.validate()}" />
 				</h:panelGrid>
 			</h:form>
 		</center>

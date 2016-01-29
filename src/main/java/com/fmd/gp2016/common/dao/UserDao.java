@@ -2,8 +2,6 @@ package com.fmd.gp2016.common.dao;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
 import com.fmd.gp2016.common.entity.User;
 
 /**
@@ -14,6 +12,8 @@ import com.fmd.gp2016.common.entity.User;
 public interface UserDao {
 
 	public void save(User user) throws Exception;
+
+	public void update(User user);
 
 	public List<User> getAllUsers();
 

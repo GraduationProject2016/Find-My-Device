@@ -13,6 +13,7 @@ public class ArabicLanguage implements Language {
 	private String SIGNUP_PAGE_NAME = "صفحه التسجيل";
 	private String SIGNIN_PAGE_NAME = "صفحه تسجيل الدخول";
 	private String USER_DEVICES_PAGE_NAME = "صفحه عرض الأجهزه";
+	private String UPDATE_PROFILE_PAGE_NAME = "الصفحه الشخصيه";
 
 	private String OUTPUTTEXT_NAME = "الاسم";
 	private String PLACEHOLDER_NAME = "أدخل الاسم";
@@ -31,6 +32,8 @@ public class ArabicLanguage implements Language {
 	private String ERROR_PASSWORD_MATCHING = "من فضلك تأكد من تطابق كلمتى المرور";
 	private String ERROR_UNIQUE_USERNAME = "من فضلك قم بتغيير إسم المستخدم لأنه مرتبط بشخص أخر";
 	private String ERROR_UNIQUE_EMAIL = "من فضلك قم بتغيير البريد الإلكترونى لأنه مرتبط بشخص أخر";
+	private String ERROR_UNIQUE_PHONE = "من فضلك قم بتغيير رقم الموبايل لأنه مرتبط بشخص أخر";
+
 	private String ERROR_SIGNUP = "يوجد خطأ ما فى عمليه التسجيل";
 	private String ERROR_LOGIN = "يوجد خطأ ما فى عمليه تسجيل الدخول";
 	private String EMPTY_DEVICES = "لا توجد أجهزه";
@@ -40,8 +43,8 @@ public class ArabicLanguage implements Language {
 	private String dir = "rtl";
 	private String UPDATE_PROFILE_VALUE = "تعديل الصفحة الشخصية";
 	private String DEVICE_PASSWORD = "ادخل كلمه المرور الخاصه بالجهاز";
-	
-	private String MODEL_HEADER="للعمليات على جهاز";
+
+	private String MODEL_HEADER = "للعمليات على جهاز";
 
 	@Override
 	public String getDEVICE_CONTROL() {
@@ -96,6 +99,11 @@ public class ArabicLanguage implements Language {
 	@Override
 	public String getERROR_UNIQUE_EMAIL() {
 		return ERROR_UNIQUE_EMAIL;
+	}
+
+	@Override
+	public String getERROR_UNIQUE_PHONE() {
+		return ERROR_UNIQUE_PHONE;
 	}
 
 	@Override
@@ -211,6 +219,7 @@ public class ArabicLanguage implements Language {
 
 		return "دخول";
 	}
+
 	@Override
 	public String getUPDATE_PROFILE_VALUE() {
 		return UPDATE_PROFILE_VALUE;
@@ -221,11 +230,14 @@ public class ArabicLanguage implements Language {
 		return DEVICE_PASSWORD;
 	}
 
-	
 	@Override
 	public String getMODEL_HEADER() {
 		return MODEL_HEADER;
 	}
 
+	@Override
+	public String getUPDATE_PROFILE_PAGE_NAME() {
+		return UPDATE_PROFILE_PAGE_NAME;
+	}
 
 }

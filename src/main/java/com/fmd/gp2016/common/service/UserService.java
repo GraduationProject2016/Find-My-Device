@@ -13,6 +13,8 @@ public interface UserService {
 
 	public void save(User user);
 
+	public void update(User user);
+
 	public List<User> getAllUsers();
 
 	public void delete(User user);
@@ -22,9 +24,10 @@ public interface UserService {
 	public User loginByUsername(String username, String password);
 
 	public User loginByEmail(String email, String password);
-	
+
 	public Boolean isUniqeUsername(String username);
-	
+
 	public Boolean isUniqeEmail(String email);
+
+	public Boolean isUniqeMobileNumber(String phone);
 }
- 

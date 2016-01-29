@@ -52,6 +52,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public void update(User user) {
+		userDao.update(user);
+	}
+
+	@Override
 	public List<User> getAllUsers() {
 		return userDao.getAllUsers();
 	}
@@ -95,14 +100,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Boolean isUniqeUsername(String username) {
-		return (userDao.selecColumntByIDNative("username", username) == null ? true
-				: false);
-
+		return (userDao.selecColumntByIDNative("username", username) == null ? true : false);
 	}
 
+	@Override
 	public Boolean isUniqeEmail(String email) {
-		return (userDao.selecColumntByIDNative("email", email) == null ? true
-				: false);
+		return (userDao.selecColumntByIDNative("email", email) == null ? true : false);
 	}
 
+	@Override
+	public Boolean isUniqeMobileNumber(String phone) {
+		return (userDao.selecColumntByIDNative("mobileNo", phone) == null ? true : false);
+	}
 }

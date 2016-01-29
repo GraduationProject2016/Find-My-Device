@@ -218,6 +218,11 @@ public class LanguageBean implements Language {
 	}
 
 	@Override
+	public String getERROR_UNIQUE_PHONE() {
+		return lang.getERROR_UNIQUE_PHONE();
+	}
+
+	@Override
 	public String getDEVICE_DELETE() {
 		return lang.getDEVICE_DELETE();
 	}
@@ -232,13 +237,14 @@ public class LanguageBean implements Language {
 		return lang.getDEVICE_PASSWORD();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.fmd.gp2016.common.util.language.Language#getMODEL_HEADER()
-	 */
 	@Override
 	public String getMODEL_HEADER() {
 		return lang.getMODEL_HEADER();
 	}
+
+	@Override
+	public String getUPDATE_PROFILE_PAGE_NAME() {
+		return lang.getUPDATE_PROFILE_PAGE_NAME();
+	}
+
 }

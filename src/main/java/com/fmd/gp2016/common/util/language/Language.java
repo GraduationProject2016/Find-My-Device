@@ -56,6 +56,8 @@ public interface Language {
 
 	public String getERROR_UNIQUE_EMAIL();
 
+	public String getERROR_UNIQUE_PHONE();
+	
 	public String getERROR_SIGNUP();
 
 	public String getERROR_LOGIN();
@@ -75,11 +77,13 @@ public interface Language {
 	public String getSignLink();
 
 	public String getLoginName();
-	
+
 	public String getUPDATE_PROFILE_VALUE();
-	
+
 	public String getDEVICE_PASSWORD();
-	
+
 	public String getMODEL_HEADER();
+
+	public String getUPDATE_PROFILE_PAGE_NAME();
 
 }

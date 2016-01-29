@@ -55,6 +55,10 @@ public class SignupBean extends BaseBean {
 			addErrorMessage(getSessionLanguage().getERROR_UNIQUE_EMAIL());
 			return "";
 		}
+		if (!userService.isUniqeMobileNumber(user.getMobileNo())) {
+			addErrorMessage(getSessionLanguage().getERROR_UNIQUE_PHONE());
+			return "";
+		}
 
 		user.setActive(true);
 		userService.save(user);

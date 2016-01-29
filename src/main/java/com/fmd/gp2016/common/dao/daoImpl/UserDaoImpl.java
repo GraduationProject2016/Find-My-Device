@@ -31,6 +31,12 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	@Transactional
+	public void update(User user) {
+		em.merge(user);
+	}
+
+	@Override
 	public List<User> getAllUsers() {
 		return em.createNamedQuery("User.getAll").getResultList();
 	}
