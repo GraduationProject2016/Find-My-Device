@@ -57,7 +57,7 @@ public interface Language {
 	public String getERROR_UNIQUE_EMAIL();
 
 	public String getERROR_UNIQUE_PHONE();
-	
+
 	public String getERROR_SIGNUP();
 
 	public String getERROR_LOGIN();
@@ -85,5 +85,25 @@ public interface Language {
 	public String getMODEL_HEADER();
 
 	public String getUPDATE_PROFILE_PAGE_NAME();
+
+	/**
+	 * @return
+	 */
+	String getDEVICE_NAME();
+
+	/**
+	 * @return
+	 */
+	String getDEVICE_LASTACTIVEDATE();
+
+	/**
+	 * @return
+	 */
+	String getDEVICE_TYPE();
+
+	/**
+	 * @return
+	 */
+	String getDEVICE_OPERATINS();
 
 }

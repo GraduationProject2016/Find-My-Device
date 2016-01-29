@@ -47,10 +47,33 @@ public class EnglishLanguage implements Language {
 	private String UPDATE_PROFILE_VALUE = "Edit Profile";
 
 	private String MODEL_HEADER = "operation for device";
-
 	private String DEVICE_PASSWORD = "Enter the password of these device";
-
 	private String dir = "ltr";
+
+	private String DEVICE_NAME = "Device Name";
+	private String DEVICE_LASTACTIVEDATE = "Last Active Date";
+	private String DEVICE_TYPE = "Device Type";
+	private String DEVICE_OPERATINS = "Operations on Device";
+
+	@Override
+	public String getDEVICE_NAME() {
+		return DEVICE_NAME;
+	}
+
+	@Override
+	public String getDEVICE_LASTACTIVEDATE() {
+		return DEVICE_LASTACTIVEDATE;
+	}
+
+	@Override
+	public String getDEVICE_TYPE() {
+		return DEVICE_TYPE;
+	}
+
+	@Override
+	public String getDEVICE_OPERATINS() {
+		return DEVICE_OPERATINS;
+	}
 
 	@Override
 	public String getUPDATE_PROFILE_PAGE_NAME() {

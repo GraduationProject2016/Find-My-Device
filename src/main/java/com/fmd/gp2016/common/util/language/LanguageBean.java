@@ -247,4 +247,24 @@ public class LanguageBean implements Language {
 		return lang.getUPDATE_PROFILE_PAGE_NAME();
 	}
 
+	@Override
+	public String getDEVICE_NAME() {
+		return lang.getDEVICE_NAME();
+	}
+
+	@Override
+	public String getDEVICE_LASTACTIVEDATE() {
+		return lang.getDEVICE_LASTACTIVEDATE();
+	}
+
+	@Override
+	public String getDEVICE_TYPE() {
+		return lang.getDEVICE_TYPE();
+	}
+
+	@Override
+	public String getDEVICE_OPERATINS() {
+		return lang.getDEVICE_OPERATINS();
+	}
+
 }

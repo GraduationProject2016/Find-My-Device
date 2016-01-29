@@ -46,6 +46,31 @@ public class ArabicLanguage implements Language {
 
 	private String MODEL_HEADER = "للعمليات على جهاز";
 
+	private String DEVICE_NAME = "إسم الجهاز";
+	private String DEVICE_LASTACTIVEDATE = "أخر تاريخ للدخول";
+	private String DEVICE_TYPE = "نوع الجهاز";
+	private String DEVICE_OPERATINS = "عمليات على الجهاز";
+
+	@Override
+	public String getDEVICE_NAME() {
+		return DEVICE_NAME;
+	}
+
+	@Override
+	public String getDEVICE_LASTACTIVEDATE() {
+		return DEVICE_LASTACTIVEDATE;
+	}
+
+	@Override
+	public String getDEVICE_TYPE() {
+		return DEVICE_TYPE;
+	}
+
+	@Override
+	public String getDEVICE_OPERATINS() {
+		return DEVICE_OPERATINS;
+	}
+
 	@Override
 	public String getDEVICE_CONTROL() {
 		return DEVICE_CONTROL;
