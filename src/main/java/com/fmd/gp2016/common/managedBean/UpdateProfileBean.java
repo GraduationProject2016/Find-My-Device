@@ -31,7 +31,7 @@ public class UpdateProfileBean extends BaseBean {
 
 	@PostConstruct
 	public void init() {
-		user = getSessionUser();
+		user = userService.getUserById(getSessionUser().getId());
 		username = user.getUserName();
 		email = user.getEmail();
 		phone = user.getMobileNo();
