@@ -14,9 +14,13 @@
         </ui:define>
 	<ui:define name="content">
 		<br></br>
+		
+		<h:graphicImage value="resources/img/userpic.jpg" width="250" height="200"/>
 		<center>
+		
 			<h:form id="form">
 				<h:panelGrid columns="3" cellpadding="5">
+
 					<p:outputLabel styleClass="side_label"
 						value="#{language.OUTPUTTEXT_NAME}" />
 					<p:outputLabel value="#{updateProfile.user.name}"
@@ -46,7 +50,7 @@
 						rendered="#{updateProfile.page_mode_is_view == false}"
 						placeholder="#{language. PLACEHOLDER_USERNAME}" required="true"
 						requiredMessage="#{language. PLACEHOLDER_USERNAME}" />
-
+					<p:outputLabel />
 
 					<p:outputLabel styleClass="side_label"
 						value="#{language.OUTPUTTEXT_EMAIL}" />
@@ -58,7 +62,7 @@
 						placeholder="#{language.PLACEHOLDER_EMAIL}" required="true"
 						rendered="#{updateProfile.page_mode_is_view == false}"
 						requiredMessage="#{language.PLACEHOLDER_EMAIL}" />
-
+					<p:outputLabel />
 					<p:commandButton value="#{language.UPDATE_PROFILE_VALUE}"
 						rendered="#{updateProfile.page_mode_is_view == false}"
 						action="#{updateProfile.save()}" update=":form" />
