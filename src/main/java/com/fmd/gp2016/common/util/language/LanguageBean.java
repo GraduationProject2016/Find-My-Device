@@ -267,4 +267,14 @@ public class LanguageBean implements Language {
 		return lang.getDEVICE_OPERATINS();
 	}
 
+	@Override
+	public String getDOWNLOAD_LINK() {
+		return lang.getDOWNLOAD_LINK();
+	}
+
+	@Override
+	public String getDOWNLOAD_PAGE_NAME() {
+		return lang.getDOWNLOAD_PAGE_NAME();
+	}
+
 }

@@ -14,7 +14,9 @@ public class ArabicLanguage implements Language {
 	private String SIGNIN_PAGE_NAME = "صفحه تسجيل الدخول";
 	private String USER_DEVICES_PAGE_NAME = "صفحه عرض الأجهزه";
 	private String UPDATE_PROFILE_PAGE_NAME = "الصفحه الشخصيه";
+	private String DOWNLOAD_PAGE_NAME = "تنزيل البرامج";
 
+	private String DOWNLOAD_LINK = "لينك التحميل";
 	private String OUTPUTTEXT_NAME = "الاسم";
 	private String PLACEHOLDER_NAME = "أدخل الاسم";
 	private String OUTPUTTEXT_MOBILE = "رقم الموبايل";
@@ -54,6 +56,16 @@ public class ArabicLanguage implements Language {
 	@Override
 	public String getDEVICE_NAME() {
 		return DEVICE_NAME;
+	}
+
+	@Override
+	public String getDOWNLOAD_PAGE_NAME() {
+		return DOWNLOAD_PAGE_NAME;
+	}
+
+	@Override
+	public String getDOWNLOAD_LINK() {
+		return DOWNLOAD_LINK;
 	}
 
 	@Override

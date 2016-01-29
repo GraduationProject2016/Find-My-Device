@@ -86,24 +86,16 @@ public interface Language {
 
 	public String getUPDATE_PROFILE_PAGE_NAME();
 
-	/**
-	 * @return
-	 */
-	String getDEVICE_NAME();
+	public String getDEVICE_NAME();
 
-	/**
-	 * @return
-	 */
-	String getDEVICE_LASTACTIVEDATE();
+	public String getDEVICE_LASTACTIVEDATE();
 
-	/**
-	 * @return
-	 */
-	String getDEVICE_TYPE();
+	public String getDEVICE_TYPE();
 
-	/**
-	 * @return
-	 */
-	String getDEVICE_OPERATINS();
+	public String getDEVICE_OPERATINS();
+
+	public String getDOWNLOAD_LINK();
+
+	public String getDOWNLOAD_PAGE_NAME();
 
 }

@@ -19,7 +19,9 @@ public class EnglishLanguage implements Language {
 	private String SIGNIN_PAGE_NAME = "Login Page";
 	private String USER_DEVICES_PAGE_NAME = "Devices Page";
 	private String UPDATE_PROFILE_PAGE_NAME = "Profile Page";
+	private String DOWNLOAD_PAGE_NAME = "Downloads Page";
 
+	private String DOWNLOAD_LINK = "Download link";
 	private String OUTPUTTEXT_NAME = "Name";
 	private String PLACEHOLDER_NAME = "Enter your Name ";
 	private String OUTPUTTEXT_MOBILE = "Mobile Number";
@@ -54,6 +56,16 @@ public class EnglishLanguage implements Language {
 	private String DEVICE_LASTACTIVEDATE = "Last Active Date";
 	private String DEVICE_TYPE = "Device Type";
 	private String DEVICE_OPERATINS = "Operations on Device";
+
+	@Override
+	public String getDOWNLOAD_PAGE_NAME() {
+		return DOWNLOAD_PAGE_NAME;
+	}
+
+	@Override
+	public String getDOWNLOAD_LINK() {
+		return DOWNLOAD_LINK;
+	}
 
 	@Override
 	public String getDEVICE_NAME() {
