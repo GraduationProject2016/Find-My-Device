@@ -25,7 +25,7 @@ public class Initializer extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		System.out.println("here");
+		System.out.println("Initilizer Socket");
 		new SocketServer();
 	}
 

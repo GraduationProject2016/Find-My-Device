@@ -25,6 +25,8 @@ public class JsonHandler {
 	}
 
 	public static MessageDto getMessageDtoObject(String str) {
+		if (str == null)
+			return null;
 		JsonObject jsonObject = getJsonObjec(str);
 		MessageDto messageDto = new MessageDto(jsonObject.getBoolean(Constants.MESSAGE_TYPE));
 		messageDto.setContent(jsonObject.getString(Constants.MESSAGE_CONTENT));
