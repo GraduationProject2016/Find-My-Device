@@ -23,6 +23,7 @@ public class DevicePool {
 
 	public static void addDeviceThread(DeviceThread deviceThread) {
 		map.put(deviceThread.getDevice().getId(), deviceThread);
+		System.out.println("addDeviceThread " + map.size());
 	}
 
 	public static void removeDeviceThread(DeviceThread deviceThread) {
@@ -32,6 +33,7 @@ public class DevicePool {
 			}
 		} catch (Exception e) {
 		}
+		System.out.println("removeDeviceThread " + map.size());
 	}
 
 	public static DeviceThread getDeviceThread(Integer deviceId) {

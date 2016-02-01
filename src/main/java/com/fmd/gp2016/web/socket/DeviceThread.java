@@ -21,7 +21,7 @@ import com.fmd.gp2016.common.util.JsonHandler;
 /**
  * @author mohamed265
  */
-class DeviceThread extends Thread {
+public class DeviceThread extends Thread {
 
 	private SocketServer server = null;
 	private Socket socket = null;
@@ -58,7 +58,7 @@ class DeviceThread extends Thread {
 			System.out.println("\nServer Thread " + ID + " running.");
 			setDevice(device);
 			DevicePool.addDeviceThread(this);
-			readListener();
+			//readListener();
 		}
 
 	}

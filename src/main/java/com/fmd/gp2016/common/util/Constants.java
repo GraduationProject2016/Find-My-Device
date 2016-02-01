@@ -52,4 +52,8 @@ public class Constants {
 	public static final String SESSION_LANGUAGE = "session_language";
 	
 	public static final String DEVICE_ID = "device_id";
+	
+	// command 
+	public static final String COMAND_COMMAND = "command";
+	public static final String COMAND_PARMS = "parms";
 }
