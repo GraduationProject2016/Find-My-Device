@@ -15,46 +15,77 @@ User: mohamed265
 <h:body>
 	<p:messages globalOnly="true" />
 	<p:growl id="msg" showDetail="true" />
-	 #{controlDevice}
 	 <h:form>
-	 <p:dataTable var="dir" value="#{controlDevice.computer.directories}" >
-	 <f:facet name="header">
+
+		<p:dataTable emptyMessage="">
+			<f:facet name="header">
         #{controlDevice.computer.path}
-    </f:facet>
-		<p:column headerText="name">
-			<h:outputText value="#{dir.name}" />
-		</p:column>
+        <p:commandButton value="Home"
+					actionListener="#{controlDevice.openMyDoc}" ajax="false" />
+				<p:commandButton value="My Computer"
+					actionListener="#{controlDevice.openMyCom}" ajax="false" />
+				<p:commandButton value="Desktop"
+					actionListener="#{controlDevice.openDeskTop}" ajax="false" />
+			</f:facet>
+		</p:dataTable>
+		<p:dataTable var="file" value="#{controlDevice.partitions}" emptyMessage="">
+			<p:column>
+				<h:outputText value="#{file.name}" />
+			</p:column>
 
-		<p:column headerText="type">
-			<h:outputText value="folder" />
-		</p:column>
+			<p:column>
+				<h:outputText value="#{file.path}" />
+			</p:column>
 
-		<p:column headerText="size">
-			<h:outputText value="#{dir.size}" />
-		</p:column>
+			<p:column>
+				<h:outputText value="#{file.totalSpace}" />
+			</p:column>
 
-		<p:column headerText="Operations">
-			<h:outputText value="" />
-			<p:commandButton value="open" actionListener="#{controlDevice.open(dir.name)}" ajax="false"/>
-		</p:column>
-	</p:dataTable>
-	<p:dataTable var="file" value="#{controlDevice.computer.files}" >
-		<p:column >
-			<h:outputText value="#{file.name}" />
-		</p:column>
+			<p:column>
+				<p:commandButton value="open"
+					actionListener="#{controlDevice.open(file.path)}" ajax="false" />
+			</p:column>
+		</p:dataTable>
 
-		<p:column >
-			<h:outputText value="#{file.type}" />
-		</p:column>
+		<p:dataTable var="dir" value="#{controlDevice.computer.directories}" emptyMessage="">
 
-		<p:column >
-			<h:outputText value="#{file.size}" />
-		</p:column>
 
-		<p:column >
-			<h:outputText value="" />
-		</p:column>
-	</p:dataTable>
+			<p:column headerText="name">
+				<h:outputText value="#{dir.name}" />
+			</p:column>
+
+			<p:column headerText="type">
+				<h:outputText value="folder" />
+			</p:column>
+
+			<p:column headerText="size">
+				<h:outputText value="#{dir.size}" />
+			</p:column>
+
+			<p:column headerText="Operations">
+				<h:outputText value="" />
+				<p:commandButton value="open"
+					actionListener="#{controlDevice.open(dir.name)}" ajax="false" />
+			</p:column>
+		</p:dataTable>
+		<p:dataTable var="file" value="#{controlDevice.computer.files}" emptyMessage="">
+			<p:column>
+				<h:outputText value="#{file.name}" />
+			</p:column>
+
+			<p:column>
+				<h:outputText value="#{file.type}" />
+			</p:column>
+
+			<p:column>
+				<h:outputText value="#{file.size}" />
+			</p:column>
+
+			<p:column>
+				<p:commandButton value="Get" />
+			</p:column>
+		</p:dataTable>
+
 	</h:form>
 </h:body>
 

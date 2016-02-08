@@ -47,7 +47,7 @@ public class UserDevicesBean extends BaseBean {
 		} else {
 			addSuccessfulMessage(getSessionLanguage().getSUCCESSFUL_MESSAGE());
 			FacesContext context = FacesContext.getCurrentInstance();
-			context.getExternalContext().redirect("device.xhtml?" + Constants.DEVICE_ID + "=" + selected.getId());
+			context.getExternalContext().redirect("controldevice.xhtml?" + Constants.DEVICE_ID + "=" + selected.getId());
 		}
 		return "";
 	}
