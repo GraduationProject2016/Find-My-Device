@@ -38,7 +38,7 @@ User: mohamed265
 			</p:column>
 
 			<p:column>
-				<h:outputText value="#{file.totalSpace}" />
+				<h:outputText value=" #{(file.usableSpace / 1024 * 1024 ) }  out of #{(file.totalSpace / 1024 * 1024 * 1024)} " />
 			</p:column>
 
 			<p:column>
