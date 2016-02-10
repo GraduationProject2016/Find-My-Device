@@ -8,11 +8,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Named;
-
-import org.springframework.stereotype.Component;
+import java.sql.Time;
+import java.util.Date;
+import java.util.HashMap;
 
 import com.fmd.gp2016.common.dto.MessageDto;
 import com.fmd.gp2016.common.entity.Device;
@@ -29,12 +27,17 @@ public class DeviceThread extends Thread {
 	private ObjectInputStream streamIn = null;
 	private ObjectOutputStream streamOut = null;
 	private Device device;
+	private HashMap<Integer, Thread> mapViews;
+	private HashMap<Integer, MessageDto> mapDto;
+	private static Object obj = new Object();
 
 	public DeviceThread(SocketServer server, Socket socket) {
 		this.server = server;
 		this.socket = socket;
 		ID = socket.getPort();
 		init();
+		mapViews = new HashMap();
+		mapDto = new HashMap();
 	}
 
 	private void init() {
@@ -49,7 +52,7 @@ public class DeviceThread extends Thread {
 
 	@SuppressWarnings("deprecation")
 	public void run() {
-		MessageDto msg = readOneMessage();
+		MessageDto msg = readSignin();
 		if (msg == null)
 			return;
 		System.out.println("Msg " + msg);
@@ -58,7 +61,7 @@ public class DeviceThread extends Thread {
 			System.out.println("\nServer Thread " + ID + " running.");
 			setDevice(device);
 			DevicePool.addDeviceThread(this);
-			//readListener();
+			readListener();
 		}
 
 	}
@@ -79,17 +82,62 @@ public class DeviceThread extends Thread {
 			try {
 				System.out.println("in read listner");
 				// TODO sinout mes
+				// TODO userid change to view id and -1 mean file upload
 				String msg = (String) streamIn.readObject();
+				System.out.println("in read lisnter " + msg);
 				// server.handle(ID, JsonHandler.getMessageDtoObject(msg));
+				MessageDto dto = JsonHandler.getMessageDtoObject(msg);
+				System.out.println("dto " + dto);
+				if (dto.getUserId() != -1) {
+					mapDto.put(dto.getUserId(), dto);
+					synchronized (obj) {
+						mapViews.get(dto.getUserId()).notify();
+					}
+				} else {
+
+				}
 			} catch (Exception ioe) {
-				System.out.println(ID + " ERROR reading: " + ioe.getMessage());
+				System.out.println(ID + " ERROR reading: ");
+				ioe.printStackTrace();
 				close();
 				stop();
 			}
 		}
 	}
 
-	public MessageDto readOneMessage() {
+	public MessageDto readOneMessage(int viewId) {
+		System.out.println("read one Message " + (new Date()).toString());
+		try {
+			registerThread(viewId);
+
+			synchronized (obj) {
+				wait(6000);
+			}
+
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("read one Message " + (new Date()).toString());
+		clearThread(viewId);
+		return mapDto.get(viewId);
+		// return null;
+		// System.out.println("Thread id is: " + Thread.currentThread().getId()
+		// + " in read one message ");
+		// String msg = null;
+		// try {
+		// System.out.println("read only one ");
+		// msg = (String) streamIn.readObject();
+		// System.out.println("read only one " + msg);
+		// } catch (Exception ioe) {
+		// System.out.println(ID + " ERROR reading: " + ioe.getMessage());
+		// close();
+		// stop();
+		// }
+		// return JsonHandler.getMessageDtoObject(msg);
+
+	}
+
+	public MessageDto readSignin() {
 		String msg = null;
 		try {
 			System.out.println("read only one ");
@@ -123,6 +171,20 @@ public class DeviceThread extends Thread {
 		} finally {
 			DevicePool.removeDeviceThread(this);
 		}
+	}
+
+	public void registerThread(int viewId) {
+		// System.out.println("Thread id is: " + Thread.currentThread().getId()
+		// + " in register view ");
+		mapViews.put(viewId, Thread.currentThread());
+		mapDto.put(viewId, null);
+	}
+
+	public void clearThread(int viewId) {
+		// System.out.println("Thread id is: " + Thread.currentThread().getId()
+		// + " in register view ");
+		mapViews.remove(viewId);
+		mapDto.remove(viewId);
 	}
 
 	public int getID() {

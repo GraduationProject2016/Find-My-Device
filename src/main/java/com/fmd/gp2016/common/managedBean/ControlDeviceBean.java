@@ -39,86 +39,93 @@ public class ControlDeviceBean extends BaseBean {
 	private List<FMDPartion> partitions;
 	private int deviceID;
 	private int userID;
+	private static int viewId = 0;
 
 	@PostConstruct
 	public void init() throws JSONException {
 		deviceID = Integer.parseInt(
 				FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("device_id"));
-		 
-		userID = 1;
-		deviceThread = DevicePool.getDeviceThread(deviceID);
 
+		userID = 1;
+		viewId = (viewId % (2 << 25) == 0 ? 1 : viewId + 1); 
+		
+
+		deviceThread = DevicePool.getDeviceThread(deviceID);
 		String content = CommandConstant.computerDesktop;
 		Command command = new Command(content, null);
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
 				Constants.SERVER_TO_CLIENT);
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg));
-		MessageDto msgdto = deviceThread.readOneMessage();
+		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = new ArrayList<>();
-		
 	}
 
 	public String open(String path) throws JSONException {
+
 		String content = CommandConstant.computerPathJson;
 		Command command = new Command(content, new String[] { computer.path + "\\" + path });
 
-		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command), Constants.SERVER_TO_CLIENT);
+		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
+				Constants.SERVER_TO_CLIENT);
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg));
-		MessageDto msgdto = deviceThread.readOneMessage();
+		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = null;
 		return "";
 	}
-	
-	public String openMyDoc() throws JSONException{
+
+	public String openMyDoc() throws JSONException {
 		String content = CommandConstant.computerHomeJson;
 		Command command = new Command(content, null);
 
-		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command), Constants.SERVER_TO_CLIENT);
+		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
+				Constants.SERVER_TO_CLIENT);
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg));
-		MessageDto msgdto = deviceThread.readOneMessage();
+		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = null;
 		return "";
 	}
-	
-	public String openMyCom() throws JSONException{
+
+	public String openMyCom() throws JSONException {
 		String content = CommandConstant.computerPartions;
 		Command command = new Command(content, null);
-		
-		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command), Constants.SERVER_TO_CLIENT);
+
+		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
+				Constants.SERVER_TO_CLIENT);
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg));
-		MessageDto msgdto = deviceThread.readOneMessage();
+		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		partitions = JSONDecoding.decodeJsonOFPartions(new JSONObject(msgdto.getContent()));
 		computer.path = "";
 		computer.directories = null;
 		computer.files = null;
 		return "";
-		
+
 	}
-	public String openDeskTop() throws JSONException{
+
+	public String openDeskTop() throws JSONException {
 		String content = CommandConstant.computerDesktop;
 		Command command = new Command(content, null);
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
 				Constants.SERVER_TO_CLIENT);
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg));
-		MessageDto msgdto = deviceThread.readOneMessage();
+		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = new ArrayList<>();
 		return "";
 	}
-	
-	public String creatNewDirectory(String folderName) throws JSONException{
+
+	public String creatNewDirectory(String folderName) throws JSONException {
 		String content = CommandConstant.createNewDirectory;
 		System.out.println(folderName);
-		Command command = new Command(content, new String[] { computer.path , folderName});
+		Command command = new Command(content, new String[] { computer.path, folderName });
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
 				Constants.SERVER_TO_CLIENT);
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg));
-		MessageDto msgdto = deviceThread.readOneMessage();
+		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
-		
+
 		return "";
 	}
 
