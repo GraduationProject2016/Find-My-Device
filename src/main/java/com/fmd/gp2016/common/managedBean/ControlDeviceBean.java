@@ -46,16 +46,15 @@ public class ControlDeviceBean extends BaseBean {
 		deviceID = Integer.parseInt(
 				FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("device_id"));
 
-		userID = 1;
-		viewId = (viewId % (2 << 25) == 0 ? 1 : viewId + 1); 
-		
+		userID = viewId = (viewId % (2 << 25) == 0 ? 1 : viewId + 1);
+		System.out.println("view id : " + viewId);
 
 		deviceThread = DevicePool.getDeviceThread(deviceID);
 		String content = CommandConstant.computerDesktop;
 		Command command = new Command(content, null);
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
 				Constants.SERVER_TO_CLIENT);
-		deviceThread.send(JsonHandler.getMessageDtoJson(msg));
+		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = new ArrayList<>();
@@ -68,7 +67,7 @@ public class ControlDeviceBean extends BaseBean {
 
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
 				Constants.SERVER_TO_CLIENT);
-		deviceThread.send(JsonHandler.getMessageDtoJson(msg));
+		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = null;
@@ -81,7 +80,7 @@ public class ControlDeviceBean extends BaseBean {
 
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
 				Constants.SERVER_TO_CLIENT);
-		deviceThread.send(JsonHandler.getMessageDtoJson(msg));
+		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = null;
@@ -94,7 +93,7 @@ public class ControlDeviceBean extends BaseBean {
 
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
 				Constants.SERVER_TO_CLIENT);
-		deviceThread.send(JsonHandler.getMessageDtoJson(msg));
+		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		partitions = JSONDecoding.decodeJsonOFPartions(new JSONObject(msgdto.getContent()));
 		computer.path = "";
@@ -109,7 +108,7 @@ public class ControlDeviceBean extends BaseBean {
 		Command command = new Command(content, null);
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
 				Constants.SERVER_TO_CLIENT);
-		deviceThread.send(JsonHandler.getMessageDtoJson(msg));
+		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = new ArrayList<>();
@@ -122,9 +121,21 @@ public class ControlDeviceBean extends BaseBean {
 		Command command = new Command(content, new String[] { computer.path, folderName });
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
 				Constants.SERVER_TO_CLIENT);
-		deviceThread.send(JsonHandler.getMessageDtoJson(msg));
+		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
+
+		return "";
+	}
+
+	public String get(String filename) throws JSONException {
+		String content = CommandConstant.filetransfer;
+		System.out.println(filename);
+		Command command = new Command(content, new String[] { filename, computer.path });
+		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
+				Constants.SERVER_TO_CLIENT);
+		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
+		deviceThread.readOneMessage(viewId);
 
 		return "";
 	}

@@ -20,7 +20,7 @@ public class MessageDto implements Serializable {
 
 	private int deviceId;
 
-	private int userId;
+	private int contentType;
 
 	private String content;
 
@@ -32,14 +32,14 @@ public class MessageDto implements Serializable {
 
 	public MessageDto(Integer deviceId, Integer userId, String content, boolean type) {
 		this.deviceId = deviceId;
-		this.userId = userId;
+		this.contentType = userId;
 		this.content = content;
 		this.messageType = type;
 	} 
 
 	@Override
 	public String toString() {
-		return "MessageDto [deviceId=" + deviceId + ", userId=" + userId + ", content=" + content + ", messageType="
+		return "MessageDto [deviceId=" + deviceId + ", contentType=" + contentType + ", content=" + content + ", messageType="
 				+ messageType + "]";
 	}
 
@@ -47,8 +47,8 @@ public class MessageDto implements Serializable {
 		return deviceId;
 	}
 
-	public int getUserId() {
-		return userId;
+	public int getContentType() {
+		return contentType;
 	}
 
 	public String getContent() {
@@ -63,8 +63,8 @@ public class MessageDto implements Serializable {
 		this.deviceId = deviceId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setContentType(int userId) {
+		this.contentType = userId;
 	}
 
 	public void setContent(String content) {

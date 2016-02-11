@@ -50,10 +50,18 @@ public class Constants {
 	// sessions value
 	public static final String SESSION_USER = "session_user";
 	public static final String SESSION_LANGUAGE = "session_language";
-	
+
 	public static final String DEVICE_ID = "device_id";
-	
-	// command 
+
+	// command
 	public static final String COMAND_COMMAND = "command";
 	public static final String COMAND_PARMS = "parms";
+
+	// message content
+	public static final int COMMAND = 0;
+	public static final int FIlE_TRANSFARE = -1;
+
+	// file constant
+	public static final String UPLOAD_PATH = "C:\\uploads\\";
+
 }

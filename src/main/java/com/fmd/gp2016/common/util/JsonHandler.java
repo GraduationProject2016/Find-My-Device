@@ -34,7 +34,7 @@ public class JsonHandler {
 		MessageDto messageDto = new MessageDto(jsonObject.getBoolean(Constants.MESSAGE_TYPE));
 		messageDto.setContent(jsonObject.getString(Constants.MESSAGE_CONTENT));
 		messageDto.setDeviceId(jsonObject.getInt(Constants.MESSAGE_DEVICE));
-		messageDto.setUserId(jsonObject.getInt(Constants.MESSAGE_USER));
+		messageDto.setContentType(jsonObject.getInt(Constants.MESSAGE_USER));
 		return messageDto;
 	}
 
@@ -42,7 +42,7 @@ public class JsonHandler {
 		JsonObject jsonObject = Json.createObjectBuilder().add(Constants.MESSAGE_TYPE, messageDto.isMessageType())
 				.add(Constants.MESSAGE_CONTENT, messageDto.getContent())
 				.add(Constants.MESSAGE_DEVICE, messageDto.getDeviceId())
-				.add(Constants.MESSAGE_USER, messageDto.getUserId()).build();
+				.add(Constants.MESSAGE_USER, messageDto.getContentType()).build();
 		return jsonObject.toString();
 	}
 	

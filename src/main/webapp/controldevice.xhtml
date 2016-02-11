@@ -82,7 +82,7 @@ User: mohamed265
 			</p:column>
 
 			<p:column>
-				<p:commandButton value="Get" />
+				<p:commandButton value="Get" actionListener="#{controlDevice.get(file.name)}" ajax="false"  />
 			</p:column>
 		</p:dataTable>
 
