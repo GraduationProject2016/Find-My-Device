@@ -56,6 +56,8 @@ public class EnglishLanguage implements Language {
 	private String DEVICE_LASTACTIVEDATE = "Last Active Date";
 	private String DEVICE_TYPE = "Device Type";
 	private String DEVICE_OPERATINS = "Operations on Device";
+	
+	private String deviceSettingPage="Device Setting";
 
 	@Override
 	public String getDOWNLOAD_PAGE_NAME() {
@@ -280,6 +282,31 @@ public class EnglishLanguage implements Language {
 	@Override
 	public String getMODEL_HEADER() {
 		return MODEL_HEADER;
+	}
+
+
+	@Override
+	public String getDeviceSettingPage() {
+
+		return deviceSettingPage;
+	}
+
+
+	@Override
+	public String getDeviceDetails() {
+		return "Device Details";
+	}
+
+	
+	@Override
+	public String getChangeDevicePassword() {
+		return "Change Device Password";
+	}
+
+
+	@Override
+	public String getChangeDeviceName() {
+		return "Change Device Name";
 	}
 
 }

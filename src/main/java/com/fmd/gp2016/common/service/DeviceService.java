@@ -27,4 +27,6 @@ public interface DeviceService {
 
 	public List<Device> getAllUserDevicesByUserId(Integer id);
 
+	public void updateDevice(Device dev);
+
 }

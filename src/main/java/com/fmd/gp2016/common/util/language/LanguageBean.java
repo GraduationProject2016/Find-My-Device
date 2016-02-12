@@ -277,4 +277,29 @@ public class LanguageBean implements Language {
 		return lang.getDOWNLOAD_PAGE_NAME();
 	}
 
+	
+	@Override
+	public String getDeviceSettingPage() {
+
+		return lang.getDeviceSettingPage();
+	}
+
+	
+	@Override
+	public String getDeviceDetails() {
+		return lang.getDeviceDetails();
+	}
+
+	
+	@Override
+	public String getChangeDevicePassword() {
+		return lang.getChangeDevicePassword();
+	}
+
+
+	@Override
+	public String getChangeDeviceName() {
+		return lang.getChangeDeviceName();
+	}
+
 }

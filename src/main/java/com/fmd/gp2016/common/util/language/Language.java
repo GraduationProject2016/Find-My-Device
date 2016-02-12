@@ -97,5 +97,13 @@ public interface Language {
 	public String getDOWNLOAD_LINK();
 
 	public String getDOWNLOAD_PAGE_NAME();
+	
+	public String getDeviceSettingPage();
+	
+	public String getDeviceDetails();
+	
+	public String getChangeDevicePassword();
+	
+	public String getChangeDeviceName();
 
 }

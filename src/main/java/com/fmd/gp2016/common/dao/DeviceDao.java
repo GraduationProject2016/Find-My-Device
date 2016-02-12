@@ -30,4 +30,6 @@ public interface DeviceDao {
 	
 	public String selecColumntByIDNative(String columnName, Object columnValue);
 
+	public void updateDevice(Device dev);
+
 }

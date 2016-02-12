@@ -76,4 +76,10 @@ public class DeviceServiceImpl implements DeviceService {
 		return deviceDao.getAllUserDevicesByUserId(id);
 	}
 
+	
+	@Override
+	public void updateDevice(Device dev) {
+		deviceDao.updateDevice(dev);
+	}
+
 }

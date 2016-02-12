@@ -52,6 +52,8 @@ public class ArabicLanguage implements Language {
 	private String DEVICE_LASTACTIVEDATE = "أخر تاريخ للدخول";
 	private String DEVICE_TYPE = "نوع الجهاز";
 	private String DEVICE_OPERATINS = "عمليات على الجهاز";
+	
+	private String deviceSettingPage="اعدادات الجهاز";
 
 	@Override
 	public String getDEVICE_NAME() {
@@ -275,6 +277,32 @@ public class ArabicLanguage implements Language {
 	@Override
 	public String getUPDATE_PROFILE_PAGE_NAME() {
 		return UPDATE_PROFILE_PAGE_NAME;
+	}
+
+
+	@Override
+	public String getDeviceSettingPage() {
+
+		return deviceSettingPage;
+	}
+
+
+	@Override
+	public String getDeviceDetails() {
+
+		return "معلومات عن الجهاز";
+	}
+
+
+	@Override
+	public String getChangeDevicePassword() {
+		return "تغير كلمه المرور";
+	}
+
+	
+	@Override
+	public String getChangeDeviceName() {
+		return "تغير اسم الجهاز";
 	}
 
 }
