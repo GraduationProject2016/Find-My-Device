@@ -53,7 +53,6 @@ public class UserDevicesBean extends BaseBean {
 	}
 
 	boolean isAuzorizedUser(String pass) {
-		System.out.println(pass + " :: " + selected.getPassword());
 		return pass.equals(selected.getPassword());
 	}
 
