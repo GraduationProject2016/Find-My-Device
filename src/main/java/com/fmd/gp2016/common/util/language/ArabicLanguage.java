@@ -305,4 +305,45 @@ public class ArabicLanguage implements Language {
 		return "تغير اسم الجهاز";
 	}
 
+	
+	@Override
+	public String getHomePageName() {
+		return "الرئيسيه";
+	}
+
+	
+	@Override
+	public String getprofileName() {
+		return "الملف الشخصى";
+	}
+
+	
+	@Override
+	public String getDownloadName() {
+		return "تنزيلات";
+	}
+
+	
+	@Override
+	public String getUserManualName() {
+		return "دليل المستخدم";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.fmd.gp2016.common.util.language.Language#getAboutUsName()
+	 */
+	@Override
+	public String getAboutUsName() {
+		// TODO Auto-generated method stub
+		return "عننا";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.fmd.gp2016.common.util.language.Language#getlogOutName()
+	 */
+	@Override
+	public String getlogOutName() {
+		return "خروج";
+	}
+
 }

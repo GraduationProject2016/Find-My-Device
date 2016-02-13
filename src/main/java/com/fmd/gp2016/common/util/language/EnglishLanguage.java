@@ -309,4 +309,54 @@ public class EnglishLanguage implements Language {
 		return "Change Device Name";
 	}
 
+	@Override
+	public String getHomePageName() {
+		// TODO Auto-generated method stub
+		return "Home";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.fmd.gp2016.common.util.language.Language#getprofileName()
+	 */
+	@Override
+	public String getprofileName() {
+		// TODO Auto-generated method stub
+		return "Profile";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.fmd.gp2016.common.util.language.Language#getDownloadName()
+	 */
+	@Override
+	public String getDownloadName() {
+		// TODO Auto-generated method stub
+		return "Downloads";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.fmd.gp2016.common.util.language.Language#getUserManualName()
+	 */
+	@Override
+	public String getUserManualName() {
+		// TODO Auto-generated method stub
+		return "User Manual";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.fmd.gp2016.common.util.language.Language#getAboutUsName()
+	 */
+	@Override
+	public String getAboutUsName() {
+		// TODO Auto-generated method stub
+		return "About Us";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.fmd.gp2016.common.util.language.Language#getlogOutName()
+	 */
+	@Override
+	public String getlogOutName() {
+		return "logout";
+	}
+
 }

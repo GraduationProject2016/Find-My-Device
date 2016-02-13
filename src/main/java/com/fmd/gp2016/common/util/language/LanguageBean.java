@@ -302,4 +302,43 @@ public class LanguageBean implements Language {
 		return lang.getChangeDeviceName();
 	}
 
+	
+	@Override
+	public String getHomePageName() {
+		return lang.getHomePageName();
+	}
+
+
+	@Override
+	public String getprofileName() {
+		return lang.getprofileName();
+	}
+
+	
+	@Override
+	public String getDownloadName() {
+		return lang.getDownloadName();
+	}
+
+	
+	@Override
+	public String getUserManualName() {
+		return lang.getUserManualName();
+	}
+
+
+	@Override
+	public String getAboutUsName() {
+		return lang.getAboutUsName();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.fmd.gp2016.common.util.language.Language#getlogOutName()
+	 */
+	@Override
+	public String getlogOutName() {
+		// TODO Auto-generated method stub
+		return lang.getlogOutName();
+	}
+
 }

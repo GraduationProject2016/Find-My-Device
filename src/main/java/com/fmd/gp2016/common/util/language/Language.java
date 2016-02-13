@@ -105,5 +105,17 @@ public interface Language {
 	public String getChangeDevicePassword();
 	
 	public String getChangeDeviceName();
+	
+	public String getHomePageName();
+	
+	public String getprofileName();
+	
+	public String getDownloadName();
+	
+	public String getUserManualName();
+	
+	public String getAboutUsName();
+	
+	public String getlogOutName();
 
 }
