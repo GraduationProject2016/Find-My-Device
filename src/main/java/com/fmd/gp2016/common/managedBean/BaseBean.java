@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -23,7 +24,6 @@ import com.fmd.gp2016.common.util.language.LanguageFactory;
 /**
  * @author mohamed265 && Ibrahim Ali
  */
-
 @SpringViewScoped
 public class BaseBean {
 
@@ -57,6 +57,7 @@ public class BaseBean {
 		}
 		return (cookie == null ? Constants.ENGLISH_LANGUAGE : cookie.getValue());
 	}
+	
 
 	public Language getSessionLanguage() {
 		FacesContext context = FacesContext.getCurrentInstance();

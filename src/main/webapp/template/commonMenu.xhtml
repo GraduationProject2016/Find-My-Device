@@ -6,7 +6,21 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-<h:form>
-	
-</h:form>
+
+<ui:composition>
+	<p:breadCrumb>
+		<p:menuitem value="Home" url="userDevices.xhtml" />
+		<p:menuitem value="Profile" url="updateProfile.xhtml" />
+		<p:menuitem value="Downloads" url="downloads.xhtml" />
+		<p:menuitem value="User Manual" url="#" />
+		<p:menuitem value="About" url="#" />
+		
+	</p:breadCrumb>
+	<div align="right" style="margin-top: -35px;">
+				<h:form>
+					<p:commandButton value="Logout" icon="ui-icon-extlink"
+						actionListener="#{menuBean.logOut()}" />
+				</h:form>
+		</div>
+</ui:composition>
 </html>

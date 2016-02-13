@@ -3,6 +3,7 @@ package com.fmd.gp2016.common.util;
 public class CommandConstant { 
 
 	public static final String removeDirectory = "removeDirectory";
+	
 
 	public static final String renameDirectory = "renameDirectory";
 

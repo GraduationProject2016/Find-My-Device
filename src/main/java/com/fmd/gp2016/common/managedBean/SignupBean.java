@@ -64,6 +64,7 @@ public class SignupBean extends BaseBean {
 		userService.save(user);
 
 		if (user.getStatus().equals(Constants.SUCCESS)) {
+			setSessionUser(user);
 			redirectToHomePage();
 		} else {
 			addErrorMessage(getSessionLanguage().getERROR_SIGNUP());

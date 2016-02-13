@@ -9,13 +9,13 @@ User: mohamed265
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-	<title>Insert Title Here</title>
+	<title>Control Device</title>
 </h:head>
 
 <h:body>
 	<p:messages globalOnly="true" />
 	<p:growl id="msg" showDetail="true" />
-	 <h:form>
+	<h:form>
 
 		<p:dataTable emptyMessage="">
 			<f:facet name="header">
@@ -28,7 +28,8 @@ User: mohamed265
 					actionListener="#{controlDevice.openDeskTop}" ajax="false" />
 			</f:facet>
 		</p:dataTable>
-		<p:dataTable var="file" value="#{controlDevice.partitions}" emptyMessage="">
+		<p:dataTable var="file" value="#{controlDevice.partitions}"
+			emptyMessage="">
 			<p:column>
 				<h:outputText value="#{file.name}" />
 			</p:column>
@@ -38,7 +39,8 @@ User: mohamed265
 			</p:column>
 
 			<p:column>
-				<h:outputText value=" #{(file.usableSpace / 1024 * 1024 ) }  out of #{(file.totalSpace / 1024 * 1024 * 1024)} " />
+				<h:outputText
+					value=" #{(file.usableSpace / 1024 * 1024 ) }  out of #{(file.totalSpace / 1024 * 1024 * 1024)} " />
 			</p:column>
 
 			<p:column>
@@ -47,7 +49,8 @@ User: mohamed265
 			</p:column>
 		</p:dataTable>
 
-		<p:dataTable var="dir" value="#{controlDevice.computer.directories}" emptyMessage="">
+		<p:dataTable var="dir" value="#{controlDevice.computer.directories}"
+			emptyMessage="">
 
 
 			<p:column headerText="name">
@@ -68,7 +71,8 @@ User: mohamed265
 					actionListener="#{controlDevice.open(dir.name)}" ajax="false" />
 			</p:column>
 		</p:dataTable>
-		<p:dataTable var="file" value="#{controlDevice.computer.files}" emptyMessage="">
+		<p:dataTable var="file" value="#{controlDevice.computer.files}"
+			emptyMessage="">
 			<p:column>
 				<h:outputText value="#{file.name}" />
 			</p:column>
@@ -82,7 +86,10 @@ User: mohamed265
 			</p:column>
 
 			<p:column>
-				<p:commandButton value="Get" actionListener="#{controlDevice.get(file.name)}" ajax="false"  />
+				<p:commandButton value="Get"
+					actionListener="#{controlDevice.get(file.name)}" ajax="false" />
+				<p:commandButton value="Delete"
+					actionListener="#{controlDevice.delete(file.name)}" ajax="false" />
 			</p:column>
 		</p:dataTable>
 
