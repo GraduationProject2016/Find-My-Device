@@ -1,101 +1,107 @@
-<!--
-Created on: Jan 31, 2016 8:32:24 PM
-User: mohamed265
--->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-	<title>Control Device</title>
-</h:head>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:body>
-	<p:messages globalOnly="true" />
-	<p:growl id="msg" showDetail="true" />
-	<h:form>
+<ui:composition template="/template/commonLayout.xhtml">
+	<ui:define name="page_title">
+         #{language.USER_DEVICES_PAGE_NAME}
+        </ui:define>
+	<ui:define name="content">
 
-		<p:dataTable emptyMessage="">
-			<f:facet name="header">
-        #{controlDevice.computer.path}
+		<p:messages globalOnly="true" />
+		<p:growl id="msg" showDetail="true" />
+		<h:form>
+
+			<p:dataTable emptyMessage="">
+				<f:facet name="header">
+        #{controlDevice.computer.path}<br/>
+        <p:commandButton value="back" actionListener="#{controlDevice.back()}" ajax="false"/>
         <p:commandButton value="Home"
-					actionListener="#{controlDevice.openMyDoc}" ajax="false" />
-				<p:commandButton value="My Computer"
-					actionListener="#{controlDevice.openMyCom}" ajax="false" />
-				<p:commandButton value="Desktop"
-					actionListener="#{controlDevice.openDeskTop}" ajax="false" />
-			</f:facet>
-		</p:dataTable>
-		<p:dataTable var="file" value="#{controlDevice.partitions}"
-			emptyMessage="">
-			<p:column>
-				<h:outputText value="#{file.name}" />
-			</p:column>
+						actionListener="#{controlDevice.openMyDoc}" ajax="false" />
+					<p:commandButton value="My Computer"
+						actionListener="#{controlDevice.openMyCom}" ajax="false" />
+					<p:commandButton value="Desktop"
+						actionListener="#{controlDevice.openDeskTop}" ajax="false" />
+						<p:outputLabel value=" number of files : #{controlDevice.computer.numOfFiles}"></p:outputLabel>
+						<p:outputLabel value=" number of Folders : #{controlDevice.computer.numOfFolders}"></p:outputLabel>
+				</f:facet>
+			</p:dataTable>
+			<p:dataTable var="file" value="#{controlDevice.partitions}"
+				emptyMessage="">
+				<p:column>
+					<h:outputText value="#{file.name}" />
+				</p:column>
 
-			<p:column>
-				<h:outputText value="#{file.path}" />
-			</p:column>
+				<p:column>
+					<h:outputText value="#{file.path}" />
+				</p:column>
 
-			<p:column>
-				<h:outputText
-					value=" #{(file.usableSpace / 1024 * 1024 ) }  out of #{(file.totalSpace / 1024 * 1024 * 1024)} " />
-			</p:column>
+				<p:column>
+					<h:outputText
+						value=" #{(file.usableSpace / 1024 * 1024 ) }  out of #{(file.totalSpace / 1024 * 1024 * 1024)} " />
+				</p:column>
 
-			<p:column>
-				<p:commandButton value="open"
-					actionListener="#{controlDevice.open(file.path)}" ajax="false" />
-			</p:column>
-		</p:dataTable>
+				<p:column>
+					<p:commandButton value="open"
+						actionListener="#{controlDevice.open(file.path)}" ajax="false" />
+				</p:column>
+			</p:dataTable>
 
-		<p:dataTable var="dir" value="#{controlDevice.computer.directories}"
-			emptyMessage="">
-
-
-			<p:column headerText="name">
-				<h:outputText value="#{dir.name}" />
-			</p:column>
-
-			<p:column headerText="type">
-				<h:outputText value="folder" />
-			</p:column>
-
-			<p:column headerText="size">
-				<h:outputText value="#{dir.size}" />
-			</p:column>
-
-			<p:column headerText="Operations">
-				<h:outputText value="" />
-				<p:commandButton value="open"
-					actionListener="#{controlDevice.open(dir.name)}" ajax="false" />
-			</p:column>
-		</p:dataTable>
-		<p:dataTable var="file" value="#{controlDevice.computer.files}"
-			emptyMessage="">
-			<p:column>
-				<h:outputText value="#{file.name}" />
-			</p:column>
-
-			<p:column>
-				<h:outputText value="#{file.type}" />
-			</p:column>
-
-			<p:column>
-				<h:outputText value="#{file.size}" />
-			</p:column>
-
-			<p:column>
-				<p:commandButton value="Get"
-					actionListener="#{controlDevice.get(file.name)}" ajax="false" />
-				<p:commandButton value="Delete"
-					actionListener="#{controlDevice.delete(file.name)}" ajax="false" />
-			</p:column>
-		</p:dataTable>
-
-	</h:form>
-</h:body>
+			<p:dataTable var="dir" value="#{controlDevice.computer.directories}"
+				emptyMessage="">
 
 
+				<p:column headerText="name">
+					<h:outputText value="#{dir.name}" />
+				</p:column>
 
+				<p:column headerText="type">
+					<h:outputText value="folder" />
+				</p:column>
+
+				<p:column headerText="size">
+					<h:outputText value="#{dir.size}" />
+				</p:column>
+
+				<p:column headerText="Operations">
+					<h:outputText value="" />
+					<p:commandButton value="open"
+						actionListener="#{controlDevice.open(dir.name)}" ajax="false" />
+				</p:column>
+			</p:dataTable>
+			<p:dataTable var="file" value="#{controlDevice.computer.files}"
+				emptyMessage="">
+				<p:column>
+					<h:outputText value="#{file.name}" />
+				</p:column>
+
+				<p:column>
+					<h:outputText value="#{file.type}" />
+				</p:column>
+
+				<p:column>
+					<h:outputText value="#{file.size}" />
+				</p:column>
+
+				<p:column>
+					<p:commandButton value="Upload"
+						actionListener="#{controlDevice.get(file.name)}" ajax="false" />
+					<p:commandButton value="Delete"
+						actionListener="#{controlDevice.delete(file.name)}" ajax="false" />
+				</p:column>
+			</p:dataTable>
+
+
+		</h:form>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+	</ui:define>
+</ui:composition>
 </html>

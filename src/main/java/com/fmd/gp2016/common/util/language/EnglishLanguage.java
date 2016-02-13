@@ -311,16 +311,12 @@ public class EnglishLanguage implements Language {
 
 	@Override
 	public String getHomePageName() {
-		// TODO Auto-generated method stub
 		return "Home";
 	}
 
-	/* (non-Javadoc)
-	 * @see com.fmd.gp2016.common.util.language.Language#getprofileName()
-	 */
+
 	@Override
 	public String getprofileName() {
-		// TODO Auto-generated method stub
 		return "Profile";
 	}
 

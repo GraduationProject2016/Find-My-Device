@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -37,6 +38,17 @@ public class UserDevicesBean extends BaseBean {
 		devices = new ArrayList<Device>();
 		devices = userDevicesService.getAllUserDevicesByUserId(getSessionUserID());
 		deletePassword = controlPassword = "";
+		checkMsg();
+
+	}
+
+	public String checkMsg() {
+
+		String msg = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("msg");
+		System.out.println(msg);
+		addErrorMessage(getSessionLanguage().getERROR_MESSAGE());
+
+		return "";
 	}
 
 	public String control() throws IOException {
