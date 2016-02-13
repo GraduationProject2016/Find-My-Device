@@ -39,7 +39,7 @@ public class UserWebService {
 		user.setUserName(username);
 		user.setMobileNo(mobileno);
 		user.setPassword(password);
-		user.setActive(false);
+		user.setActive(true);
 		userService.save(user);
 		return user;
 	}
