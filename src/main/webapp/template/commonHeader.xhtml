@@ -7,15 +7,26 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:body>
+	<style>
+.img {
+	margin-right: -200px;
+	
+}
+</style>
 	<ui:composition>
 		<h:form dir="#{language.dir}">
 			<h:commandButton value="#{language.arabicLanguageName}"
 				action="#{language.changeLanguage('ar')}" />
 			<h:commandButton value="#{language.englishLanguageName}"
 				action="#{language.changeLanguage('en')}" />
+				<div align="center" style="margin-top: -35px;">
+			<p:graphicImage url="#{resource['img/cumucloud_logo_8.png']}"
+				height="80px;" width="80px;" />
+				</div>
 		</h:form>
 
-		
+
+
 	</ui:composition>
 </h:body>
 </html>

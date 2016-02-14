@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/commonLayout.xhtml">
+	<ui:define name="page_title">
+       #{language.DOWNLOAD_PAGE_NAME}
+        </ui:define>
+	<ui:define name="menu"></ui:define>
+	<ui:define name="content">
+		<center style="margin-top: -5%;">
+
+			<h:panelGrid columns="2" style="width:100%">
+				<h:graphicImage value="resources/img/android.jpg" width="250"
+					height="200" />
+
+				<p:outputPanel>
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputText value="#{language.DEVICE_TYPE}:" />
+						<h:outputText value="Android Mobile" style="font-weight: bold" />
+
+						<h:outputText value="#{language.DOWNLOAD_LINK}:" />
+						<h:outputText value="www.xxxxxxxxxxxxxxxxxxxxxxxxx.com"
+							style="font-weight: bold; color:blue;" />
+					</h:panelGrid>
+				</p:outputPanel>
+			</h:panelGrid>
+			<h:panelGrid columns="2" style="width:100%">
+				<h:graphicImage value="resources/img/pc.png" width="250"
+					height="200" />
+
+				<p:outputPanel>
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputText value="#{language.DEVICE_TYPE}:" />
+						<h:outputText value="Desktop PC" style="font-weight: bold" />
+
+						<h:outputText value="#{language.DOWNLOAD_LINK}:" />
+						<h:outputText value="www.xxxxxxxxxxxxxxxxxxxxxxxxx.com"
+							style="font-weight: bold; color:blue;" />
+					</h:panelGrid>
+				</p:outputPanel>
+			</h:panelGrid>
+
+		</center>
+	</ui:define>
+</ui:composition>
+</html>
