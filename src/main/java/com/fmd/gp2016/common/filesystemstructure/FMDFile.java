@@ -7,6 +7,15 @@ public class FMDFile {
 	public String name;
 	public String type;
 	public long size;
+	
+	
+
+	/**
+	 * 
+	 */
+	public FMDFile() {
+		super();
+	}
 
 	public FMDFile(String name, String type, long size) {
 		super();
