@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -30,24 +31,35 @@ public class UserDevicesBean extends BaseBean {
 	private Device selected = new Device();
 	private List<Device> devices;
 
-	private String[] passwords;
-	private String password;
+	private String deletePassword, controlPassword;
 
 	@PostConstruct
 	public void init() {
 		devices = new ArrayList<Device>();
 		devices = userDevicesService.getAllUserDevicesByUserId(getSessionUserID());
-		passwords = new String[devices.size()];
-		password = "";
+		deletePassword = controlPassword = "";
+		checkMsg();
+
+	}
+
+	public String checkMsg() {
+
+		String msg = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("msg");
+		System.out.println(msg);
+		addErrorMessage(getSessionLanguage().getERROR_MESSAGE());
+
+		return "";
 	}
 
 	public String control() throws IOException {
-		if (!isAuzorizedUser(password)) {
+		if (!isAuzorizedUser(controlPassword)) {
+			controlPassword = "";
 			addErrorMessage(getSessionLanguage().getERROR_MESSAGE());
 		} else {
 			addSuccessfulMessage(getSessionLanguage().getSUCCESSFUL_MESSAGE());
 			FacesContext context = FacesContext.getCurrentInstance();
-			context.getExternalContext().redirect("controldevice.xhtml?" + Constants.DEVICE_ID + "=" + selected.getId());
+			context.getExternalContext()
+					.redirect("controldevice.xhtml?" + Constants.DEVICE_ID + "=" + selected.getId());
 		}
 		return "";
 	}
@@ -57,14 +69,14 @@ public class UserDevicesBean extends BaseBean {
 	}
 
 	public String delete() throws IOException {
-		if (!isAuzorizedUser(password)) {
+		if (!isAuzorizedUser(deletePassword)) {
+			deletePassword = "";
 			addErrorMessage(getSessionLanguage().getERROR_MESSAGE());
 		} else {
 			userDevicesService.deleteDevice(selected.getId());
+			devices = userDevicesService.getAllUserDevicesByUserId(getSessionUserID());
 			addSuccessfulMessage(getSessionLanguage().getSUCCESSFUL_MESSAGE());
 		}
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.getExternalContext().redirect("userDevices.xhtml");
 		return "";
 	}
 
@@ -88,20 +100,20 @@ public class UserDevicesBean extends BaseBean {
 		this.devices = devices;
 	}
 
-	public String[] getPasswords() {
-		return passwords;
+	public String getDeletePassword() {
+		return deletePassword;
 	}
 
-	public void setPasswords(String[] passwords) {
-		this.passwords = passwords;
+	public void setDeletePassword(String deletePassword) {
+		this.deletePassword = deletePassword;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getControlPassword() {
+		return controlPassword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setControlPassword(String controlPassword) {
+		this.controlPassword = controlPassword;
 	}
 
 }

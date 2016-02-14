@@ -26,8 +26,9 @@ public class UserServiceImpl implements UserService {
 
 		Boolean isUniqueEmail = isUniqeEmail(user.getEmail());
 		Boolean isUniqueUsername = isUniqeUsername(user.getUserName());
+		Boolean isUniqueMobile = isUniqeMobileNumber(user.getMobileNo());
 
-		if (isUniqueUsername && isUniqueEmail) {
+		if (isUniqueUsername && isUniqueEmail && isUniqueMobile) {
 			try {
 				userDao.save(user);
 				user.setStatus(Constants.SUCCESS);
@@ -45,6 +46,9 @@ public class UserServiceImpl implements UserService {
 
 			if (!isUniqueUsername)
 				failMessage += "|" + Constants.UsernameNotUniqe + "|";
+
+			if (!isUniqueMobile)
+				failMessage += "|" + Constants.MobileNumberNotUniqe + "|";
 
 			user.setStatus(failMessage);
 		}

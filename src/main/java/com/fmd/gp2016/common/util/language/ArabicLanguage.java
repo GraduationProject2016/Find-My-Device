@@ -53,6 +53,8 @@ public class ArabicLanguage implements Language {
 	private String DEVICE_TYPE = "نوع الجهاز";
 	private String DEVICE_OPERATINS = "عمليات على الجهاز";
 
+	private String deviceSettingPage = "اعدادات الجهاز";
+
 	private String ABOUT_PAGE_NAME = "عننا";
 	private String BACKGROUND = "توافر الإنترنت في كل مكان  وسرعته العالية وتكلفتة المنخفضة ساهم في تغيير شكل الحياة";
 	private String PRO_DEFINITION = "عدد كبير من الأجهزة التي يستخدمها الإنسان وصعوبة حملها في نفس الوقت";
@@ -385,4 +387,68 @@ public class ArabicLanguage implements Language {
 	public String getUSERDEVICE_PICTURE() {
 		return USERDEVICE_PICTURE;
 	}
+
+	@Override
+	public String getDeviceSettingPage() {
+
+		return deviceSettingPage;
+	}
+
+	@Override
+	public String getDeviceDetails() {
+
+		return "معلومات عن الجهاز";
+	}
+
+	@Override
+	public String getChangeDevicePassword() {
+		return "تغير كلمه المرور";
+	}
+
+	@Override
+	public String getChangeDeviceName() {
+		return "تغير اسم الجهاز";
+	}
+
+	@Override
+	public String getHomePageName() {
+		return "الرئيسيه";
+	}
+
+	@Override
+	public String getprofileName() {
+		return "الملف الشخصى";
+	}
+
+	@Override
+	public String getDownloadName() {
+		return "تنزيلات";
+	}
+
+	@Override
+	public String getUserManualName() {
+		return "دليل المستخدم";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.fmd.gp2016.common.util.language.Language#getAboutUsName()
+	 */
+	@Override
+	public String getAboutUsName() {
+		// TODO Auto-generated method stub
+		return "عننا";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.fmd.gp2016.common.util.language.Language#getlogOutName()
+	 */
+	@Override
+	public String getlogOutName() {
+		return "خروج";
+	}
+
 }

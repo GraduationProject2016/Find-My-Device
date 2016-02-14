@@ -76,7 +76,7 @@ public class DeviceDaoImpl implements DeviceDao {
 		query.setParameter("ID", id);
 		return query.getResultList();
 	}
-	
+
 	@Override
 	public String selecColumntByIDNative(String columnName, Object columnValue) {
 		Query query = em.createNativeQuery(
@@ -86,5 +86,13 @@ public class DeviceDaoImpl implements DeviceDao {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	@Override
+	@Transactional
+	public void updateDevice(Device dev) {
+		em.merge(dev);
+
+
 	}
 }

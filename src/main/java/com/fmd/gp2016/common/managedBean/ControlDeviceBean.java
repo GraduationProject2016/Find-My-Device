@@ -6,6 +6,7 @@ package com.fmd.gp2016.common.managedBean;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
@@ -13,11 +14,14 @@ import javax.inject.Named;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fmd.gp2016.common.dto.Command;
 import com.fmd.gp2016.common.dto.MessageDto;
+import com.fmd.gp2016.common.entity.Device;
 import com.fmd.gp2016.common.filesystemstructure.ComputerFilesSystem;
 import com.fmd.gp2016.common.filesystemstructure.FMDPartion;
+import com.fmd.gp2016.common.service.DeviceService;
 import com.fmd.gp2016.common.util.CommandConstant;
 import com.fmd.gp2016.common.util.Constants;
 import com.fmd.gp2016.common.util.JSONDecoding;
@@ -40,29 +44,70 @@ public class ControlDeviceBean extends BaseBean {
 	private int deviceID;
 	private int userID;
 	private static int viewId = 0;
+	private final static String User_Device = "userDevices.xhtml";
+	private Stack<String> paths;
+	
+	private boolean isPartition = false;
+
+	@Autowired
+	public DeviceService deviceServices;
 
 	@PostConstruct
 	public void init() throws JSONException {
 		deviceID = Integer.parseInt(
 				FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("device_id"));
+		paths = new Stack<>();
+		ArrayList<Device> devices = (ArrayList<Device>) deviceServices.getAllUserDevicesByUserId(getSessionUserID());
+		Device dev = new Device();
 
-		userID = viewId = (viewId % (2 << 25) == 0 ? 1 : viewId + 1);
-		System.out.println("view id : " + viewId);
+		dev = deviceServices.getDeviceById(deviceID);
 
-		deviceThread = DevicePool.getDeviceThread(deviceID);
-		String content = CommandConstant.computerDesktop;
-		Command command = new Command(content, null);
-		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
-				Constants.SERVER_TO_CLIENT);
-		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
-		MessageDto msgdto = deviceThread.readOneMessage(viewId);
-		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
-		partitions = new ArrayList<>();
+		System.out.println("++++++++++++++++++++++++++++");
+		System.out.println(devices);
+		System.out.println("++++++++++++++++++++++++++++");
+		System.out.println(dev);
+		System.out.println("++++++++++++++++++++++++++++");
+
+		if (dev == null)
+			redirect(User_Device + "?msg=there is no device by thise details ");
+		else {
+
+			int coun = 0;
+
+			for (int i = 0; i < devices.size(); i++) {
+				if (!devices.get(i).getId().equals(dev.getId()))
+					coun++;
+			}
+			if (coun == devices.size())
+				redirect(User_Device + "?msg=thise device is not belongs to you");
+			else {
+				userID = viewId = (viewId % (2 << 25) == 0 ? 1 : viewId + 1);
+				System.out.println("view id : " + viewId);
+
+				deviceThread = DevicePool.getDeviceThread(deviceID);
+				if (deviceThread == null) {
+					redirect(User_Device + "?msg=thise device is not connected ");
+				} else {
+					String content = CommandConstant.computerDesktop;
+					Command command = new Command(content, null);
+					MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
+							Constants.SERVER_TO_CLIENT);
+
+					deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
+
+					MessageDto msgdto = deviceThread.readOneMessage(viewId);
+
+					computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
+					partitions = new ArrayList<>();
+				}
+			}
+		}
 	}
 
 	public String open(String path) throws JSONException {
 
 		String content = CommandConstant.computerPathJson;
+
 		Command command = new Command(content, new String[] { computer.path + "\\" + path });
 
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
@@ -71,6 +116,24 @@ public class ControlDeviceBean extends BaseBean {
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = null;
+		paths.push(computer.path);
+		isPartition = false;
+		return "";
+	}
+
+	public String openPath() throws JSONException {
+
+		String content = CommandConstant.computerPathJson;
+
+		Command command = new Command(content, new String[] { computer.path });
+
+		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
+				Constants.SERVER_TO_CLIENT);
+		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
+		MessageDto msgdto = deviceThread.readOneMessage(viewId);
+		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
+		partitions = null;
+		isPartition = false;
 		return "";
 	}
 
@@ -84,6 +147,7 @@ public class ControlDeviceBean extends BaseBean {
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = null;
+		isPartition = false;
 		return "";
 	}
 
@@ -96,9 +160,19 @@ public class ControlDeviceBean extends BaseBean {
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		partitions = JSONDecoding.decodeJsonOFPartions(new JSONObject(msgdto.getContent()));
+
+		for (int i = 0; i < partitions.size(); i++) {
+			partitions.get(i).setTotalSpace(partitions.get(i).getTotalSpace() / (1024 * 1024 * 1024));
+			partitions.get(i).setUsableSpace(partitions.get(i).getUsableSpace() / (1024 * 1024 * 1024));
+
+		}
 		computer.path = "";
 		computer.directories = null;
 		computer.files = null;
+		computer.numOfFiles = 0;
+		computer.numOfFolders = 0;
+		isPartition = true;
+
 		return "";
 
 	}
@@ -112,6 +186,7 @@ public class ControlDeviceBean extends BaseBean {
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = new ArrayList<>();
+		isPartition = false;
 		return "";
 	}
 
@@ -140,6 +215,38 @@ public class ControlDeviceBean extends BaseBean {
 		return "";
 	}
 
+	public String delete(String fileName) throws JSONException {
+		String content = CommandConstant.removeDirectory;
+		Command command = new Command(content, new String[] { computer.path + "/" + fileName });
+		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
+				Constants.SERVER_TO_CLIENT);
+		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
+		MessageDto msgdto = deviceThread.readOneMessage(viewId);
+		// computer = JSONDecoding.decodeJsonOFPathContent(new
+		// JSONObject(msgdto.getContent()));
+		open("");
+
+		return "";
+	}
+
+	public String back() throws JSONException {
+		System.out.println(paths);
+		if (!paths.isEmpty()) {
+			String path = paths.pop();
+			if (computer.path.equals(path) && paths.size() > 1) {
+				computer.path = paths.pop();
+			} else {
+
+				computer.path = path;
+				System.out.println(computer.path);
+				System.out.println(paths);
+			}
+			openPath();
+		}
+		return "";
+
+	}
+
 	public ComputerFilesSystem getComputer() {
 		return computer;
 	}
@@ -162,6 +269,14 @@ public class ControlDeviceBean extends BaseBean {
 
 	public void setPartitions(List<FMDPartion> partitions) {
 		this.partitions = partitions;
+	}
+
+	public boolean isPartition() {
+		return isPartition;
+	}
+
+	public void setPartition(boolean isPartition) {
+		this.isPartition = isPartition;
 	}
 
 }

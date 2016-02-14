@@ -57,26 +57,27 @@ public class EnglishLanguage implements Language {
 	private String DEVICE_TYPE = "Device Type";
 	private String DEVICE_OPERATINS = "Operations on Device";
 
-	private String ABOUT_PAGE_NAME = "about us";
-	private String BACKGROUND="Availability of the Internet everywhere and at high speed and low cost will change the shape of life.";
-	private String PRO_DEFINITION="The large number of devices used by man and the difficulty of carrying at the same time.";
-	private String SUGGEST_SOLUTION="Developing Find my device system which mange you to control all your devices via web browser and pre-installed client on device. Simply you install simple client on your device (desktop and android) and register this device then can controlled later ";
-	private String ADDR_BACKGROUND="Background";
-	private String ADDR_PRO_DEFINITION="Problem Solution";
-	private String ADDR_SUGGEST_SOLUTION="Suggest Solution";
-	private String USER_MANUAL="User Manual Page";
-	private String SIGNUP_PICTURE="resources/img/signup.PNG";
-	private String LOGIN_PICTURE="resources/img/login.png";
-	private String UPDATE_PICTURE="resources/img/update.png";
-	private String HOW_SIGNUP="HOW DO I CREATE A NEW  ACCOUNT!";
-	private String HOW_LOGIN="HOW DO I LOGIN TO MY ACCOUNT IF I HAVE AN ACCOUNT!";
-	private String HOW_UPDATE="HOW DO I UPDATE OR EDIT MY DATA!";
-	private String HOW_CONTROL_Delete="HOW DO I CONTROL OR DELETE A DEVICE FROM MY AVAILABLE DEVICES!";
-	private String USERDEVICE_PICTURE="resources/img/userdevice.png";
-	private String HOW_DOWNLOAD="HOW DO I DOWNLOAD THE LINKS OF DIFFERENT APPLICATIONS!";
-	private String DOWNLOAD_PICTURE="resources/img/download.png";
+	private String deviceSettingPage = "Device Setting";
 
-	
+	private String ABOUT_PAGE_NAME = "about us";
+	private String BACKGROUND = "Availability of the Internet everywhere and at high speed and low cost will change the shape of life.";
+	private String PRO_DEFINITION = "The large number of devices used by man and the difficulty of carrying at the same time.";
+	private String SUGGEST_SOLUTION = "Developing Find my device system which mange you to control all your devices via web browser and pre-installed client on device. Simply you install simple client on your device (desktop and android) and register this device then can controlled later ";
+	private String ADDR_BACKGROUND = "Background";
+	private String ADDR_PRO_DEFINITION = "Problem Solution";
+	private String ADDR_SUGGEST_SOLUTION = "Suggest Solution";
+	private String USER_MANUAL = "User Manual Page";
+	private String SIGNUP_PICTURE = "resources/img/signup.PNG";
+	private String LOGIN_PICTURE = "resources/img/login.png";
+	private String UPDATE_PICTURE = "resources/img/update.png";
+	private String HOW_SIGNUP = "HOW DO I CREATE A NEW  ACCOUNT!";
+	private String HOW_LOGIN = "HOW DO I LOGIN TO MY ACCOUNT IF I HAVE AN ACCOUNT!";
+	private String HOW_UPDATE = "HOW DO I UPDATE OR EDIT MY DATA!";
+	private String HOW_CONTROL_Delete = "HOW DO I CONTROL OR DELETE A DEVICE FROM MY AVAILABLE DEVICES!";
+	private String USERDEVICE_PICTURE = "resources/img/userdevice.png";
+	private String HOW_DOWNLOAD = "HOW DO I DOWNLOAD THE LINKS OF DIFFERENT APPLICATIONS!";
+	private String DOWNLOAD_PICTURE = "resources/img/download.png";
+
 	@Override
 	public String getDOWNLOAD_PAGE_NAME() {
 		return DOWNLOAD_PAGE_NAME;
@@ -390,6 +391,80 @@ public class EnglishLanguage implements Language {
 	@Override
 	public String getUSERDEVICE_PICTURE() {
 		return USERDEVICE_PICTURE;
+	}
+
+	@Override
+	public String getDeviceSettingPage() {
+
+		return deviceSettingPage;
+	}
+
+	@Override
+	public String getDeviceDetails() {
+		return "Device Details";
+	}
+
+	@Override
+	public String getChangeDevicePassword() {
+		return "Change Device Password";
+	}
+
+	@Override
+	public String getChangeDeviceName() {
+		return "Change Device Name";
+	}
+
+	@Override
+	public String getHomePageName() {
+		return "Home";
+	}
+
+	@Override
+	public String getprofileName() {
+		return "Profile";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.fmd.gp2016.common.util.language.Language#getDownloadName()
+	 */
+	@Override
+	public String getDownloadName() {
+		// TODO Auto-generated method stub
+		return "Downloads";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.fmd.gp2016.common.util.language.Language#getUserManualName()
+	 */
+	@Override
+	public String getUserManualName() {
+		// TODO Auto-generated method stub
+		return "User Manual";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.fmd.gp2016.common.util.language.Language#getAboutUsName()
+	 */
+	@Override
+	public String getAboutUsName() {
+		// TODO Auto-generated method stub
+		return "About Us";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.fmd.gp2016.common.util.language.Language#getlogOutName()
+	 */
+	@Override
+	public String getlogOutName() {
+		return "logout";
 	}
 
 }

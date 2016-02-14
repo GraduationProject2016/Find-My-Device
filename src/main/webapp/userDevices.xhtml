@@ -17,12 +17,14 @@
 		<br />
 		<h:form id="form" dir="#{language.dir}">
 			<p:dataTable emptyMessage="#{language.EMPTY_DEVICES}"
-				style="width:100%;" value="#{userdevices.devices}" var="obj" >
+				style="width:100%;" value="#{userdevices.devices}" var="obj">
 				<f:facet name="header">
            			#{language.ALL_DEVICES}
         		</f:facet>
 				<p:column headerText="#{language.DEVICE_NAME}">
-					<p:outputLabel value="#{obj.name}" style="text-align:center;" />
+					<p:link value="#{obj.name}"
+						href="devicesetting.xhtml?device_id=#{obj.id}"
+						style="text-align:center;" />
 				</p:column>
 				<p:column headerText="#{language.DEVICE_LASTACTIVEDATE}">
 					<p:outputLabel value="#{obj.lastActiveDate}"
@@ -40,15 +42,15 @@
 						actionListener="#{userdevices.setSelected(obj)}" />
 
 					<p:dialog header="#{language.MODEL_HEADER}" widgetVar="dlg3"
-						id="error"  height="100" dir="#{language.dir}"
-						resizable="false">
+						height="100" dir="#{language.dir}" resizable="false">
 
 						<p:outputLabel value="#{language.DEVICE_PASSWORD}" />
-						<p:inputText value="#{userdevices.password}" type="password"
+						<p:inputText value="#{userdevices.deletePassword}" type="password"
 							placeholder="#{language.PLACEHOLDER_PASSWORD}"
 							style="margin-left:30px;" />
 						<p:commandButton value="#{language.DEVICE_DELETE}"
-							actionListener="#{userdevices.delete()}" update="error" />
+							actionListener="#{userdevices.delete()}" update=":form">
+						</p:commandButton>
 					</p:dialog>
 
 					<p:commandButton value="#{language.DEVICE_CONTROL}"
@@ -56,11 +58,11 @@
 						actionListener="#{userdevices.setSelected(obj)}" />
 
 					<p:dialog header="#{language.MODEL_HEADER}" widgetVar="dlg2"
-						 height="100" dir="#{language.dir}" resizable="false">
+						height="100" dir="#{language.dir}" resizable="false">
 						<p:outputLabel value="#{language.DEVICE_PASSWORD}" />
 
-						<p:inputText value="#{userdevices.password}" type="password"
-							placeholder="#{language.PLACEHOLDER_PASSWORD}"
+						<p:inputText value="#{userdevices.controlPassword}"
+							type="password" placeholder="#{language.PLACEHOLDER_PASSWORD}"
 							style="margin-left:30px;" />
 						<p:commandButton value="#{language.DEVICE_CONTROL}"
 							actionListener="#{userdevices.control()}">
