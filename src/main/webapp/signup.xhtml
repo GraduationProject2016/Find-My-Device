@@ -12,66 +12,80 @@
 	<ui:define name="page_title">
        #{language.SIGNUP_PAGE_NAME}
         </ui:define>
+	<ui:define name="menu">
+	</ui:define>
 	<ui:define name="content">
+		<style>
+body {
+	background-image: url("");
+}
+</style>
+
+		<IMG alt="" src="#{resource['img/cumucloud_logo_8.png']}"
+			style="width: 280px; height= 260px; margin-top: 50px;" />
 		<br></br>
-		<center>
-			<h:form id="form">
-				<h:panelGrid columns="3" cellpadding="5">
-					<p:outputLabel styleClass="side_label"
-						value="#{language.OUTPUTTEXT_NAME}" />
+		
+			<center>
+				<h:form id="form">
+				<div style="margin-top: -270px; margin-right: -50px;">
+					<h:panelGrid columns="3" cellpadding="5">
+						<p:outputLabel styleClass="side_label"
+							value="#{language.OUTPUTTEXT_NAME}" />
 
-					<p:inputText id="name" value="#{signup.user.name}"
-						placeholder="#{language.PLACEHOLDER_NAME}" required="true"
-						requiredMessage="#{language.PLACEHOLDER_NAME}" />
-					<p:outputLabel />
+						<p:inputText id="name" value="#{signup.user.name}"
+							placeholder="#{language.PLACEHOLDER_NAME}" required="true"
+							requiredMessage="#{language.PLACEHOLDER_NAME}" />
+						<p:outputLabel />
 
-					<p:outputLabel styleClass="side_label"
-						value="#{language.OUTPUTTEXT_MOBILE}" />
-					<p:inputText id="phone" value="#{signup.user.mobileNo}"
-						placeholder="#{language.PLACEHOLDER_MOBILE}" required="true"
-						requiredMessage="#{language.PLACEHOLDER_MOBILE}" />
-					<p:outputLabel />
-
-
-					<p:outputLabel styleClass="side_label"
-						value="#{language.OUTPUTTEXT_USERNAME}" />
-					<p:inputText id="username" value="#{signup.user.userName}"
-						placeholder="#{language.PLACEHOLDER_USERNAME}" required="true"
-						requiredMessage="#{language.PLACEHOLDER_USERNAME}" />
-					<p:outputLabel id="usernamemessage" value="#{signup.errorMessage}"
-						style="color:red;" />
-
-					<p:outputLabel styleClass="side_label"
-						value="#{language.OUTPUTTEXT_EMAIL}" />
-					<p:inputText id="email" value="#{signup.user.email}"
-						placeholder="#{language.PLACEHOLDER_EMAIL}" required="true"
-						requiredMessage="#{language.PLACEHOLDER_EMAIL}" />
-					<p:outputLabel id="emailmessage"
-						value="#{signup.errorMessageEmail}" style="color:red;" />
-
-					<p:outputLabel styleClass="side_label"
-						value="#{language.OUTPUTTEXT_PASSWORD}" />
-					<p:password id="password" value="#{signup.password}"
-						placeholder="#{language.PLACEHOLDER_PASSWORD}" required="true"
-						requiredMessage="#{language.PLACEHOLDER_PASSWORD}" />
-					<p:outputLabel />
-
-					<p:outputLabel styleClass="side_label"
-						value="#{language.OUTPUTTEXT_CONFIRMPASSWORD}" />
-					<p:password id="sPassword" value="#{signup.confirmationPassword}"
-						placeholder="#{language.PLACEHOLDER_CONFIRMPASSWORD}"
-						required="true"
-						requiredMessage="#{language.PLACEHOLDER_CONFIRMPASSWORD}" />
-					<p:outputLabel />
+						<p:outputLabel styleClass="side_label"
+							value="#{language.OUTPUTTEXT_MOBILE}" />
+						<p:inputText id="phone" value="#{signup.user.mobileNo}"
+							placeholder="#{language.PLACEHOLDER_MOBILE}" required="true"
+							requiredMessage="#{language.PLACEHOLDER_MOBILE}" />
+						<p:outputLabel />
 
 
-					<p:link href="/index.xhtml" for="signup-btn"
-						value="#{language.loginLink}" />
-					<p:commandButton value="#{language.signupName}"
-						action="#{signup.save()}" update="form" />
-				</h:panelGrid>
-			</h:form>
-		</center>
+						<p:outputLabel styleClass="side_label"
+							value="#{language.OUTPUTTEXT_USERNAME}" />
+						<p:inputText id="username" value="#{signup.user.userName}"
+							placeholder="#{language.PLACEHOLDER_USERNAME}" required="true"
+							requiredMessage="#{language.PLACEHOLDER_USERNAME}" />
+						<p:outputLabel id="usernamemessage" value="#{signup.errorMessage}"
+							style="color:red;" />
+
+						<p:outputLabel styleClass="side_label"
+							value="#{language.OUTPUTTEXT_EMAIL}" />
+						<p:inputText id="email" value="#{signup.user.email}"
+							placeholder="#{language.PLACEHOLDER_EMAIL}" required="true"
+							requiredMessage="#{language.PLACEHOLDER_EMAIL}" />
+						<p:outputLabel id="emailmessage"
+							value="#{signup.errorMessageEmail}" style="color:red;" />
+
+						<p:outputLabel styleClass="side_label"
+							value="#{language.OUTPUTTEXT_PASSWORD}" />
+						<p:password id="password" value="#{signup.password}"
+							placeholder="#{language.PLACEHOLDER_PASSWORD}" required="true"
+							requiredMessage="#{language.PLACEHOLDER_PASSWORD}" />
+						<p:outputLabel />
+
+						<p:outputLabel styleClass="side_label"
+							value="#{language.OUTPUTTEXT_CONFIRMPASSWORD}" />
+						<p:password id="sPassword" value="#{signup.confirmationPassword}"
+							placeholder="#{language.PLACEHOLDER_CONFIRMPASSWORD}"
+							required="true"
+							requiredMessage="#{language.PLACEHOLDER_CONFIRMPASSWORD}" />
+						<p:outputLabel />
+
+
+						<p:link href="/index.xhtml" for="signup-btn"
+							value="#{language.loginLink}" />
+						<p:commandButton value="#{language.signupName}"
+							action="#{signup.save()}" update="form" />
+					</h:panelGrid>
+					</div>
+				</h:form>
+			</center>
+		
 	</ui:define>
 </ui:composition>
 </html>

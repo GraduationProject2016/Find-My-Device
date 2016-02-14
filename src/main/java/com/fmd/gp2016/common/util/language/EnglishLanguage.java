@@ -56,8 +56,27 @@ public class EnglishLanguage implements Language {
 	private String DEVICE_LASTACTIVEDATE = "Last Active Date";
 	private String DEVICE_TYPE = "Device Type";
 	private String DEVICE_OPERATINS = "Operations on Device";
-	
-	private String deviceSettingPage="Device Setting";
+
+	private String deviceSettingPage = "Device Setting";
+
+	private String ABOUT_PAGE_NAME = "about us";
+	private String BACKGROUND = "Availability of the Internet everywhere and at high speed and low cost will change the shape of life.";
+	private String PRO_DEFINITION = "The large number of devices used by man and the difficulty of carrying at the same time.";
+	private String SUGGEST_SOLUTION = "Developing Find my device system which mange you to control all your devices via web browser and pre-installed client on device. Simply you install simple client on your device (desktop and android) and register this device then can controlled later ";
+	private String ADDR_BACKGROUND = "Background";
+	private String ADDR_PRO_DEFINITION = "Problem Solution";
+	private String ADDR_SUGGEST_SOLUTION = "Suggest Solution";
+	private String USER_MANUAL = "User Manual Page";
+	private String SIGNUP_PICTURE = "resources/img/signup.PNG";
+	private String LOGIN_PICTURE = "resources/img/login.png";
+	private String UPDATE_PICTURE = "resources/img/update.png";
+	private String HOW_SIGNUP = "HOW DO I CREATE A NEW  ACCOUNT!";
+	private String HOW_LOGIN = "HOW DO I LOGIN TO MY ACCOUNT IF I HAVE AN ACCOUNT!";
+	private String HOW_UPDATE = "HOW DO I UPDATE OR EDIT MY DATA!";
+	private String HOW_CONTROL_Delete = "HOW DO I CONTROL OR DELETE A DEVICE FROM MY AVAILABLE DEVICES!";
+	private String USERDEVICE_PICTURE = "resources/img/userdevice.png";
+	private String HOW_DOWNLOAD = "HOW DO I DOWNLOAD THE LINKS OF DIFFERENT APPLICATIONS!";
+	private String DOWNLOAD_PICTURE = "resources/img/download.png";
 
 	@Override
 	public String getDOWNLOAD_PAGE_NAME() {
@@ -284,6 +303,95 @@ public class EnglishLanguage implements Language {
 		return MODEL_HEADER;
 	}
 
+	@Override
+	public String getBACKGROUND() {
+		return BACKGROUND;
+	}
+
+	@Override
+	public String getPRO_DEFINITION() {
+		return PRO_DEFINITION;
+	}
+
+	@Override
+	public String getSUGGEST_SOLUTION() {
+		return SUGGEST_SOLUTION;
+	}
+
+	@Override
+	public String getADDR_BACKGROUND() {
+		return ADDR_BACKGROUND;
+	}
+
+	@Override
+	public String getADDR_PRO_DEFINITION() {
+		return ADDR_PRO_DEFINITION;
+	}
+
+	@Override
+	public String getADDR_SUGGEST_SOLUTION() {
+		return ADDR_SUGGEST_SOLUTION;
+	}
+
+	@Override
+	public String getUSER_MANUAL() {
+		return USER_MANUAL;
+	}
+
+	@Override
+	public String getSIGNUP_PICTURE() {
+		return SIGNUP_PICTURE;
+	}
+
+	@Override
+	public String getLOGIN_PICTURE() {
+		return LOGIN_PICTURE;
+	}
+
+	@Override
+	public String getUPDATE_PICTURE() {
+		return UPDATE_PICTURE;
+	}
+
+	@Override
+	public String getHOW_SIGNUP() {
+		return HOW_SIGNUP;
+	}
+
+	@Override
+	public String getHOW_LOGIN() {
+		return HOW_LOGIN;
+	}
+
+	@Override
+	public String getHOW_UPDATE() {
+		return HOW_UPDATE;
+	}
+
+	@Override
+	public String getHOW_CONTROL_Delete() {
+		return HOW_CONTROL_Delete;
+	}
+
+	@Override
+	public String getHOW_DOWNLOAD() {
+		return HOW_DOWNLOAD;
+	}
+
+	@Override
+	public String getDOWNLOAD_PICTURE() {
+		return DOWNLOAD_PICTURE;
+	}
+
+	@Override
+	public String getABOUT_PAGE_NAME() {
+		return ABOUT_PAGE_NAME;
+	}
+
+	@Override
+	public String getUSERDEVICE_PICTURE() {
+		return USERDEVICE_PICTURE;
+	}
 
 	@Override
 	public String getDeviceSettingPage() {
@@ -291,18 +399,15 @@ public class EnglishLanguage implements Language {
 		return deviceSettingPage;
 	}
 
-
 	@Override
 	public String getDeviceDetails() {
 		return "Device Details";
 	}
 
-	
 	@Override
 	public String getChangeDevicePassword() {
 		return "Change Device Password";
 	}
-
 
 	@Override
 	public String getChangeDeviceName() {
@@ -314,13 +419,14 @@ public class EnglishLanguage implements Language {
 		return "Home";
 	}
 
-
 	@Override
 	public String getprofileName() {
 		return "Profile";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.fmd.gp2016.common.util.language.Language#getDownloadName()
 	 */
 	@Override
@@ -329,7 +435,9 @@ public class EnglishLanguage implements Language {
 		return "Downloads";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.fmd.gp2016.common.util.language.Language#getUserManualName()
 	 */
 	@Override
@@ -338,7 +446,9 @@ public class EnglishLanguage implements Language {
 		return "User Manual";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.fmd.gp2016.common.util.language.Language#getAboutUsName()
 	 */
 	@Override
@@ -347,7 +457,9 @@ public class EnglishLanguage implements Language {
 		return "About Us";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.fmd.gp2016.common.util.language.Language#getlogOutName()
 	 */
 	@Override

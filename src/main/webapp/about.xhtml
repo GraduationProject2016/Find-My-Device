@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/commonLayout.xhtml">
+	<ui:define name="page_title">
+       #{language.ABOUT_PAGE_NAME}
+        </ui:define>
+	<ui:define name="content">
+		<center style="margin-top: 5%;">
+
+			<p:panel id="background" header="#{language.ADDR_BACKGROUND}"
+				style="margin-bottom:20px">
+				<h:panelGrid columns="2" style="width:100%">
+					<p:graphicImage value="resources/img/background.png" width="200"
+						height="90" />
+					<h:outputText value="#{language.BACKGROUND}" />
+				</h:panelGrid>
+
+			</p:panel>
+
+
+			<p:panel id="defintion" header="#{language.ADDR_PRO_DEFINITION}"
+				style="margin-bottom:20px">
+				<h:panelGrid columns="2" style="width:100%">
+					<p:graphicImage value="resources/img/definitionProblem.png"
+						width="200" height="90" />
+					<h:outputText value="#{language.PRO_DEFINITION}" />
+				</h:panelGrid>
+
+			</p:panel>
+
+
+			<p:panel id="suggest" header="#{language.ADDR_SUGGEST_SOLUTION}"
+				style="margin-bottom:20px">
+				<h:panelGrid columns="2" style="width:100%">
+					<p:graphicImage value="resources/img/solution.jpg" width="200"
+						height="90" />
+					<h:outputText value="#{language.SUGGEST_SOLUTION}" />
+				</h:panelGrid>
+
+			</p:panel>
+
+		</center>
+	</ui:define>
+</ui:composition>
+</html>

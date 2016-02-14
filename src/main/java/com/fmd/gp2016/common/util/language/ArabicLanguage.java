@@ -52,8 +52,27 @@ public class ArabicLanguage implements Language {
 	private String DEVICE_LASTACTIVEDATE = "أخر تاريخ للدخول";
 	private String DEVICE_TYPE = "نوع الجهاز";
 	private String DEVICE_OPERATINS = "عمليات على الجهاز";
-	
-	private String deviceSettingPage="اعدادات الجهاز";
+
+	private String deviceSettingPage = "اعدادات الجهاز";
+
+	private String ABOUT_PAGE_NAME = "عننا";
+	private String BACKGROUND = "توافر الإنترنت في كل مكان  وسرعته العالية وتكلفتة المنخفضة ساهم في تغيير شكل الحياة";
+	private String PRO_DEFINITION = "عدد كبير من الأجهزة التي يستخدمها الإنسان وصعوبة حملها في نفس الوقت";
+	private String SUGGEST_SOLUTION = "من خلال نظام (find my device) الذي يتيح لك التحكم على جميع الأجهزة الخاصة بك عن طريق متصفح الإنترنت وتشغيله على الجهاز الخاص بك. ببساطة تثبيت عميل بسيط على جهازك (desktop , android) وتسجيل هذا الجهازلكي تتمكن من التحكم به .";
+	private String ADDR_BACKGROUND = "المعلومات الاساسية";
+	private String ADDR_PRO_DEFINITION = "تعريف المشكلة";
+	private String ADDR_SUGGEST_SOLUTION = "الحل المقترح";
+	private String USER_MANUAL = "صفحة دليل المستخدم ";
+	private String SIGNUP_PICTURE = "resources/img/signup_ar.png";
+	private String LOGIN_PICTURE = "resources/img/login_ar.png";
+	private String UPDATE_PICTURE = "resources/img/update_ar.png";
+	private String USERDEVICE_PICTURE = "resources/img/userdevice.png";
+	private String HOW_SIGNUP = "كيف يمكنني عمل حساب جديد!";
+	private String HOW_LOGIN = "كيف يمكنني الدخول الي حسابي!";
+	private String HOW_UPDATE = "كيف يمكنني تعديل البيانات الخاصة بي!";
+	private String HOW_CONTROL_Delete = "كيف يمكنني التحكم او حذف جهاز من الاجهزة الخاصة بي!";
+	private String HOW_DOWNLOAD = "كيف يمكنني تحميل اللينك الخاص بالبرامج!";
+	private String DOWNLOAD_PICTURE = "resources/img/download_ar.png";
 
 	@Override
 	public String getDEVICE_NAME() {
@@ -279,6 +298,95 @@ public class ArabicLanguage implements Language {
 		return UPDATE_PROFILE_PAGE_NAME;
 	}
 
+	@Override
+	public String getBACKGROUND() {
+		return BACKGROUND;
+	}
+
+	@Override
+	public String getPRO_DEFINITION() {
+		return PRO_DEFINITION;
+	}
+
+	@Override
+	public String getSUGGEST_SOLUTION() {
+		return SUGGEST_SOLUTION;
+	}
+
+	@Override
+	public String getADDR_BACKGROUND() {
+		return ADDR_BACKGROUND;
+	}
+
+	@Override
+	public String getADDR_PRO_DEFINITION() {
+		return ADDR_PRO_DEFINITION;
+	}
+
+	@Override
+	public String getADDR_SUGGEST_SOLUTION() {
+		return ADDR_SUGGEST_SOLUTION;
+	}
+
+	@Override
+	public String getUSER_MANUAL() {
+		return USER_MANUAL;
+	}
+
+	@Override
+	public String getSIGNUP_PICTURE() {
+		return SIGNUP_PICTURE;
+	}
+
+	@Override
+	public String getLOGIN_PICTURE() {
+		return LOGIN_PICTURE;
+	}
+
+	@Override
+	public String getUPDATE_PICTURE() {
+		return UPDATE_PICTURE;
+	}
+
+	@Override
+	public String getHOW_SIGNUP() {
+		return HOW_SIGNUP;
+	}
+
+	@Override
+	public String getHOW_LOGIN() {
+		return HOW_LOGIN;
+	}
+
+	@Override
+	public String getHOW_UPDATE() {
+		return HOW_UPDATE;
+	}
+
+	@Override
+	public String getHOW_CONTROL_Delete() {
+		return HOW_CONTROL_Delete;
+	}
+
+	@Override
+	public String getHOW_DOWNLOAD() {
+		return HOW_DOWNLOAD;
+	}
+
+	@Override
+	public String getDOWNLOAD_PICTURE() {
+		return DOWNLOAD_PICTURE;
+	}
+
+	@Override
+	public String getABOUT_PAGE_NAME() {
+		return ABOUT_PAGE_NAME;
+	}
+
+	@Override
+	public String getUSERDEVICE_PICTURE() {
+		return USERDEVICE_PICTURE;
+	}
 
 	@Override
 	public String getDeviceSettingPage() {
@@ -286,50 +394,45 @@ public class ArabicLanguage implements Language {
 		return deviceSettingPage;
 	}
 
-
 	@Override
 	public String getDeviceDetails() {
 
 		return "معلومات عن الجهاز";
 	}
 
-
 	@Override
 	public String getChangeDevicePassword() {
 		return "تغير كلمه المرور";
 	}
 
-	
 	@Override
 	public String getChangeDeviceName() {
 		return "تغير اسم الجهاز";
 	}
 
-	
 	@Override
 	public String getHomePageName() {
 		return "الرئيسيه";
 	}
 
-	
 	@Override
 	public String getprofileName() {
 		return "الملف الشخصى";
 	}
 
-	
 	@Override
 	public String getDownloadName() {
 		return "تنزيلات";
 	}
 
-	
 	@Override
 	public String getUserManualName() {
 		return "دليل المستخدم";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.fmd.gp2016.common.util.language.Language#getAboutUsName()
 	 */
 	@Override
@@ -338,7 +441,9 @@ public class ArabicLanguage implements Language {
 		return "عننا";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.fmd.gp2016.common.util.language.Language#getlogOutName()
 	 */
 	@Override

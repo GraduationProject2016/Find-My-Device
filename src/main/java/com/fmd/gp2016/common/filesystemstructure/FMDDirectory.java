@@ -8,6 +8,13 @@ public class FMDDirectory {
 	public String name;
 	public long size;
 
+	/**
+	 * 
+	 */
+	public FMDDirectory() {
+		super();
+	}
+
 	public FMDDirectory(String name, long size) {
 		super();
 		this.name = name;

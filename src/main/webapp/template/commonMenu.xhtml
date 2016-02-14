@@ -8,20 +8,23 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition>
-		<p:breadCrumb>
-			<p:menuitem value="#{language.homePageName}" url="userDevices.xhtml" />
-			<p:menuitem value="#{language.profileName}" url="updateProfile.xhtml" />
-			<p:menuitem value="#{language.downloadName}" url="downloads.xhtml" />
-			<p:menuitem value="#{language.userManualName}" url="#" />
-			<p:menuitem value="#{language.aboutUsName}" url="#" />
 
-		</p:breadCrumb>
-		<div align="right" style="margin-top: -35px;">
-			<h:form>
-				<p:commandButton value="#{language.logOutName}" icon="ui-icon-extlink"
-					actionListener="#{menuBean.logOut()}" />
-			</h:form>
-		</div>
+	<p:tabMenu activeIndex="-10">
+
+		<p:menuitem value="#{language.homePageName}" url="userDevices.xhtml"/>
+		<p:menuitem value="#{language.profileName}" url="updateProfile.xhtml" />
+		<p:menuitem value="#{language.downloadName}" url="downloads.xhtml" />
+		<p:menuitem value="#{language.userManualName}" url="about.xhtml" />
+		<p:menuitem value="#{language.aboutUsName}" url="usermanual.xhtml" />
+	</p:tabMenu>
+
+
+	<div align="right" style="margin-top: -35px;">
+		<h:form>
+			<p:commandButton value="#{language.logOutName}"
+				icon="ui-icon-extlink" actionListener="#{menuBean.logOut()}" />
+		</h:form>
+	</div>
 </ui:composition>
 
 </html>

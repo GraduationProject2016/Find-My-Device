@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/commonLayout.xhtml">
+	<ui:define name="page_title">
+       #{language.USER_MANUAL}
+        </ui:define>
+	<ui:define name="content">
+
+		<p:outputPanel>
+			<h:panelGrid columns="1" cellpadding="4">
+				<h:outputText value="#{language.HOW_SIGNUP}"
+					style="font-weight: bold" />
+			</h:panelGrid>
+		</p:outputPanel>
+
+		<h:panelGrid columns="2" style="width:100%">
+			<h:graphicImage value="#{language.SIGNUP_PICTURE}" width="450"
+				height="350" />
+		</h:panelGrid>
+
+		<p:outputPanel>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputText value="#{language.HOW_LOGIN}"
+					style="font-weight: bold" />
+			</h:panelGrid>
+		</p:outputPanel>
+
+		<h:panelGrid columns="2" style="width:100%">
+			<h:graphicImage value="#{language.LOGIN_PICTURE}" width="450"
+				height="350" />
+		</h:panelGrid>
+
+
+		<p:outputPanel>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputText value="#{language.HOW_UPDATE}"
+					style="font-weight: bold" />
+			</h:panelGrid>
+		</p:outputPanel>
+
+		<h:panelGrid columns="2" style="width:100%">
+			<h:graphicImage value="#{language.UPDATE_PICTURE}" width="550"
+				height="350" />
+
+		</h:panelGrid>
+
+
+
+		<p:outputPanel>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputText value="#{language.HOW_CONTROL_Delete}"
+					style="font-weight: bold" />
+			</h:panelGrid>
+		</p:outputPanel>
+
+		<h:panelGrid columns="2" style="width:100%">
+			<h:graphicImage value="#{language.USERDEVICE_PICTURE}" width="550"
+				height="350" />
+
+		</h:panelGrid>
+
+		<p:outputPanel>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputText value="#{language.HOW_DOWNLOAD}"
+					style="font-weight: bold" />
+			</h:panelGrid>
+		</p:outputPanel>
+
+		<h:panelGrid columns="2" style="width:100%">
+			<h:graphicImage value="#{language.DOWNLOAD_PICTURE}" width="550"
+				height="350" />
+
+		</h:panelGrid>
+
+
+	</ui:define>
+</ui:composition>
+</html>

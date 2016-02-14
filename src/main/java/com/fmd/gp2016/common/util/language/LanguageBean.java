@@ -277,62 +277,147 @@ public class LanguageBean implements Language {
 		return lang.getDOWNLOAD_PAGE_NAME();
 	}
 
-	
+	@Override
+	public String getBACKGROUND() {
+		return lang.getBACKGROUND();
+	}
+
+	@Override
+	public String getPRO_DEFINITION() {
+		return lang.getPRO_DEFINITION();
+	}
+
+	@Override
+	public String getSUGGEST_SOLUTION() {
+		return lang.getSUGGEST_SOLUTION();
+
+	}
+
+	@Override
+	public String getADDR_BACKGROUND() {
+		return lang.getADDR_BACKGROUND();
+	}
+
+	@Override
+	public String getADDR_PRO_DEFINITION() {
+		return lang.getADDR_PRO_DEFINITION();
+	}
+
+	@Override
+	public String getADDR_SUGGEST_SOLUTION() {
+		return lang.getADDR_SUGGEST_SOLUTION();
+
+	}
+
+	@Override
+	public String getABOUT_PAGE_NAME() {
+		return lang.getABOUT_PAGE_NAME();
+	}
+
+	@Override
+	public String getUSER_MANUAL() {
+		return lang.getUSER_MANUAL();
+	}
+
+	@Override
+	public String getSIGNUP_PICTURE() {
+		return lang.getSIGNUP_PICTURE();
+	}
+
+	@Override
+	public String getLOGIN_PICTURE() {
+		return lang.getLOGIN_PICTURE();
+	}
+
+	@Override
+	public String getUPDATE_PICTURE() {
+		return lang.getUPDATE_PICTURE();
+	}
+
+	@Override
+	public String getHOW_LOGIN() {
+		return lang.getHOW_LOGIN();
+	}
+
+	@Override
+	public String getHOW_SIGNUP() {
+		return lang.getHOW_SIGNUP();
+	}
+
+	@Override
+	public String getHOW_UPDATE() {
+		return lang.getHOW_UPDATE();
+	}
+
+	@Override
+	public String getUSERDEVICE_PICTURE() {
+		return lang.getUSERDEVICE_PICTURE();
+	}
+
+	@Override
+	public String getHOW_CONTROL_Delete() {
+		return lang.getHOW_CONTROL_Delete();
+	}
+
+	@Override
+	public String getDOWNLOAD_PICTURE() {
+		return lang.getDOWNLOAD_PICTURE();
+	}
+
+	@Override
+	public String getHOW_DOWNLOAD() {
+		return lang.getHOW_DOWNLOAD();
+	}
+
 	@Override
 	public String getDeviceSettingPage() {
 
 		return lang.getDeviceSettingPage();
 	}
 
-	
 	@Override
 	public String getDeviceDetails() {
 		return lang.getDeviceDetails();
 	}
 
-	
 	@Override
 	public String getChangeDevicePassword() {
 		return lang.getChangeDevicePassword();
 	}
-
 
 	@Override
 	public String getChangeDeviceName() {
 		return lang.getChangeDeviceName();
 	}
 
-	
 	@Override
 	public String getHomePageName() {
 		return lang.getHomePageName();
 	}
-
 
 	@Override
 	public String getprofileName() {
 		return lang.getprofileName();
 	}
 
-	
 	@Override
 	public String getDownloadName() {
 		return lang.getDownloadName();
 	}
 
-	
 	@Override
 	public String getUserManualName() {
 		return lang.getUserManualName();
 	}
-
 
 	@Override
 	public String getAboutUsName() {
 		return lang.getAboutUsName();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.fmd.gp2016.common.util.language.Language#getlogOutName()
 	 */
 	@Override

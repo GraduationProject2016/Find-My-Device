@@ -14,27 +14,39 @@
 	<ui:define name="menu">
 	</ui:define>
 	<ui:define name="content">
+		<style>
+body {
+	background-image: url("");
+}
+</style>
+		<IMG alt="" src="#{resource['img/cumucloud_logo_8.png']}"
+			style="width: 280px; height = 260px; margin-top: 50px;" />
 		<center style="margin-top: 18%;">
 			<h:form>
-				<h:panelGrid columns="3" cellpadding="5">
-					<h:outputText value="#{language.OUTPUTTEXT_USERNAME}" />
-					<p:inputText id="username" value="#{login.input}"
-						a:placeholder="#{language.PLACEHOLDER_USERNAME}" required="true"
-						requiredMessage="#{language.PLACEHOLDER_USERNAME}" />
-					<p:message for="username" />
+				<div style="margin-top: -370px; margin-right: -50px;">
+					<h:panelGrid columns="3" cellpadding="5">
+						<h:outputText value="#{language.OUTPUTTEXT_USERNAME}" />
+						<p:inputText id="username" value="#{login.input}"
+							a:placeholder="#{language.PLACEHOLDER_USERNAME}" required="true"
+							requiredMessage="#{language.PLACEHOLDER_USERNAME}" />
+						<p:message for="username" />
 
-					<h:outputText value="#{language.OUTPUTTEXT_PASSWORD}" />
-					<p:inputText id="password" value="#{login.password}"
-						type="password" a:placeholder="#{language.PLACEHOLDER_PASSWORD}"
-						required="true" requiredMessage="#{language.PLACEHOLDER_PASSWORD}" />
-					<p:message for="password" />
+						<h:outputText value="#{language.OUTPUTTEXT_PASSWORD}" />
+						<p:inputText id="password" value="#{login.password}"
+							type="password" a:placeholder="#{language.PLACEHOLDER_PASSWORD}"
+							required="true"
+							requiredMessage="#{language.PLACEHOLDER_PASSWORD}" />
+						<p:message for="password" />
 
 
-					<p:link href="/signup.xhtml" for="signup-btn"
-						value="#{language.signLink}" />
-					<p:commandButton value="#{language.loginName}"
-						action="#{login.validate()}" />
-				</h:panelGrid>
+						<p:link href="/signup.xhtml" for="signup-btn"
+							value="#{language.signLink}" />
+						<p:commandButton value="#{language.loginName}"
+							action="#{login.validate()}" />
+
+					</h:panelGrid>
+					<p:link href="/download.xhtml" value="#{language.DOWNLOAD_LINK}" />
+				</div>
 			</h:form>
 		</center>
 	</ui:define>
