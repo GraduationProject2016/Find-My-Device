@@ -10,6 +10,42 @@ package com.fmd.gp2016.common.util.language;
  */
 public interface Language {
 
+	public String getUSERDEVICE_PICTURE();
+
+	public String getABOUT_PAGE_NAME();
+
+	public String getBACKGROUND();
+
+	public String getPRO_DEFINITION();
+
+	public String getSUGGEST_SOLUTION();
+
+	public String getADDR_BACKGROUND();
+
+	public String getADDR_PRO_DEFINITION();
+
+	public String getADDR_SUGGEST_SOLUTION();
+
+	public String getUSER_MANUAL();
+
+	public String getSIGNUP_PICTURE();
+
+	public String getLOGIN_PICTURE();
+
+	public String getUPDATE_PICTURE();
+
+	public String getHOW_SIGNUP();
+
+	public String getHOW_LOGIN();
+
+	public String getHOW_UPDATE();
+
+	public String getHOW_CONTROL_Delete();
+
+	public String getHOW_DOWNLOAD();
+
+	public String getDOWNLOAD_PICTURE();
+
 	public String getDEVICE_CONTROL();
 
 	public String getDEVICE_DELETE();
