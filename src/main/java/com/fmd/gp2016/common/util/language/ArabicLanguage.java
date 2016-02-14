@@ -450,5 +450,30 @@ public class ArabicLanguage implements Language {
 	public String getlogOutName() {
 		return "خروج";
 	}
+	
+	@Override
+	public String getThereIsNoFile() {
+		return "لآ توجد ملفات";
+	}
+
+	@Override
+	public String getDeleteConfirmation() {
+		return "تاكيد عملية الحذف";
+	}
+
+	@Override
+	public String getAreYouSure() {
+		return "هل أنت متاكد من القيام بذالك ؟";
+	}
+
+	@Override
+	public String getYes() {
+		return "نعم";
+	}
+
+	@Override
+	public String getNO() {
+		return "لا";
+	}
 
 }

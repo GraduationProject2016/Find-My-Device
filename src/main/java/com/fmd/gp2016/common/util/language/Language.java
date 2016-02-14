@@ -153,5 +153,17 @@ public interface Language {
 	public String getAboutUsName();
 	
 	public String getlogOutName();
+	
+	public String getThereIsNoFile();
+	
+	public String getDeleteConfirmation();
+	
+	public String getAreYouSure();
+	
+	public String getYes();
+	
+	public String getNO();
+	
+	
 
 }

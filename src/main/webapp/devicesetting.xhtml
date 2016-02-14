@@ -16,17 +16,18 @@
 		<h:form id="form">
 			<p:tabView dir="#{language.dir}">
 				<p:tab title="#{language.deviceDetails}">
-					<h:panelGrid columns="2" cellpadding="5" >
-						<p:outputLabel  value="Device Name: " style="font-weight:bold"/>
-						<p:outputLabel  value="#{deviceSetting.device.name}" />
-						
-						<p:outputLabel  value="Device Mac Address: " style="font-weight:bold"/>
-						<p:outputLabel  value="#{deviceSetting.device.macAddress}" />
-						
-						<p:outputLabel  value="Last Active Date: " style="font-weight:bold"/>
-						<p:outputLabel  value="#{deviceSetting.device.lastActiveDate}" />
-						
-						
+					<h:panelGrid columns="2" cellpadding="5">
+						<p:outputLabel value="Device Name: " style="font-weight:bold" />
+						<p:outputLabel value="#{deviceSetting.device.name}" />
+
+						<p:outputLabel value="Device Mac Address: "
+							style="font-weight:bold" />
+						<p:outputLabel value="#{deviceSetting.device.macAddress}" />
+
+						<p:outputLabel value="Last Active Date: " style="font-weight:bold" />
+						<p:outputLabel value="#{deviceSetting.device.lastActiveDate}" />
+
+
 					</h:panelGrid>
 				</p:tab>
 				<p:tab title="#{language.changeDevicePassword}">
@@ -40,27 +41,55 @@
 						<p:outputLabel for="renewPass" value="ReNew Password " />
 						<p:password id="renewPass" value="#{deviceSetting.reNewPassword}" />
 
-						<p:commandButton value="Change" actionListener="#{deviceSetting.changePassword()}"></p:commandButton>
+						<p:commandButton value="Change"
+							actionListener="#{deviceSetting.changePassword()}"></p:commandButton>
 					</h:panelGrid>
 				</p:tab>
 				<p:tab title="#{language.changeDeviceName}">
 					<h:panelGrid columns="2" cellpadding="10">
 
 						<p:outputLabel for="deviceName" value="Enter Your New Device Name" />
-						<p:inputText id="deviceName" value="#{deviceSetting.deviceNewName}"/>
+						<p:inputText id="deviceName"
+							value="#{deviceSetting.deviceNewName}" />
 
 						<p:outputLabel for="Pass" value="Enter you password " />
-						<p:password id="Pass" value="#{deviceSetting.confirmationPassword}"/>
-						<p:commandButton value="Change" actionListener="#{deviceSetting.changeDeviceName()}"></p:commandButton>
+						<p:password id="Pass"
+							value="#{deviceSetting.confirmationPassword}" />
+						<p:commandButton value="Change"
+							actionListener="#{deviceSetting.changeDeviceName()}"></p:commandButton>
 					</h:panelGrid>
 				</p:tab>
-				
-				<p:tab title="files">
-					<h:panelGrid columns="2" cellpadding="10">
 
-					</h:panelGrid>
+				<p:tab title="files">
+					<p:dataList id="dataTable"
+						value="#{deviceSetting.userFiles.getFilesDeviceList(deviceSetting.deviceID)}"
+						emptyMessage="#{language.getThereIsNoFile()}" var="ob">
+						<p:column>
+							<p:commandLink id="downloadLink"
+								value="#{ob.substring(0, ob.lastIndexOf(' '))}" ajax="false"
+								actionListener="#{deviceSetting.userFiles.download(ob)}">
+								<p:fileDownload
+									value="#{deviceSetting.userFiles.fileDownload.downloadObject}" />
+							</p:commandLink>
+						</p:column>
+						<p:column>
+							<p:commandLink ajax="false" update=":form" immediate="true"
+								action="#{deviceSetting.userFiles.delete(ob)}">
+								<p:graphicImage value="/resources/img/x.png" width="24" />
+								<p:confirm header="#{language.getDeleteConfirmation()}"
+									message="#{language.getAreYouSure()}" icon="ui-icon-alert" />
+							</p:commandLink>
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade">
+								<p:commandButton value="#{language.yes}" type="button"
+									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+								<p:commandButton value="#{language.NO}" type="button"
+									styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+							</p:confirmDialog>
+						</p:column>
+					</p:dataList>
 				</p:tab>
-				
+
 			</p:tabView>
 
 		</h:form>

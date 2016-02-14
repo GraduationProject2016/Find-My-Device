@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fmd.gp2016.common.entity.Device;
 import com.fmd.gp2016.common.service.DeviceService;
+import com.fmd.gp2016.common.util.file.UserFiles;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
 
 @Named("deviceSetting")
@@ -26,6 +27,7 @@ public class DeviceSettingBean extends BaseBean {
 	private String confirmationPassword;
 	private int deviceID;
 	private Device device = new Device();
+	private UserFiles userFiles;
 
 	@Autowired
 	private DeviceService deviceService;
@@ -37,6 +39,7 @@ public class DeviceSettingBean extends BaseBean {
 		System.out.println(deviceID);
 		device = deviceService.getDeviceById(deviceID);
 		System.out.println(device);
+		userFiles = new UserFiles(getSessionUserID(), deviceService);
 	}
 
 	public String changePassword() {
@@ -59,10 +62,10 @@ public class DeviceSettingBean extends BaseBean {
 			device.setName(deviceNewName);
 			deviceService.updateDevice(device);
 			addSuccessfulMessage("updated successful");
-		}else{
+		} else {
 			addErrorMessage("The password is not true");
 		}
-		
+
 		return "";
 	}
 
@@ -120,6 +123,18 @@ public class DeviceSettingBean extends BaseBean {
 
 	public void setDevice(Device device) {
 		this.device = device;
+	}
+
+	public UserFiles getUserFiles() {
+		return userFiles;
+	}
+
+	public void download(String filename) {
+		userFiles.download(filename);
+	}
+
+	public String delete(String fileName) {
+		return userFiles.delete((fileName));
 	}
 
 }

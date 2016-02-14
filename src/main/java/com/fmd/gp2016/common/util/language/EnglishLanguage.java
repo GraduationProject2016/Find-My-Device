@@ -467,4 +467,29 @@ public class EnglishLanguage implements Language {
 		return "logout";
 	}
 
+	@Override
+	public String getThereIsNoFile() {
+		return "there is no file";
+	}
+
+	@Override
+	public String getDeleteConfirmation() {
+		return "Delete Confirmation";
+	}
+
+	@Override
+	public String getAreYouSure() {
+		return "Are You Sure";
+	}
+
+	@Override
+	public String getYes() {
+		return "Yes";
+	}
+
+	@Override
+	public String getNO() {
+		return "No";
+	}
+
 }
