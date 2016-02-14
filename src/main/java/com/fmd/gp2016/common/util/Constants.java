@@ -16,6 +16,7 @@ public class Constants {
 	public static final String SUCCESS = "Success";
 	public static final String EmailNotUniqe = "EmailNotUniqe";
 	public static final String UsernameNotUniqe = "UsernameNotUniqe";
+	public static final String MobileNumberNotUniqe = "mobileNotUniqe";
 	public static final String MacNotUniqe = "MacAddressNotNniqe";
 	// Web Service Constants
 	public static final String ID = "id";
