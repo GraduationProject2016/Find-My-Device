@@ -16,7 +16,7 @@
 		<p:growl id="msg" showDetail="true" />
 		<h:form>
 
-			<p:dataTable emptyMessage="">
+			<p:dataTable emptyMessage="" scrollable="true" >
 				<f:facet name="header">
         #{controlDevice.computer.path}<br/>
         <p:commandButton value="back" actionListener="#{controlDevice.back()}" ajax="false"/>
@@ -26,13 +26,12 @@
 						actionListener="#{controlDevice.openMyCom}" ajax="false" />
 					<p:commandButton value="Desktop"
 						actionListener="#{controlDevice.openDeskTop}" ajax="false" />
-						<p:outputLabel value=" number of files : #{controlDevice.computer.numOfFiles}"></p:outputLabel>
-						<p:outputLabel value=" number of Folders : #{controlDevice.computer.numOfFolders}"></p:outputLabel>
+						
 				</f:facet>
 			</p:dataTable>
 			<p:dataTable var="file" value="#{controlDevice.partitions}"
 				emptyMessage="">
-				<p:column>
+				<p:column >
 					<h:outputText value="#{file.name}" />
 				</p:column>
 
@@ -42,7 +41,7 @@
 
 				<p:column>
 					<h:outputText
-						value=" #{(file.usableSpace / 1024 * 1024 ) }  out of #{(file.totalSpace / 1024 * 1024 * 1024)} " />
+						value=" #{(file.usableSpace ) }  out of #{(file.totalSpace)} " />
 				</p:column>
 
 				<p:column>
@@ -52,10 +51,10 @@
 			</p:dataTable>
 
 			<p:dataTable var="dir" value="#{controlDevice.computer.directories}"
-				emptyMessage="">
+				emptyMessage="" rendered="#{controlDevice.isPartition() == false}">
 
 
-				<p:column headerText="name">
+				<p:column headerText="name" filterBy="#{dir.name}" filterMatchMode="contains"> 
 					<h:outputText value="#{dir.name}" />
 				</p:column>
 
@@ -71,10 +70,12 @@
 					<h:outputText value="" />
 					<p:commandButton value="open"
 						actionListener="#{controlDevice.open(dir.name)}" ajax="false" />
+						<p:commandButton value="Delete"
+						actionListener="#{controlDevice.delete(dir.name)}" ajax="false" />
 				</p:column>
 			</p:dataTable>
 			<p:dataTable var="file" value="#{controlDevice.computer.files}"
-				emptyMessage="">
+				emptyMessage="" rendered="#{controlDevice.isPartition() == false}">
 				<p:column>
 					<h:outputText value="#{file.name}" />
 				</p:column>
@@ -93,6 +94,10 @@
 					<p:commandButton value="Delete"
 						actionListener="#{controlDevice.delete(file.name)}" ajax="false" />
 				</p:column>
+				<f:facet name="footer">
+				<p:outputLabel value=" number of files : #{controlDevice.computer.numOfFiles}" rendered="#{controlDevice.isPartition() == false}"/>
+						<p:outputLabel value=" number of Folders : #{controlDevice.computer.numOfFolders}" rendered="#{controlDevice.isPartition() == false}"/>
+				</f:facet>
 			</p:dataTable>
 
 

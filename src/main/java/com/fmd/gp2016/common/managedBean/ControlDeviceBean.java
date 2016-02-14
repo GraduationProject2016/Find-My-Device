@@ -46,6 +46,8 @@ public class ControlDeviceBean extends BaseBean {
 	private static int viewId = 0;
 	private final static String User_Device = "userDevices.xhtml";
 	private Stack<String> paths;
+	
+	private boolean isPartition = false;
 
 	@Autowired
 	public DeviceService deviceServices;
@@ -115,14 +117,15 @@ public class ControlDeviceBean extends BaseBean {
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = null;
 		paths.push(computer.path);
+		isPartition = false;
 		return "";
 	}
-	
+
 	public String openPath() throws JSONException {
 
 		String content = CommandConstant.computerPathJson;
 
-		Command command = new Command(content, new String[] { computer.path});
+		Command command = new Command(content, new String[] { computer.path });
 
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
 				Constants.SERVER_TO_CLIENT);
@@ -130,9 +133,9 @@ public class ControlDeviceBean extends BaseBean {
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = null;
+		isPartition = false;
 		return "";
 	}
-	
 
 	public String openMyDoc() throws JSONException {
 		String content = CommandConstant.computerHomeJson;
@@ -144,7 +147,7 @@ public class ControlDeviceBean extends BaseBean {
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = null;
-
+		isPartition = false;
 		return "";
 	}
 
@@ -157,11 +160,18 @@ public class ControlDeviceBean extends BaseBean {
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		partitions = JSONDecoding.decodeJsonOFPartions(new JSONObject(msgdto.getContent()));
+
+		for (int i = 0; i < partitions.size(); i++) {
+			partitions.get(i).setTotalSpace(partitions.get(i).getTotalSpace() / (1024 * 1024 * 1024));
+			partitions.get(i).setUsableSpace(partitions.get(i).getUsableSpace() / (1024 * 1024 * 1024));
+
+		}
 		computer.path = "";
 		computer.directories = null;
 		computer.files = null;
 		computer.numOfFiles = 0;
 		computer.numOfFolders = 0;
+		isPartition = true;
 
 		return "";
 
@@ -176,7 +186,7 @@ public class ControlDeviceBean extends BaseBean {
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = new ArrayList<>();
-
+		isPartition = false;
 		return "";
 	}
 
@@ -220,11 +230,17 @@ public class ControlDeviceBean extends BaseBean {
 	}
 
 	public String back() throws JSONException {
+		System.out.println(paths);
 		if (!paths.isEmpty()) {
-			System.out.println(paths);
-			computer.path = paths.pop();
-			System.out.println(computer.path);
-			System.out.println(paths);
+			String path = paths.pop();
+			if (computer.path.equals(path) && paths.size() > 1) {
+				computer.path = paths.pop();
+			} else {
+
+				computer.path = path;
+				System.out.println(computer.path);
+				System.out.println(paths);
+			}
 			openPath();
 		}
 		return "";
@@ -253,6 +269,14 @@ public class ControlDeviceBean extends BaseBean {
 
 	public void setPartitions(List<FMDPartion> partitions) {
 		this.partitions = partitions;
+	}
+
+	public boolean isPartition() {
+		return isPartition;
+	}
+
+	public void setPartition(boolean isPartition) {
+		this.isPartition = isPartition;
 	}
 
 }

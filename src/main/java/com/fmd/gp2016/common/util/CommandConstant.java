@@ -4,6 +4,7 @@ public class CommandConstant {
 
 	public static final String removeDirectory = "removeDirectory";
 	
+	public static final String removeFile = "removeFile";
 
 	public static final String renameDirectory = "renameDirectory";
 
