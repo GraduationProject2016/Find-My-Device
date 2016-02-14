@@ -15,12 +15,23 @@
 
 </h:head>
 
-<h:body  >
+
+<h:body>
+	<style>
+body {
+	background-image: url("#{resource['img/cumucloud_logo_8.png']}");
+	background-size: 50% 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: 50%;
+}
+</style>
+
 
 	<f:facet name="last">
 		<h:outputStylesheet name="common-style.css" library="css" />
 	</f:facet>
-	
+
 
 	<div id="page" dir="#{language.dir}">
 
@@ -35,7 +46,7 @@
 
 		<table id="body_layout">
 			<tr>
-				
+
 				<td id="content" valign="top"><p:messages autoUpdate="true" />
 					<!-- <p:growl id="msg" showDetail="true" /> --> <ui:insert
 						name="content">
@@ -50,7 +61,8 @@
 			</tr>
 		</table>
 
-		<div id="footer" style="bottom:0px;padding-bottom: 0px;position:fixed;width: 100%;">
+		<div id="footer"
+			style="bottom: 0px; padding-bottom: 0px; position: fixed; width: 100%;">
 			<ui:insert name="footer">
 				<ui:include src="/template/commonFooter.xhtml" />
 			</ui:insert>

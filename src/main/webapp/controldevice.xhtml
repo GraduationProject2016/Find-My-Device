@@ -52,12 +52,10 @@
 			</p:dataTable>
 
 			<p:dataTable var="dir" value="#{controlDevice.computer.directories}"
-				emptyMessage="" rendered="#{controlDevice.isPartition() == false}"
-				lazy="true">
+				emptyMessage="" rendered="#{controlDevice.isPartition() == false}" id="tab">
+			 <p:ajax event="filter" global="false" update="tab"/>
 
-
-				<p:column headerText="name" sortBy="#{dir.name}"
-					filterBy="#{dir.name}" filterMatchMode="contains">
+				<p:column headerText="name" sortBy="#{dir.name}">
 					<h:outputText value="#{dir.name}" />
 				</p:column>
 
