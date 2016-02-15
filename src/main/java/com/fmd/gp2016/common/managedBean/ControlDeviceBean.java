@@ -107,6 +107,10 @@ public class ControlDeviceBean extends BaseBean {
 		}
 	}
 
+	public void change() {
+		userFiles = new UserFiles(getSessionUserID(), deviceServices);
+	}
+
 	public String open(String path) throws JSONException {
 
 		String content = CommandConstant.computerPathJson;

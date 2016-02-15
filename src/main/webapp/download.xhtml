@@ -25,9 +25,9 @@
 							<h:outputText value="Android Mobile" style="font-weight: bold" />
 
 							<h:outputText value="#{language.DOWNLOAD_LINK}:" />
-							<p:commandLink value="Find My Desktop" ajax="false"
+							<p:commandLink value="Find My Mobile" ajax="false"
 								style="font-weight: bold; color:blue;"
-								actionListener="#{downloadAppsBean.downloadDesktopApp()}">
+								actionListener="#{downloadAppsBean.downloadAndroidApp()}">
 								<p:fileDownload value="#{downloadAppsBean.downloadObject}" />
 							</p:commandLink>
 						</h:panelGrid>
@@ -43,9 +43,9 @@
 							<h:outputText value="Desktop PC" style="font-weight: bold" />
 
 							<h:outputText value="#{language.DOWNLOAD_LINK}:" />
-							<p:commandLink value="Find My Mobile" ajax="false"
+							<p:commandLink value="Find My Desktop" ajax="false"
 								style="font-weight: bold; color:blue;"
-								actionListener="#{downloadAppsBean.downloadAndroidApp()}">
+								actionListener="#{downloadAppsBean.downloadDesktopApp()}">
 								<p:fileDownload value="#{downloadAppsBean.downloadObject}" />
 							</p:commandLink>
 						</h:panelGrid>

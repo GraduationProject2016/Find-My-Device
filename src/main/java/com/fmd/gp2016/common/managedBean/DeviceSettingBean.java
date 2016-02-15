@@ -41,6 +41,10 @@ public class DeviceSettingBean extends BaseBean {
 		System.out.println(device);
 		userFiles = new UserFiles(getSessionUserID(), deviceService);
 	}
+	
+	public void change() {
+		userFiles = new UserFiles(getSessionUserID(), deviceService);
+	}
 
 	public String changePassword() {
 		if (oldPassword.equals(device.getPassword())) {
