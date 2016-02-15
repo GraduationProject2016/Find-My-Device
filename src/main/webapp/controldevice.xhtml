@@ -15,96 +15,129 @@
 		<p:messages globalOnly="true" />
 		<p:growl id="msg" showDetail="true" />
 		<h:form>
-
-			<p:dataTable emptyMessage="" scrollable="true">
-				<f:facet name="header">
+			<p:tabView dir="#{language.dir}">
+				<p:tab title="#{language.deviceDetails}">
+					<p:dataTable emptyMessage="" scrollable="true">
+						<f:facet name="header">
         #{controlDevice.computer.path}<br />
-					<p:commandButton value="back"
-						actionListener="#{controlDevice.back()}" ajax="false" />
-					<p:commandButton value="Home"
-						actionListener="#{controlDevice.openMyDoc}" ajax="false" />
-					<p:commandButton value="My Computer"
-						actionListener="#{controlDevice.openMyCom}" ajax="false" />
-					<p:commandButton value="Desktop"
-						actionListener="#{controlDevice.openDeskTop}" ajax="false" />
+							<p:commandButton value="back"
+								actionListener="#{controlDevice.back()}" ajax="false" />
+							<p:commandButton value="Home"
+								actionListener="#{controlDevice.openMyDoc}" ajax="false" />
+							<p:commandButton value="My Computer"
+								actionListener="#{controlDevice.openMyCom}" ajax="false" />
+							<p:commandButton value="Desktop"
+								actionListener="#{controlDevice.openDeskTop}" ajax="false" />
 
-				</f:facet>
-			</p:dataTable>
-			<p:dataTable var="file" value="#{controlDevice.partitions}"
-				emptyMessage="">
-				<p:column>
-					<h:outputText value="#{file.name}" />
-				</p:column>
+						</f:facet>
+					</p:dataTable>
+					<p:dataTable var="file" value="#{controlDevice.partitions}"
+						emptyMessage="">
+						<p:column>
+							<h:outputText value="#{file.name}" />
+						</p:column>
 
-				<p:column>
-					<h:outputText value="#{file.path}" />
-				</p:column>
+						<p:column>
+							<h:outputText value="#{file.path}" />
+						</p:column>
 
-				<p:column>
-					<h:outputText
-						value=" #{(file.usableSpace ) }  out of #{(file.totalSpace)} " />
-				</p:column>
+						<p:column>
+							<h:outputText
+								value=" #{(file.usableSpace ) }  out of #{(file.totalSpace)} " />
+						</p:column>
 
-				<p:column>
-					<p:commandButton value="open"
-						actionListener="#{controlDevice.open(file.path)}" ajax="false" />
-				</p:column>
-			</p:dataTable>
+						<p:column>
+							<p:commandButton value="open"
+								actionListener="#{controlDevice.open(file.path)}" ajax="false" />
+						</p:column>
+					</p:dataTable>
 
-			<p:dataTable var="dir" value="#{controlDevice.computer.directories}"
-				emptyMessage="" rendered="#{controlDevice.isPartition() == false}" id="tab">
-			 <p:ajax event="filter" global="false" update="tab"/>
+					<p:dataTable var="dir"
+						value="#{controlDevice.computer.directories}" emptyMessage=""
+						rendered="#{controlDevice.isPartition() == false}" id="tab">
+						<p:ajax event="filter" global="false" update="tab" />
 
-				<p:column headerText="name" sortBy="#{dir.name}">
-					<h:outputText value="#{dir.name}" />
-				</p:column>
+						<p:column headerText="name" sortBy="#{dir.name}">
+							<h:outputText value="#{dir.name}" />
+						</p:column>
 
-				<p:column headerText="type">
-					<h:outputText value="folder" />
-				</p:column>
+						<p:column headerText="type">
+							<h:outputText value="folder" />
+						</p:column>
 
-				<p:column headerText="size">
-					<h:outputText value="#{dir.size}" />
-				</p:column>
+						<p:column headerText="size">
+							<h:outputText value="#{dir.size}" />
+						</p:column>
 
-				<p:column headerText="Operations">
-					<h:outputText value="" />
-					<p:commandButton value="open"
-						actionListener="#{controlDevice.open(dir.name)}" ajax="false" />
-					<p:commandButton value="Delete"
-						actionListener="#{controlDevice.delete(dir.name)}" ajax="false" />
-				</p:column>
-			</p:dataTable>
-			<p:dataTable var="file" value="#{controlDevice.computer.files}"
-				emptyMessage="" rendered="#{controlDevice.isPartition() == false}">
-				<p:column sortBy="#{file.name}">
-					<h:outputText value="#{file.name}" />
-				</p:column>
+						<p:column headerText="Operations">
+							<h:outputText value="" />
+							<p:commandButton value="open"
+								actionListener="#{controlDevice.open(dir.name)}" ajax="false" />
+							<p:commandButton value="Delete"
+								actionListener="#{controlDevice.delete(dir.name)}" ajax="false" />
+						</p:column>
+					</p:dataTable>
+					<p:dataTable var="file" value="#{controlDevice.computer.files}"
+						emptyMessage="" rendered="#{controlDevice.isPartition() == false}">
+						<p:column sortBy="#{file.name}">
+							<h:outputText value="#{file.name}" />
+						</p:column>
 
-				<p:column>
-					<h:outputText value="#{file.type}" />
-				</p:column>
+						<p:column>
+							<h:outputText value="#{file.type}" />
+						</p:column>
 
-				<p:column>
-					<h:outputText value="#{file.size}" />
-				</p:column>
+						<p:column>
+							<h:outputText value="#{file.size}" />
+						</p:column>
 
-				<p:column>
-					<p:commandButton value="Upload"
-						actionListener="#{controlDevice.get(file.name)}" ajax="false" />
-					<p:commandButton value="Delete"
-						actionListener="#{controlDevice.delete(file.name)}" ajax="false" />
-				</p:column>
-				<f:facet name="footer">
-					<p:outputLabel
-						value=" number of files : #{controlDevice.computer.numOfFiles}"
-						rendered="#{controlDevice.isPartition() == false}" />
-					<p:outputLabel
-						value=" number of Folders : #{controlDevice.computer.numOfFolders}"
-						rendered="#{controlDevice.isPartition() == false}" />
-				</f:facet>
-			</p:dataTable>
+						<p:column>
+							<p:commandButton value="Upload"
+								actionListener="#{controlDevice.get(file.name)}" ajax="false" />
+							<p:commandButton value="Delete"
+								actionListener="#{controlDevice.delete(file.name)}" ajax="false" />
+						</p:column>
+						<f:facet name="footer">
+							<p:outputLabel
+								value=" number of files : #{controlDevice.computer.numOfFiles}"
+								rendered="#{controlDevice.isPartition() == false}" />
+							<p:outputLabel
+								value=" number of Folders : #{controlDevice.computer.numOfFolders}"
+								rendered="#{controlDevice.isPartition() == false}" />
+						</f:facet>
+					</p:dataTable>
+				</p:tab>
+				<p:tab title="#{language.getFiles()}">
+					<p:dataList id="dataTable"
+						value="#{controlDevice.userFiles.getFilesDeviceList(controlDevice.deviceID)}"
+						emptyMessage="#{language.getThereIsNoFile()}" var="ob">
+						<p:column>
+							<p:commandLink id="downloadLink"
+								value="#{ob.substring(0, ob.lastIndexOf(' '))}" ajax="false"
+								actionListener="#{controlDevice.userFiles.download(ob)}">
+								<p:fileDownload
+									value="#{controlDevice.userFiles.fileDownload.downloadObject}" />
+							</p:commandLink>
+						</p:column>
+						<p:column>
+							<p:commandLink ajax="false" update=":form" immediate="true"
+								action="#{controlDevice.userFiles.delete(ob)}">
+								<p:graphicImage value="/resources/img/x.png" width="24" />
+								<p:confirm header="#{language.getDeleteConfirmation()}"
+									message="#{language.getAreYouSure()}" icon="ui-icon-alert" />
+							</p:commandLink>
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade">
+								<p:commandButton value="#{language.yes}" type="button"
+									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+								<p:commandButton value="#{language.NO}" type="button"
+									styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+							</p:confirmDialog>
+						</p:column>
+					</p:dataList>
+				</p:tab>
 
+			</p:tabView>
 
 		</h:form>
 		<br />

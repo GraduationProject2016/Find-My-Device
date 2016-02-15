@@ -26,6 +26,7 @@ import com.fmd.gp2016.common.util.CommandConstant;
 import com.fmd.gp2016.common.util.Constants;
 import com.fmd.gp2016.common.util.JSONDecoding;
 import com.fmd.gp2016.common.util.JsonHandler;
+import com.fmd.gp2016.common.util.file.UserFiles;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
 import com.fmd.gp2016.web.socket.DevicePool;
 import com.fmd.gp2016.web.socket.DeviceThread;
@@ -46,7 +47,7 @@ public class ControlDeviceBean extends BaseBean {
 	private static int viewId = 0;
 	private final static String User_Device = "userDevices.xhtml";
 	private Stack<String> paths;
-	
+	private UserFiles userFiles;
 	private boolean isPartition = false;
 
 	@Autowired
@@ -67,6 +68,8 @@ public class ControlDeviceBean extends BaseBean {
 		System.out.println("++++++++++++++++++++++++++++");
 		System.out.println(dev);
 		System.out.println("++++++++++++++++++++++++++++");
+
+		userFiles = new UserFiles(getSessionUserID(), deviceServices);
 
 		if (dev == null)
 			redirect(User_Device + "?msg=there is no device by thise details ");
@@ -277,6 +280,13 @@ public class ControlDeviceBean extends BaseBean {
 
 	public void setPartition(boolean isPartition) {
 		this.isPartition = isPartition;
+	}
+
+	/**
+	 * @return the userFiles
+	 */
+	public UserFiles getUserFiles() {
+		return userFiles;
 	}
 
 }

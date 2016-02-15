@@ -8,37 +8,26 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import org.json.JSONException;
 import org.primefaces.model.DefaultStreamedContent;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.fmd.gp2016.common.service.DeviceService;
-import com.fmd.gp2016.common.util.file.UserFiles;
+import com.fmd.gp2016.common.util.Constants;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
 
 /**
  * @author mohamed265
  *
  */
-@Named("test")
+@Named("downloadAppsBean")
 @SpringViewScoped
-public class TEST extends BaseBean {
-	private UserFiles userFiles;
-
-	@Autowired
-	private DeviceService deviceService;
+public class DownloadAppsBean extends BaseBean {
 
 	private DefaultStreamedContent downloadObject;
 
-	@PostConstruct
-	public void init() throws JSONException {
-		userFiles = new UserFiles(getSessionUserID(), deviceService);
+	public DownloadAppsBean() {
 	}
 
 	public void download(String filePath) throws Exception {
@@ -50,13 +39,6 @@ public class TEST extends BaseBean {
 				new DefaultStreamedContent(input, externalContext.getMimeType(file.getName()), file.getName()));
 	}
 
-	public String delete(String filePath) {
-		System.out.println("in delete");
-		new File(filePath).delete();
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("تم حذف الملف"));
-		return "";
-	}
-
 	public DefaultStreamedContent getDownloadObject() {
 		System.out.println("GET = " + downloadObject.getName());
 		return downloadObject;
@@ -66,8 +48,11 @@ public class TEST extends BaseBean {
 		this.downloadObject = downloadObject;
 	}
 
-	public UserFiles getUserFiles() {
-		return userFiles;
+	public void downloadDesktopApp() throws Exception {
+		download(Constants.CLIENT_DESKTOP);
 	}
 
+	public void downloadAndroidApp() throws Exception {
+		download(Constants.CLIENT_ANDROID);
+	}
 }
