@@ -17,14 +17,14 @@
 			<p:tabView dir="#{language.dir}">
 				<p:tab title="#{language.deviceDetails}">
 					<h:panelGrid columns="2" cellpadding="5">
-						<p:outputLabel value="Device Name: " style="font-weight:bold" />
+						<p:outputLabel value="#{language.DEVICE_NAME}" style="font-weight:bold" />
 						<p:outputLabel value="#{deviceSetting.device.name}" />
 
-						<p:outputLabel value="Device Mac Address: "
+						<p:outputLabel value="#{language.macAdName}"
 							style="font-weight:bold" />
 						<p:outputLabel value="#{deviceSetting.device.macAddress}" />
 
-						<p:outputLabel value="Last Active Date: " style="font-weight:bold" />
+						<p:outputLabel value="#{language.lastActiveName}: " style="font-weight:bold" />
 						<p:outputLabel value="#{deviceSetting.device.lastActiveDate}" />
 
 
@@ -32,35 +32,35 @@
 				</p:tab>
 				<p:tab title="#{language.changeDevicePassword}">
 					<h:panelGrid columns="2" cellpadding="10">
-						<p:outputLabel for="oldPass" value="Old Password " />
+						<p:outputLabel for="oldPass" value="#{language.oldPassword} " />
 						<p:password id="oldPass" value="#{deviceSetting.oldPassword}" />
 
-						<p:outputLabel for="newPass" value="New Password " />
+						<p:outputLabel for="newPass" value="#{language.getNewPassword()}" />
 						<p:password id="newPass" value="#{deviceSetting.newPassword}" />
 
-						<p:outputLabel for="renewPass" value="ReNew Password " />
+						<p:outputLabel for="renewPass" value="#{language.reNewPassword}" />
 						<p:password id="renewPass" value="#{deviceSetting.reNewPassword}" />
 
-						<p:commandButton value="Change"
+						<p:commandButton value="#{language.getChangeName()}"
 							actionListener="#{deviceSetting.changePassword()}"></p:commandButton>
 					</h:panelGrid>
 				</p:tab>
 				<p:tab title="#{language.changeDeviceName}">
 					<h:panelGrid columns="2" cellpadding="10">
 
-						<p:outputLabel for="deviceName" value="Enter Your New Device Name" />
+						<p:outputLabel for="deviceName" value="#{language.DEVICE_NAME}" />
 						<p:inputText id="deviceName"
 							value="#{deviceSetting.deviceNewName}" />
 
-						<p:outputLabel for="Pass" value="Enter you password " />
+						<p:outputLabel for="Pass" value="#{language.OUTPUTTEXT_PASSWORD}" />
 						<p:password id="Pass"
 							value="#{deviceSetting.confirmationPassword}" />
-						<p:commandButton value="Change"
+						<p:commandButton value="#{language.getChangeName()}"
 							actionListener="#{deviceSetting.changeDeviceName()}"></p:commandButton>
 					</h:panelGrid>
 				</p:tab>
 
-				<p:tab title="files">
+				<p:tab title="#{language.getFiles()}">
 					<p:dataList id="dataTable"
 						value="#{deviceSetting.userFiles.getFilesDeviceList(deviceSetting.deviceID)}"
 						emptyMessage="#{language.getThereIsNoFile()}" var="ob">

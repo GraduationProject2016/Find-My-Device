@@ -164,6 +164,22 @@ public interface Language {
 	
 	public String getNO();
 	
+	public String getDeviceName();
+	
+	public String getMacAdName();
+	
+	public String getLastActiveName();
+	
+	public String getOldPassword();
+	
+	public String getNewPassword();
+	
+	public String getReNewPassword();
+	
+	public String getChangeName();
+	
+	public String getFiles();
+	
 	
 
 }
