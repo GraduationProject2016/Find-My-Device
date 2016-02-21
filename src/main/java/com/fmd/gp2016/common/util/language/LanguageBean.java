@@ -415,15 +415,82 @@ public class LanguageBean implements Language {
 		return lang.getAboutUsName();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.fmd.gp2016.common.util.language.Language#getlogOutName()
-	 */
 	@Override
 	public String getlogOutName() {
-		// TODO Auto-generated method stub
 		return lang.getlogOutName();
+	}
+
+	@Override
+	public String getThereIsNoFile() {
+		return lang.getThereIsNoFile();
+	}
+
+	@Override
+	public String getDeleteConfirmation() {
+		return lang.getDeleteConfirmation();
+	}
+
+	@Override
+	public String getAreYouSure() {
+		return lang.getAreYouSure();
+	}
+
+	@Override
+	public String getYes() {
+		return lang.getYes();
+	}
+
+	@Override
+	public String getNO() {
+		return lang.getNO();
+	}
+
+
+	@Override
+	public String getDeviceName() {
+		return lang.getDeviceName();
+	}
+
+
+	@Override
+	public String getMacAdName() {
+		return lang.getMacAdName();
+	}
+
+
+	@Override
+	public String getLastActiveName() {
+		return lang.getLastActiveName();
+	}
+
+
+	@Override
+	public String getOldPassword() {
+		return lang.getOldPassword();
+	}
+
+
+	@Override
+	public String getNewPassword() {
+		return lang.getNewPassword();
+	}
+
+
+	@Override
+	public String getReNewPassword() {
+		
+		return lang.getReNewPassword();
+	}
+
+	@Override
+	public String getChangeName() {
+		return lang.getChangeName();
+	}
+
+
+	@Override
+	public String getFiles() {
+		return lang.getFiles();
 	}
 
 }

@@ -18,6 +18,11 @@ public class Constants {
 	public static final String UsernameNotUniqe = "UsernameNotUniqe";
 	public static final String MobileNumberNotUniqe = "mobileNotUniqe";
 	public static final String MacNotUniqe = "MacAddressNotNniqe";
+
+	// apps path
+	public static final String CLIENT_DESKTOP = "C:\\uploads\\client apps\\Find My Device.exe";
+	public static final String CLIENT_ANDROID = "C:\\uploads\\client apps\\FindMyDevice.apk";
+
 	// Web Service Constants
 	public static final String ID = "id";
 	public static final String USER_NAME = "username";

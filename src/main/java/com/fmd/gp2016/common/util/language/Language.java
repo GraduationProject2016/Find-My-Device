@@ -153,5 +153,33 @@ public interface Language {
 	public String getAboutUsName();
 	
 	public String getlogOutName();
+	
+	public String getThereIsNoFile();
+	
+	public String getDeleteConfirmation();
+	
+	public String getAreYouSure();
+	
+	public String getYes();
+	
+	public String getNO();
+	
+	public String getDeviceName();
+	
+	public String getMacAdName();
+	
+	public String getLastActiveName();
+	
+	public String getOldPassword();
+	
+	public String getNewPassword();
+	
+	public String getReNewPassword();
+	
+	public String getChangeName();
+	
+	public String getFiles();
+	
+	
 
 }
