@@ -223,16 +223,16 @@ public class ControlDeviceBean extends BaseBean {
 	}
 
 	public String delete(String fileName) throws JSONException {
-		String content = CommandConstant.removeDirectory;
-		Command command = new Command(content, new String[] { computer.path + "/" + fileName });
-		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
-				Constants.SERVER_TO_CLIENT);
-		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
-		MessageDto msgdto = deviceThread.readOneMessage(viewId);
-		// computer = JSONDecoding.decodeJsonOFPathContent(new
-		// JSONObject(msgdto.getContent()));
-		open("");
-
+//		String content = CommandConstant.removeDirectory;
+//		Command command = new Command(content, new String[] { computer.path + "/" + fileName });
+//		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
+//				Constants.SERVER_TO_CLIENT);
+//		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
+//		MessageDto msgdto = deviceThread.readOneMessage(viewId);
+//		// computer = JSONDecoding.decodeJsonOFPathContent(new
+//		// JSONObject(msgdto.getContent()));
+//		open("");
+//
 		return "";
 	}
 
