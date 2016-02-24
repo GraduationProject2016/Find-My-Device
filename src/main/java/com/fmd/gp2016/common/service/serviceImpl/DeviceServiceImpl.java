@@ -82,4 +82,7 @@ public class DeviceServiceImpl implements DeviceService {
 		deviceDao.updateDevice(dev);
 	}
 
+	public Boolean isRegisteredDevice(String mac_address){
+		return (deviceDao.selecColumntByIDNative("mac_address", mac_address) == null ? false : true);
+	}
 }

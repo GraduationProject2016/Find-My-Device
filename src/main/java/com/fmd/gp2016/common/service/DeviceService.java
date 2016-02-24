@@ -29,4 +29,5 @@ public interface DeviceService {
 
 	public void updateDevice(Device dev);
 
+	public Boolean isRegisteredDevice(String mac_address);
 }

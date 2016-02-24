@@ -56,4 +56,17 @@ public class DeviceWebService {
 		deviceService.saveDevice(dev);
 		return dev;
 	}
+
+	@Path("/devicefounded/{" + Constants.MAC_ADDRESS + "}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Device devicefounded(@PathParam(Constants.MAC_ADDRESS) String macAddress) {
+		Device dev = new Device();
+		if (deviceService.isRegisteredDevice(macAddress)) {
+			dev.setStatus("founded");
+		} else {
+			dev.setStatus("not founded");
+		}
+		return dev;
+	}
 }
