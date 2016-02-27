@@ -523,4 +523,9 @@ public class ArabicLanguage implements Language {
 		return "ملفات";
 	}
 
+	@Override
+	public String getDeviceLocation() {
+		return "مكان الجهاز";
+	}
+
 }

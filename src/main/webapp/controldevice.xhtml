@@ -109,7 +109,7 @@
 						</f:facet>
 					</p:dataTable>
 				</p:tab>
-				<p:tab title="#{language.getFiles()}" >
+				<p:tab title="#{language.getFiles()}">
 					<p:dataList id="dataTable"
 						value="#{controlDevice.userFiles.getFilesDeviceList(controlDevice.deviceID)}"
 						emptyMessage="#{language.getThereIsNoFile()}" var="ob">
@@ -137,6 +137,9 @@
 							</p:confirmDialog>
 						</p:column>
 					</p:dataList>
+				</p:tab>
+				<p:tab title="#{language.getDeviceLocation()}">
+					
 				</p:tab>
 
 			</p:tabView>

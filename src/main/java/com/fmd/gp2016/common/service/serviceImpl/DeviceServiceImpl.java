@@ -4,6 +4,8 @@
  */
 package com.fmd.gp2016.common.service.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.fmd.gp2016.common.dao.DeviceDao;
 import com.fmd.gp2016.common.entity.Device;
+import com.fmd.gp2016.common.entity.DeviceLocation;
 import com.fmd.gp2016.common.entity.User;
 import com.fmd.gp2016.common.service.DeviceService;
 import com.fmd.gp2016.common.util.Constants;
@@ -76,10 +79,24 @@ public class DeviceServiceImpl implements DeviceService {
 		return deviceDao.getAllUserDevicesByUserId(id);
 	}
 
-	
 	@Override
 	public void updateDevice(Device dev) {
 		deviceDao.updateDevice(dev);
 	}
 
+	@Override
+	public void updateLastActiveIn(Device dev) {
+		dev.setLastActiveDate(new Date());
+		updateDevice(dev);
+	}
+
+	@Override
+	public void addDeviceLocation(DeviceLocation deviceLocation) {
+		deviceDao.saveDeviceLocation(deviceLocation);
+	}
+
+	@Override
+	public ArrayList<DeviceLocation> findAllDeviceLocationByDevice(Device device) {
+		return deviceDao.getAllDeviceLocation(device.getId());
+	}
 }

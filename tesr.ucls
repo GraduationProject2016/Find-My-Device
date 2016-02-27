@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.9" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
+  router="FAN">  
+  <package id="1" language="java" name="com.fmd.gp2016.common" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="486" width="611" x="604" y="46"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="2" language="java" name="com.fmd.gp2016.web" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/web" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="161" width="464" x="83" y="204"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="3" language="java" name="com.fmd.gp2016.common.dao" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/dao" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="196" x="640" y="133"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="4" language="java" name="com.fmd.gp2016.common.dto" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/dto" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="193" x="962" y="136"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="5" language="java" name="com.fmd.gp2016.common.entity" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/entity" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="745" y="239"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="6" language="java" name="com.fmd.gp2016.common.filesystemstructure" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/filesystemstructure" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="777" y="405"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="7" language="java" name="com.fmd.gp2016.common.managedBean" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/managedBean" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="257" x="636" y="302"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="8" language="java" name="com.fmd.gp2016.common.service" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/service" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="217" x="963" y="288"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="9" language="java" name="com.fmd.gp2016.common.util" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/util" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1057" y="238"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="10" language="java" name="com.fmd.gp2016.web.socket" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/web/socket" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="200" y="306"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="11" language="java" name="com.fmd.gp2016.web.webservice" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/web/webservice" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="415" y="312"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

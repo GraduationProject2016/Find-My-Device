@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.fmd.gp2016.common.dto.Command;
 import com.fmd.gp2016.common.dto.MessageDto;
 import com.fmd.gp2016.common.entity.Device;
+import com.fmd.gp2016.common.entity.DeviceLocation;
 import com.fmd.gp2016.common.filesystemstructure.ComputerFilesSystem;
 import com.fmd.gp2016.common.filesystemstructure.FMDPartion;
 import com.fmd.gp2016.common.service.DeviceService;
@@ -49,6 +50,7 @@ public class ControlDeviceBean extends BaseBean {
 	private Stack<String> paths;
 	private UserFiles userFiles;
 	private boolean isPartition = false;
+	private ArrayList<DeviceLocation> deviceLocation;
 
 	@Autowired
 	public DeviceService deviceServices;
@@ -58,6 +60,7 @@ public class ControlDeviceBean extends BaseBean {
 		deviceID = Integer.parseInt(
 				FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("device_id"));
 		paths = new Stack<>();
+	//	deviceLocation = deviceServices.findAllDeviceLocationByDevice(new De)
 		ArrayList<Device> devices = (ArrayList<Device>) deviceServices.getAllUserDevicesByUserId(getSessionUserID());
 		Device dev = new Device();
 

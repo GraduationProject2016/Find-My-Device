@@ -14,6 +14,10 @@ import java.net.URL;
  */
 public class WebServiceConnector {
 
+	public static void main(String[] args) {
+		System.out.println(getResponeString("http://localhost:8080/fmd/findlocation.html"));
+	}
+
 	public static String getResponeString(String urll) {
 		try {
 			URL url = new URL(urll);

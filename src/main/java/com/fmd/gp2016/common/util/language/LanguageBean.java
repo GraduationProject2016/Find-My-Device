@@ -492,5 +492,10 @@ public class LanguageBean implements Language {
 	public String getFiles() {
 		return lang.getFiles();
 	}
+ 
+	@Override
+	public String getDeviceLocation() { 
+		return lang.getDeviceLocation();
+	}
 
 }
