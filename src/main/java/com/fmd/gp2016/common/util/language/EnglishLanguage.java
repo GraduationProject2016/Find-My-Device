@@ -543,5 +543,9 @@ public class EnglishLanguage implements Language {
 	public String getDeviceLocation() {
 		return "Device Location";
 	}
+	@Override
+	public String getNOW() {
+		return "Now";
+	}
 
 }

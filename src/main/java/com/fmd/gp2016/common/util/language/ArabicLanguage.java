@@ -450,7 +450,7 @@ public class ArabicLanguage implements Language {
 	public String getlogOutName() {
 		return "خروج";
 	}
-	
+
 	@Override
 	public String getThereIsNoFile() {
 		return "لآ توجد ملفات";
@@ -481,42 +481,35 @@ public class ArabicLanguage implements Language {
 		return " اسم الجهاز";
 	}
 
-
 	@Override
 	public String getMacAdName() {
 		return "عنوان الماك";
 	}
-
 
 	@Override
 	public String getLastActiveName() {
 		return "اخر مره اتصال";
 	}
 
-
 	@Override
 	public String getOldPassword() {
 		return "كلمه المرور القديمه";
 	}
-
 
 	@Override
 	public String getNewPassword() {
 		return "كلمه المرور الجديده";
 	}
 
-
 	@Override
 	public String getReNewPassword() {
 		return "اعد ادخال كلمه المرور";
 	}
 
-
 	@Override
 	public String getChangeName() {
 		return "عدل";
 	}
-
 
 	@Override
 	public String getFiles() {
@@ -526,6 +519,11 @@ public class ArabicLanguage implements Language {
 	@Override
 	public String getDeviceLocation() {
 		return "مكان الجهاز";
+	}
+
+	@Override
+	public String getNOW() {
+		return "الان";
 	}
 
 }

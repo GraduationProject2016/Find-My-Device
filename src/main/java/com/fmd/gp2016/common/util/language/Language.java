@@ -182,5 +182,7 @@ public interface Language {
 	
 	public String getDeviceLocation();
 	
+	public String getNOW();
+	
 
 }

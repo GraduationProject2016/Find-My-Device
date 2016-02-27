@@ -15,6 +15,8 @@ import com.fmd.gp2016.common.entity.Device;
 import com.fmd.gp2016.common.service.DeviceService;
 import com.fmd.gp2016.common.util.Constants;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
+import com.fmd.gp2016.web.socket.DevicePool;
+import com.fmd.gp2016.web.socket.DeviceThread;
 
 /**
  * @author IbrahimAli
@@ -39,6 +41,18 @@ public class UserDevicesBean extends BaseBean {
 		devices = userDevicesService.getAllUserDevicesByUserId(getSessionUserID());
 		deletePassword = controlPassword = "";
 		checkMsg();
+
+		for (DeviceThread dt : DevicePool.getUserConectedDevices(getSessionUserID())) {
+			for (Device d : devices) {
+				if (d.getId().equals(dt.getDevice().getId())) {
+					d.setStatus(getSessionLanguage().getNOW());
+				}
+			}
+		}
+		for (Device d : devices) {
+			if (d.getStatus() == null)
+				d.setStatus(d.getLastActiveDate().toString());
+		}
 
 	}
 

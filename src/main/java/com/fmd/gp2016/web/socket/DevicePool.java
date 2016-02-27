@@ -45,7 +45,7 @@ public class DevicePool {
 	}
 
 	public static ArrayList<DeviceThread> getUserConectedDevices(Integer userId) {
-		ArrayList<DeviceThread> list = null;
+		ArrayList<DeviceThread> list = new ArrayList<>();
 		for (Object key : map.keySet()) {
 			DeviceThread deviceThread = map.get(key);
 			try {

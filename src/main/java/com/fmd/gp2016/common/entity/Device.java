@@ -82,7 +82,7 @@ public class Device implements Serializable {
 
 	@Transient
 	private String status;
-
+ 
 	public Device() {
 
 	}
