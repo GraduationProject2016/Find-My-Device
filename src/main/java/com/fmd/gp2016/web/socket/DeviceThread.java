@@ -178,6 +178,7 @@ public class DeviceThread extends Thread {
 
 	public void close() {
 		try {
+			server.getDeviceService().updateLastActiveIn(device);
 			if (socket != null)
 				socket.close();
 			if (streamIn != null)
