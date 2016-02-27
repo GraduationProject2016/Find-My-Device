@@ -103,6 +103,8 @@ public class DeviceDaoImpl implements DeviceDao {
 
 	@Override
 	public List<DeviceLocation> getAllDeviceLocation(Integer deviceid) {
-		return em.createNamedQuery("DeviceLocation.findAllByDeviceId").getResultList();
+		Query query = em.createNamedQuery("DeviceLocation.findAllByDeviceId");
+		query.setParameter("DEVICEID", deviceid);
+		return query.getResultList();
 	}
 }

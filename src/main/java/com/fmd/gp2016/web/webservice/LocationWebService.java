@@ -4,6 +4,8 @@
  */
 package com.fmd.gp2016.web.webservice;
 
+import java.util.Date;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -21,12 +23,12 @@ import com.fmd.gp2016.common.service.DeviceService;
  * @author mohamed265
  */
 @Path("/location")
-public class Location {
+public class LocationWebService {
 
 	@Autowired
 	private DeviceService deviceService;
 
-	public Location() {
+	public LocationWebService() {
 		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
 	}
 
@@ -38,6 +40,7 @@ public class Location {
 		DeviceLocation dl = new DeviceLocation();
 		dl.setLatitude(latitude);
 		dl.setLongitude(longitude);
+		dl.setTakeIn(new Date());
 		Device devref = new Device();
 		devref.setId(Integer.parseInt(deviceId));
 		dl.setDevice(devref);

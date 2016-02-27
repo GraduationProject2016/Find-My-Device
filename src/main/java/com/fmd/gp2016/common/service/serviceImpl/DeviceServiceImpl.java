@@ -4,7 +4,6 @@
  */
 package com.fmd.gp2016.common.service.serviceImpl;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -96,7 +95,12 @@ public class DeviceServiceImpl implements DeviceService {
 	}
 
 	@Override
-	public ArrayList<DeviceLocation> findAllDeviceLocationByDevice(Device device) {
+	public List<DeviceLocation> findAllDeviceLocationByDevice(Device device) {
 		return deviceDao.getAllDeviceLocation(device.getId());
+	}
+
+	public Boolean isRegisteredDevice(String mac_address) {
+		return (deviceDao.selecColumntByIDNative("mac_address", mac_address) == null ? false : true);
+
 	}
 }

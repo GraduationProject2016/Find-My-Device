@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
  * @author mohamed265
  */
 @Entity
-@NamedQueries({ @NamedQuery(name = "DeviceLocation.findAllByDeviceId", query = "SELECT l FROM DeviceLocation l WHERE l.device.id =:DEVICEID") })
+@NamedQueries({ @NamedQuery(name = "DeviceLocation.findAllByDeviceId", query = "SELECT l FROM DeviceLocation l WHERE l.device.id = :DEVICEID") })
 public class DeviceLocation implements Serializable {
 
 	private static final long serialVersionUID = 1L;

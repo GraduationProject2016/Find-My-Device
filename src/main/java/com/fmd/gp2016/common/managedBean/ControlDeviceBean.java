@@ -50,7 +50,9 @@ public class ControlDeviceBean extends BaseBean {
 	private Stack<String> paths;
 	private UserFiles userFiles;
 	private boolean isPartition = false;
-	private ArrayList<DeviceLocation> deviceLocation;
+
+	private List<DeviceLocation> deviceLocation;
+	private String locationId;
 
 	@Autowired
 	public DeviceService deviceServices;
@@ -60,7 +62,9 @@ public class ControlDeviceBean extends BaseBean {
 		deviceID = Integer.parseInt(
 				FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("device_id"));
 		paths = new Stack<>();
-	//	deviceLocation = deviceServices.findAllDeviceLocationByDevice(new De)
+		locationId = null;
+		deviceLocation = deviceServices.findAllDeviceLocationByDevice(new Device(deviceID));
+		System.out.println("Device location Size: " + deviceLocation.size());
 		ArrayList<Device> devices = (ArrayList<Device>) deviceServices.getAllUserDevicesByUserId(getSessionUserID());
 		Device dev = new Device();
 
@@ -111,6 +115,7 @@ public class ControlDeviceBean extends BaseBean {
 	}
 
 	public void change() {
+
 		userFiles = new UserFiles(getSessionUserID(), deviceServices);
 	}
 
@@ -200,6 +205,29 @@ public class ControlDeviceBean extends BaseBean {
 		return "";
 	}
 
+	public String findDeviceLocation() {
+		String content = CommandConstant.deviceLocation;
+		Command command = new Command(content, null);
+		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
+				Constants.SERVER_TO_CLIENT);
+		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
+		deviceThread.readOneMessage(viewId);
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		deviceLocation = deviceServices.findAllDeviceLocationByDevice(new Device(deviceID));
+
+		try {
+			locationId = deviceLocation.get(deviceLocation.size() - 1).toDisplayForm();
+		} catch (Exception e) {
+			locationId = null;
+		}
+		return "";
+	}
+
 	public String creatNewDirectory(String folderName) throws JSONException {
 		String content = CommandConstant.createNewDirectory;
 		System.out.println(folderName);
@@ -226,16 +254,18 @@ public class ControlDeviceBean extends BaseBean {
 	}
 
 	public String delete(String fileName) throws JSONException {
-		String content = CommandConstant.removeDirectory;
-		Command command = new Command(content, new String[] { computer.path + "/" + fileName });
-		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
-				Constants.SERVER_TO_CLIENT);
-		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
-		MessageDto msgdto = deviceThread.readOneMessage(viewId);
-		// computer = JSONDecoding.decodeJsonOFPathContent(new
-		// JSONObject(msgdto.getContent()));
-		open("");
-
+		// String content = CommandConstant.removeDirectory;
+		// Command command = new Command(content, new String[] { computer.path +
+		// "/" + fileName });
+		// MessageDto msg = new MessageDto(deviceID, userID,
+		// JsonHandler.getCommandJson(command),
+		// Constants.SERVER_TO_CLIENT);
+		// deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
+		// MessageDto msgdto = deviceThread.readOneMessage(viewId);
+		// // computer = JSONDecoding.decodeJsonOFPathContent(new
+		// // JSONObject(msgdto.getContent()));
+		// open("");
+		//
 		return "";
 	}
 
@@ -294,6 +324,18 @@ public class ControlDeviceBean extends BaseBean {
 	 */
 	public UserFiles getUserFiles() {
 		return userFiles;
+	}
+
+	public List<DeviceLocation> getDeviceLocation() {
+		return deviceLocation;
+	}
+
+	public String getLocationId() {
+		return locationId;
+	}
+
+	public void setLocationId(String locationId) {
+		this.locationId = locationId;
 	}
 
 }
