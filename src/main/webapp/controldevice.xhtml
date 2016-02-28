@@ -173,7 +173,8 @@
 							actionListener="#{controlDevice.findDeviceLocation()}" />
 					</p:panelGrid>
 					<p:gmap id="gmap" center="#{controlDevice.locationId}" zoom="15"
-						type="HYBRID" style="width:100%;height:400px" streetView="true" />
+						type="HYBRID" style="width:100%;height:400px" streetView="true"
+						model="#{controlDevice.simpleModel}" />
 				</p:tab>
 
 			</p:tabView>

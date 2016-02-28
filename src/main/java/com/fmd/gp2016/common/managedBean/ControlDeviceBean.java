@@ -14,6 +14,10 @@ import javax.inject.Named;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fmd.gp2016.common.dto.Command;
@@ -53,6 +57,7 @@ public class ControlDeviceBean extends BaseBean {
 
 	private List<DeviceLocation> deviceLocation;
 	private String locationId;
+	private MapModel simpleModel;
 
 	@Autowired
 	public DeviceService deviceServices;
@@ -64,7 +69,19 @@ public class ControlDeviceBean extends BaseBean {
 		paths = new Stack<>();
 		locationId = null;
 		deviceLocation = deviceServices.findAllDeviceLocationByDevice(new Device(deviceID));
+		simpleModel = new DefaultMapModel();
+		for (int i = 0; deviceLocation != null && i < deviceLocation.size(); i++) {
+			DeviceLocation dl = deviceLocation.get(i);
+			simpleModel.addOverlay(
+					new Marker(new LatLng(Double.parseDouble(dl.getLatitude()), Double.parseDouble(dl.getLongitude())),
+							dl.getTakeIn().toString()));
+		}
 		System.out.println("Device location Size: " + deviceLocation.size());
+		try {
+			locationId = deviceLocation.get(deviceLocation.size() - 1).toDisplayForm();
+		} catch (Exception e) {
+			locationId = null;
+		}
 		ArrayList<Device> devices = (ArrayList<Device>) deviceServices.getAllUserDevicesByUserId(getSessionUserID());
 		Device dev = new Device();
 
@@ -219,6 +236,13 @@ public class ControlDeviceBean extends BaseBean {
 			e.printStackTrace();
 		}
 		deviceLocation = deviceServices.findAllDeviceLocationByDevice(new Device(deviceID));
+		simpleModel = new DefaultMapModel();
+		for (int i = 0; deviceLocation != null && i < deviceLocation.size(); i++) {
+			DeviceLocation dl = deviceLocation.get(i);
+			simpleModel.addOverlay(
+					new Marker(new LatLng(Double.parseDouble(dl.getLatitude()), Double.parseDouble(dl.getLongitude())),
+							dl.getTakeIn().toString()));
+		}
 
 		try {
 			locationId = deviceLocation.get(deviceLocation.size() - 1).toDisplayForm();
@@ -336,6 +360,14 @@ public class ControlDeviceBean extends BaseBean {
 
 	public void setLocationId(String locationId) {
 		this.locationId = locationId;
+	}
+
+	public MapModel getSimpleModel() {
+		return simpleModel;
+	}
+
+	public void setSimpleModel(MapModel simpleModel) {
+		this.simpleModel = simpleModel;
 	}
 
 }

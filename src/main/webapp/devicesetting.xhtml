@@ -107,7 +107,7 @@
 					</p:selectOneMenu>
 
 					<p:gmap id="gmap" center="#{deviceSetting.locationId}" zoom="15"
-						type="HYBRID" style="width:100%;height:400px" streetView="true" />
+						type="HYBRID" style="width:100%;height:400px" streetView="true" model="#{deviceSetting.simpleModel}"/>
 				</p:tab>
 
 			</p:tabView>
