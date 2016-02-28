@@ -180,6 +180,9 @@ public interface Language {
 	
 	public String getFiles();
 	
+	public String getDeviceLocation();
+	
+	public String getNOW();
 	
 
 }

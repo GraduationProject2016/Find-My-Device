@@ -24,4 +24,5 @@ public class CommandConstant {
 	
 	public static final String filetransfer = "filetransfer";
 
+	public static final String deviceLocation = "deviceLocation";
 }

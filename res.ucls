@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <package id="1" language="java" name="com.fmd.gp2016.common.managedBean" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/managedBean" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="498" width="1217" x="60" y="30"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="2" language="java" name="com.fmd.gp2016.common.managedBean.ControlDeviceBean" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/managedBean/ControlDeviceBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="222" x="109" y="343"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.fmd.gp2016.common.managedBean.UserDevicesBean" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/managedBean/UserDevicesBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="200" x="368" y="343"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.fmd.gp2016.common.managedBean.UpdateProfileBean" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/managedBean/UpdateProfileBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="219" x="589" y="342"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.fmd.gp2016.common.managedBean.BaseBean" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/managedBean/BaseBean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="248" width="207" x="569" y="80"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.fmd.gp2016.common.managedBean.DeviceSettingBean" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/managedBean/DeviceSettingBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="210" x="840" y="347"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.fmd.gp2016.common.managedBean.LoginBean" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/managedBean/LoginBean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="182" x="1080" y="348"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.fmd.gp2016.common.managedBean.DownloadAppsBean" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/managedBean/DownloadAppsBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="269" x="869" y="462"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="com.fmd.gp2016.common.managedBean.MenuBean" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/managedBean/MenuBean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="182" x="594" y="470"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.fmd.gp2016.common.managedBean.SignupBean" project="GP2016" 
+    file="/GP2016/src/main/java/com/fmd/gp2016/common/managedBean/SignupBean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="210" x="288" y="469"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="12">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="13">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="14">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="15">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="16">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="17">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="18">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Hello World</title>
+<script src="resources/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition);
+	} else {
+		url += -1 + "/" + -1;
+	}
+
+	var url = "http://localhost:8080/fmd/webService/location/";
+
+	function showPosition(position) {
+		// 		document.write(position.coords.latitude + " "
+		// 				+ position.coords.longitude);
+		var curentUrl = window.location + "";
+		var index = curentUrl.lastIndexOf("=");
+		var deviceId = curentUrl.substr(index + 1, curentUrl.length - index);
+		url += deviceId;
+		url += "/" + position.coords.latitude + "/" + position.coords.longitude;
+		connectToWebService();
+	}
+
+	function connectToWebService() {
+		$.get(url, {}, function(response) {
+			history.go("http://www.google.com/");
+			window.close();
+		}).error(function() {
+			history.go("http://www.google.com/");
+			window.close();
+		});
+	}
+</script>
+</head>
+<body>
+	<button>close</button>
+</body>
+</html>

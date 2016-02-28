@@ -11,7 +11,8 @@
          #{language.USER_DEVICES_PAGE_NAME}
         </ui:define>
 	<ui:define name="content">
-
+		<script src="http://maps.google.com/maps/api/js?sensor=false"
+			type="text/javascript"></script>
 		<p:messages globalOnly="true" />
 		<p:growl id="msg" showDetail="true" />
 		<h:form id="form">
@@ -35,7 +36,7 @@
 					</p:dataTable>
 					<p:dataTable var="file" value="#{controlDevice.partitions}"
 						emptyMessage="" rendered="#{controlDevice.isPartition() == true}">
-						<p:column >
+						<p:column>
 							<h:outputText value="#{file.name}" />
 						</p:column>
 
@@ -89,7 +90,7 @@
 									emptyMessage=""
 									rendered="#{controlDevice.isPartition() == false}">
 									<p:column sortBy="#{file.name}" headerText="Name">
-										<h:outputText value="#{file.name}" id="na"/>
+										<h:outputText value="#{file.name}" id="na" />
 										<p:tooltip id="toolTipFadee" for="na" value="#{file.name}" />
 									</p:column>
 
@@ -103,12 +104,15 @@
 
 									<p:column>
 										<p:commandButton icon="ui-icon-copy"
-											actionListener="#{controlDevice.get(file.name)}" ajax="false" id="copy"/>
-											<p:tooltip id="toolTipFade" for="copy" value="Copy this file to server" />
+											actionListener="#{controlDevice.get(file.name)}" ajax="false"
+											id="copy" />
+										<p:tooltip id="toolTipFade" for="copy"
+											value="Copy this file to server" />
 										<p:commandButton
 											actionListener="#{controlDevice.delete(file.name)}"
-											ajax="false" icon="ui-icon-close" id="delete"/>
-											<p:tooltip id="toolTipFades" for="delete" value="delete this file" />
+											ajax="false" icon="ui-icon-close" id="delete" />
+										<p:tooltip id="toolTipFades" for="delete"
+											value="delete this file" />
 									</p:column>
 									<f:facet name="footer">
 										<p:outputLabel
@@ -152,6 +156,22 @@
 							</p:confirmDialog>
 						</p:column>
 					</p:dataList>
+				</p:tab>
+				<p:tab title="#{language.getDeviceLocation()}">
+					<p:panelGrid columns="2">
+						<p:selectOneMenu value="#{controlDevice.locationId}">
+							<f:selectItem noSelectionOption="true"
+								itemLabel="chose device location" itemValue="null" />
+							<f:selectItems value="#{controlDevice.deviceLocation}" var="dl"
+								itemLabel="#{dl.takeIn}" itemValue="#{dl.toDisplayForm()}" />
+							<p:ajax update="gmap" />
+						</p:selectOneMenu>
+						<p:commandButton value="Find Location" ajax="false"
+							actionListener="#{controlDevice.findDeviceLocation()}" />
+					</p:panelGrid>
+					<p:gmap id="gmap" center="#{controlDevice.locationId}" zoom="15"
+						type="HYBRID" style="width:100%;height:400px" streetView="true"
+						model="#{controlDevice.simpleModel}" />
 				</p:tab>
 
 			</p:tabView>

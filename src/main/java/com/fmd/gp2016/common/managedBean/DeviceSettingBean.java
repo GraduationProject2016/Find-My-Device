@@ -4,14 +4,21 @@
  */
 package com.fmd.gp2016.common.managedBean;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.json.JSONException;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fmd.gp2016.common.entity.Device;
+import com.fmd.gp2016.common.entity.DeviceLocation;
 import com.fmd.gp2016.common.service.DeviceService;
 import com.fmd.gp2016.common.util.file.UserFiles;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
@@ -28,6 +35,9 @@ public class DeviceSettingBean extends BaseBean {
 	private int deviceID;
 	private Device device = new Device();
 	private UserFiles userFiles;
+	private List<DeviceLocation> deviceLocation;
+	private String locationId;
+	private MapModel simpleModel;
 
 	@Autowired
 	private DeviceService deviceService;
@@ -40,8 +50,21 @@ public class DeviceSettingBean extends BaseBean {
 		device = deviceService.getDeviceById(deviceID);
 		System.out.println(device);
 		userFiles = new UserFiles(getSessionUserID(), deviceService);
+		deviceLocation = deviceService.findAllDeviceLocationByDevice(new Device(deviceID));
+		simpleModel = new DefaultMapModel();
+		for (int i = 0; deviceLocation != null && i < deviceLocation.size(); i++) {
+			DeviceLocation dl = deviceLocation.get(i);
+			simpleModel.addOverlay(
+					new Marker(new LatLng(Double.parseDouble(dl.getLatitude()), Double.parseDouble(dl.getLongitude())),
+							dl.getTakeIn().toString()));
+		}
+		try {
+			locationId = deviceLocation.get(deviceLocation.size() - 1).toDisplayForm();
+		} catch (Exception e) {
+			locationId = null;
+		}
 	}
-	
+
 	public void change() {
 		userFiles = new UserFiles(getSessionUserID(), deviceService);
 	}
@@ -139,6 +162,26 @@ public class DeviceSettingBean extends BaseBean {
 
 	public String delete(String fileName) {
 		return userFiles.delete((fileName));
+	}
+
+	public List<DeviceLocation> getDeviceLocation() {
+		return deviceLocation;
+	}
+
+	public String getLocationId() {
+		return locationId;
+	}
+
+	public void setLocationId(String locationId) {
+		this.locationId = locationId;
+	}
+
+	public MapModel getSimpleModel() {
+		return simpleModel;
+	}
+
+	public void setSimpleModel(MapModel simpleModel) {
+		this.simpleModel = simpleModel;
 	}
 
 }

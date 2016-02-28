@@ -7,6 +7,7 @@ package com.fmd.gp2016.common.service;
 import java.util.List;
 
 import com.fmd.gp2016.common.entity.Device;
+import com.fmd.gp2016.common.entity.DeviceLocation;
 import com.fmd.gp2016.common.entity.User;
 
 /**
@@ -28,5 +29,13 @@ public interface DeviceService {
 	public List<Device> getAllUserDevicesByUserId(Integer id);
 
 	public void updateDevice(Device dev);
+
+	public void updateLastActiveIn(Device dev);
+
+	public void addDeviceLocation(DeviceLocation deviceLocation);
+
+	public List<DeviceLocation> findAllDeviceLocationByDevice(Device device);
+
+	public Boolean isRegisteredDevice(String mac_address);
 
 }

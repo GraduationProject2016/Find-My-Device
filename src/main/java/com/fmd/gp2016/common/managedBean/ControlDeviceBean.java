@@ -14,11 +14,16 @@ import javax.inject.Named;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fmd.gp2016.common.dto.Command;
 import com.fmd.gp2016.common.dto.MessageDto;
 import com.fmd.gp2016.common.entity.Device;
+import com.fmd.gp2016.common.entity.DeviceLocation;
 import com.fmd.gp2016.common.filesystemstructure.ComputerFilesSystem;
 import com.fmd.gp2016.common.filesystemstructure.FMDPartion;
 import com.fmd.gp2016.common.service.DeviceService;
@@ -50,6 +55,10 @@ public class ControlDeviceBean extends BaseBean {
 	private UserFiles userFiles;
 	private boolean isPartition = false;
 
+	private List<DeviceLocation> deviceLocation;
+	private String locationId;
+	private MapModel simpleModel;
+
 	@Autowired
 	public DeviceService deviceServices;
 
@@ -58,6 +67,21 @@ public class ControlDeviceBean extends BaseBean {
 		deviceID = Integer.parseInt(
 				FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("device_id"));
 		paths = new Stack<>();
+		locationId = null;
+		deviceLocation = deviceServices.findAllDeviceLocationByDevice(new Device(deviceID));
+		simpleModel = new DefaultMapModel();
+		for (int i = 0; deviceLocation != null && i < deviceLocation.size(); i++) {
+			DeviceLocation dl = deviceLocation.get(i);
+			simpleModel.addOverlay(
+					new Marker(new LatLng(Double.parseDouble(dl.getLatitude()), Double.parseDouble(dl.getLongitude())),
+							dl.getTakeIn().toString()));
+		}
+		System.out.println("Device location Size: " + deviceLocation.size());
+		try {
+			locationId = deviceLocation.get(deviceLocation.size() - 1).toDisplayForm();
+		} catch (Exception e) {
+			locationId = null;
+		}
 		ArrayList<Device> devices = (ArrayList<Device>) deviceServices.getAllUserDevicesByUserId(getSessionUserID());
 		Device dev = new Device();
 
@@ -108,6 +132,7 @@ public class ControlDeviceBean extends BaseBean {
 	}
 
 	public void change() {
+
 		userFiles = new UserFiles(getSessionUserID(), deviceServices);
 	}
 
@@ -197,6 +222,36 @@ public class ControlDeviceBean extends BaseBean {
 		return "";
 	}
 
+	public String findDeviceLocation() {
+		String content = CommandConstant.deviceLocation;
+		Command command = new Command(content, null);
+		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
+				Constants.SERVER_TO_CLIENT);
+		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
+		deviceThread.readOneMessage(viewId);
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		deviceLocation = deviceServices.findAllDeviceLocationByDevice(new Device(deviceID));
+		simpleModel = new DefaultMapModel();
+		for (int i = 0; deviceLocation != null && i < deviceLocation.size(); i++) {
+			DeviceLocation dl = deviceLocation.get(i);
+			simpleModel.addOverlay(
+					new Marker(new LatLng(Double.parseDouble(dl.getLatitude()), Double.parseDouble(dl.getLongitude())),
+							dl.getTakeIn().toString()));
+		}
+
+		try {
+			locationId = deviceLocation.get(deviceLocation.size() - 1).toDisplayForm();
+		} catch (Exception e) {
+			locationId = null;
+		}
+		return "";
+	}
+
 	public String creatNewDirectory(String folderName) throws JSONException {
 		String content = CommandConstant.createNewDirectory;
 		System.out.println(folderName);
@@ -232,6 +287,7 @@ public class ControlDeviceBean extends BaseBean {
 		// computer = JSONDecoding.decodeJsonOFPathContent(new
 		// JSONObject(msgdto.getContent()));
 		open("");
+
 
 		return "";
 	}
@@ -291,6 +347,26 @@ public class ControlDeviceBean extends BaseBean {
 	 */
 	public UserFiles getUserFiles() {
 		return userFiles;
+	}
+
+	public List<DeviceLocation> getDeviceLocation() {
+		return deviceLocation;
+	}
+
+	public String getLocationId() {
+		return locationId;
+	}
+
+	public void setLocationId(String locationId) {
+		this.locationId = locationId;
+	}
+
+	public MapModel getSimpleModel() {
+		return simpleModel;
+	}
+
+	public void setSimpleModel(MapModel simpleModel) {
+		this.simpleModel = simpleModel;
 	}
 
 }

@@ -538,5 +538,14 @@ public class EnglishLanguage implements Language {
 	public String getFiles() {
 		return "Files";
 	}
+ 
+	@Override
+	public String getDeviceLocation() {
+		return "Device Location";
+	}
+	@Override
+	public String getNOW() {
+		return "Now";
+	}
 
 }

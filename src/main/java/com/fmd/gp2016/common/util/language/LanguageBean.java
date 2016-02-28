@@ -445,40 +445,34 @@ public class LanguageBean implements Language {
 		return lang.getNO();
 	}
 
-
 	@Override
 	public String getDeviceName() {
 		return lang.getDeviceName();
 	}
-
 
 	@Override
 	public String getMacAdName() {
 		return lang.getMacAdName();
 	}
 
-
 	@Override
 	public String getLastActiveName() {
 		return lang.getLastActiveName();
 	}
-
 
 	@Override
 	public String getOldPassword() {
 		return lang.getOldPassword();
 	}
 
-
 	@Override
 	public String getNewPassword() {
 		return lang.getNewPassword();
 	}
 
-
 	@Override
 	public String getReNewPassword() {
-		
+
 		return lang.getReNewPassword();
 	}
 
@@ -487,10 +481,19 @@ public class LanguageBean implements Language {
 		return lang.getChangeName();
 	}
 
-
 	@Override
 	public String getFiles() {
 		return lang.getFiles();
+	}
+
+	@Override
+	public String getDeviceLocation() {
+		return lang.getDeviceLocation();
+	}
+
+	@Override
+	public String getNOW() {
+		return lang.getNOW();
 	}
 
 }

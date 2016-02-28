@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fmd.gp2016.common.dao.DeviceDao;
 import com.fmd.gp2016.common.entity.Device;
+import com.fmd.gp2016.common.entity.DeviceLocation;
 import com.fmd.gp2016.common.entity.User;
 
 /**
@@ -92,7 +93,18 @@ public class DeviceDaoImpl implements DeviceDao {
 	@Transactional
 	public void updateDevice(Device dev) {
 		em.merge(dev);
+	}
 
+	@Override
+	@Transactional
+	public void saveDeviceLocation(DeviceLocation deviceLocation) {
+		em.merge(deviceLocation);
+	}
 
+	@Override
+	public List<DeviceLocation> getAllDeviceLocation(Integer deviceid) {
+		Query query = em.createNamedQuery("DeviceLocation.findAllByDeviceId");
+		query.setParameter("DEVICEID", deviceid);
+		return query.getResultList();
 	}
 }
