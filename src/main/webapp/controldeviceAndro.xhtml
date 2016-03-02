@@ -17,25 +17,24 @@
 		<p:growl id="msg" showDetail="true" />
 		<h:form id="form">
 			<p:tabView dir="#{language.dir}">
-				<p:ajax event="tabChange" listener="#{controlDevice.change()}"
-					update=":form" />
+				<p:ajax event="tabChange"
+					listener="#{controlAndroidDevice.change()}" update=":form" />
 				<p:tab title="#{language.deviceDetails}">
 					<p:dataTable emptyMessage="" scrollable="true" style="">
 						<f:facet name="header">
-        #{controlDevice.computer.path}<br />
+        #{controlDeviceAndro.computer.path}<br />
 							<p:commandButton value="back"
-								actionListener="#{controlDevice.back()}" ajax="false" />
-							<p:commandButton value="Home"
-								actionListener="#{controlDevice.openMyDoc}" ajax="false" />
-							<p:commandButton value="My Computer"
-								actionListener="#{controlDevice.openMyCom}" ajax="false" />
-							<p:commandButton value="Desktop"
-								actionListener="#{controlDevice.openDeskTop}" ajax="false" />
+								actionListener="#{controlAndroidDevice.back()}" ajax="false" />
+
+							<p:commandButton value="Partitions"
+								actionListener="#{controlAndroidDevice.openMyCom}" ajax="false" />
+
 
 						</f:facet>
 					</p:dataTable>
-					<p:dataTable var="file" value="#{controlDevice.partitions}"
-						emptyMessage="" rendered="#{controlDevice.isPartition() == true}">
+					<p:dataTable var="file" value="#{controlAndroidDevice.partitions}"
+						emptyMessage=""
+						rendered="#{controlAndroidDevice.isPartition() == true}">
 						<p:column>
 							<h:outputText value="#{file.name}" />
 						</p:column>
@@ -46,12 +45,13 @@
 
 						<p:column>
 							<h:outputText
-								value=" #{(file.usableSpace ) }  out of #{(file.totalSpace)} " />
+								value=" #{(file.usableSpace ) } GB Free out of #{(file.totalSpace)} GB" />
 						</p:column>
 
 						<p:column>
 							<p:commandButton value="open"
-								actionListener="#{controlDevice.open(file.path)}" ajax="false" />
+								actionListener="#{controlAndroidDevice.open(file.path)}"
+								ajax="false" />
 						</p:column>
 					</p:dataTable>
 
@@ -59,36 +59,31 @@
 						<div class="ui-grid-row">
 							<div class="ui-grid-col-4">
 								<p:dataTable var="dir"
-									value="#{controlDevice.computer.directories}" emptyMessage=""
-									rendered="#{controlDevice.isPartition() == false}" id="tab">
+									value="#{controlAndroidDevice.computer.directories}"
+									emptyMessage=""
+									rendered="#{controlAndroidDevice.isPartition() == false}"
+									id="tab">
 									<p:ajax event="filter" global="false" update="tab" />
-									<!-- 
-							<p:column headerText="name" sortBy="#{dir.name}">
-								<h:outputText value="#{dir.name}" />
-							</p:column>
 
-							<p:column headerText="type">
-								<h:outputText value="folder" />
-							</p:column>
-
-							<p:column headerText="size">
-								<h:outputText value="#{dir.size}" />
-							</p:column>
- -->
 									<p:column headerText="Folders">
 										<h:outputText value="" />
 
 										<p:commandButton value="#{dir.name}"
-											actionListener="#{controlDevice.open(dir.name)}" ajax="false"
-											icon="ui-icon-folder-open" />
+											actionListener="#{controlAndroidDevice.open(dir.name)}"
+											ajax="false" icon="ui-icon-folder-open" />
+										<p:commandButton
+											actionListener="#{controlAndroidDevice.delete(dir.name)}"
+											ajax="false" icon="ui-icon-close" id="deleteFolder" />
+										<p:tooltip id="toolTip" for="deleteFolder"
+											value="delete this folder" />
 
 									</p:column>
 								</p:dataTable>
 							</div>
 							<div class="ui-grid-col-8">
-								<p:dataTable var="file" value="#{controlDevice.computer.files}"
-									emptyMessage=""
-									rendered="#{controlDevice.isPartition() == false}">
+								<p:dataTable var="file"
+									value="#{controlAndroidDevice.computer.files}" emptyMessage=""
+									rendered="#{controlAndroidDevice.isPartition() == false}">
 									<p:column sortBy="#{file.name}" headerText="Name">
 										<h:outputText value="#{file.name}" id="na" />
 										<p:tooltip id="toolTipFadee" for="na" value="#{file.name}" />
@@ -104,23 +99,23 @@
 
 									<p:column>
 										<p:commandButton icon="ui-icon-copy"
-											actionListener="#{controlDevice.get(file.name)}" ajax="false"
-											id="copy" />
+											actionListener="#{controlAndroidDevice.get(file.name)}"
+											ajax="false" id="copy" />
 										<p:tooltip id="toolTipFade" for="copy"
 											value="Copy this file to server" />
 										<p:commandButton
-											actionListener="#{controlDevice.delete(file.name)}"
+											actionListener="#{controlAndroidDevice.delete(file.name)}"
 											ajax="false" icon="ui-icon-close" id="delete" />
 										<p:tooltip id="toolTipFades" for="delete"
 											value="delete this file" />
 									</p:column>
 									<f:facet name="footer">
 										<p:outputLabel
-											value=" number of files : #{controlDevice.computer.numOfFiles}"
-											rendered="#{controlDevice.isPartition() == false}" />
+											value=" number of files : #{controlAndroidDevice.computer.numOfFiles}"
+											rendered="#{controlAndroidDevice.isPartition() == false}" />
 										<p:outputLabel
-											value=" number of Folders : #{controlDevice.computer.numOfFolders}"
-											rendered="#{controlDevice.isPartition() == false}" />
+											value=" number of Folders : #{controlAndroidDevice.computer.numOfFolders}"
+											rendered="#{controlAndroidDevice.isPartition() == false}" />
 									</f:facet>
 								</p:dataTable>
 							</div>
@@ -130,19 +125,19 @@
 				</p:tab>
 				<p:tab title="#{language.getFiles()}">
 					<p:dataList id="dataTable"
-						value="#{controlDevice.userFiles.getFilesDeviceList(controlDevice.deviceID)}"
+						value="#{controlAndroidDevice.userFiles.getFilesDeviceList(controlAndroidDevice.deviceID)}"
 						emptyMessage="#{language.getThereIsNoFile()}" var="ob">
 						<p:column>
 							<p:commandLink id="downloadLink"
 								value="#{ob.substring(0, ob.lastIndexOf(' '))}" ajax="false"
-								actionListener="#{controlDevice.userFiles.download(ob)}">
+								actionListener="#{controlAndroidDevice.userFiles.download(ob)}">
 								<p:fileDownload
-									value="#{controlDevice.userFiles.fileDownload.downloadObject}" />
+									value="#{controlAndroidDevice.userFiles.fileDownload.downloadObject}" />
 							</p:commandLink>
 						</p:column>
 						<p:column>
 							<p:commandLink ajax="false" update=":form" immediate="true"
-								action="#{controlDevice.userFiles.delete(ob)}">
+								action="#{controlAndroidDevice.userFiles.delete(ob)}">
 								<p:graphicImage value="/resources/img/x.png" width="24" />
 								<p:confirm header="#{language.getDeleteConfirmation()}"
 									message="#{language.getAreYouSure()}" icon="ui-icon-alert" />
@@ -159,19 +154,20 @@
 				</p:tab>
 				<p:tab title="#{language.getDeviceLocation()}">
 					<p:panelGrid columns="2">
-						<p:selectOneMenu value="#{controlDevice.locationId}">
+						<p:selectOneMenu value="#{controlAndroidDevice.locationId}">
 							<f:selectItem noSelectionOption="true"
 								itemLabel="chose device location" itemValue="null" />
-							<f:selectItems value="#{controlDevice.deviceLocation}" var="dl"
-								itemLabel="#{dl.takeIn}" itemValue="#{dl.toDisplayForm()}" />
+							<f:selectItems value="#{controlAndroidDevice.deviceLocation}"
+								var="dl" itemLabel="#{dl.takeIn}"
+								itemValue="#{dl.toDisplayForm()}" />
 							<p:ajax update="gmap" />
 						</p:selectOneMenu>
 						<p:commandButton value="Find Location" ajax="false"
-							actionListener="#{controlDevice.findDeviceLocation()}" />
+							actionListener="#{controlAndroidDevice.findDeviceLocation()}" />
 					</p:panelGrid>
-					<p:gmap id="gmap" center="#{controlDevice.locationId}" zoom="15"
-						type="HYBRID" style="width:100%;height:400px" streetView="true"
-						model="#{controlDevice.simpleModel}" />
+					<p:gmap id="gmap" center="#{controlAndroidDevice.locationId}"
+						zoom="15" type="HYBRID" style="width:100%;height:400px"
+						streetView="true" model="#{controlAndroidDevice.simpleModel}" />
 				</p:tab>
 
 			</p:tabView>

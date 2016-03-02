@@ -30,7 +30,7 @@ public class ArabicLanguage implements Language {
 	private String OUTPUTTEXT_CONFIRMPASSWORD = "تأكيد الرقم السرى";
 	private String PLACEHOLDER_CONFIRMPASSWORD = "تأكيد الرقم السرى";
 	private String SUCCESSFUL_MESSAGE = "عمليه ناجحه";
-	private String ERROR_MESSAGE = "عمليه غير ناجحه";
+	private String ERROR_MESSAGE = "من فضلك تاكد من ادخال الرقم السرى صحيحا";
 	private String ERROR_PASSWORD_MATCHING = "من فضلك تأكد من تطابق كلمتى المرور";
 	private String ERROR_UNIQUE_USERNAME = "من فضلك قم بتغيير إسم المستخدم لأنه مرتبط بشخص أخر";
 	private String ERROR_UNIQUE_EMAIL = "من فضلك قم بتغيير البريد الإلكترونى لأنه مرتبط بشخص أخر";

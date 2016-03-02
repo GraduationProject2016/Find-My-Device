@@ -35,7 +35,7 @@ public class EnglishLanguage implements Language {
 	private String OUTPUTTEXT_CONFIRMPASSWORD = "Confirm Password ";
 	private String PLACEHOLDER_CONFIRMPASSWORD = "Confirm password";
 	private String SUCCESSFUL_MESSAGE = "Successful operation";
-	private String ERROR_MESSAGE = "Error in this operation";
+	private String ERROR_MESSAGE = "Please make sure that the password is correct";
 	private String ERROR_PASSWORD_MATCHING = "Please make sure that the two passwords matches each other";
 	private String ERROR_UNIQUE_USERNAME = "Please change username because it is related to another user";
 	private String ERROR_UNIQUE_EMAIL = "Please change email because it is related to another user";

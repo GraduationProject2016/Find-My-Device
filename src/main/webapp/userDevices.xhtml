@@ -9,26 +9,30 @@
 <ui:composition template="/template/commonLayout.xhtml">
 	<ui:define name="page_title">
          #{language.USER_DEVICES_PAGE_NAME}
+         
         </ui:define>
 	<ui:define name="content">
+	<b><p:outputLabel value="#{userdevices.errorMsg}" style=" color : red; " /></b>
 		<br />
 		<br />
 		<br />
 		<br />
 		<h:form id="form" dir="#{language.dir}">
+		
+
 			<p:dataTable emptyMessage="#{language.EMPTY_DEVICES}"
 				style="width:100%;" value="#{userdevices.devices}" var="obj">
 				<f:facet name="header">
            			#{language.ALL_DEVICES}
         		</f:facet>
+        		
 				<p:column headerText="#{language.DEVICE_NAME}">
 					<p:link value="#{obj.name}"
 						href="devicesetting.xhtml?device_id=#{obj.id}"
 						style="text-align:center;" />
 				</p:column>
 				<p:column headerText="#{language.DEVICE_LASTACTIVEDATE}">
-					<p:outputLabel value="#{obj.status}"
-						style="text-align:center;" />
+					<p:outputLabel value="#{obj.status}" style="text-align:center;" />
 				</p:column>
 				<p:column headerText="#{language.DEVICE_TYPE}">
 					<p:outputLabel value="Android Mobile" style="text-align:center;"
@@ -37,12 +41,15 @@
 						rendered="#{obj.type eq true}" />
 				</p:column>
 				<p:column headerText="#{language.DEVICE_OPERATINS}">
-					<p:commandButton value="#{language.DEVICE_DELETE}"
-						style="float:right;" onclick="PF('dlg3').show();"
-						actionListener="#{userdevices.setSelected(obj)}" />
+					<p:commandButton icon="ui-icon-close" style="float:right;"
+						onclick="PF('dlg3').show();"
+						actionListener="#{userdevices.setSelected(obj)}" id="delete" />
+
+					<p:tooltip id="toolTipFades" for="delete"
+						value="#{language.DEVICE_DELETE}" />
 
 					<p:dialog header="#{language.MODEL_HEADER}" widgetVar="dlg3"
-						height="100" dir="#{language.dir}" resizable="false">
+						height="100" dir="#{language.dir}" resizable="false" modal="true">
 
 						<p:outputLabel value="#{language.DEVICE_PASSWORD}" />
 						<p:inputText value="#{userdevices.deletePassword}" type="password"
@@ -53,12 +60,14 @@
 						</p:commandButton>
 					</p:dialog>
 
-					<p:commandButton value="#{language.DEVICE_CONTROL}"
-						style="float:right;" onclick="PF('dlg2').show();"
-						actionListener="#{userdevices.setSelected(obj)}" />
+					<p:commandButton icon="ui-icon-search" style="float:right;"
+						onclick="PF('dlg2').show();"
+						actionListener="#{userdevices.setSelected(obj)}" id="contrl" />
+					<p:tooltip id="toolTipFade" for="contrl"
+						value="#{language.DEVICE_CONTROL}" />
 
 					<p:dialog header="#{language.MODEL_HEADER}" widgetVar="dlg2"
-						height="100" dir="#{language.dir}" resizable="false">
+						height="100" dir="#{language.dir}" resizable="false" modal="true">
 						<p:outputLabel value="#{language.DEVICE_PASSWORD}" />
 
 						<p:inputText value="#{userdevices.controlPassword}"
@@ -68,12 +77,8 @@
 							actionListener="#{userdevices.control()}">
 						</p:commandButton>
 					</p:dialog>
-
 				</p:column>
-
-
 			</p:dataTable>
-
 		</h:form>
 	</ui:define>
 </ui:composition>

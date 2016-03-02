@@ -1,6 +1,6 @@
 /**
- * @author mohamed265
- * Created On : Jan 31, 2016 8:16:08 PM
+ * @author Ahmed
+ * Created On : Feb 29, 2016 4:58:07 PM
  */
 package com.fmd.gp2016.common.managedBean;
 
@@ -36,13 +36,9 @@ import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
 import com.fmd.gp2016.web.socket.DevicePool;
 import com.fmd.gp2016.web.socket.DeviceThread;
 
-/**
- * @author Ahmed Yehia
- *
- */
-@Named("controlDevice")
+@Named("controlAndroidDevice")
 @SpringViewScoped
-public class ControlDeviceBean extends BaseBean {
+public class ControlAndroidDevice extends BaseBean {
 
 	private DeviceThread deviceThread;
 	private ComputerFilesSystem computer;
@@ -58,6 +54,8 @@ public class ControlDeviceBean extends BaseBean {
 	private List<DeviceLocation> deviceLocation;
 	private String locationId;
 	private MapModel simpleModel;
+	
+	private boolean tem = false;
 
 	@Autowired
 	public DeviceService deviceServices;
@@ -95,8 +93,8 @@ public class ControlDeviceBean extends BaseBean {
 
 		userFiles = new UserFiles(getSessionUserID(), deviceServices);
 
-		if (dev == null){
-			redirect(User_Device + "?msg=there is no device by thise details ");}
+		if (dev == null)
+			redirect(User_Device + "?msg=there is no device by thise details ");
 		else {
 
 			int coun = 0;
@@ -105,29 +103,20 @@ public class ControlDeviceBean extends BaseBean {
 				if (!devices.get(i).getId().equals(dev.getId()))
 					coun++;
 			}
-			if (coun == devices.size()){
-				redirect(User_Device + "?msg=this device is not belongs to you");}
+			if (coun == devices.size())
+				redirect(User_Device + "?msg=this device is not belongs to you");
 			else {
 				userID = viewId = (viewId % (2 << 25) == 0 ? 1 : viewId + 1);
 				System.out.println("view id : " + viewId);
 
 				deviceThread = DevicePool.getDeviceThread(deviceID);
 				if (deviceThread == null) {
-					
-					redirect(User_Device + "?msg=this device is not connected to our server ");
-
+					redirect(User_Device + "?msg=this device is not connected ");
 				} else {
-					String content = CommandConstant.computerDesktop;
-					Command command = new Command(content, null);
-					MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
-							Constants.SERVER_TO_CLIENT);
 
-					deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
-
-					MessageDto msgdto = deviceThread.readOneMessage(viewId);
-
-					computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 					partitions = new ArrayList<>();
+					computer = new ComputerFilesSystem();
+					openMyCom();
 				}
 			}
 		}
@@ -140,9 +129,17 @@ public class ControlDeviceBean extends BaseBean {
 
 	public String open(String path) throws JSONException {
 
+		String par = computer.path + "//" + path;
+		if(tem == false){
+			par = par.substring(1);
+			tem = true;
+		}
+		System.out.println("=================");
+		System.out.println(par);
+		System.out.println("=================");
 		String content = CommandConstant.computerPathJson;
 
-		Command command = new Command(content, new String[] { computer.path + "\\" + path });
+		Command command = new Command(content, new String[] { par });
 
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
 				Constants.SERVER_TO_CLIENT);
@@ -159,7 +156,7 @@ public class ControlDeviceBean extends BaseBean {
 
 		String content = CommandConstant.computerPathJson;
 
-		Command command = new Command(content, new String[] { computer.path });
+		Command command = new Command(content, new String[] { computer.path.substring(1) });
 
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
 				Constants.SERVER_TO_CLIENT);
@@ -167,59 +164,6 @@ public class ControlDeviceBean extends BaseBean {
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
 		partitions = null;
-		isPartition = false;
-		return "";
-	}
-
-	public String openMyDoc() throws JSONException {
-		String content = CommandConstant.computerHomeJson;
-		Command command = new Command(content, null);
-
-		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
-				Constants.SERVER_TO_CLIENT);
-		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
-		MessageDto msgdto = deviceThread.readOneMessage(viewId);
-		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
-		partitions = null;
-		isPartition = false;
-		return "";
-	}
-
-	public String openMyCom() throws JSONException {
-		String content = CommandConstant.computerPartions;
-		Command command = new Command(content, null);
-
-		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
-				Constants.SERVER_TO_CLIENT);
-		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
-		MessageDto msgdto = deviceThread.readOneMessage(viewId);
-		partitions = JSONDecoding.decodeJsonOFPartions(new JSONObject(msgdto.getContent()));
-
-		for (int i = 0; i < partitions.size(); i++) {
-			partitions.get(i).setTotalSpace(partitions.get(i).getTotalSpace() / (1024 * 1024 * 1024));
-			partitions.get(i).setUsableSpace(partitions.get(i).getUsableSpace() / (1024 * 1024 * 1024));
-
-		}
-		computer.path = "";
-		computer.directories = null;
-		computer.files = null;
-		computer.numOfFiles = 0;
-		computer.numOfFolders = 0;
-		isPartition = true;
-
-		return "";
-
-	}
-
-	public String openDeskTop() throws JSONException {
-		String content = CommandConstant.computerDesktop;
-		Command command = new Command(content, null);
-		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
-				Constants.SERVER_TO_CLIENT);
-		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
-		MessageDto msgdto = deviceThread.readOneMessage(viewId);
-		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
-		partitions = new ArrayList<>();
 		isPartition = false;
 		return "";
 	}
@@ -279,17 +223,44 @@ public class ControlDeviceBean extends BaseBean {
 		return "";
 	}
 
-	public String delete(String fileName) throws JSONException {
-		String content = CommandConstant.removeDirectory;
-		Command command = new Command(content, new String[] { computer.path + "/" + fileName });
+	public String openMyCom() throws JSONException {
+		String content = CommandConstant.computerPartions;
+		Command command = new Command(content, null);
+
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
 				Constants.SERVER_TO_CLIENT);
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
-		// computer = JSONDecoding.decodeJsonOFPathContent(new
-		// JSONObject(msgdto.getContent()));
-		open("");
+		partitions = JSONDecoding.decodeJsonOFPartions(new JSONObject(msgdto.getContent()));
 
+		for (int i = 0; i < partitions.size(); i++) {
+			partitions.get(i).setTotalSpace(partitions.get(i).getTotalSpace() / (1024 * 1024 * 1024));
+			partitions.get(i).setUsableSpace(partitions.get(i).getUsableSpace() / (1024 * 1024 * 1024));
+
+		}
+		computer.path = "";
+		computer.directories = null;
+		computer.files = null;
+		computer.numOfFiles = 0;
+		computer.numOfFolders = 0;
+		isPartition = true;
+
+		return "";
+
+	}
+
+	public String delete(String fileName) throws JSONException {
+		System.out.println("=========================== DELETE");
+		System.out.println(computer.path + "//" + fileName );
+		System.out.println("=========================== DELETE");
+	
+		String content = CommandConstant.removeDirectory;
+		Command command = new Command(content, new String[] { computer.path + "//" + fileName });
+		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
+				Constants.SERVER_TO_CLIENT);
+		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
+		MessageDto msgdto = deviceThread.readOneMessage(viewId);
+		open("");
 
 		return "";
 	}

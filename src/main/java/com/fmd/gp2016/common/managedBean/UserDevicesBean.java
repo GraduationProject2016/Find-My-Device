@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -32,6 +31,7 @@ public class UserDevicesBean extends BaseBean {
 	private Device device = new Device();
 	private Device selected = new Device();
 	private List<Device> devices;
+	private String errorMsg;
 
 	private String deletePassword, controlPassword;
 
@@ -40,8 +40,12 @@ public class UserDevicesBean extends BaseBean {
 		devices = new ArrayList<Device>();
 		devices = userDevicesService.getAllUserDevicesByUserId(getSessionUserID());
 		deletePassword = controlPassword = "";
-		checkMsg();
-
+		
+		errorMsg = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("msg");
+		System.out.println("===========================================");
+		System.out.println(errorMsg);
+		System.out.println("===========================================");
+		
 		for (DeviceThread dt : DevicePool.getUserConectedDevices(getSessionUserID())) {
 			for (Device d : devices) {
 				if (d.getId().equals(dt.getDevice().getId())) {
@@ -56,14 +60,7 @@ public class UserDevicesBean extends BaseBean {
 
 	}
 
-	public String checkMsg() {
 
-		String msg = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("msg");
-		System.out.println(msg);
-		addErrorMessage(getSessionLanguage().getERROR_MESSAGE());
-
-		return "";
-	}
 
 	public String control() throws IOException {
 		if (!isAuzorizedUser(controlPassword)) {
@@ -72,8 +69,12 @@ public class UserDevicesBean extends BaseBean {
 		} else {
 			addSuccessfulMessage(getSessionLanguage().getSUCCESSFUL_MESSAGE());
 			FacesContext context = FacesContext.getCurrentInstance();
-			context.getExternalContext()
-					.redirect("controldevice.xhtml?" + Constants.DEVICE_ID + "=" + selected.getId());
+			if (selected.getType() == Constants.DEVICE_TYPE_DESKTOP_DB)
+				context.getExternalContext()
+						.redirect("controldevicePC.xhtml?" + Constants.DEVICE_ID + "=" + selected.getId());
+			else if (selected.getType() == Constants.DEVICE_TYPE_ANDROID_DB)
+				context.getExternalContext()
+				.redirect("controldeviceAndro.xhtml?" + Constants.DEVICE_ID + "=" + selected.getId());
 		}
 		return "";
 	}
@@ -128,6 +129,14 @@ public class UserDevicesBean extends BaseBean {
 
 	public void setControlPassword(String controlPassword) {
 		this.controlPassword = controlPassword;
+	}
+
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
 	}
 
 }

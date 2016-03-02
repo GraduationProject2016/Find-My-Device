@@ -45,7 +45,7 @@ public class JSONDecoding {
 		for (int i = 0; i < numOfPartions; i++) {
 			JSONObject obj = (JSONObject) folderArray.get(i);
 			partions.add(new FMDPartion((String) obj.getString("name"), (String) obj.getString("path"),
-					(long) obj.get("totalSpace"), (long) obj.get("usableSpace")));
+					obj.getLong("totalSpace"), (long) obj.getLong("usableSpace")));
 		}
 
 		return partions;
