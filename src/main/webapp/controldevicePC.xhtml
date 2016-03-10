@@ -4,7 +4,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="/template/commonLayout.xhtml">
 	<ui:define name="page_title">
@@ -69,7 +70,7 @@
 										<p:commandButton value="#{dir.name}"
 											actionListener="#{controlDevice.open(dir.name)}" ajax="false"
 											icon="ui-icon-folder-open" />
-										<p:commandButton 
+										<p:commandButton
 											actionListener="#{controlDevice.delete(dir.name)}"
 											ajax="false" icon="ui-icon-close" id="deleteFolder" />
 										<p:tooltip id="toolTip" for="deleteFolder"
@@ -128,7 +129,8 @@
 						emptyMessage="#{language.getThereIsNoFile()}" var="ob">
 						<p:column>
 							<p:commandLink id="downloadLink"
-								value="#{ob.substring(0, ob.lastIndexOf(' '))}" ajax="false"
+								value="#{ob.substring(0, ob.lastIndexOf(' ')).equals('SOUND') ? ob : ob.substring(0, ob.lastIndexOf(' '))}"
+								ajax="false"
 								actionListener="#{controlDevice.userFiles.download(ob)}">
 								<p:fileDownload
 									value="#{controlDevice.userFiles.fileDownload.downloadObject}" />
@@ -166,6 +168,10 @@
 					<p:gmap id="gmap" center="#{controlDevice.locationId}" zoom="15"
 						type="HYBRID" style="width:100%;height:400px" streetView="true"
 						model="#{controlDevice.simpleModel}" />
+				</p:tab>
+				<p:tab title="#{language.getRecordVoice()}">
+					<p:commandButton actionListener="#{controlDevice.recordVoice()}"
+						value="#{language.getRecordVoice()}" ajax="false" />
 				</p:tab>
 
 			</p:tabView>

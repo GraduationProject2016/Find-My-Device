@@ -1,4 +1,4 @@
-package com.fmd.gp2016.common.filesystemstructure;
+package com.fmd.gp2016.common.entity.filesystemstructure;
 
 import java.io.File;
 import java.io.IOException;

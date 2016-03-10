@@ -1,26 +1,23 @@
-package com.fmd.gp2016.common.filesystemstructure;
+package com.fmd.gp2016.common.entity.filesystemstructure;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class FMDFile {
+public class FMDDirectory {
+
 	public String name;
-	public String type;
 	public long size;
-	
-	
 
 	/**
 	 * 
 	 */
-	public FMDFile() {
+	public FMDDirectory() {
 		super();
 	}
 
-	public FMDFile(String name, String type, long size) {
+	public FMDDirectory(String name, long size) {
 		super();
 		this.name = name;
-		this.type = type;
 		this.size = size;
 	}
 
@@ -30,14 +27,6 @@ public class FMDFile {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public long getSize() {
@@ -51,14 +40,13 @@ public class FMDFile {
 	public JSONObject toJson() throws JSONException {
 		JSONObject ob = new JSONObject();
 		ob.put("name", name);
-		ob.put("type", String.valueOf(type));
 		ob.put("size", size);
 		return ob;
 	}
 
 	@Override
 	public String toString() {
-		return "FMDFile [name=" + name + ", type=" + type + ", size=" + size + "]";
+		return "FMDDirectory [name=" + name + ", size=" + size + "]";
 	}
 
 }

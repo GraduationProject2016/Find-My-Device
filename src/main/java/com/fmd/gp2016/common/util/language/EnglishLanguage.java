@@ -492,12 +492,10 @@ public class EnglishLanguage implements Language {
 		return "No";
 	}
 
-
 	@Override
 	public String getDeviceName() {
 		return "Device Name";
 	}
-
 
 	@Override
 	public String getMacAdName() {
@@ -509,43 +507,66 @@ public class EnglishLanguage implements Language {
 		return "Last Active Date";
 	}
 
-
 	@Override
 	public String getOldPassword() {
 		return "Old Password";
 	}
-
 
 	@Override
 	public String getNewPassword() {
 		return "New Password";
 	}
 
-
 	@Override
 	public String getReNewPassword() {
 		return "ReNew Password";
 	}
-
 
 	@Override
 	public String getChangeName() {
 		return "Change";
 	}
 
-
 	@Override
 	public String getFiles() {
 		return "Files";
 	}
- 
+
 	@Override
 	public String getDeviceLocation() {
 		return "Device Location";
 	}
+
 	@Override
 	public String getNOW() {
 		return "Now";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.fmd.gp2016.common.util.language.Language#getThereIsAnErrorInRecording
+	 * ()
+	 */
+	@Override
+	public String getThereIsAnErrorInRecording() {
+
+		return "There Is An Error In Recording";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.fmd.gp2016.common.util.language.Language#getRecordingNow()
+	 */
+	@Override
+	public String getRecordingNow() {
+		return "Recording Now";
+	}
+
+	public String getRecordVoice() {
+		return "Record Voice";
 	}
 
 }

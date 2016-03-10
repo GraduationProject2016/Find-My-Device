@@ -496,4 +496,18 @@ public class LanguageBean implements Language {
 		return lang.getNOW();
 	}
 
+	@Override
+	public String getThereIsAnErrorInRecording() {
+		return lang.getThereIsAnErrorInRecording();
+	}
+
+	@Override
+	public String getRecordingNow() {
+		return lang.getRecordingNow();
+	}
+
+	public String getRecordVoice() {
+		return lang.getRecordVoice();
+	}
+
 }

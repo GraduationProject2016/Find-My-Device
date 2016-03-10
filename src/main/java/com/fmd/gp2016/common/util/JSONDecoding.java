@@ -7,10 +7,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.fmd.gp2016.common.filesystemstructure.ComputerFilesSystem;
-import com.fmd.gp2016.common.filesystemstructure.FMDDirectory;
-import com.fmd.gp2016.common.filesystemstructure.FMDFile;
-import com.fmd.gp2016.common.filesystemstructure.FMDPartion;
+import com.fmd.gp2016.common.entity.filesystemstructure.ComputerFilesSystem;
+import com.fmd.gp2016.common.entity.filesystemstructure.FMDDirectory;
+import com.fmd.gp2016.common.entity.filesystemstructure.FMDFile;
+import com.fmd.gp2016.common.entity.filesystemstructure.FMDPartion;
 
 public class JSONDecoding {
 

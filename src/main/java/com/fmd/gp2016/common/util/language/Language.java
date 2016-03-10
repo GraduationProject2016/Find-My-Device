@@ -133,56 +133,61 @@ public interface Language {
 	public String getDOWNLOAD_LINK();
 
 	public String getDOWNLOAD_PAGE_NAME();
-	
+
 	public String getDeviceSettingPage();
-	
+
 	public String getDeviceDetails();
-	
+
 	public String getChangeDevicePassword();
-	
+
 	public String getChangeDeviceName();
-	
+
 	public String getHomePageName();
-	
+
 	public String getprofileName();
-	
+
 	public String getDownloadName();
-	
+
 	public String getUserManualName();
-	
+
 	public String getAboutUsName();
-	
+
 	public String getlogOutName();
-	
+
 	public String getThereIsNoFile();
-	
+
 	public String getDeleteConfirmation();
-	
+
 	public String getAreYouSure();
-	
+
 	public String getYes();
-	
+
 	public String getNO();
-	
+
 	public String getDeviceName();
-	
+
 	public String getMacAdName();
-	
+
 	public String getLastActiveName();
-	
+
 	public String getOldPassword();
-	
+
 	public String getNewPassword();
-	
+
 	public String getReNewPassword();
-	
+
 	public String getChangeName();
-	
+
 	public String getFiles();
-	
+
 	public String getDeviceLocation();
-	
+
 	public String getNOW();
+
+	public String getThereIsAnErrorInRecording();
+
+	public String getRecordingNow();
 	
+	public String getRecordVoice();
 
 }

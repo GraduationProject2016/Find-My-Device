@@ -526,4 +526,30 @@ public class ArabicLanguage implements Language {
 		return "الان";
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.fmd.gp2016.common.util.language.Language#getThereIsAnErrorInRecording
+	 * ()
+	 */
+	@Override
+	public String getThereIsAnErrorInRecording() {
+		return "لقد حدث خظا اثناء التسجيل";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.fmd.gp2016.common.util.language.Language#getRecordingNow()
+	 */
+	@Override
+	public String getRecordingNow() {
+		return "تسجيل الصوت يعمل";
+	}
+
+	public String getRecordVoice() {
+		return "تسجيل صوت";
+	}
+
 }

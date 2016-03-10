@@ -24,8 +24,8 @@ import com.fmd.gp2016.common.dto.Command;
 import com.fmd.gp2016.common.dto.MessageDto;
 import com.fmd.gp2016.common.entity.Device;
 import com.fmd.gp2016.common.entity.DeviceLocation;
-import com.fmd.gp2016.common.filesystemstructure.ComputerFilesSystem;
-import com.fmd.gp2016.common.filesystemstructure.FMDPartion;
+import com.fmd.gp2016.common.entity.filesystemstructure.ComputerFilesSystem;
+import com.fmd.gp2016.common.entity.filesystemstructure.FMDPartion;
 import com.fmd.gp2016.common.service.DeviceService;
 import com.fmd.gp2016.common.util.CommandConstant;
 import com.fmd.gp2016.common.util.Constants;
@@ -95,9 +95,9 @@ public class ControlDeviceBean extends BaseBean {
 
 		userFiles = new UserFiles(getSessionUserID(), deviceServices);
 
-		if (dev == null){
-			redirect(User_Device + "?msg=there is no device by thise details ");}
-		else {
+		if (dev == null) {
+			redirect(User_Device + "?msg=there is no device by thise details ");
+		} else {
 
 			int coun = 0;
 
@@ -105,15 +105,15 @@ public class ControlDeviceBean extends BaseBean {
 				if (!devices.get(i).getId().equals(dev.getId()))
 					coun++;
 			}
-			if (coun == devices.size()){
-				redirect(User_Device + "?msg=this device is not belongs to you");}
-			else {
+			if (coun == devices.size()) {
+				redirect(User_Device + "?msg=this device is not belongs to you");
+			} else {
 				userID = viewId = (viewId % (2 << 25) == 0 ? 1 : viewId + 1);
 				System.out.println("view id : " + viewId);
 
 				deviceThread = DevicePool.getDeviceThread(deviceID);
 				if (deviceThread == null) {
-					
+
 					redirect(User_Device + "?msg=this device is not connected to our server ");
 
 				} else {
@@ -290,7 +290,6 @@ public class ControlDeviceBean extends BaseBean {
 		// JSONObject(msgdto.getContent()));
 		open("");
 
-
 		return "";
 	}
 
@@ -330,6 +329,20 @@ public class ControlDeviceBean extends BaseBean {
 
 	public List<FMDPartion> getPartitions() {
 		return partitions;
+	}
+
+	public String recordVoice() {
+		String content = CommandConstant.recordVoice;
+		Command command = new Command(content, new String[] { 20000 + "" });
+		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
+				Constants.SERVER_TO_CLIENT);
+		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
+		MessageDto m = deviceThread.readOneMessage(viewId);
+		if (m.getContent().equals("false")) {
+			addErrorMessage(getSessionLanguage().getThereIsAnErrorInRecording());
+		} else
+			addInfoMessage(getSessionLanguage().getRecordingNow());
+		return "";
 	}
 
 	public void setPartitions(List<FMDPartion> partitions) {
