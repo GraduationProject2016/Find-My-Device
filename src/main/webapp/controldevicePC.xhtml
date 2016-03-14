@@ -106,7 +106,7 @@
 						<div class="ui-grid-row">
 							<div class="ui-grid-col-4">
 								<p:dataTable var="dir"
-									value="#{controlDevice.computer.directories}" emptyMessage=""
+									value="#{controlDevice.computer.directories}" emptyMessage="empty folders"
 									rendered="#{controlDevice.isPartition() == false}" id="tab">
 									<p:ajax event="filter" global="false" update="tab" />
 									<p:column style="width:20%;">
@@ -131,7 +131,7 @@
 							</div>
 							<div class="ui-grid-col-8">
 								<p:dataTable var="file" value="#{controlDevice.computer.files}"
-									emptyMessage=""
+									emptyMessage="empty files"
 									rendered="#{controlDevice.isPartition() == false}">
 									<p:column style="width:10%;">
 										<p:graphicImage value="resources/img/pdf.png" width="40"
