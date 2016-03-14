@@ -29,6 +29,13 @@
 .ui-datatable>tbody>tr>td {
 	table-layout: none;
 }
+#footer{
+    bottom: 0px;
+    padding-bottom: 0px;
+    position: fixed;
+    width: 100%;
+    display: none;
+}	
 </style>
 		<p:messages globalOnly="true" />
 		<p:growl id="msg" showDetail="true" />
@@ -113,6 +120,9 @@
 									<p:column style="width:10%;">
 										<p:graphicImage value="resources/img/pdf.png" width="40"
 											height="40" rendered="#{file.type eq 'pdf'}" />
+										<p:graphicImage value="resources/img/office.png" width="40"
+											height="40"
+											rendered="#{file.type eq 'docs' or file.type eq 'ppt' or file.type eq 'xlsx'}" />
 										<p:graphicImage value="resources/img/mp3.png" width="40"
 											height="40" rendered="#{file.type eq 'mp3'}" />
 										<p:graphicImage value="resources/img/mp4.png" width="40"
@@ -122,7 +132,7 @@
 											rendered="#{file.type eq 'jpg' or file.type eq 'png'}" />
 										<p:graphicImage value="resources/img/file.png" width="40"
 											height="40"
-											rendered="#{file.type ne 'jpg' and file.type ne 'png' and file.type ne 'pdf'  and file.type ne 'mp4' and file.type ne 'mp3'}" />
+											rendered="#{file.type ne 'docs' and file.type and 'ppt' or file.type ne 'xlsx' and file.type ne 'jpg' and file.type ne 'png' and file.type ne 'pdf'  and file.type ne 'mp4' and file.type ne 'mp3'}" />
 									</p:column>
 									<p:column sortBy="#{file.name}" headerText="Name">
 										<h:outputText value="#{file.name}" id="na" />
