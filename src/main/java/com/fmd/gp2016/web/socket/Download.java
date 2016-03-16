@@ -3,54 +3,81 @@ package com.fmd.gp2016.web.socket;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.ServerSocket;
+import java.io.OutputStream;
 import java.net.Socket;
 
 public class Download implements Runnable {
 
 	public String saveTo = "";
-	public InputStream In;
+	private InputStream is;
+	// private ObjectInputStream ois;
+	private OutputStream oos;
 	public FileOutputStream Out;
+	public Socket socket;
 
 	public Download(String saveTo, Socket socket) {
 		try {
-			//System.out.println("Download constract");
-			In = socket.getInputStream();
 			this.saveTo = saveTo;
+			this.socket = socket;
+			System.out.println("Download constract");
+			// oos = new ObjectOutputStream(socket.getOutputStream());
+			// oos.flush();
+			oos = socket.getOutputStream();
+			System.out.println("Download Constractr");
+			is = socket.getInputStream();
+			// ois = new ObjectInputStream(socket.getInputStream());
+			// System.out.println("Download Constractr " + ";" + ((String)
+			// ois.readObject()));
 		} catch (IOException ex) {
 			System.out.println("Exception [Download : Download(...)]");
+			ex.printStackTrace();
 		}
 	}
 
 	@Override
 	public void run() {
+		int p = 0, t, nFail = 0;
 		try {
-			//System.out.println("Download run " + saveTo);
+			System.out.println("Download run " + saveTo);
 			Out = new FileOutputStream(saveTo);
-
 			byte[] buffer = new byte[1024];
 			int count;
 
-			while ((count = In.read(buffer)) >= 0) {
-				//System.out.println("Download " + count);
-				Out.write(buffer, 0, count);
+			// System.out.println("run 1");
+			// socket.getInputStream().read();
+			// System.out.println("run 11");
+			// //ois = new ObjectInputStream(socket.getInputStream());
+			oos.write(1);
+			//System.out.println("run 2");
+			while ((t = is.read()) >= 0 && (count = is.read(buffer)) >= 0) {
+				// System.out.println("Download " + count);
+				if (t == p) {
+					Out.write(buffer, 0, count);
+					oos.write(1);
+					p = ((p + 1) % 255);
+				} else {
+					oos.write(2);
+					nFail++;
+				}
 			}
 
 			Out.flush();
 
-			// sui.jTextArea1.append("[Application > Me] : Download
-			// complete\n");
+
+			if (oos != null)
+				oos.close();
+
+			if (is != null)
+				is.close();
 
 			if (Out != null) {
 				Out.close();
 			}
-			if (In != null) {
-				In.close();
-			}
-			
+
 		} catch (Exception ex) {
 			System.out.println("Exception [Download : run(...)]");
 			ex.printStackTrace();
 		}
+		System.out.println("p " + p + " nFail " + nFail);
 	}
 }
