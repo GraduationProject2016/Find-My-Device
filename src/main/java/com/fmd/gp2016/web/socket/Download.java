@@ -47,18 +47,31 @@ public class Download implements Runnable {
 			// socket.getInputStream().read();
 			// System.out.println("run 11");
 			// //ois = new ObjectInputStream(socket.getInputStream());
+			oos.flush();
 			oos.write(1);
+			oos.write(1);
+			oos.write(1);
+			oos.write(1);
+			oos.write(1);
+			oos.write(1);
+			oos.flush();
+			System.out.println("read " + is.read());
+			System.out.println("read " + is.read());
+			System.out.println("read " + is.read());
+			System.out.println("read " + is.read());
+			System.out.println("read " + is.read());
 			// System.out.println("run 2");
 			while ((t = is.read()) >= 0 && (count = is.read(buffer)) >= 0) {
 				// System.out.println("Download " + count);
 				if (t == p) {
+					p = (p == 255 ? 0 : p + 1);
 					Out.write(buffer, 0, count);
 					oos.write(1);
-					p = ((p + 1) % 255);
 				} else {
 					oos.write(2);
 					nFail++;
 				}
+				oos.flush();
 			}
 
 			Out.flush();
