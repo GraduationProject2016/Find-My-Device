@@ -48,7 +48,7 @@ public class Download implements Runnable {
 			// System.out.println("run 11");
 			// //ois = new ObjectInputStream(socket.getInputStream());
 			oos.write(1);
-			//System.out.println("run 2");
+			// System.out.println("run 2");
 			while ((t = is.read()) >= 0 && (count = is.read(buffer)) >= 0) {
 				// System.out.println("Download " + count);
 				if (t == p) {
@@ -62,7 +62,6 @@ public class Download implements Runnable {
 			}
 
 			Out.flush();
-
 
 			if (oos != null)
 				oos.close();
