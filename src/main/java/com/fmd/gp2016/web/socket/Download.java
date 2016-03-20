@@ -1,17 +1,16 @@
 package com.fmd.gp2016.web.socket;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.Socket;
 
 public class Download implements Runnable {
 
 	public String saveTo = "";
-	private InputStream is;
-	// private ObjectInputStream ois;
-	private OutputStream oos;
+	private DataInputStream is;
+	private DataOutputStream oos;
 	public FileOutputStream Out;
 	public Socket socket;
 
@@ -19,15 +18,10 @@ public class Download implements Runnable {
 		try {
 			this.saveTo = saveTo;
 			this.socket = socket;
-			System.out.println("Download constract");
-			// oos = new ObjectOutputStream(socket.getOutputStream());
-			// oos.flush();
-			oos = socket.getOutputStream();
+			oos = new DataOutputStream(socket.getOutputStream());
 			System.out.println("Download Constractr");
-			is = socket.getInputStream();
-			// ois = new ObjectInputStream(socket.getInputStream());
-			// System.out.println("Download Constractr " + ";" + ((String)
-			// ois.readObject()));
+			is = new DataInputStream(socket.getInputStream());
+			System.out.println("Download constract");
 		} catch (IOException ex) {
 			System.out.println("Exception [Download : Download(...)]");
 			ex.printStackTrace();
@@ -62,7 +56,7 @@ public class Download implements Runnable {
 			System.out.println("read " + is.read());
 			// System.out.println("run 2");
 			while ((t = is.read()) >= 0 && (count = is.read(buffer)) >= 0) {
-				// System.out.println("Download " + count);
+				System.out.println("p " + p + " t " + t);
 				if (t == p) {
 					p = (p == 255 ? 0 : p + 1);
 					Out.write(buffer, 0, count);
