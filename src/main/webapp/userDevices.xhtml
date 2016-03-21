@@ -40,25 +40,33 @@
 				<f:facet name="header">
            			#{language.ALL_DEVICES}
         		</f:facet>
-				<p:column style="width:10%;">
+				<p:column style="width:10%;" headerText="...">
 					<p:graphicImage value="resources/img/phone.png" width="50"
 						height="50" rendered="#{obj.type eq false}" />
-					<p:graphicImage value="resources/img/pc.png" width="50"
-						height="50" rendered="#{obj.type ne false}" />
+					<p:graphicImage value="resources/img/pc.png" width="50" height="50"
+						rendered="#{obj.type ne false}" />
 				</p:column>
 				<p:column headerText="#{language.DEVICE_NAME}">
 					<p:link value="#{obj.name}"
 						href="devicesetting.xhtml?device_id=#{obj.id}"
 						style="text-align:center;" />
 				</p:column>
-				<p:column headerText="#{language.DEVICE_LASTACTIVEDATE}">
-					<h:panelGrid columns="2" styleClass="outerpanelgrid">
-						<h:graphicImage value="resources/img/active.png" width="50"
-							height="50" rendered="#{obj.status eq 'Now' or obj.status eq 'الان'}" />
-						<h:graphicImage value="resources/img/inactive.png" width="50"
-							height="50" rendered="#{obj.status ne 'Now'  and obj.status ne 'الان'}" />
-						<h:outputLabel value="#{obj.status}"></h:outputLabel>
-					</h:panelGrid>
+				<p:column headerText="#{language.DEVICE_LASTACTIVEDATE}" width="30%">
+					<div class="row" style="margin-top: -10px;">
+						<div class="col-md-1" align="left">
+							<h:graphicImage value="resources/img/active.png" width="50"
+								height="50"
+								rendered="#{obj.status eq 'Now' or obj.status eq 'الان'}" />
+							<h:graphicImage value="resources/img/inactive.png" width="50"
+								height="50"
+								rendered="#{obj.status ne 'Now'  and obj.status ne 'الان'}" />
+						</div>
+						<div class="col-md-9"
+							style="margin-top: -40px; margin-left: 35px;">
+							<h:outputLabel value="#{obj.status}"></h:outputLabel>
+						</div>
+					</div>
+
 				</p:column>
 				<p:column headerText="#{language.DEVICE_TYPE}">
 					<p:outputLabel value="Android Mobile" style="text-align:center;"
@@ -66,8 +74,28 @@
 					<p:outputLabel value="Desktop PC" style="text-align:center;"
 						rendered="#{obj.type eq true}" />
 				</p:column>
-				<p:column headerText="#{language.DEVICE_OPERATINS}" style="width:20%;">
-					<p:commandButton icon="ui-icon-close" style="float:right;"
+				<p:column headerText="#{language.DEVICE_OPERATINS}"
+					style="width:20%; text-align:center;">
+					
+					<p:commandButton icon="ui-icon-search"  
+						onclick="PF('dlg2').show();"
+						actionListener="#{userdevices.setSelected(obj)}" id="contrl" />
+					<p:tooltip id="toolTipFade" for="contrl"
+						value="#{language.DEVICE_CONTROL}" />
+
+					<p:dialog header="#{language.MODEL_HEADER}" widgetVar="dlg2"
+						height="100" dir="#{language.dir}" resizable="false" modal="true">
+						<p:outputLabel value="#{language.DEVICE_PASSWORD}" />
+
+						<p:inputText value="#{userdevices.controlPassword}"
+							type="password" placeholder="#{language.PLACEHOLDER_PASSWORD}"
+							style="margin-left:30px;" />
+						<p:commandButton value="#{language.DEVICE_CONTROL}"
+							actionListener="#{userdevices.control()}">
+						</p:commandButton>
+					</p:dialog>
+					
+					<p:commandButton icon="ui-icon-close" 
 						onclick="PF('dlg3').show();"
 						actionListener="#{userdevices.setSelected(obj)}" id="delete" />
 
@@ -83,24 +111,6 @@
 							style="margin-left:30px;" />
 						<p:commandButton value="#{language.DEVICE_DELETE}"
 							actionListener="#{userdevices.delete()}" update=":form">
-						</p:commandButton>
-					</p:dialog>
-
-					<p:commandButton icon="ui-icon-search" style="float:right;"
-						onclick="PF('dlg2').show();"
-						actionListener="#{userdevices.setSelected(obj)}" id="contrl" />
-					<p:tooltip id="toolTipFade" for="contrl"
-						value="#{language.DEVICE_CONTROL}" />
-
-					<p:dialog header="#{language.MODEL_HEADER}" widgetVar="dlg2"
-						height="100" dir="#{language.dir}" resizable="false" modal="true">
-						<p:outputLabel value="#{language.DEVICE_PASSWORD}" />
-
-						<p:inputText value="#{userdevices.controlPassword}"
-							type="password" placeholder="#{language.PLACEHOLDER_PASSWORD}"
-							style="margin-left:30px;" />
-						<p:commandButton value="#{language.DEVICE_CONTROL}"
-							actionListener="#{userdevices.control()}">
 						</p:commandButton>
 					</p:dialog>
 				</p:column>
