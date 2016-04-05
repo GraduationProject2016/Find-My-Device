@@ -120,9 +120,18 @@
 									<p:column style="width:10%;">
 										<p:graphicImage value="resources/img/pdf.png" width="40"
 											height="40" rendered="#{file.type eq 'pdf'}" />
-										<p:graphicImage value="resources/img/office.png" width="40"
-											height="40"
-											rendered="#{file.type eq 'docs' or file.type eq 'ppt' or file.type eq 'xlsx'}" />
+										<p:graphicImage value="resources/img/exe.png" width="40"
+											height="40" rendered="#{file.type eq 'exe'}" />
+										<p:graphicImage value="resources/img/txtfile.png" width="40"
+											height="40" rendered="#{file.type eq 'txt'}" />
+										<p:graphicImage value="resources/img/chrome.png" width="40"
+											height="40" rendered="#{file.type eq 'html'}" />
+										<p:graphicImage value="resources/img/ms_word.png" width="40"
+											height="40" rendered="#{file.type eq 'docx'}" />
+										<p:graphicImage value="resources/img/ms_pp.png" width="40"
+											height="40" rendered="#{file.type eq 'pptx'}" />
+										<p:graphicImage value="resources/img/ms_excel.png" width="40"
+											height="40" rendered="#{file.type eq 'xlsx'}" />
 										<p:graphicImage value="resources/img/mp3.png" width="40"
 											height="40" rendered="#{file.type eq 'mp3'}" />
 										<p:graphicImage value="resources/img/mp4.png" width="40"
@@ -132,7 +141,7 @@
 											rendered="#{file.type eq 'jpg' or file.type eq 'png'}" />
 										<p:graphicImage value="resources/img/file.png" width="40"
 											height="40"
-											rendered="#{file.type ne 'docs' and file.type and 'ppt' or file.type ne 'xlsx' and file.type ne 'jpg' and file.type ne 'png' and file.type ne 'pdf'  and file.type ne 'mp4' and file.type ne 'mp3'}" />
+											rendered="#{file.type ne 'html' and file.type ne 'txt' and file.type ne 'exe' and file.type ne 'docx' and file.type ne  'pptx' and file.type ne 'xlsx' and file.type ne 'jpg' and file.type ne 'png' and file.type ne 'pdf'  and file.type ne 'mp4' and file.type ne 'mp3'}" />
 									</p:column>
 									<p:column sortBy="#{file.name}" headerText="Name">
 										<h:outputText value="#{file.name}" id="na" />

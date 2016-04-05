@@ -79,7 +79,7 @@
 					</p:dataTable>
 					<p:dataTable var="file" value="#{controlDevice.partitions}"
 						emptyMessage="" rendered="#{controlDevice.isPartition() == true}">
-						<p:column  style="text-align:center;">
+						<p:column style="text-align:center;">
 							<h:panelGrid columns="1" styleClass="outerpanelgrid">
 								<h:graphicImage value="resources/img/partions.png" width="50"
 									height="50" />
@@ -87,17 +87,17 @@
 							</h:panelGrid>
 						</p:column>
 
-<!-- 						<p:column> -->
-<!-- 							<h:outputText value="#{file.path}" /> -->
-<!-- 						</p:column> -->
+						<!-- 						<p:column> -->
+						<!-- 							<h:outputText value="#{file.path}" /> -->
+						<!-- 						</p:column> -->
 
 						<p:column>
 							<h:outputText
 								value=" #{(file.usableSpace ) } GB Free out of #{(file.totalSpace)} GB " />
 						</p:column>
 
-						<p:column  style="text-align:center;">
-							<p:commandButton value="open"  style="width:120px;"
+						<p:column style="text-align:center;">
+							<p:commandButton value="open" style="width:120px;"
 								actionListener="#{controlDevice.open(file.path)}" ajax="false" />
 						</p:column>
 					</p:dataTable>
@@ -106,7 +106,8 @@
 						<div class="ui-grid-row">
 							<div class="ui-grid-col-4">
 								<p:dataTable var="dir"
-									value="#{controlDevice.computer.directories}" emptyMessage="empty folders"
+									value="#{controlDevice.computer.directories}"
+									emptyMessage="empty folders"
 									rendered="#{controlDevice.isPartition() == false}" id="tab">
 									<p:ajax event="filter" global="false" update="tab" />
 									<p:column style="width:20%;">
@@ -136,9 +137,18 @@
 									<p:column style="width:10%;">
 										<p:graphicImage value="resources/img/pdf.png" width="40"
 											height="40" rendered="#{file.type eq 'pdf'}" />
-										<p:graphicImage value="resources/img/office.png" width="40"
-											height="40"
-											rendered="#{file.type eq 'docs' or file.type eq 'ppt' or file.type eq 'xlsx'}" />
+										<p:graphicImage value="resources/img/exe.png" width="40"
+											height="40" rendered="#{file.type eq 'exe'}" />
+										<p:graphicImage value="resources/img/txtfile.png" width="40"
+											height="40" rendered="#{file.type eq 'txt'}" />
+										<p:graphicImage value="resources/img/chrome.png" width="40"
+											height="40" rendered="#{file.type eq 'html'}" />
+										<p:graphicImage value="resources/img/ms_word.png" width="40"
+											height="40" rendered="#{file.type eq 'docx'}" />
+										<p:graphicImage value="resources/img/ms_pp.png" width="40"
+											height="40" rendered="#{file.type eq 'pptx'}" />
+										<p:graphicImage value="resources/img/ms_excel.png" width="40"
+											height="40" rendered="#{file.type eq 'xlsx'}" />
 										<p:graphicImage value="resources/img/mp3.png" width="40"
 											height="40" rendered="#{file.type eq 'mp3'}" />
 										<p:graphicImage value="resources/img/mp4.png" width="40"
@@ -148,7 +158,7 @@
 											rendered="#{file.type eq 'jpg' or file.type eq 'png'}" />
 										<p:graphicImage value="resources/img/file.png" width="40"
 											height="40"
-											rendered="#{file.type ne 'docs' and file.type and 'ppt' or file.type ne 'xlsx' and file.type ne 'jpg' and file.type ne 'png' and file.type ne 'pdf'  and file.type ne 'mp4' and file.type ne 'mp3'}" />
+											rendered="#{file.type ne 'html' and file.type ne 'txt' and file.type ne 'exe' and file.type ne 'docx' and file.type ne  'pptx' and file.type ne 'xlsx' and file.type ne 'jpg' and file.type ne 'png' and file.type ne 'pdf'  and file.type ne 'mp4' and file.type ne 'mp3'}" />
 									</p:column>
 									<p:column sortBy="#{file.name}" headerText="Name">
 										<h:outputText value="#{file.name}" id="na" />
@@ -220,8 +230,7 @@
 					</p:dataList>
 				</p:tab>
 				<p:tab title="#{language.getDeviceLocation()}">
-					<script src="resources/js/map.js"
-						type="text/javascript"></script>
+					<script src="resources/js/map.js" type="text/javascript"></script>
 					<p:panelGrid columns="2">
 						<p:selectOneMenu value="#{controlDevice.locationId}">
 							<f:selectItem noSelectionOption="true"
