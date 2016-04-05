@@ -80,7 +80,7 @@ public class DeviceThread extends Thread {
 				file = new File(folderPath);
 				if (!file.exists())
 					file.mkdir();
-				new Download(folderPath + getStorerdName(command.getParms()[0]), socket).run();
+				new Download(folderPath + getStorerdName(command.getParms()[0]), socket , streamIn , streamOut).run();
 			}
 		}
 

@@ -1,89 +1,86 @@
 package com.fmd.gp2016.web.socket;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
+
+import com.fmd.gp2016.common.dto.Acknowledgement;
+import com.fmd.gp2016.common.dto.FilePart;
 
 public class Download implements Runnable {
 
 	public String saveTo = "";
-	private DataInputStream is;
-	private DataOutputStream oos;
+	private ObjectInputStream is;
+	private ObjectOutputStream oos;
 	public FileOutputStream Out;
 	public Socket socket;
 
-	public Download(String saveTo, Socket socket) {
-		try {
-			this.saveTo = saveTo;
-			this.socket = socket;
-			oos = new DataOutputStream(socket.getOutputStream());
-			System.out.println("Download Constractr");
-			is = new DataInputStream(socket.getInputStream());
-			System.out.println("Download constract");
-		} catch (IOException ex) {
-			System.out.println("Exception [Download : Download(...)]");
-			ex.printStackTrace();
-		}
+	public Download(String saveTo, Socket socket, ObjectInputStream is, ObjectOutputStream oos) {
+		this.saveTo = saveTo;
+		this.socket = socket;
+		// oos = new ObjectOutputStream(socket.getOutputStream());
+		// oos.flush();
+		// System.out.println("Download Constractr");
+		// is = new ObjectInputStream(socket.getInputStream());
+		this.is = is;
+		this.oos = oos;
+		System.out.println("Download constract");
 	}
 
 	@Override
 	public void run() {
-		int p = 0, t, nFail = 0;
+		int nFail = 0;
+		// Integer t, p = new Integer(0);
+		int p = 0;
 		try {
 			System.out.println("Download run " + saveTo);
 			Out = new FileOutputStream(saveTo);
-			byte[] buffer = new byte[1024];
-			int count;
+			while (true) {
+				try {
 
-			// System.out.println("run 1");
-			// socket.getInputStream().read();
-			// System.out.println("run 11");
-			// //ois = new ObjectInputStream(socket.getInputStream());
-			oos.flush();
-			oos.write(1);
-			oos.write(1);
-			oos.write(1);
-			oos.write(1);
-			oos.write(1);
-			oos.write(1);
-			oos.flush();
-			System.out.println("read " + is.read());
-			System.out.println("read " + is.read());
-			System.out.println("read " + is.read());
-			System.out.println("read " + is.read());
-			System.out.println("read " + is.read());
-			// System.out.println("run 2");
-			while ((t = is.read()) >= 0 && (count = is.read(buffer)) >= 0) {
-				System.out.println("p " + p + " t " + t);
-				if (t == p) {
-					p = (p == 255 ? 0 : p + 1);
-					Out.write(buffer, 0, count);
-					oos.write(1);
-				} else {
-					oos.write(2);
-					nFail++;
+					FilePart filePart = FilePart.toFilePart((String) is.readObject());
+					// System.out.println("p " + p + " t " +
+					// filePart.getPartNum());
+					if (filePart.getPartNum() == p) {
+						p++;
+						oos.writeObject(Acknowledgement.getPositiveAcknowledgement().toJsonString());
+						Out.write(filePart.getPart(), 0, filePart.getCount());
+					} else {
+						oos.writeObject(Acknowledgement.getNagativeAcknowledgement().toJsonString());
+						nFail++;
+					}
+					oos.flush();
+				} catch (Exception e) {
+					break;
 				}
-				oos.flush();
 			}
-
+			oos.flush();
 			Out.flush();
 
-			if (oos != null)
-				oos.close();
-
-			if (is != null)
-				is.close();
-
-			if (Out != null) {
-				Out.close();
-			}
+			cleanUp();
 
 		} catch (Exception ex) {
 			System.out.println("Exception [Download : run(...)]");
 			ex.printStackTrace();
 		}
 		System.out.println("p " + p + " nFail " + nFail);
+	}
+
+	private void cleanUp() throws IOException {
+		if (oos != null)
+			oos.close();
+
+		if (is != null)
+			is.close();
+
+		if (Out != null) {
+			Out.close();
+		}
+
+		if (socket != null) {
+			socket.close();
+		}
 	}
 }
