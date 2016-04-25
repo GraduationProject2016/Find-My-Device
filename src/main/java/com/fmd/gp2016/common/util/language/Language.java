@@ -187,7 +187,13 @@ public interface Language {
 	public String getThereIsAnErrorInRecording();
 
 	public String getRecordingNow();
-	
+
 	public String getRecordVoice();
+
+	public String getRecordVedieo();
+
+	public String getMessageSent();
+
+	public String getOfflineMode();
 
 }

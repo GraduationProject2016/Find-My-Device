@@ -41,15 +41,17 @@ public class UserFiles {
 	}
 
 	public void init() {
+		filesDevice = new HashMap<>();
 		for (Device device : devicesList) {
-			filesDevice = new HashMap<>();
 			File file = new File(Constants.UPLOAD_PATH + userId + "\\" + device.getId());
 			filesDevice.put(device.getId(), new ArrayList<String>());
+
 			if (file.exists()) {
 				for (String string : file.list()) {
 					filesDevice.get(device.getId()).add(string);
 					filePath.put(string, Constants.UPLOAD_PATH + userId + "\\" + device.getId() + "\\" + string);
 					files.add(string);
+					System.out.println(string);
 				}
 			}
 		}
@@ -57,7 +59,7 @@ public class UserFiles {
 	}
 
 	public void download(String filename) {
-		System.out.println(filename + " " + getFilePath(filename));
+		// System.out.println(filename + " " + getFilePath(filename));
 		try {
 			fileDownload.download(getFilePath(filename));
 		} catch (Exception e) {
@@ -80,6 +82,8 @@ public class UserFiles {
 	}
 
 	public ArrayList<String> getFilesDeviceList(Integer deviceID) {
+		// System.out.println("Device id " + deviceID + " list size is " +
+		// filesDevice.get(deviceID).size());
 		return filesDevice.get(deviceID);
 	}
 

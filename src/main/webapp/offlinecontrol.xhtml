@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
+<!--
+Created on: Apr 25, 2016 9:15:13 AM
+User: mohamed265
+-->
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -44,41 +49,27 @@
 
 		<p:growl id="msg" showDetail="true" />
 		<h:form id="form">
-			<p:stack expanded="true">
-				<p:menuitem value="Computer"
-					actionListener="#{controlDevice.openMyCom}" ajax="false"
-					icon="resources/img/computer.png"
-					style="width:10%; height:10%; margin-left:-35px;" />
-				<p:menuitem value="Libraries"
-					actionListener="#{controlDevice.openMyDoc}" ajax="false"
-					icon="resources/img/lib.png"
-					style="width:10%;  height:10%;  margin-left:-35px;" />
-				<p:menuitem value="Desktop"
-					actionListener="#{controlDevice.openDeskTop}" ajax="false"
-					icon="resources/img/desktop.png"
-					style="width:10%;  height:10%;  margin-left:-35px;" />
-			</p:stack>
+
 			<p:tabView dir="#{language.dir}"
 				style="margin-left:-60px; width:110%;">
-				<p:ajax event="tabChange" listener="#{controlDevice.change()}"
-					update=":form" />
 				<p:tab title="#{language.deviceDetails}">
 					<p:dataTable emptyMessage="" scrollable="true" style="">
 						<f:facet name="header">
-        #{controlDevice.computer.path}<br />
-							<p:commandButton value="back"
-								actionListener="#{controlDevice.back()}" ajax="false" />
-							<p:commandButton value="Libraries"
-								actionListener="#{controlDevice.openMyDoc}" ajax="false" />
-							<p:commandButton value="My Computer"
-								actionListener="#{controlDevice.openMyCom}" ajax="false" />
-							<p:commandButton value="Desktop"
-								actionListener="#{controlDevice.openDeskTop}" ajax="false" />
+						 #{language.getOfflineMode()}<br />
+        #{offlineControl.computer.path}<br />
+       	  #{offlineControl.metaInformation}<br />
+							<p:selectOneMenu value="#{offlineControl.ffsId}" ajax="false">
+								<p:ajax listener="#{offlineControl.change()}" update=":form" />
+								<f:selectItem itemLabel="choose path" itemValue="#{null}"
+									noSelectionOption="true" />
+								<f:selectItems var="path" itemValue="#{path.id}"
+									itemLabel="#{path.path}" value="#{offlineControl.list}" />
+							</p:selectOneMenu>
 
 						</f:facet>
 					</p:dataTable>
-					<p:dataTable var="file" value="#{controlDevice.partitions}"
-						emptyMessage="" rendered="#{controlDevice.isPartition() == true}">
+					<p:dataTable var="file" value="#{offlineControl.partitions}"
+						emptyMessage="" rendered="#{offlineControl.isPartition()}">
 						<p:column style="text-align:center;">
 							<h:panelGrid columns="1" styleClass="outerpanelgrid">
 								<h:graphicImage value="resources/img/partions.png" width="50"
@@ -86,19 +77,9 @@
 								<h:outputLabel value="#{file.name}"></h:outputLabel>
 							</h:panelGrid>
 						</p:column>
-
-						<!-- 						<p:column> -->
-						<!-- 							<h:outputText value="#{file.path}" /> -->
-						<!-- 						</p:column> -->
-
 						<p:column>
 							<h:outputText
 								value=" #{(file.usableSpace ) } GB Free out of #{(file.totalSpace)} GB " />
-						</p:column>
-
-						<p:column style="text-align:center;">
-							<p:commandButton value="open" style="width:120px;"
-								actionListener="#{controlDevice.open(file.path)}" ajax="false" />
 						</p:column>
 					</p:dataTable>
 
@@ -106,9 +87,9 @@
 						<div class="ui-grid-row">
 							<div class="ui-grid-col-4">
 								<p:dataTable var="dir"
-									value="#{controlDevice.computer.directories}"
+									value="#{offlineControl.computer.directories}"
 									emptyMessage="empty folders"
-									rendered="#{controlDevice.isPartition() == false}" id="tab">
+									rendered="#{offlineControl.isPartition() == false}" id="tab">
 									<p:ajax event="filter" global="false" update="tab" />
 									<p:column style="width:20%;">
 										<p:graphicImage value="resources/img/fm.png" width="40"
@@ -116,24 +97,20 @@
 									</p:column>
 									<p:column headerText="Folders">
 										<h:outputText value="" />
-
-										<p:commandButton value="#{dir.name}"
-											actionListener="#{controlDevice.open(dir.name)}" ajax="false"
+										<p:commandButton value="#{dir.name}" ajax="true"
 											icon="ui-icon-folder-open" />
 										<p:commandButton
-											actionListener="#{controlDevice.delete(dir.name)}"
+											actionListener="#{offlineControl.delete(dir.name)}"
 											ajax="false" icon="ui-icon-close" id="deleteFolder" />
 										<p:tooltip id="toolTip" for="deleteFolder"
 											value="delete this folder" />
-
-
 									</p:column>
 								</p:dataTable>
 							</div>
 							<div class="ui-grid-col-8">
-								<p:dataTable var="file" value="#{controlDevice.computer.files}"
+								<p:dataTable var="file" value="#{offlineControl.computer.files}"
 									emptyMessage="empty files"
-									rendered="#{controlDevice.isPartition() == false}">
+									rendered="#{offlineControl.isPartition() == false}">
 									<p:column style="width:10%;">
 										<p:graphicImage value="resources/img/pdf.png" width="40"
 											height="40" rendered="#{file.type eq 'pdf'}" />
@@ -175,23 +152,23 @@
 
 									<p:column style="width:18%;">
 										<p:commandButton icon="ui-icon-copy"
-											actionListener="#{controlDevice.get(file.name)}" ajax="false"
-											id="copy" />
+											actionListener="#{offlineControl.get(file.name)}"
+											ajax="false" id="copy" />
 										<p:tooltip id="toolTipFade" for="copy"
 											value="Copy this file to server" />
 										<p:commandButton
-											actionListener="#{controlDevice.delete(file.name)}"
+											actionListener="#{offlineControl.delete(file.name)}"
 											ajax="false" icon="ui-icon-close" id="delete" />
 										<p:tooltip id="toolTipFades" for="delete"
 											value="delete this file" />
 									</p:column>
 									<f:facet name="footer">
 										<p:outputLabel
-											value=" number of files : #{controlDevice.computer.numOfFiles}"
-											rendered="#{controlDevice.isPartition() == false}" />
+											value=" number of files : #{offlineControl.computer.numOfFiles}"
+											rendered="#{offlineControl.isPartition() == false}" />
 										<p:outputLabel
-											value=" number of Folders : #{controlDevice.computer.numOfFolders}"
-											rendered="#{controlDevice.isPartition() == false}" />
+											value=" number of Folders : #{offlineControl.computer.numOfFolders}"
+											rendered="#{offlineControl.isPartition() == false}" />
 									</f:facet>
 								</p:dataTable>
 							</div>
@@ -199,58 +176,9 @@
 					</div>
 
 				</p:tab>
-				<p:tab title="#{language.getFiles()}">
-					<p:dataList id="dataTable"
-						value="#{controlDevice.userFiles.getFilesDeviceList(controlDevice.deviceID)}"
-						emptyMessage="#{language.getThereIsNoFile()}" var="ob">
-						<p:column>
-							<p:commandLink id="downloadLink" value="#{ob}" ajax="false"
-								actionListener="#{controlDevice.userFiles.download(ob)}">
-								<p:fileDownload
-									value="#{controlDevice.userFiles.fileDownload.downloadObject}" />
-							</p:commandLink>
-						</p:column>
-						<p:column>
-							<p:commandLink ajax="false" update=":form" immediate="true"
-								action="#{controlDevice.userFiles.delete(ob)}">
-								<p:graphicImage value="/resources/img/x.png" width="24" />
-								<p:confirm header="#{language.getDeleteConfirmation()}"
-									message="#{language.getAreYouSure()}" icon="ui-icon-alert" />
-							</p:commandLink>
-							<p:confirmDialog global="true" showEffect="fade"
-								hideEffect="fade">
-								<p:commandButton value="#{language.yes}" type="button"
-									styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-								<p:commandButton value="#{language.NO}" type="button"
-									styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-							</p:confirmDialog>
-						</p:column>
-					</p:dataList>
-				</p:tab>
 				<p:tab title="#{language.getDeviceLocation()}">
-					<script src="resources/js/map.js" type="text/javascript"></script>
-					<p:panelGrid columns="2">
-						<p:selectOneMenu value="#{controlDevice.locationId}">
-							<f:selectItem noSelectionOption="true"
-								itemLabel="chose device location" itemValue="null" />
-							<f:selectItems value="#{controlDevice.deviceLocation}" var="dl"
-								itemLabel="#{dl.takeIn}" itemValue="#{dl.toDisplayForm()}" />
-							<p:ajax update="gmap" />
-						</p:selectOneMenu>
-						<p:commandButton value="Find Location" ajax="false"
-							actionListener="#{controlDevice.findDeviceLocation()}" />
-					</p:panelGrid>
-					<p:gmap id="gmap" center="#{controlDevice.locationId}" zoom="15"
-						type="HYBRID" style="width:100%;height:400px" streetView="true"
-						model="#{controlDevice.simpleModel}" />
-				</p:tab>
-				<p:tab title="#{language.getRecordVoice()}">
-					<p:commandButton actionListener="#{controlDevice.recordVoice()}"
-						value="#{language.getRecordVoice()}" ajax="false" />
-				</p:tab>
-				<p:tab title="#{language.getRecordVedieo()}">
-					<p:commandButton actionListener="#{controlDevice.recordVedio()}"
-						value="#{language.getRecordVedieo()}" ajax="false" />
+					<p:commandButton value="Find Location" ajax="false"
+						actionListener="#{offlineControl.findDeviceLocation()}" />
 				</p:tab>
 			</p:tabView>
 

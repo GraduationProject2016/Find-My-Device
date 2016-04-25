@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import com.fmd.gp2016.common.dao.DeviceDao;
 import com.fmd.gp2016.common.entity.Device;
 import com.fmd.gp2016.common.entity.DeviceLocation;
+import com.fmd.gp2016.common.entity.FileSystemStructure;
+import com.fmd.gp2016.common.entity.ServerToClientMessage;
 import com.fmd.gp2016.common.entity.User;
 import com.fmd.gp2016.common.service.DeviceService;
 import com.fmd.gp2016.common.util.Constants;
@@ -101,6 +103,38 @@ public class DeviceServiceImpl implements DeviceService {
 
 	public Boolean isRegisteredDevice(String mac_address) {
 		return (deviceDao.selecColumntByIDNative("mac_address", mac_address) == null ? false : true);
+	}
 
+	@Override
+	public void addORUpdateFileSytemStructure(FileSystemStructure fileSystemStructure) {
+		String path = fileSystemStructure.getPath();
+		if (path.charAt(path.length() - 1) == '\\' || path.charAt(path.length() - 1) == '/')
+			path = path.substring(0, path.length() - 1);
+		fileSystemStructure.setTakeIn(new Date());
+		FileSystemStructure fss = deviceDao.getFileSystemStructure(fileSystemStructure.getDevice().getId(),
+				fileSystemStructure.getPath());
+		if (fss != null)
+			fileSystemStructure.setId(fss.getId());
+		deviceDao.addOrUpdateFileSystemStructure(fileSystemStructure);
+	}
+
+	@Override
+	public List<FileSystemStructure> getAllFileSystemStructureByDevice(Device device) {
+		return deviceDao.getAllFileSystemStructureByDeviceId(device.getId());
+	}
+
+	@Override
+	public List<ServerToClientMessage> getAllMessagesByDevice(Device device) {
+		return deviceDao.getAllMessagesByDeviceId(device.getId());
+	}
+
+	@Override
+	public void deleteMessagesByMessage(ServerToClientMessage scm) {
+		deviceDao.deleteMessagesByMessageId(scm.getId());
+	}
+
+	@Override
+	public void saveServerToClientMessage(ServerToClientMessage scm) {
+		deviceDao.saveServerToClientMessage(scm);
 	}
 }

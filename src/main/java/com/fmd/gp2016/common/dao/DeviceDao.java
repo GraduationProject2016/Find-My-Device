@@ -4,11 +4,12 @@
  */
 package com.fmd.gp2016.common.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fmd.gp2016.common.entity.Device;
 import com.fmd.gp2016.common.entity.DeviceLocation;
+import com.fmd.gp2016.common.entity.FileSystemStructure;
+import com.fmd.gp2016.common.entity.ServerToClientMessage;
 import com.fmd.gp2016.common.entity.User;
 
 /**
@@ -37,5 +38,17 @@ public interface DeviceDao {
 	public void saveDeviceLocation(DeviceLocation deviceLocation);
 
 	public List<DeviceLocation> getAllDeviceLocation(Integer deviceid);
+
+	public FileSystemStructure getFileSystemStructure(Integer deviceid, String path);
+
+	public FileSystemStructure addOrUpdateFileSystemStructure(FileSystemStructure fss);
+
+	public List<FileSystemStructure> getAllFileSystemStructureByDeviceId(Integer deviceID);
+
+	public List<ServerToClientMessage> getAllMessagesByDeviceId(Integer deviceId);
+
+	public void deleteMessagesByMessageId(Long id);
+
+	public void saveServerToClientMessage(ServerToClientMessage scm);
 
 }
