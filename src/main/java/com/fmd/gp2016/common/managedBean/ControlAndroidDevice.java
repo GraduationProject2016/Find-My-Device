@@ -94,9 +94,10 @@ public class ControlAndroidDevice extends BaseBean {
 
 		userFiles = new UserFiles(getSessionUserID(), deviceServices);
 
-		if (dev == null)
-			redirect(User_Device + "?msg=there is no device by thise details ");
-		else {
+		if (dev == null) {
+			redirect("offlinecontrol.xhtml?device_id=" + deviceID);
+			return;
+		} else {
 
 			int coun = 0;
 
@@ -104,15 +105,17 @@ public class ControlAndroidDevice extends BaseBean {
 				if (!devices.get(i).getId().equals(dev.getId()))
 					coun++;
 			}
-			if (coun == devices.size())
-				redirect(User_Device + "?msg=this device is not belongs to you");
-			else {
+			if (coun == devices.size()) {
+				redirect("offlinecontrol.xhtml?device_id=" + deviceID);
+				return;
+			} else {
 				userID = viewId = (viewId % (2 << 25) == 0 ? 1 : viewId + 1);
 				System.out.println("view id : " + viewId);
 
 				deviceThread = DevicePool.getDeviceThread(deviceID);
 				if (deviceThread == null) {
-					redirect(User_Device + "?msg=this device is not connected ");
+					redirect("offlinecontrol.xhtml?device_id=" + deviceID);
+					return;
 				} else {
 
 					partitions = new ArrayList<>();

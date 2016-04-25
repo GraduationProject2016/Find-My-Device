@@ -98,6 +98,7 @@ public class ControlDeviceBean extends BaseBean {
 
 		if (dev == null) {
 			redirect("offlinecontrol.xhtml?device_id=" + deviceID);
+			return;
 		} else {
 
 			int coun = 0;
@@ -108,6 +109,7 @@ public class ControlDeviceBean extends BaseBean {
 			}
 			if (coun == devices.size()) {
 				redirect("offlinecontrol.xhtml?device_id=" + deviceID);
+				return;
 			} else {
 				userID = viewId = (viewId % (2 << 25) == 0 ? 1 : viewId + 1);
 				System.out.println("view id : " + viewId);
@@ -116,7 +118,7 @@ public class ControlDeviceBean extends BaseBean {
 				if (deviceThread == null) {
 
 					redirect("offlinecontrol.xhtml?device_id=" + deviceID);
-
+					return;
 				} else {
 					String content = CommandConstant.computerDesktop;
 					Command command = new Command(content, null);
