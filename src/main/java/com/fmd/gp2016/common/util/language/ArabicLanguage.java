@@ -552,4 +552,18 @@ public class ArabicLanguage implements Language {
 		return "تسجيل صوت";
 	}
 
+	public String getRecordVedieo() {
+		return "تسجيل فديو";
+	}
+
+	@Override
+	public String getMessageSent() {
+		return "لقد ارسلت الرسالة";
+	}
+ 
+	@Override
+	public String getOfflineMode() { 
+		return "وضع الاتصال الخفى";
+	}
+
 }

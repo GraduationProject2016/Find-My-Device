@@ -17,11 +17,12 @@ public class ComputerFilesSystem {
 	public int numOfFiles;
 	public int numOfFolders;
 
-
-
 	public ComputerFilesSystem() {
 		files = new ArrayList<FMDFile>();
 		directories = new ArrayList<FMDDirectory>();
+		path = "";
+		numOfFiles = 0;
+		numOfFolders = 0;
 	}
 
 	public ComputerFilesSystem(String path_) throws IOException {
@@ -74,8 +75,6 @@ public class ComputerFilesSystem {
 		object.put("folders", foldersArray);
 		return object;
 	}
-
-
 
 	public String getPath() {
 		return path;

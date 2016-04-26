@@ -24,6 +24,7 @@ import com.fmd.gp2016.common.dto.Command;
 import com.fmd.gp2016.common.dto.MessageDto;
 import com.fmd.gp2016.common.entity.Device;
 import com.fmd.gp2016.common.entity.DeviceLocation;
+import com.fmd.gp2016.common.entity.FileSystemStructure;
 import com.fmd.gp2016.common.entity.filesystemstructure.ComputerFilesSystem;
 import com.fmd.gp2016.common.entity.filesystemstructure.FMDPartion;
 import com.fmd.gp2016.common.service.DeviceService;
@@ -54,8 +55,9 @@ public class ControlAndroidDevice extends BaseBean {
 	private List<DeviceLocation> deviceLocation;
 	private String locationId;
 	private MapModel simpleModel;
-	
+
 	private boolean tem = false;
+	Device dev = new Device();
 
 	@Autowired
 	public DeviceService deviceServices;
@@ -81,7 +83,6 @@ public class ControlAndroidDevice extends BaseBean {
 			locationId = null;
 		}
 		ArrayList<Device> devices = (ArrayList<Device>) deviceServices.getAllUserDevicesByUserId(getSessionUserID());
-		Device dev = new Device();
 
 		dev = deviceServices.getDeviceById(deviceID);
 
@@ -93,9 +94,10 @@ public class ControlAndroidDevice extends BaseBean {
 
 		userFiles = new UserFiles(getSessionUserID(), deviceServices);
 
-		if (dev == null)
-			redirect(User_Device + "?msg=there is no device by thise details ");
-		else {
+		if (dev == null) {
+			redirect("offlinecontrol.xhtml?device_id=" + deviceID);
+			return;
+		} else {
 
 			int coun = 0;
 
@@ -103,20 +105,23 @@ public class ControlAndroidDevice extends BaseBean {
 				if (!devices.get(i).getId().equals(dev.getId()))
 					coun++;
 			}
-			if (coun == devices.size())
-				redirect(User_Device + "?msg=this device is not belongs to you");
-			else {
+			if (coun == devices.size()) {
+				redirect("offlinecontrol.xhtml?device_id=" + deviceID);
+				return;
+			} else {
 				userID = viewId = (viewId % (2 << 25) == 0 ? 1 : viewId + 1);
 				System.out.println("view id : " + viewId);
 
 				deviceThread = DevicePool.getDeviceThread(deviceID);
 				if (deviceThread == null) {
-					redirect(User_Device + "?msg=this device is not connected ");
+					redirect("offlinecontrol.xhtml?device_id=" + deviceID);
+					return;
 				} else {
 
 					partitions = new ArrayList<>();
 					computer = new ComputerFilesSystem();
 					openMyCom();
+
 				}
 			}
 		}
@@ -130,7 +135,7 @@ public class ControlAndroidDevice extends BaseBean {
 	public String open(String path) throws JSONException {
 
 		String par = computer.path + "//" + path;
-		if(tem == false){
+		if (tem == false) {
 			par = par.substring(1);
 			tem = true;
 		}
@@ -146,6 +151,9 @@ public class ControlAndroidDevice extends BaseBean {
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
+		// TODO Offline Registration
+		deviceServices.addORUpdateFileSytemStructure(
+				FileSystemStructure.getInstance(dev, command.getParms()[0], msgdto.getContent()));
 		partitions = null;
 		paths.push(computer.path);
 		isPartition = false;
@@ -163,6 +171,9 @@ public class ControlAndroidDevice extends BaseBean {
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
+		// TODO Offline Registration
+		deviceServices.addORUpdateFileSytemStructure(
+				FileSystemStructure.getInstance(dev, command.getParms()[0], msgdto.getContent()));
 		partitions = null;
 		isPartition = false;
 		return "";
@@ -178,7 +189,6 @@ public class ControlAndroidDevice extends BaseBean {
 		try {
 			Thread.sleep(11000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		deviceLocation = deviceServices.findAllDeviceLocationByDevice(new Device(deviceID));
@@ -233,6 +243,10 @@ public class ControlAndroidDevice extends BaseBean {
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		partitions = JSONDecoding.decodeJsonOFPartions(new JSONObject(msgdto.getContent()));
 
+		// TODO File TRansfer
+		deviceServices.addORUpdateFileSytemStructure(
+				FileSystemStructure.getInstance(dev, CommandConstant.computerPartions, msgdto.getContent()));
+
 		for (int i = 0; i < partitions.size(); i++) {
 			partitions.get(i).setTotalSpace(partitions.get(i).getTotalSpace() / (1024 * 1024 * 1024));
 			partitions.get(i).setUsableSpace(partitions.get(i).getUsableSpace() / (1024 * 1024 * 1024));
@@ -251,9 +265,9 @@ public class ControlAndroidDevice extends BaseBean {
 
 	public String delete(String fileName) throws JSONException {
 		System.out.println("=========================== DELETE");
-		System.out.println(computer.path + "//" + fileName );
+		System.out.println(computer.path + "//" + fileName);
 		System.out.println("=========================== DELETE");
-	
+
 		String content = CommandConstant.removeDirectory;
 		Command command = new Command(content, new String[] { computer.path + "//" + fileName });
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),

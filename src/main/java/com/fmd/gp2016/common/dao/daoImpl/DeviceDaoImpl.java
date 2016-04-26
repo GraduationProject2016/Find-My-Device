@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fmd.gp2016.common.dao.DeviceDao;
 import com.fmd.gp2016.common.entity.Device;
 import com.fmd.gp2016.common.entity.DeviceLocation;
+import com.fmd.gp2016.common.entity.FileSystemStructure;
+import com.fmd.gp2016.common.entity.ServerToClientMessage;
 import com.fmd.gp2016.common.entity.User;
 
 /**
@@ -106,5 +108,60 @@ public class DeviceDaoImpl implements DeviceDao {
 		Query query = em.createNamedQuery("DeviceLocation.findAllByDeviceId");
 		query.setParameter("DEVICEID", deviceid);
 		return query.getResultList();
+	}
+
+	@Override
+	public FileSystemStructure getFileSystemStructure(Integer deviceid, String path) {
+		Query query = em.createNamedQuery("FileSystemStructure.findFSSByDeviceIdAndPath");
+		query.setParameter("DEVICEID", deviceid);
+		query.setParameter("PATH", path);
+		try {
+			return (FileSystemStructure) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	@Transactional
+	public FileSystemStructure addOrUpdateFileSystemStructure(FileSystemStructure fss) {
+		return em.merge(fss);
+	}
+
+	@Override
+	public List<FileSystemStructure> getAllFileSystemStructureByDeviceId(Integer deviceID) {
+		Query query = em.createNamedQuery("FileSystemStructure.findAllFSSByDeviceId");
+		query.setParameter("DEVICEID", deviceID);
+		try {
+			return query.getResultList();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<ServerToClientMessage> getAllMessagesByDeviceId(Integer deviceId) {
+		Query query = em.createNamedQuery("ServerToClientMessage.getAllServerToClientMessageByDeviceID");
+		query.setParameter("DEVICEID", deviceId);
+		try {
+			return query.getResultList();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	@Transactional
+	public void deleteMessagesByMessageId(Long id) {
+		Query query = em.createNamedQuery("ServerToClientMessage.deleteServerToClientMessage");
+		query.setParameter("ID", id);
+		query.executeUpdate();
+	}
+
+	@Override
+	@Transactional
+	public void saveServerToClientMessage(ServerToClientMessage scm) {
+		System.out.println("In Dao " + scm);
+		em.merge(scm);
 	}
 }

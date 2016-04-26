@@ -8,6 +8,8 @@ import java.util.List;
 
 import com.fmd.gp2016.common.entity.Device;
 import com.fmd.gp2016.common.entity.DeviceLocation;
+import com.fmd.gp2016.common.entity.FileSystemStructure;
+import com.fmd.gp2016.common.entity.ServerToClientMessage;
 import com.fmd.gp2016.common.entity.User;
 
 /**
@@ -37,5 +39,15 @@ public interface DeviceService {
 	public List<DeviceLocation> findAllDeviceLocationByDevice(Device device);
 
 	public Boolean isRegisteredDevice(String mac_address);
+
+	public void addORUpdateFileSytemStructure(FileSystemStructure fileSystemStructure);
+
+	public List<FileSystemStructure> getAllFileSystemStructureByDevice(Device device);
+
+	public List<ServerToClientMessage> getAllMessagesByDevice(Device device);
+
+	public void deleteMessagesByMessage(ServerToClientMessage scm);
+
+	public void saveServerToClientMessage(ServerToClientMessage scm);
 
 }

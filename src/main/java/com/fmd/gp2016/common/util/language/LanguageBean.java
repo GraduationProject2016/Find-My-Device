@@ -510,4 +510,18 @@ public class LanguageBean implements Language {
 		return lang.getRecordVoice();
 	}
 
+	public String getRecordVedieo() {
+		return lang.getRecordVedieo();
+	}
+
+	@Override
+	public String getMessageSent() {
+		return lang.getMessageSent();
+	}
+
+	@Override
+	public String getOfflineMode() {
+		return lang.getOfflineMode();
+	}
+
 }

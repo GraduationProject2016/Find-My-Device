@@ -17,6 +17,8 @@ import java.util.HashMap;
 import com.fmd.gp2016.common.dto.Command;
 import com.fmd.gp2016.common.dto.MessageDto;
 import com.fmd.gp2016.common.entity.Device;
+import com.fmd.gp2016.common.entity.ServerToClientMessage;
+import com.fmd.gp2016.common.service.DeviceService;
 import com.fmd.gp2016.common.util.Constants;
 import com.fmd.gp2016.common.util.JSONDecoding;
 import com.fmd.gp2016.common.util.JsonHandler;
@@ -80,7 +82,7 @@ public class DeviceThread extends Thread {
 				file = new File(folderPath);
 				if (!file.exists())
 					file.mkdir();
-				new Download(folderPath + getStorerdName(command.getParms()[0]), socket).run();
+				new Download(folderPath + getStorerdName(command.getParms()[0]), socket, streamIn, streamOut).run();
 			}
 		}
 
@@ -97,6 +99,17 @@ public class DeviceThread extends Thread {
 		return fileName.toString();
 	}
 
+	public void send(String msg) {
+		try {
+			streamOut.writeObject(msg);
+			streamOut.flush();
+		} catch (IOException ex) {
+			System.out.println("Exception [SocketClient : send()] for device " + device.getId() + " mesg is " + msg);
+			close();
+			stop();
+		}
+	}
+
 	public void send(String msg, int viewId) {
 		try {
 			registerThread(viewId);
@@ -110,6 +123,15 @@ public class DeviceThread extends Thread {
 	}
 
 	public void readListener() {
+		for (ServerToClientMessage scm : server.getDeviceService().getAllMessagesByDevice(device)) {
+			send(scm.getContent());
+			server.getDeviceService().deleteMessagesByMessage(scm);
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 		while (true) {
 			try {
 				// TODO userid change to view id and -1 mean file upload

@@ -24,6 +24,7 @@ import com.fmd.gp2016.common.dto.Command;
 import com.fmd.gp2016.common.dto.MessageDto;
 import com.fmd.gp2016.common.entity.Device;
 import com.fmd.gp2016.common.entity.DeviceLocation;
+import com.fmd.gp2016.common.entity.FileSystemStructure;
 import com.fmd.gp2016.common.entity.filesystemstructure.ComputerFilesSystem;
 import com.fmd.gp2016.common.entity.filesystemstructure.FMDPartion;
 import com.fmd.gp2016.common.service.DeviceService;
@@ -58,6 +59,7 @@ public class ControlDeviceBean extends BaseBean {
 	private List<DeviceLocation> deviceLocation;
 	private String locationId;
 	private MapModel simpleModel;
+	Device dev = new Device();
 
 	@Autowired
 	public DeviceService deviceServices;
@@ -83,7 +85,6 @@ public class ControlDeviceBean extends BaseBean {
 			locationId = null;
 		}
 		ArrayList<Device> devices = (ArrayList<Device>) deviceServices.getAllUserDevicesByUserId(getSessionUserID());
-		Device dev = new Device();
 
 		dev = deviceServices.getDeviceById(deviceID);
 
@@ -96,7 +97,8 @@ public class ControlDeviceBean extends BaseBean {
 		userFiles = new UserFiles(getSessionUserID(), deviceServices);
 
 		if (dev == null) {
-			redirect(User_Device + "?msg=there is no device by thise details ");
+			redirect("offlinecontrol.xhtml?device_id=" + deviceID);
+			return;
 		} else {
 
 			int coun = 0;
@@ -106,7 +108,8 @@ public class ControlDeviceBean extends BaseBean {
 					coun++;
 			}
 			if (coun == devices.size()) {
-				redirect(User_Device + "?msg=this device is not belongs to you");
+				redirect("offlinecontrol.xhtml?device_id=" + deviceID);
+				return;
 			} else {
 				userID = viewId = (viewId % (2 << 25) == 0 ? 1 : viewId + 1);
 				System.out.println("view id : " + viewId);
@@ -114,8 +117,8 @@ public class ControlDeviceBean extends BaseBean {
 				deviceThread = DevicePool.getDeviceThread(deviceID);
 				if (deviceThread == null) {
 
-					redirect(User_Device + "?msg=this device is not connected to our server ");
-
+					redirect("offlinecontrol.xhtml?device_id=" + deviceID);
+					return;
 				} else {
 					String content = CommandConstant.computerDesktop;
 					Command command = new Command(content, null);
@@ -125,8 +128,10 @@ public class ControlDeviceBean extends BaseBean {
 					deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 
 					MessageDto msgdto = deviceThread.readOneMessage(viewId);
-
 					computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
+					// TODO Offline Registration
+					deviceServices.addORUpdateFileSytemStructure(
+							FileSystemStructure.getInstance(dev, computer.path, msgdto.getContent()));
 					partitions = new ArrayList<>();
 				}
 			}
@@ -134,7 +139,6 @@ public class ControlDeviceBean extends BaseBean {
 	}
 
 	public void change() {
-
 		userFiles = new UserFiles(getSessionUserID(), deviceServices);
 	}
 
@@ -149,6 +153,10 @@ public class ControlDeviceBean extends BaseBean {
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
+		System.out.println("msg dto " + msgdto.getContent());
+		// TODO Offline Registration
+		deviceServices.addORUpdateFileSytemStructure(
+				FileSystemStructure.getInstance(dev, command.getParms()[0], msgdto.getContent()));
 		partitions = null;
 		paths.push(computer.path);
 		isPartition = false;
@@ -166,6 +174,9 @@ public class ControlDeviceBean extends BaseBean {
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
+		// TODO Offline Registration
+		deviceServices.addORUpdateFileSytemStructure(
+				FileSystemStructure.getInstance(dev, command.getParms()[0], msgdto.getContent()));
 		partitions = null;
 		isPartition = false;
 		return "";
@@ -180,6 +191,9 @@ public class ControlDeviceBean extends BaseBean {
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
+		// TODO Offline Registration
+		deviceServices.addORUpdateFileSytemStructure(
+				FileSystemStructure.getInstance(dev, computer.path, msgdto.getContent()));
 		partitions = null;
 		isPartition = false;
 		return "";
@@ -194,7 +208,9 @@ public class ControlDeviceBean extends BaseBean {
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		partitions = JSONDecoding.decodeJsonOFPartions(new JSONObject(msgdto.getContent()));
-
+		// TODO Offline Registration
+		deviceServices.addORUpdateFileSytemStructure(
+				FileSystemStructure.getInstance(dev, CommandConstant.computerPartions, msgdto.getContent()));
 		for (int i = 0; i < partitions.size(); i++) {
 			partitions.get(i).setTotalSpace(partitions.get(i).getTotalSpace() / (1024 * 1024 * 1024));
 			partitions.get(i).setUsableSpace(partitions.get(i).getUsableSpace() / (1024 * 1024 * 1024));
@@ -219,6 +235,9 @@ public class ControlDeviceBean extends BaseBean {
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
 		MessageDto msgdto = deviceThread.readOneMessage(viewId);
 		computer = JSONDecoding.decodeJsonOFPathContent(new JSONObject(msgdto.getContent()));
+		// TODO Offline Registration
+		deviceServices.addORUpdateFileSytemStructure(
+				FileSystemStructure.getInstance(dev, computer.path, msgdto.getContent()));
 		partitions = new ArrayList<>();
 		isPartition = false;
 		return "";
@@ -234,7 +253,6 @@ public class ControlDeviceBean extends BaseBean {
 		try {
 			Thread.sleep(11000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		deviceLocation = deviceServices.findAllDeviceLocationByDevice(new Device(deviceID));
@@ -342,6 +360,17 @@ public class ControlDeviceBean extends BaseBean {
 			addErrorMessage(getSessionLanguage().getThereIsAnErrorInRecording());
 		} else
 			addInfoMessage(getSessionLanguage().getRecordingNow());
+		return "";
+	}
+
+	public String recordVedio() {
+		String content = CommandConstant.recordVedio;
+		Command command = new Command(content, null);
+		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
+				Constants.SERVER_TO_CLIENT);
+		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
+		deviceThread.readOneMessage(viewId);
+		addInfoMessage(getSessionLanguage().getMessageSent());
 		return "";
 	}
 

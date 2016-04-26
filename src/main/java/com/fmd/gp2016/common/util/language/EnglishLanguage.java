@@ -542,24 +542,12 @@ public class EnglishLanguage implements Language {
 		return "Now";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.fmd.gp2016.common.util.language.Language#getThereIsAnErrorInRecording
-	 * ()
-	 */
 	@Override
 	public String getThereIsAnErrorInRecording() {
 
 		return "There Is An Error In Recording";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.fmd.gp2016.common.util.language.Language#getRecordingNow()
-	 */
 	@Override
 	public String getRecordingNow() {
 		return "Recording Now";
@@ -567,6 +555,20 @@ public class EnglishLanguage implements Language {
 
 	public String getRecordVoice() {
 		return "Record Voice";
+	}
+
+	public String getRecordVedieo() {
+		return "Record Vedio";
+	}
+
+	@Override
+	public String getMessageSent() {
+		return "Message Sent";
+	}
+
+	@Override
+	public String getOfflineMode() {
+		return "Offline Mode";
 	}
 
 }
