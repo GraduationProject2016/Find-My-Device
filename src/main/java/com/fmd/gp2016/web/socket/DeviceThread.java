@@ -95,6 +95,7 @@ public class DeviceThread extends Thread {
 		date = date.replace(":", "_");
 		date = date.replace("-", "_");
 		date = date.replace(" ", "_");
+
 		fileName.insert(fileName.indexOf("."), " " + date);
 		return fileName.toString();
 	}
