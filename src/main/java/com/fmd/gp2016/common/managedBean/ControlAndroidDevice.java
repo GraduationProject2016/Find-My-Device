@@ -127,6 +127,20 @@ public class ControlAndroidDevice extends BaseBean {
 		}
 	}
 
+	public String recordVoice() {
+		String content = CommandConstant.recordVoice;
+		Command command = new Command(content, null);
+		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
+				Constants.SERVER_TO_CLIENT);
+		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);
+		MessageDto m = deviceThread.readOneMessage(viewId);
+		if (m.getContent().equals("false")) {
+			addErrorMessage(getSessionLanguage().getThereIsAnErrorInRecording());
+		} else
+			addInfoMessage(getSessionLanguage().getRecordingNow());
+		return "";
+	}
+
 	public void change() {
 
 		userFiles = new UserFiles(getSessionUserID(), deviceServices);
