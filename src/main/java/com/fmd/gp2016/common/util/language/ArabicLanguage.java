@@ -566,4 +566,27 @@ public class ArabicLanguage implements Language {
 		return "وضع الاتصال الخفى";
 	}
 
+
+	@Override
+	public String getConfigration() {
+		return "اعدادات";
+	}
+
+
+	@Override
+	public String getResponceTime() {
+		return "وقت الرد";
+	}
+
+
+	@Override
+	public String getVideoRecordTime() {
+		return "وقت تسجيل الفيديو";
+	}
+
+	@Override
+	public String getAudioRecordTime() {
+		return "وقت تسجيل الصوت";
+	}
+
 }

@@ -20,6 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
+import javax.ws.rs.DefaultValue;
 
 /**
  * @author mohamed265
@@ -71,6 +72,20 @@ public class Device implements Serializable {
 	@Basic(optional = false)
 	@Column(name = "type")
 	private Boolean type;
+	
+	@Basic(optional = false)
+	@Column(name = "responceTime" , columnDefinition = "Integer default '6'")
+	private Integer responceTime;
+	
+	@Basic(optional = false)
+	@Column(name = "VideoRecordTime")
+	private Integer VideoRecordTime;
+	
+	@Basic(optional = false)
+	@Column(name = "audioRecordTime")
+	@DefaultValue("20")
+	private Integer audioRecordTime;
+	
 
 	@Basic(optional = false)
 	@Column(name = "active")
@@ -183,6 +198,30 @@ public class Device implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public Integer getResponceTime() {
+		return responceTime;
+	}
+
+	public void setResponceTime(Integer responceTime) {
+		this.responceTime = responceTime;
+	}
+
+	public Integer getVideoRecordTime() {
+		return VideoRecordTime;
+	}
+
+	public void setVideoRecordTime(Integer videoRecordTime) {
+		VideoRecordTime = videoRecordTime;
+	}
+
+	public Integer getAudioRecordTime() {
+		return audioRecordTime;
+	}
+
+	public void setAudioRecordTime(Integer audioRecordTime) {
+		this.audioRecordTime = audioRecordTime;
 	}
 
 	@Override

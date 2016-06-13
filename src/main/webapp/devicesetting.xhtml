@@ -109,6 +109,27 @@
 					<p:gmap id="gmap" center="#{deviceSetting.locationId}" zoom="15"
 						type="HYBRID" style="width:100%;height:400px" streetView="true" model="#{deviceSetting.simpleModel}"/>
 				</p:tab>
+				
+				<p:tab title="#{language.configration}">
+					<h:panelGrid columns="2" cellpadding="10">
+
+						<p:outputLabel for="responceTime" value="#{language.responceTime}" />
+						<p:inputText id="responceTime"
+							value="#{deviceSetting.responceTime}" />
+
+						<p:outputLabel for="videoRecordTime" value="#{language.videoRecordTime}" />
+						<p:inputText id="videoRecordTime"
+							value="#{deviceSetting.videoRecordTime}" />
+							
+						<p:outputLabel for="audioRecordTime" value="#{language.audioRecordTime}" />
+						<p:inputText id="audioRecordTime"
+							value="#{deviceSetting.audioRecordTime}" />
+							
+						<p:commandButton value="#{language.getChangeName()}"
+							actionListener="#{deviceSetting.updateConfigration()}"></p:commandButton>
+					</h:panelGrid>
+				</p:tab>
+				
 
 			</p:tabView>
 

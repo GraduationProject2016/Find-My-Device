@@ -39,6 +39,8 @@ public class DeviceSettingBean extends BaseBean {
 	private String locationId;
 	private MapModel simpleModel;
 
+	private int responceTime, videoRecordTime, audioRecordTime;
+
 	@Autowired
 	private DeviceService deviceService;
 
@@ -48,6 +50,10 @@ public class DeviceSettingBean extends BaseBean {
 				FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("device_id"));
 		System.out.println(deviceID);
 		device = deviceService.getDeviceById(deviceID);
+
+		responceTime = device.getResponceTime();
+		videoRecordTime = device.getVideoRecordTime();
+		audioRecordTime = device.getAudioRecordTime();
 		System.out.println(device);
 		userFiles = new UserFiles(getSessionUserID(), deviceService);
 		deviceLocation = deviceService.findAllDeviceLocationByDevice(new Device(deviceID));
@@ -94,6 +100,17 @@ public class DeviceSettingBean extends BaseBean {
 		}
 
 		return "";
+	}
+
+	public String updateConfigration() {
+		device.setResponceTime(responceTime);
+		device.setAudioRecordTime(audioRecordTime);
+		device.setVideoRecordTime(videoRecordTime);
+		deviceService.updateDevice(device);
+		addSuccessfulMessage("updated successful");
+
+		return "";
+
 	}
 
 	public String getOldPassword() {
@@ -182,6 +199,30 @@ public class DeviceSettingBean extends BaseBean {
 
 	public void setSimpleModel(MapModel simpleModel) {
 		this.simpleModel = simpleModel;
+	}
+
+	public int getResponceTime() {
+		return responceTime;
+	}
+
+	public void setResponceTime(int responceTime) {
+		this.responceTime = responceTime;
+	}
+
+	public int getVideoRecordTime() {
+		return videoRecordTime;
+	}
+
+	public void setVideoRecordTime(int videoRecordTime) {
+		this.videoRecordTime = videoRecordTime;
+	}
+
+	public int getAudioRecordTime() {
+		return audioRecordTime;
+	}
+
+	public void setAudioRecordTime(int audioRecordTime) {
+		this.audioRecordTime = audioRecordTime;
 	}
 
 }

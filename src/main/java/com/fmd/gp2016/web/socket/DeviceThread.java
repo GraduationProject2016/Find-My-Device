@@ -166,7 +166,7 @@ public class DeviceThread extends Thread {
 		try {
 			// registerThread(viewId);
 			synchronized (mapViews.get(viewId)) {
-				mapViews.get(viewId).wait(6000);
+				mapViews.get(viewId).wait(device.getResponceTime() * 1000);
 			}
 
 		} catch (InterruptedException e) {
