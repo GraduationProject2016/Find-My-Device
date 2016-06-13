@@ -524,4 +524,24 @@ public class LanguageBean implements Language {
 		return lang.getOfflineMode();
 	}
 
+	@Override
+	public String getConfigration() {
+		return lang.getConfigration();
+	}
+
+	@Override
+	public String getResponceTime() {
+		return lang.getResponceTime();
+	}
+
+	@Override
+	public String getVideoRecordTime() {
+		return lang.getVideoRecordTime();
+	}
+
+	@Override
+	public String getAudioRecordTime() {
+		return lang.getAudioRecordTime();
+	}
+
 }

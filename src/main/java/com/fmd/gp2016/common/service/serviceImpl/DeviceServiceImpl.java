@@ -32,6 +32,9 @@ public class DeviceServiceImpl implements DeviceService {
 	public void saveDevice(Device device) {
 
 		Boolean isUniqueMac = isUniqeMacAddress(device.getMacAddress());
+		device.setAudioRecordTime(20);
+		device.setVideoRecordTime(20);
+		device.setResponceTime(6);
 
 		if (isUniqueMac) {
 			try {

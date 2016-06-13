@@ -195,5 +195,13 @@ public interface Language {
 	public String getMessageSent();
 
 	public String getOfflineMode();
+	
+	public String getConfigration();
+	
+	public String getResponceTime();
+	
+	public String getVideoRecordTime();
+	
+	public String getAudioRecordTime();
 
 }

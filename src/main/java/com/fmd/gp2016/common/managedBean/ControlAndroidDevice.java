@@ -129,7 +129,8 @@ public class ControlAndroidDevice extends BaseBean {
 
 	public String recordVoice() {
 		String content = CommandConstant.recordVoice;
-		Command command = new Command(content, null);
+		Command command = new Command(content, new String[] { (dev.getAudioRecordTime() * 1000) + "" });
+
 		MessageDto msg = new MessageDto(deviceID, userID, JsonHandler.getCommandJson(command),
 				Constants.SERVER_TO_CLIENT);
 		deviceThread.send(JsonHandler.getMessageDtoJson(msg), viewId);

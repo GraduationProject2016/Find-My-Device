@@ -406,12 +406,12 @@ public class EnglishLanguage implements Language {
 
 	@Override
 	public String getChangeDevicePassword() {
-		return "Change Device Password";
+		return "Change Password";
 	}
 
 	@Override
 	public String getChangeDeviceName() {
-		return "Change Device Name";
+		return "Change Name";
 	}
 
 	@Override
@@ -569,6 +569,30 @@ public class EnglishLanguage implements Language {
 	@Override
 	public String getOfflineMode() {
 		return "Offline Mode";
+	}
+
+
+	@Override
+	public String getConfigration() {
+		return "Configration";
+	}
+
+
+	@Override
+	public String getResponceTime() {
+		return "Responce Time";
+	}
+
+
+	@Override
+	public String getVideoRecordTime() {
+		return "Video Record Time";
+	}
+
+
+	@Override
+	public String getAudioRecordTime() {
+		return "Audio Record Time";
 	}
 
 }
