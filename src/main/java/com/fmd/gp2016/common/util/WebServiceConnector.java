@@ -32,6 +32,7 @@ public class WebServiceConnector {
 			in.close();
 			return response.toString();
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.err.println("Crash In getResponeString URL IS " + urll);
 			return null;
 		}

@@ -48,7 +48,3 @@ public class LocationWebService {
 	}
 
 }
-// System.out.println("Device Id: " + deviceId);
-// System.out.println("latitude: " + latitude);
-// System.out.println("longitude: " + longitude);
-// return "test";
