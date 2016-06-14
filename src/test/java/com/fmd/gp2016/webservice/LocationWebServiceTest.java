@@ -9,7 +9,7 @@ import com.fmd.gp2016.common.util.WebServiceConnector;
 public class LocationWebServiceTest {
 
 	@Test
-	public void signup_success() throws IOException {
+	public void location() throws IOException {
 
 		String deviceID = "1";
 		String lat = "1.01010";
