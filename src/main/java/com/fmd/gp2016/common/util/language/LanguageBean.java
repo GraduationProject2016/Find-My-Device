@@ -1,7 +1,4 @@
-/**
- * @author Ibrahim Ali
- * Created On : Dec 7, 2015 9:24:06 AM
- */
+
 package com.fmd.gp2016.common.util.language;
 
 import javax.annotation.PostConstruct;
@@ -13,11 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fmd.gp2016.common.util.Constants;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringSessionScoped;
-
-/**
- * @author Ibrahim Ali
- *
- */
 
 @Named("language")
 @SpringSessionScoped

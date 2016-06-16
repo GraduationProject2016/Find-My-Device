@@ -14,10 +14,6 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
-/**
- * @author mohamed265 && Ibrahim Ali
- */
-
 @Entity
 @Table(name = "user")
 @NamedQueries({ @NamedQuery(name = "User.getAll", query = "SELECT e FROM User e"),

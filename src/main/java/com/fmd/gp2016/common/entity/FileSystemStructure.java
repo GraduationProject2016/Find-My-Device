@@ -1,7 +1,4 @@
-/**
- * @author mohamed265
- * Created On : Apr 24, 2016 7:46:10 AM
- */
+
 package com.fmd.gp2016.common.entity;
 
 import java.io.Serializable;
@@ -21,9 +18,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
-/**
- * @author mohamed265
- */
 @Entity
 @NamedQueries({
 		@NamedQuery(name = "FileSystemStructure.findFSSByDeviceIdAndPath", query = "SELECT fss FROM FileSystemStructure fss WHERE fss.device.id = :DEVICEID and fss.path = :PATH"),

@@ -1,13 +1,6 @@
-/**
- * @author Ibrahim Ali
- * Created On : Dec 7, 2015 9:30:37 AM
- */
+
 package com.fmd.gp2016.common.util.language;
 
-/**
- * @author Ibrahim Ali
- *
- */
 public class ArabicLanguage implements Language {
 
 	private String SIGNUP_PAGE_NAME = "صفحه التسجيل";
@@ -55,10 +48,10 @@ public class ArabicLanguage implements Language {
 
 	private String deviceSettingPage = "اعدادات الجهاز";
 
-	private String ABOUT_PAGE_NAME = "عننا";
-	private String BACKGROUND = "توافر الإنترنت في كل مكان  وسرعته العالية وتكلفتة المنخفضة ساهم في تغيير شكل الحياة";
-	private String PRO_DEFINITION = "عدد كبير من الأجهزة التي يستخدمها الإنسان وصعوبة حملها في نفس الوقت";
-	private String SUGGEST_SOLUTION = "من خلال نظام (find my device) الذي يتيح لك التحكم على جميع الأجهزة الخاصة بك عن طريق متصفح الإنترنت وتشغيله على الجهاز الخاص بك. ببساطة تثبيت عميل بسيط على جهازك (desktop , android) وتسجيل هذا الجهازلكي تتمكن من التحكم به .";
+	private String ABOUT_PAGE_NAME = "من نحن";
+	private String BACKGROUND = " لأننا نعيش فى عصر حديث من حيث السرعة والتكنولوجيا، ويسعى العديد من المستخدمين  إلى الوصول السريع إلى المعلومات ووجود العديد من الأجهزة التي تحتوي على بيانات مختلفة, المستخدم أصبح الآن في حاجة إلى طريقة جديدة لديها كل هذه المعلومات على الفور اينما كان في الجهاز الذي هو عليه. قبل ذلك، فإن حياته الروتينية تكون أبسط من ذلك بكثيروعلاوة على ذلك توفر الإنترنت في كل مكان وبسرعة عالية ومنخفضة التكلفة من شأنها أن تغير شكل الحياة، ولذا فإننا نعتقد أن بناء مشروع التخرج لدينا من شأنها تسهيل التواصل مع الأجهزة الخاصة بك حتى كنت بعيدا";
+	private String PRO_DEFINITION = "نحن نساعد المستخدمين الى الوصول إلى الأجهزة الإلكترونية التى فقدت أو سرقت منهم مثل الكمبيوتر اللوحي ، الهاتف المحمول وأجهزة الكمبيوتر المحمولة عبر التطبيق على شبكة الإنترنت وتطبيقات مثبتة مسبقا على هذه الأجهزة";
+	private String SUGGEST_SOLUTION = "تطوير نظام يتيح وييسر لك العثور على الأجهزة الخاصة بك و استرداد الملفات من الأجهزة التى لا يمكن السيطرة عليها وتحدي موقع الجهاز و تسجيل صوت والفيديو من خلال متصفح الويب وبرامج مثبتة مسبقا على هذه الأجهزه";
 	private String ADDR_BACKGROUND = "المعلومات الاساسية";
 	private String ADDR_PRO_DEFINITION = "تعريف المشكلة";
 	private String ADDR_SUGGEST_SOLUTION = "الحل المقترح";
@@ -73,6 +66,11 @@ public class ArabicLanguage implements Language {
 	private String HOW_CONTROL_Delete = "كيف يمكنني التحكم او حذف جهاز من الاجهزة الخاصة بي!";
 	private String HOW_DOWNLOAD = "كيف يمكنني تحميل اللينك الخاص بالبرامج!";
 	private String DOWNLOAD_PICTURE = "resources/img/download_ar.png";
+
+	@Override
+	public String getDir() {
+		return dir;
+	}
 
 	@Override
 	public String getDEVICE_NAME() {
@@ -240,45 +238,6 @@ public class ArabicLanguage implements Language {
 	}
 
 	@Override
-	public String getDir() {
-		return dir;
-	}
-
-	@Override
-	public String getArabicLanguageName() {
-
-		return "العربيه";
-	}
-
-	@Override
-	public String getEnglishLanguageName() {
-		return "الانجليزيه";
-	}
-
-	@Override
-	public String getSignupName() {
-		return "تسجيل";
-	}
-
-	@Override
-	public String getLoginLink() {
-
-		return "لديك حساب بالفعل";
-	}
-
-	@Override
-	public String getSignLink() {
-
-		return "مستخدم جديد ؟";
-	}
-
-	@Override
-	public String getLoginName() {
-
-		return "دخول";
-	}
-
-	@Override
 	public String getUPDATE_PROFILE_VALUE() {
 		return UPDATE_PROFILE_VALUE;
 	}
@@ -390,13 +349,16 @@ public class ArabicLanguage implements Language {
 
 	@Override
 	public String getDeviceSettingPage() {
-
 		return deviceSettingPage;
 	}
 
 	@Override
-	public String getDeviceDetails() {
+	public String getAboutUsName() {
+		return ABOUT_PAGE_NAME;
+	}
 
+	@Override
+	public String getDeviceDetails() {
 		return "معلومات عن الجهاز";
 	}
 
@@ -430,22 +392,6 @@ public class ArabicLanguage implements Language {
 		return "دليل المستخدم";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.fmd.gp2016.common.util.language.Language#getAboutUsName()
-	 */
-	@Override
-	public String getAboutUsName() {
-		// TODO Auto-generated method stub
-		return "عننا";
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.fmd.gp2016.common.util.language.Language#getlogOutName()
-	 */
 	@Override
 	public String getlogOutName() {
 		return "خروج";
@@ -560,24 +506,21 @@ public class ArabicLanguage implements Language {
 	public String getMessageSent() {
 		return "لقد ارسلت الرسالة";
 	}
- 
+
 	@Override
-	public String getOfflineMode() { 
+	public String getOfflineMode() {
 		return "وضع الاتصال الخفى";
 	}
-
 
 	@Override
 	public String getConfigration() {
 		return "اعدادات";
 	}
 
-
 	@Override
 	public String getResponceTime() {
 		return "وقت الرد";
 	}
-
 
 	@Override
 	public String getVideoRecordTime() {
@@ -589,4 +532,33 @@ public class ArabicLanguage implements Language {
 		return "وقت تسجيل الصوت";
 	}
 
+	@Override
+	public String getArabicLanguageName() {
+		return "العربيه";
+	}
+
+	@Override
+	public String getEnglishLanguageName() {
+		return "الانجليزيه";
+	}
+
+	@Override
+	public String getSignupName() {
+		return "تسجيل";
+	}
+
+	@Override
+	public String getLoginLink() {
+		return "لديك حساب بالفعل";
+	}
+
+	@Override
+	public String getSignLink() {
+		return "مستخدم جديد ؟";
+	}
+
+	@Override
+	public String getLoginName() {
+		return "دخول";
+	}
 }

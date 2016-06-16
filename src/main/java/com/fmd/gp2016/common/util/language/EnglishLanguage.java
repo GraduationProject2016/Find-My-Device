@@ -1,16 +1,7 @@
-/**
- * @author  Neama Fouad
- * Created On : Nov 30, 2015 11:27:58 AM
- */
+
 package com.fmd.gp2016.common.util.language;
 
 import javax.faces.bean.ApplicationScoped;
-
-/**
- * @author mohamed265
- * @author Neama Fouad
- * @autor Amany Mohamed
- */
 
 @ApplicationScoped
 public class EnglishLanguage implements Language {
@@ -23,14 +14,14 @@ public class EnglishLanguage implements Language {
 
 	private String DOWNLOAD_LINK = "Download link";
 	private String OUTPUTTEXT_NAME = "Name";
-	private String PLACEHOLDER_NAME = "Enter your Name ";
+	private String PLACEHOLDER_NAME = "Enter your Name";
 	private String OUTPUTTEXT_MOBILE = "Mobile Number";
 	private String PLACEHOLDER_MOBILE = "Enter Your Mobile Number";
-	private String OUTPUTTEXT_EMAIL = "Email ";
+	private String OUTPUTTEXT_EMAIL = "Email";
 	private String PLACEHOLDER_EMAIL = "Enter your Email";
-	private String OUTPUTTEXT_USERNAME = "Username ";
+	private String OUTPUTTEXT_USERNAME = "Username";
 	private String PLACEHOLDER_USERNAME = "Enter your username";
-	private String OUTPUTTEXT_PASSWORD = "Password ";
+	private String OUTPUTTEXT_PASSWORD = "Password";
 	private String PLACEHOLDER_PASSWORD = "Enter your password";
 	private String OUTPUTTEXT_CONFIRMPASSWORD = "Confirm Password ";
 	private String PLACEHOLDER_CONFIRMPASSWORD = "Confirm password";
@@ -59,12 +50,14 @@ public class EnglishLanguage implements Language {
 
 	private String deviceSettingPage = "Device Setting";
 
-	private String ABOUT_PAGE_NAME = "about us";
-	private String BACKGROUND = "Availability of the Internet everywhere and at high speed and low cost will change the shape of life.";
-	private String PRO_DEFINITION = "The large number of devices used by man and the difficulty of carrying at the same time.";
-	private String SUGGEST_SOLUTION = "Developing Find my device system which mange you to control all your devices via web browser and pre-installed client on device. Simply you install simple client on your device (desktop and android) and register this device then can controlled later ";
+	private String ABOUT_PAGE_NAME = "About Us";
+	private String BACKGROUND = "As we live in modern era of speed and technology, everyone seeks to a fast access to the information and having multiple devices containing different data. "
+			+ "The user now become in a need of a new way to have all this information instantly wherever it is in which device it is. By that, his life routine will be much simpler. "
+			+ "Furthermore availability of the Internet everywhere and at high speed and low cost will change the shape of life, so we think that building our graduation project will facilitate the communication with your devices even you are away.";
+	private String PRO_DEFINITION = "We help people to access their lost or stolen electronic devices like tablet, mobile and laptops, via web app and pre-installed app on these devices.";
+	private String SUGGEST_SOLUTION = "Developing system which mange you to find your devices, retrieve files from uncontrollable devices, determined location, record sound and video via web browser and pre-installed client on device.";
 	private String ADDR_BACKGROUND = "Background";
-	private String ADDR_PRO_DEFINITION = "Problem Solution";
+	private String ADDR_PRO_DEFINITION = "Problem Definition";
 	private String ADDR_SUGGEST_SOLUTION = "Suggest Solution";
 	private String USER_MANUAL = "User Manual Page";
 	private String SIGNUP_PICTURE = "resources/img/signup.PNG";
@@ -77,6 +70,11 @@ public class EnglishLanguage implements Language {
 	private String USERDEVICE_PICTURE = "resources/img/userdevice.png";
 	private String HOW_DOWNLOAD = "HOW DO I DOWNLOAD THE LINKS OF DIFFERENT APPLICATIONS!";
 	private String DOWNLOAD_PICTURE = "resources/img/download.png";
+
+	@Override
+	public String getDir() {
+		return dir;
+	}
 
 	@Override
 	public String getDOWNLOAD_PAGE_NAME() {
@@ -248,47 +246,6 @@ public class EnglishLanguage implements Language {
 	}
 
 	@Override
-	public String getDir() {
-		return dir;
-	}
-
-	@Override
-	public String getArabicLanguageName() {
-
-		return "Arabic";
-	}
-
-	@Override
-	public String getEnglishLanguageName() {
-
-		return "English";
-	}
-
-	@Override
-	public String getSignupName() {
-
-		return "Sign up";
-	}
-
-	@Override
-	public String getLoginLink() {
-
-		return "Already have an account";
-	}
-
-	@Override
-	public String getSignLink() {
-
-		return "New User ?";
-	}
-
-	@Override
-	public String getLoginName() {
-
-		return "Login";
-	}
-
-	@Override
 	public String getUPDATE_PROFILE_VALUE() {
 		return UPDATE_PROFILE_VALUE;
 	}
@@ -395,7 +352,6 @@ public class EnglishLanguage implements Language {
 
 	@Override
 	public String getDeviceSettingPage() {
-
 		return deviceSettingPage;
 	}
 
@@ -424,44 +380,21 @@ public class EnglishLanguage implements Language {
 		return "Profile";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.fmd.gp2016.common.util.language.Language#getDownloadName()
-	 */
 	@Override
 	public String getDownloadName() {
-		// TODO Auto-generated method stub
 		return "Downloads";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.fmd.gp2016.common.util.language.Language#getUserManualName()
-	 */
 	@Override
 	public String getUserManualName() {
-		// TODO Auto-generated method stub
 		return "User Manual";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.fmd.gp2016.common.util.language.Language#getAboutUsName()
-	 */
 	@Override
 	public String getAboutUsName() {
-		// TODO Auto-generated method stub
-		return "About Us";
+		return ABOUT_PAGE_NAME;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.fmd.gp2016.common.util.language.Language#getlogOutName()
-	 */
 	@Override
 	public String getlogOutName() {
 		return "logout";
@@ -544,7 +477,6 @@ public class EnglishLanguage implements Language {
 
 	@Override
 	public String getThereIsAnErrorInRecording() {
-
 		return "There Is An Error In Recording";
 	}
 
@@ -571,28 +503,53 @@ public class EnglishLanguage implements Language {
 		return "Offline Mode";
 	}
 
-
 	@Override
 	public String getConfigration() {
 		return "Configration";
 	}
-
 
 	@Override
 	public String getResponceTime() {
 		return "Responce Time";
 	}
 
-
 	@Override
 	public String getVideoRecordTime() {
 		return "Video Record Time";
 	}
-
 
 	@Override
 	public String getAudioRecordTime() {
 		return "Audio Record Time";
 	}
 
+	@Override
+	public String getArabicLanguageName() {
+		return "Arabic";
+	}
+
+	@Override
+	public String getEnglishLanguageName() {
+		return "English";
+	}
+
+	@Override
+	public String getSignupName() {
+		return "Sign up";
+	}
+
+	@Override
+	public String getLoginLink() {
+		return "Already have an account";
+	}
+
+	@Override
+	public String getSignLink() {
+		return "New User ?";
+	}
+
+	@Override
+	public String getLoginName() {
+		return "Login";
+	}
 }

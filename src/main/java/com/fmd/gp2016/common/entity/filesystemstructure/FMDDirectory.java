@@ -8,9 +8,6 @@ public class FMDDirectory {
 	public String name;
 	public long size;
 
-	/**
-	 * 
-	 */
 	public FMDDirectory() {
 		super();
 	}

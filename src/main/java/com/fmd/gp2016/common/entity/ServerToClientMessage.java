@@ -1,7 +1,4 @@
-/**
- * @author mohamed265
- * Created On : Dec 11, 2015 3:44:32 PM
- */
+
 package com.fmd.gp2016.common.entity;
 
 import java.io.Serializable;
@@ -19,10 +16,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-/**
- * @author mohamed265
- *
- */
 @Entity
 @Table(name = "server_to_client_message")
 @NamedQueries({

@@ -1,7 +1,4 @@
-/**
- * @author mohamed265
- * Created On : Nov 17, 2015 8:22:13 PM
- */
+
 package com.fmd.gp2016.common.util;
 
 import java.io.StringReader;
@@ -15,9 +12,6 @@ import javax.json.JsonReader;
 import com.fmd.gp2016.common.dto.Command;
 import com.fmd.gp2016.common.dto.MessageDto;
 
-/**
- * @author mohamed265
- */
 public class JsonHandler {
 
 	public static JsonObject getJsonObjec(String str) {
@@ -45,7 +39,7 @@ public class JsonHandler {
 				.add(Constants.MESSAGE_USER, messageDto.getContentType()).build();
 		return jsonObject.toString();
 	}
-	
+
 	public static Command getCommandObject(String str) {
 		JsonObject jsonObject = getJsonObjec(str);
 		JsonArray jsonArray = jsonObject.getJsonArray(Constants.COMAND_PARMS);

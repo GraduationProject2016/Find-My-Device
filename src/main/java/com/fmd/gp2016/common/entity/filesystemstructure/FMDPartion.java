@@ -9,12 +9,7 @@ public class FMDPartion {
 	public String path;
 	public long totalSpace;
 	public long usableSpace;
-	
-	
 
-	/**
-	 * 
-	 */
 	public FMDPartion() {
 		super();
 	}
