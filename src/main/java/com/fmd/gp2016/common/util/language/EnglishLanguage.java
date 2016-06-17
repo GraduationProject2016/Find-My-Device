@@ -401,7 +401,7 @@ public class EnglishLanguage implements Language {
 
 	@Override
 	public String getDeviceDetails() {
-		return "Device Details";
+		return "Details";
 	}
 
 	@Override
@@ -534,7 +534,7 @@ public class EnglishLanguage implements Language {
 
 	@Override
 	public String getDeviceLocation() {
-		return "Device Location";
+		return "Location";
 	}
 
 	@Override
@@ -593,6 +593,15 @@ public class EnglishLanguage implements Language {
 	@Override
 	public String getAudioRecordTime() {
 		return "Audio Record Time";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.fmd.gp2016.common.util.language.Language#getCommands()
+	 */
+	@Override
+	public String getCommands() {
+		// TODO Auto-generated method stub
+		return "Commands";
 	}
 
 }

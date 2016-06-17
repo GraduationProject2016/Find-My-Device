@@ -19,11 +19,22 @@ body {
 	background-image: url("");
 }
 </style>
-		<IMG alt="" src="#{resource['img/cumucloud_logo_8.png']}"
-			style="width: 280px; height = 260px; margin-top: 50px;" />
-		<center style="margin-top: 18%;">
-			<h:form>
-				<div style="margin-top: -370px; margin-right: -50px;">
+		<IMG alt="" src="#{resource['img/bkimage.jpg']}"
+			style="margin-top: -20%; width: 160%; margin-left: -30%" height="-40%"/>
+
+
+		<div style="font-size: 20px; margin-top: 10%; font-weight: bold;">
+			<div style="width: 40%; height: 50%; float: left;">We help
+				people to access their lost or stolen electronic devices like
+				tablet, mobile and laptops, via web app and pre-installed app on
+				these devices. and even if this device wasn't lost, it's owner can
+				access it remotely via our web application. This access includes
+				operations like (access file system storage, get file from the
+				device, delete file, know the location of device, record voice,
+				record video)</div>
+			<div style="width: 50%; height: 50%; float: right;">
+				<h:form>
+
 					<h:panelGrid columns="3" cellpadding="5">
 						<h:outputText value="#{language.OUTPUTTEXT_USERNAME}" />
 						<p:inputText id="username" value="#{login.input}"
@@ -46,9 +57,17 @@ body {
 
 					</h:panelGrid>
 					<p:link href="/download.xhtml" value="#{language.DOWNLOAD_LINK}" />
-				</div>
-			</h:form>
-		</center>
+
+				</h:form>
+
+
+			</div>
+		</div>
+
+
+
+
+		<center style="margin-top: 30%;"></center>
 	</ui:define>
 </ui:composition>
 </html>

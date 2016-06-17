@@ -17,9 +17,14 @@ import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.fmd.gp2016.common.dto.Command;
+import com.fmd.gp2016.common.dto.MessageDto;
+import com.fmd.gp2016.common.entity.ClientToServerMessage;
 import com.fmd.gp2016.common.entity.Device;
 import com.fmd.gp2016.common.entity.DeviceLocation;
+import com.fmd.gp2016.common.entity.ServerToClientMessage;
 import com.fmd.gp2016.common.service.DeviceService;
+import com.fmd.gp2016.common.util.JsonHandler;
 import com.fmd.gp2016.common.util.file.UserFiles;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
 
@@ -38,6 +43,8 @@ public class DeviceSettingBean extends BaseBean {
 	private List<DeviceLocation> deviceLocation;
 	private String locationId;
 	private MapModel simpleModel;
+	
+	private List<ServerToClientMessage> commands;
 
 	private int responceTime, videoRecordTime, audioRecordTime;
 
@@ -54,6 +61,21 @@ public class DeviceSettingBean extends BaseBean {
 		responceTime = device.getResponceTime();
 		videoRecordTime = device.getVideoRecordTime();
 		audioRecordTime = device.getAudioRecordTime();
+		
+		commands = (deviceService.getAllMessagesByDevice(device));
+		
+		for (int i = 0; i < commands.size(); i++) {
+			String temp = "";
+			MessageDto ms = JsonHandler.getMessageDtoObject(commands.get(i).getContent());
+			Command co = JsonHandler.getCommandObject(ms.getContent());
+			if(co.getCommand().equals("filetransfer")){
+				temp ="Retrive (" +co.getParms()[1]+"\\" +co.getParms()[0] + " )"; 
+			}else{
+				temp = "Delete (" + co.getParms()[1] +"\\" +co.getParms()[0] + " )";
+			}
+			commands.get(i).setContent(temp);
+		}
+		
 		System.out.println(device);
 		userFiles = new UserFiles(getSessionUserID(), deviceService);
 		deviceLocation = deviceService.findAllDeviceLocationByDevice(new Device(deviceID));
@@ -111,6 +133,15 @@ public class DeviceSettingBean extends BaseBean {
 
 		return "";
 
+	}
+	
+	public String deleteCommand(ServerToClientMessage command){
+		deviceService.deleteMessagesByMessage(command);
+		addSuccessfulMessage("Deleted successful");
+		redirect("devicesetting.xhtml?device_id=" + deviceID);
+		
+		return "";
+		
 	}
 
 	public String getOldPassword() {
@@ -223,6 +254,20 @@ public class DeviceSettingBean extends BaseBean {
 
 	public void setAudioRecordTime(int audioRecordTime) {
 		this.audioRecordTime = audioRecordTime;
+	}
+
+	/**
+	 * @return the commands
+	 */
+	public List<ServerToClientMessage> getCommands() {
+		return commands;
+	}
+
+	/**
+	 * @param commands the commands to set
+	 */
+	public void setCommands(List<ServerToClientMessage> commands) {
+		this.commands = commands;
 	}
 
 }

@@ -203,5 +203,7 @@ public interface Language {
 	public String getVideoRecordTime();
 	
 	public String getAudioRecordTime();
+	
+	public String getCommands();
 
 }

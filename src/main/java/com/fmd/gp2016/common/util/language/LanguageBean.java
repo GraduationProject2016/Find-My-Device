@@ -544,4 +544,10 @@ public class LanguageBean implements Language {
 		return lang.getAudioRecordTime();
 	}
 
+
+	@Override
+	public String getCommands() {
+		return lang.getCommands();
+	}
+
 }

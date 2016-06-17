@@ -589,4 +589,13 @@ public class ArabicLanguage implements Language {
 		return "وقت تسجيل الصوت";
 	}
 
+	/* (non-Javadoc)
+	 * @see com.fmd.gp2016.common.util.language.Language#getCommands()
+	 */
+	@Override
+	public String getCommands() {
+		// TODO Auto-generated method stub
+		return "الاوامر";
+	}
+
 }
