@@ -1,7 +1,4 @@
-/**
- * @author mohamed265
- * Created On : Feb 14, 2016 10:04:42 PM
- */
+
 package com.fmd.gp2016.common.util.file;
 
 import java.io.File;
@@ -12,10 +9,6 @@ import com.fmd.gp2016.common.entity.Device;
 import com.fmd.gp2016.common.service.DeviceService;
 import com.fmd.gp2016.common.util.Constants;
 
-/**
- * @author mohamed265
- *
- */
 public class UserFiles {
 
 	private FileDownload fileDownload;
@@ -59,7 +52,6 @@ public class UserFiles {
 	}
 
 	public void download(String filename) {
-		// System.out.println(filename + " " + getFilePath(filename));
 		try {
 			fileDownload.download(getFilePath(filename));
 		} catch (Exception e) {

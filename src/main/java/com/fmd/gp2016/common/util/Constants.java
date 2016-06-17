@@ -1,13 +1,6 @@
-/**
- * @author mohamed265
- * Created On : Nov 17, 2015 5:14:38 PM
- */
+
 package com.fmd.gp2016.common.util;
 
-/**
- * @author mohamed265
- *
- */
 public class Constants {
 
 	// Operations Term

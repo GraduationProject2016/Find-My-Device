@@ -1,7 +1,4 @@
-/**
- * @author mohamed265
- * Created On : Nov 27, 2015 10:07:56 PM
- */
+
 package com.fmd.gp2016.common.entity;
 
 import java.io.Serializable;
@@ -22,9 +19,6 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.ws.rs.DefaultValue;
 
-/**
- * @author mohamed265
- */
 @Entity
 @Table(name = "device")
 @NamedQueries({ @NamedQuery(name = "Device.getAll", query = "SELECT e FROM Device e"),
@@ -72,20 +66,19 @@ public class Device implements Serializable {
 	@Basic(optional = false)
 	@Column(name = "type")
 	private Boolean type;
-	
+
 	@Basic(optional = false)
-	@Column(name = "responceTime" , columnDefinition = "Integer default '6'")
+	@Column(name = "responceTime", columnDefinition = "Integer default '6'")
 	private Integer responceTime;
-	
+
 	@Basic(optional = false)
 	@Column(name = "VideoRecordTime")
 	private Integer VideoRecordTime;
-	
+
 	@Basic(optional = false)
 	@Column(name = "audioRecordTime")
 	@DefaultValue("20")
 	private Integer audioRecordTime;
-	
 
 	@Basic(optional = false)
 	@Column(name = "active")
@@ -97,7 +90,7 @@ public class Device implements Serializable {
 
 	@Transient
 	private String status;
- 
+
 	public Device() {
 
 	}

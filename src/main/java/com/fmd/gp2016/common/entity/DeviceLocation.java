@@ -1,7 +1,4 @@
-/**
- * @author mohamed265
- * Created On : Feb 27, 2016 1:37:19 PM
- */
+
 package com.fmd.gp2016.common.entity;
 
 import java.io.Serializable;
@@ -20,11 +17,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- * @author mohamed265
- */
 @Entity
-@NamedQueries({ @NamedQuery(name = "DeviceLocation.findAllByDeviceId", query = "SELECT l FROM DeviceLocation l WHERE l.device.id = :DEVICEID") })
+@NamedQueries({
+		@NamedQuery(name = "DeviceLocation.findAllByDeviceId", query = "SELECT l FROM DeviceLocation l WHERE l.device.id = :DEVICEID") })
 public class DeviceLocation implements Serializable {
 
 	private static final long serialVersionUID = 1L;

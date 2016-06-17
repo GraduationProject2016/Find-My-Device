@@ -1,7 +1,4 @@
-/**
- * @author mohamed265
- * Created On : Dec 11, 2015 3:32:21 PM
- */
+
 package com.fmd.gp2016.common.entity;
 
 import java.io.Serializable;
@@ -15,16 +12,9 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
-/**
- * @author mohamed265
- *
- */
 @MappedSuperclass
 public abstract class Message implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id

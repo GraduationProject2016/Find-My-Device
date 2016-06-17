@@ -1,13 +1,6 @@
-/**
- * @author Ibrahim Ali
- * Created On : Dec 7, 2015 9:39:11 AM
- */
+
 package com.fmd.gp2016.common.util.language;
 
-/**
- * @author Ibrahim Ali
- *
- */
 public interface Language {
 
 	public String getUSERDEVICE_PICTURE();
@@ -195,13 +188,13 @@ public interface Language {
 	public String getMessageSent();
 
 	public String getOfflineMode();
-	
+
 	public String getConfigration();
-	
+
 	public String getResponceTime();
-	
+
 	public String getVideoRecordTime();
-	
+
 	public String getAudioRecordTime();
 	
 	public String getCommands();

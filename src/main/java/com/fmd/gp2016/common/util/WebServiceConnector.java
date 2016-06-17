@@ -1,7 +1,4 @@
-/**
- * @author mohamed265
- * Created On : Nov 17, 2015 8:16:33 PM
- */
+
 package com.fmd.gp2016.common.util;
 
 import java.io.BufferedReader;
@@ -9,9 +6,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * @author mohamed265
- */
 public class WebServiceConnector {
 
 	public static void main(String[] args) {
@@ -32,6 +26,7 @@ public class WebServiceConnector {
 			in.close();
 			return response.toString();
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.err.println("Crash In getResponeString URL IS " + urll);
 			return null;
 		}
