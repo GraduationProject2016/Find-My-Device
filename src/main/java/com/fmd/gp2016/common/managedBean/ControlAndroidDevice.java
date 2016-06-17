@@ -1,7 +1,4 @@
-/**
- * @author Ahmed
- * Created On : Feb 29, 2016 4:58:07 PM
- */
+
 package com.fmd.gp2016.common.managedBean;
 
 import java.util.ArrayList;
@@ -344,9 +341,6 @@ public class ControlAndroidDevice extends BaseBean {
 		this.isPartition = isPartition;
 	}
 
-	/**
-	 * @return the userFiles
-	 */
 	public UserFiles getUserFiles() {
 		return userFiles;
 	}

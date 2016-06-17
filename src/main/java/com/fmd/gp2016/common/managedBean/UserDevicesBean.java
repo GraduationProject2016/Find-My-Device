@@ -17,10 +17,6 @@ import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
 import com.fmd.gp2016.web.socket.DevicePool;
 import com.fmd.gp2016.web.socket.DeviceThread;
 
-/**
- * @author IbrahimAli
- */
-
 @SpringViewScoped
 @Named(value = "userdevices")
 public class UserDevicesBean extends BaseBean {
@@ -40,12 +36,12 @@ public class UserDevicesBean extends BaseBean {
 		devices = new ArrayList<Device>();
 		devices = userDevicesService.getAllUserDevicesByUserId(getSessionUserID());
 		deletePassword = controlPassword = "";
-		
+
 		errorMsg = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("msg");
 		System.out.println("===========================================");
 		System.out.println(errorMsg);
 		System.out.println("===========================================");
-		
+
 		for (DeviceThread dt : DevicePool.getUserConectedDevices(getSessionUserID())) {
 			for (Device d : devices) {
 				if (d.getId().equals(dt.getDevice().getId())) {
@@ -60,8 +56,6 @@ public class UserDevicesBean extends BaseBean {
 
 	}
 
-
-
 	public String control() throws IOException {
 		if (!isAuzorizedUser(controlPassword)) {
 			controlPassword = "";
@@ -74,7 +68,7 @@ public class UserDevicesBean extends BaseBean {
 						.redirect("controldevicePC.xhtml?" + Constants.DEVICE_ID + "=" + selected.getId());
 			else if (selected.getType() == Constants.DEVICE_TYPE_ANDROID_DB)
 				context.getExternalContext()
-				.redirect("controldeviceAndro.xhtml?" + Constants.DEVICE_ID + "=" + selected.getId());
+						.redirect("controldeviceAndro.xhtml?" + Constants.DEVICE_ID + "=" + selected.getId());
 		}
 		return "";
 	}

@@ -3,7 +3,6 @@ package com.fmd.gp2016.common.dao.daoImpl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -12,11 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fmd.gp2016.common.dao.UserDao;
 import com.fmd.gp2016.common.entity.User;
-
-/**
- * @author mohamed265
- * @author Ibrahim Ali
- */
 
 @Repository("UserDao")
 public class UserDaoImpl implements UserDao {

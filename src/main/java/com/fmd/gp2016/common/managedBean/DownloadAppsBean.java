@@ -1,7 +1,4 @@
-/**
- * @author mohamed265
- * Created On : Feb 15, 2016 12:26:19 AM
- */
+
 package com.fmd.gp2016.common.managedBean;
 
 import java.io.File;
@@ -17,10 +14,6 @@ import org.primefaces.model.DefaultStreamedContent;
 import com.fmd.gp2016.common.util.Constants;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
 
-/**
- * @author mohamed265
- *
- */
 @Named("downloadAppsBean")
 @SpringViewScoped
 public class DownloadAppsBean extends BaseBean {

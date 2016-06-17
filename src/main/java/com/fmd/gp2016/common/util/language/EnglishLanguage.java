@@ -59,17 +59,28 @@ public class EnglishLanguage implements Language {
 	private String ADDR_BACKGROUND = "Background";
 	private String ADDR_PRO_DEFINITION = "Problem Definition";
 	private String ADDR_SUGGEST_SOLUTION = "Suggest Solution";
-	private String USER_MANUAL = "User Manual Page";
-	private String SIGNUP_PICTURE = "resources/img/signup.PNG";
-	private String LOGIN_PICTURE = "resources/img/login.png";
-	private String UPDATE_PICTURE = "resources/img/update.png";
 	private String HOW_SIGNUP = "HOW DO I CREATE A NEW  ACCOUNT!";
 	private String HOW_LOGIN = "HOW DO I LOGIN TO MY ACCOUNT IF I HAVE AN ACCOUNT!";
 	private String HOW_UPDATE = "HOW DO I UPDATE OR EDIT MY DATA!";
 	private String HOW_CONTROL_Delete = "HOW DO I CONTROL OR DELETE A DEVICE FROM MY AVAILABLE DEVICES!";
 	private String USERDEVICE_PICTURE = "resources/img/userdevice.png";
 	private String HOW_DOWNLOAD = "HOW DO I DOWNLOAD THE LINKS OF DIFFERENT APPLICATIONS!";
+	private String USER_MANUAL = "User Manual Page";
+
+	/* user manual part */
+	private String SIGNUP_PICTURE = "resources/img/signup.PNG";
+	private String LOGIN_PICTURE = "resources/img/login.png";
+	private String UPDATE_PICTURE = "resources/img/update.png";
 	private String DOWNLOAD_PICTURE = "resources/img/download.png";
+	private String LISTOFDEVICES = "resources/img/listofdevices.png";
+	private String HOW_CONFIGURATION = "resources/img/configuration.png";
+	private String HOW_FINDLOCATION = "resources/img/findlocation.png";
+	private String HOW_DETAILS = "resources/img/details.png";
+	private String HOW_CONTROL = "resources/img/control.png";
+	private String HOW_COMMAND = "resources/img/command.png";
+	private String HOW_RECORDVIDEO = "resources/img/record.png";
+	private String HOW_RECORDVOICE = "resources/img/recordVideo.png";
+	private String HOW_RECONFIRMPASSWORD = "resources/img/reconfirmpassword.png";
 
 	@Override
 	public String getDir() {
@@ -89,6 +100,51 @@ public class EnglishLanguage implements Language {
 	@Override
 	public String getDEVICE_NAME() {
 		return DEVICE_NAME;
+	}
+
+	@Override
+	public String getLISTOFDEVICES() {
+		return LISTOFDEVICES;
+	}
+
+	@Override
+	public String getHOW_CONFIGURATION() {
+		return HOW_CONFIGURATION;
+	}
+
+	@Override
+	public String getHOW_FINDLOCATION() {
+		return HOW_FINDLOCATION;
+	}
+
+	@Override
+	public String getHOW_DETAILS() {
+		return HOW_DETAILS;
+	}
+
+	@Override
+	public String getHOW_CONTROL() {
+		return HOW_CONTROL;
+	}
+
+	@Override
+	public String getHOW_COMMAND() {
+		return HOW_COMMAND;
+	}
+
+	@Override
+	public String getHOW_RECORDVIDEO() {
+		return HOW_RECORDVIDEO;
+	}
+
+	@Override
+	public String getHOW_RECORDVOICE() {
+		return HOW_RECORDVOICE;
+	}
+
+	@Override
+	public String getHOW_RECONFIRMPASSWORD() {
+		return HOW_RECONFIRMPASSWORD;
 	}
 
 	@Override
@@ -523,7 +579,9 @@ public class EnglishLanguage implements Language {
 		return "Audio Record Time";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.fmd.gp2016.common.util.language.Language#getCommands()
 	 */
 	@Override

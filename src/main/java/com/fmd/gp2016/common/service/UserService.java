@@ -4,11 +4,6 @@ import java.util.List;
 
 import com.fmd.gp2016.common.entity.User;
 
-/**
- * @author mohamed265
- * @author Ibrahim Ali
- */
-
 public interface UserService {
 
 	public void save(User user);
