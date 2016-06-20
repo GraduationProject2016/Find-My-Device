@@ -67,7 +67,7 @@ public class DeviceSettingBean extends BaseBean {
 			if (co.getCommand().equals("filetransfer")) {
 				temp = "Retrive (" + co.getParms()[1] + "\\" + co.getParms()[0] + " )";
 			} else {
-				temp = "Delete (" + co.getParms()[1] + "\\" + co.getParms()[0] + " )";
+				temp = "Delete ("  + co.getParms()[0] + " )";
 			}
 			commands.get(i).setContent(temp);
 		}
@@ -133,11 +133,10 @@ public class DeviceSettingBean extends BaseBean {
 
 	public String deleteCommand(ServerToClientMessage command) {
 		deviceService.deleteMessagesByMessage(command);
+		commands.remove(command);
 		addSuccessfulMessage("Deleted successful");
-		redirect("devicesetting.xhtml?device_id=" + deviceID);
-
+		//redirect("devicesetting.xhtml?device_id=" + deviceID);
 		return "";
-
 	}
 
 	public String getOldPassword() {

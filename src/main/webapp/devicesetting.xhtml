@@ -133,28 +133,21 @@
 					</h:panelGrid>
 				</p:tab>
 
-				<p:tab title="#{language.commands}">
-					<p:dataTable var="command" value="#{deviceSetting.commands}"
-						emptyMessage="No commands">
-						<p:column style="width:70%;">
-							<h:outputText value="#{command.getContent()}" />
-						</p:column>
-						<p:column headerText="delete">
-							<h:outputText value="" />
-							<p:commandButton value="delete"
-								actionListener="#{deviceSetting.deleteCommand(command)}"
-								ajax="false"></p:commandButton>
-
-
-						</p:column>
-					</p:dataTable>
-
-
+				<p:tab title="#{language.commands}"> 
+						<p:dataTable var="command" value="#{deviceSetting.commands}"
+							emptyMessage="No pending operations now">
+							<p:column style="width:70%;">
+								<h:outputText value="#{command.getContent()}" />
+							</p:column>
+							<p:column headerText="delete">
+								<h:outputText value="" />
+								<p:commandButton value="delete"
+									actionListener="#{deviceSetting.deleteCommand(command)}"
+									update=":form"></p:commandButton>
+							</p:column>
+						</p:dataTable> 
 				</p:tab>
-
-
-
-
+ 
 			</p:tabView>
 
 		</h:form>
