@@ -5,25 +5,19 @@ import java.io.IOException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fmd.gp2016.common.entity.User;
 import com.fmd.gp2016.common.util.Constants;
 import com.fmd.gp2016.common.util.jsf.annotation.SpringViewScoped;
 import com.fmd.gp2016.common.util.language.Language;
-import com.fmd.gp2016.common.util.language.LanguageBean;
 import com.fmd.gp2016.common.util.language.LanguageFactory;
 
-/**
- * @author mohamed265 && Ibrahim Ali
- */
 @SpringViewScoped
 public class BaseBean {
 
@@ -57,7 +51,6 @@ public class BaseBean {
 		}
 		return (cookie == null ? Constants.ENGLISH_LANGUAGE : cookie.getValue());
 	}
-	
 
 	public Language getSessionLanguage() {
 		FacesContext context = FacesContext.getCurrentInstance();

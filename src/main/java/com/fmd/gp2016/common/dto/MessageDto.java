@@ -1,15 +1,8 @@
-/**
- * @author mohamed265
- * Created On : Dec 14, 2015 10:07:21 AM
- */
+
 package com.fmd.gp2016.common.dto;
 
 import java.io.Serializable;
 
-/**
- * @author mohamed265
- *
- */
 public class MessageDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -35,12 +28,12 @@ public class MessageDto implements Serializable {
 		this.contentType = userId;
 		this.content = content;
 		this.messageType = type;
-	} 
+	}
 
 	@Override
 	public String toString() {
-		return "MessageDto [deviceId=" + deviceId + ", contentType=" + contentType + ", content=" + content + ", messageType="
-				+ messageType + "]";
+		return "MessageDto [deviceId=" + deviceId + ", contentType=" + contentType + ", content=" + content
+				+ ", messageType=" + messageType + "]";
 	}
 
 	public int getDeviceId() {

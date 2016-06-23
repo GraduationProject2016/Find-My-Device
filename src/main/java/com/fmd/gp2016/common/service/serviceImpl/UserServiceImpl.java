@@ -10,11 +10,6 @@ import com.fmd.gp2016.common.entity.User;
 import com.fmd.gp2016.common.service.UserService;
 import com.fmd.gp2016.common.util.Constants;
 
-/**
- * @author mohamed265
- * @author Ibrahim Ali
- */
-
 @Service("UserService")
 public class UserServiceImpl implements UserService {
 

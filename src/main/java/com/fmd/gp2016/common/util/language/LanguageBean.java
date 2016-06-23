@@ -536,10 +536,54 @@ public class LanguageBean implements Language {
 		return lang.getAudioRecordTime();
 	}
 
-
 	@Override
 	public String getCommands() {
 		return lang.getCommands();
+	}
+
+	@Override
+	public String getLISTOFDEVICES() {
+		return lang.getLISTOFDEVICES();
+	}
+
+	@Override
+	public String getHOW_CONFIGURATION() {
+		return lang.getHOW_CONFIGURATION();
+	}
+
+	@Override
+	public String getHOW_FINDLOCATION() {
+		return lang.getHOW_FINDLOCATION();
+	}
+
+	@Override
+	public String getHOW_DETAILS() {
+		return lang.getHOW_DETAILS();
+	}
+
+	@Override
+	public String getHOW_CONTROL() {
+		return lang.getHOW_CONTROL();
+	}
+
+	@Override
+	public String getHOW_COMMAND() {
+		return lang.getHOW_COMMAND();
+	}
+
+	@Override
+	public String getHOW_RECORDVIDEO() {
+		return lang.getHOW_RECORDVIDEO();
+	}
+
+	@Override
+	public String getHOW_RECORDVOICE() {
+		return lang.getHOW_RECORDVOICE();
+	}
+
+	@Override
+	public String getHOW_RECONFIRMPASSWORD() {
+		return lang.getHOW_RECONFIRMPASSWORD();
 	}
 
 }

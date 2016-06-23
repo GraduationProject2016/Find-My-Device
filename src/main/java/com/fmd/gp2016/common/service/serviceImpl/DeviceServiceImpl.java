@@ -1,7 +1,4 @@
-/**
- * @author mohamed265
- * Created On : Nov 27, 2015 10:49:39 PM
- */
+
 package com.fmd.gp2016.common.service.serviceImpl;
 
 import java.util.Date;
@@ -19,9 +16,6 @@ import com.fmd.gp2016.common.entity.User;
 import com.fmd.gp2016.common.service.DeviceService;
 import com.fmd.gp2016.common.util.Constants;
 
-/**
- * @author mohamed265
- */
 @Service("DeviceService")
 public class DeviceServiceImpl implements DeviceService {
 
@@ -51,7 +45,6 @@ public class DeviceServiceImpl implements DeviceService {
 
 			device.setStatus(failMessage);
 		}
-		// TODO add stolen devices logic
 	}
 
 	public Boolean isUniqeMacAddress(String mac_address) {

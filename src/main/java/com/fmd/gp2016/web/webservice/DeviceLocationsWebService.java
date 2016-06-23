@@ -1,7 +1,4 @@
-/**
- * @author Ahmed
- * Created On : Apr 27, 2016 3:56:17 PM
- */
+
 package com.fmd.gp2016.web.webservice;
 
 import java.util.List;
@@ -19,10 +16,6 @@ import com.fmd.gp2016.common.entity.Device;
 import com.fmd.gp2016.common.entity.DeviceLocation;
 import com.fmd.gp2016.common.service.DeviceService;
 
-/**
- * @author Ahmed
- *
- */
 @Path("/DeviceLocations/{deviceId}")
 public class DeviceLocationsWebService {
 	@Autowired

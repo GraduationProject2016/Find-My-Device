@@ -13,8 +13,6 @@
      #{language.deviceSettingPage}
         </ui:define>
 	<ui:define name="content">
-		<script src="http://maps.google.com/maps/api/js?sensor=false"
-			type="text/javascript"></script>
 		<h:form id="form">
 			<p:tabView dir="#{language.dir}">
 				<p:ajax event="tabChange" listener="#{deviceSetting.change()}"
@@ -97,7 +95,8 @@
 				</p:tab>
 
 				<p:tab title="#{language.getDeviceLocation()}">
-
+					<script src="http://maps.google.com/maps/api/js?sensor=false"
+						type="text/javascript"></script>
 					<p:selectOneMenu value="#{deviceSetting.locationId}">
 						<f:selectItem noSelectionOption="true"
 							itemLabel="chose device location" itemValue="null" />
@@ -135,7 +134,7 @@
 
 				<p:tab title="#{language.commands}">
 					<p:dataTable var="command" value="#{deviceSetting.commands}"
-						emptyMessage="No commands">
+						emptyMessage="No pending operations now">
 						<p:column style="width:70%;">
 							<h:outputText value="#{command.getContent()}" />
 						</p:column>
@@ -143,17 +142,10 @@
 							<h:outputText value="" />
 							<p:commandButton value="delete"
 								actionListener="#{deviceSetting.deleteCommand(command)}"
-								ajax="false"></p:commandButton>
-
-
+								update=":form"></p:commandButton>
 						</p:column>
 					</p:dataTable>
-
-
 				</p:tab>
-
-
-
 
 			</p:tabView>
 

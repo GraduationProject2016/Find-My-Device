@@ -1,7 +1,4 @@
-/**
- * @author mohamed265
- * Created On : Nov 17, 2015 6:18:10 PM
- */
+
 package com.fmd.gp2016.webservice;
 
 import java.io.IOException;

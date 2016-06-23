@@ -40,12 +40,15 @@ public class ArabicLanguage implements Language {
 	private String DEVICE_PASSWORD = "ادخل كلمه المرور الخاصه بالجهاز";
 
 	private String MODEL_HEADER = "للعمليات على جهاز";
-
 	private String DEVICE_NAME = "إسم الجهاز";
 	private String DEVICE_LASTACTIVEDATE = "أخر تاريخ للدخول";
 	private String DEVICE_TYPE = "نوع الجهاز";
 	private String DEVICE_OPERATINS = "عمليات على الجهاز";
-
+	private String HOW_SIGNUP = "كيف يمكنني عمل حساب جديد!";
+	private String HOW_LOGIN = "كيف يمكنني الدخول الي حسابي!";
+	private String HOW_UPDATE = "كيف يمكنني تعديل البيانات الخاصة بي!";
+	private String HOW_CONTROL_Delete = "كيف يمكنني التحكم او حذف جهاز من الاجهزة الخاصة بي!";
+	private String HOW_DOWNLOAD = "كيف يمكنني تحميل اللينك الخاص بالبرامج!";
 	private String deviceSettingPage = "اعدادات الجهاز";
 
 	private String ABOUT_PAGE_NAME = "من نحن";
@@ -56,15 +59,21 @@ public class ArabicLanguage implements Language {
 	private String ADDR_PRO_DEFINITION = "تعريف المشكلة";
 	private String ADDR_SUGGEST_SOLUTION = "الحل المقترح";
 	private String USER_MANUAL = "صفحة دليل المستخدم ";
+
+	/* user manual part */
 	private String SIGNUP_PICTURE = "resources/img/signup_ar.png";
 	private String LOGIN_PICTURE = "resources/img/login_ar.png";
 	private String UPDATE_PICTURE = "resources/img/update_ar.png";
 	private String USERDEVICE_PICTURE = "resources/img/userdevice.png";
-	private String HOW_SIGNUP = "كيف يمكنني عمل حساب جديد!";
-	private String HOW_LOGIN = "كيف يمكنني الدخول الي حسابي!";
-	private String HOW_UPDATE = "كيف يمكنني تعديل البيانات الخاصة بي!";
-	private String HOW_CONTROL_Delete = "كيف يمكنني التحكم او حذف جهاز من الاجهزة الخاصة بي!";
-	private String HOW_DOWNLOAD = "كيف يمكنني تحميل اللينك الخاص بالبرامج!";
+	private String LISTOFDEVICES = "resources/img/listofdevices_ar.png";
+	private String HOW_CONFIGURATION = "resources/img/configuration_ar.png";
+	private String HOW_FINDLOCATION = "resources/img/findlocation_ar.png";
+	private String HOW_DETAILS = "resources/img/details_ar.png";
+	private String HOW_CONTROL = "resources/img/control_ar.png";
+	private String HOW_COMMAND = "resources/img/command_ar.png";
+	private String HOW_RECORDVIDEO = "resources/img/record_ar.png";
+	private String HOW_RECORDVOICE = "resources/img/recordVideo_ar.png";
+	private String HOW_RECONFIRMPASSWORD = "resources/img/reconfirmpassword_ar.png";
 	private String DOWNLOAD_PICTURE = "resources/img/download_ar.png";
 
 	@Override
@@ -100,6 +109,51 @@ public class ArabicLanguage implements Language {
 	@Override
 	public String getDEVICE_OPERATINS() {
 		return DEVICE_OPERATINS;
+	}
+
+	@Override
+	public String getLISTOFDEVICES() {
+		return LISTOFDEVICES;
+	}
+
+	@Override
+	public String getHOW_CONFIGURATION() {
+		return HOW_CONFIGURATION;
+	}
+
+	@Override
+	public String getHOW_FINDLOCATION() {
+		return HOW_FINDLOCATION;
+	}
+
+	@Override
+	public String getHOW_DETAILS() {
+		return HOW_DETAILS;
+	}
+
+	@Override
+	public String getHOW_CONTROL() {
+		return HOW_CONTROL;
+	}
+
+	@Override
+	public String getHOW_COMMAND() {
+		return HOW_COMMAND;
+	}
+
+	@Override
+	public String getHOW_RECORDVIDEO() {
+		return HOW_RECORDVIDEO;
+	}
+
+	@Override
+	public String getHOW_RECORDVOICE() {
+		return HOW_RECORDVOICE;
+	}
+
+	@Override
+	public String getHOW_RECONFIRMPASSWORD() {
+		return HOW_RECONFIRMPASSWORD;
 	}
 
 	@Override
@@ -532,8 +586,9 @@ public class ArabicLanguage implements Language {
 		return "وقت تسجيل الصوت";
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.fmd.gp2016.common.util.language.Language#getCommands()
 	 */
 	@Override
@@ -541,7 +596,6 @@ public class ArabicLanguage implements Language {
 		// TODO Auto-generated method stub
 		return "الاوامر";
 	}
-
 
 	@Override
 	public String getArabicLanguageName() {

@@ -1,7 +1,4 @@
-/**
- * @author mohamed265
- * Created On : Nov 27, 2015 11:31:53 PM
- */
+
 package com.fmd.gp2016.webservice;
 
 import javax.json.JsonObject;
@@ -13,10 +10,6 @@ import com.fmd.gp2016.common.util.Constants;
 import com.fmd.gp2016.common.util.JsonHandler;
 import com.fmd.gp2016.common.util.WebServiceConnector;
 
-/**
- * @author mohamed265
- *
- */
 public class DeviceWebServiceTest {
 
 	@Test

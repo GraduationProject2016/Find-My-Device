@@ -35,6 +35,24 @@ public interface Language {
 
 	public String getHOW_CONTROL_Delete();
 
+	public String getLISTOFDEVICES();
+
+	public String getHOW_CONFIGURATION();
+
+	public String getHOW_FINDLOCATION();
+
+	public String getHOW_DETAILS();
+
+	public String getHOW_CONTROL();
+
+	public String getHOW_COMMAND();
+
+	public String getHOW_RECORDVIDEO();
+
+	public String getHOW_RECORDVOICE();
+
+	public String getHOW_RECONFIRMPASSWORD();
+
 	public String getHOW_DOWNLOAD();
 
 	public String getDOWNLOAD_PICTURE();
@@ -196,7 +214,7 @@ public interface Language {
 	public String getVideoRecordTime();
 
 	public String getAudioRecordTime();
-	
+
 	public String getCommands();
 
 }

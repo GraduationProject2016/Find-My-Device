@@ -1,7 +1,4 @@
-/**
- * @author mohamed265
- * Created On : Nov 27, 2015 10:22:37 PM
- */
+
 package com.fmd.gp2016.common.dao.daoImpl;
 
 import java.util.List;
@@ -20,9 +17,6 @@ import com.fmd.gp2016.common.entity.FileSystemStructure;
 import com.fmd.gp2016.common.entity.ServerToClientMessage;
 import com.fmd.gp2016.common.entity.User;
 
-/**
- * @author mohamed265
- */
 @Repository("DeviceDao")
 public class DeviceDaoImpl implements DeviceDao {
 
@@ -38,7 +32,6 @@ public class DeviceDaoImpl implements DeviceDao {
 	@Override
 	public void isMacAddressUnique(String macAddress) {
 		// TODO Implement worning algorithem
-
 	}
 
 	@Override

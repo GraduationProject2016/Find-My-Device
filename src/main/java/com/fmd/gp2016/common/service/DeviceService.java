@@ -1,7 +1,4 @@
-/**
- * @author mohamed265
- * Created On : Nov 27, 2015 10:49:20 PM
- */
+
 package com.fmd.gp2016.common.service;
 
 import java.util.List;
@@ -12,10 +9,6 @@ import com.fmd.gp2016.common.entity.FileSystemStructure;
 import com.fmd.gp2016.common.entity.ServerToClientMessage;
 import com.fmd.gp2016.common.entity.User;
 
-/**
- * @author mohamed265
- *
- */
 public interface DeviceService {
 
 	public void saveDevice(Device device);
