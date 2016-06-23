@@ -490,7 +490,7 @@ public class EnglishLanguage implements Language {
 	}
 
 	public String getRecordVedieo() {
-		return "Record Vedio";
+		return "Record Video";
 	}
 
 	@Override
